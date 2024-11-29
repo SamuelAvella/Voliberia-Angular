@@ -3,6 +3,7 @@ import { PictureSelectableComponent } from "./components/picture-selectable/pict
 import { CommonModule } from "@angular/common";
 import { IonicModule } from "@ionic/angular";
 import { ReactiveFormsModule } from "@angular/forms";
+import { TranslateModule } from "@ngx-translate/core";
 
 @NgModule({
     declarations:[
@@ -11,7 +12,8 @@ import { ReactiveFormsModule } from "@angular/forms";
     imports:[
         CommonModule,
         IonicModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        TranslateModule.forChild()
     ],
     exports:[
         PictureSelectableComponent
