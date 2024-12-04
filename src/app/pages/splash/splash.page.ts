@@ -10,7 +10,7 @@ import { timer } from 'rxjs';
   selector: 'app-splash',
   templateUrl: './splash.page.html',
   styleUrls: ['./splash.page.scss'],
-  standalone:true, //Al crearlo standalone, no necesita splash.module.ts y lo dejamos por si acaso
+  standalone:true, // Indica que no necesita ser parte de un módulo, pero le genero un backup
   imports: [IonicModule, LottieComponent]
 })
 export class SplashPage implements OnInit {
