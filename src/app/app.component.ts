@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { TranslationService } from './core/services/translation.service';
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
@@ -7,13 +8,15 @@ import { Router } from '@angular/router';
 })
 export class AppComponent {
   public appPages = [
-    { title: 'Home', url: '/pages/home', icon: 'home' },
-    { title: 'Flights', url: '/pages/flights', icon: 'airplane' },
-    { title: 'Bookings', url: '/pages/bookings', icon: 'book' },
-    { title: 'Users', url: '/pages/user-app', icon: 'people' },
+    { title: 'Home', url: '/home', icon: 'home' },
+    { title: 'Flights', url: '/flights', icon: 'airplane' },
+    { title: 'Bookings', url: '/bookings', icon: 'book' },
+    { title: 'Users', url: '/user-app', icon: 'people' },
   ];
   
   constructor(
+    private translationService : TranslationService,
     private router:Router
   ) {}
+
 }

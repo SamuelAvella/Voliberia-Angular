@@ -10,7 +10,7 @@ const routes: Routes = [
   
   {
     path: 'splash',
-    loadChildren: () => import('./pages/splash/splash.page').then( m => m.SplashPage)
+    loadComponent: () => import('./pages/splash/splash.page').then(m => m.SplashPage)
   },
   {
     path: 'login',
