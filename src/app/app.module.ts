@@ -10,6 +10,8 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { TranslateModule,TranslateLoader } from '@ngx-translate/core';
 import { SharedModule } from './shared/shared.module';
+import { provideLottieOptions } from 'ngx-lottie';
+import player from 'lottie-web';
 
 // Factory function para el loader de traducción
 export function createTranslateLoader(http: HttpClient){
@@ -32,10 +34,14 @@ export function createTranslateLoader(http: HttpClient){
     }),
     SharedModule
   ],
-  providers: [{ 
-    provide: RouteReuseStrategy, 
-    useClass: IonicRouteStrategy 
-  }],
+  providers: [
+    { provide: RouteReuseStrategy, 
+      useClass: IonicRouteStrategy
+    },
+    provideLottieOptions({
+      player:() => player,
+    })
+  ],
   bootstrap: [
     AppComponent
   ],
