@@ -14,4 +14,5 @@ export interface UserApp extends Model{
         thumbnail:string | undefined
     },
     userId?:string
+    bookingsId?:number | string | []
 }
