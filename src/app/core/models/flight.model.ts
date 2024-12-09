@@ -6,5 +6,4 @@ export interface Flight extends Model{
     departureDate:string,
     arrivalDate:string,
     seatPrice:number,
-    seats?:[]
 }

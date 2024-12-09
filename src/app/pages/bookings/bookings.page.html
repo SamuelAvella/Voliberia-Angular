@@ -3,14 +3,32 @@
     <ion-buttons slot="start">
       <ion-menu-button menu="mainMenu"></ion-menu-button>
     </ion-buttons>
-    <ion-title>bookings</ion-title>
+    <ion-title>Bookings</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">bookings</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content>
+  <ion-list>
+    <ng-container *ngFor="let booking of bookings$ | async">
+      <ion-item>
+        <ion-label>
+          <div style="display:flex; justify-content: space-between; align-items:center;">
+            <h2>Estado: {{ booking.bookingState ? 'Activa' : 'Inactiva' }}</h2>
+            <ion-toggle [checked]="booking.bookingState" (ionChange)="onBookingStateChange(booking)"></ion-toggle>
+          </div>
+
+          <!-- Mostramos la info del vuelo si existe en flightsMap -->
+          <ng-container *ngIf="flightsMap[booking.flightId] as flight">
+            <h3>Origen: {{flight.origin}} - Destino: {{flight.destination}}</h3>
+            <p>Salida: {{flight.departureDate | date:'short'}} - Llegada: {{flight.arrivalDate | date:'short'}}</p>
+            <p>Precio: {{flight.seatPrice | currency}}</p>
+          </ng-container>
+        </ion-label>
+      </ion-item>
+    </ng-container>
+  </ion-list>
+
+  <ion-infinite-scroll (ionInfinite)="onIonInfinite($event)">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 </ion-content>

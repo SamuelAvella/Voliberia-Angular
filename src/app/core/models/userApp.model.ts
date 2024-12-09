@@ -5,7 +5,7 @@ export interface UserApp extends Model{
     surname:string,
     idDocument:string,
     age?:number,
-    email?:string, //TODO: Quitar interrogación más adelante
+    email?:string,
     picture?:{
         url:string | undefined,
         large:string | undefined,
@@ -13,6 +13,6 @@ export interface UserApp extends Model{
         small:string | undefined,
         thumbnail:string | undefined
     },
-    userId?:string
-    bookingsId?:number | string | []
+    userId?:string,
+    bookingsId?: string | [] | null
 }

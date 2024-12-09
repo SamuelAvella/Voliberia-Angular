@@ -5,19 +5,20 @@ import { StrapiMedia } from "../../services/impl/strapi-media.service";
 import { UserApp } from "../../models/userApp.model";
 
 
-interface MediaRaw{
+export interface MediaRaw{
     data: StrapiMedia
 }
-interface UserRaw{
+
+export interface UserRaw{
     data: UserData
 }
 
-interface UserData{
+export interface UserData{
     id: number
     attributes: UserAttributes
 }
 
-interface UserAttributes {
+export interface UserAttributes {
     username: string
     email: string
     provider: string
@@ -27,17 +28,17 @@ interface UserAttributes {
     updatedAt: string
 }
 
-interface BookingRaw{
-    data: BookingData,
+export interface BookingRaw{
+    data: BookingData
     meta: Meta
 }
 
-interface BookingData {
+export interface BookingData {
     id: number
     attributes: BookingAttributes
 }
   
-interface BookingAttributes {
+export interface BookingAttributes {
     bookingState: boolean
     createdAt: string
     updatedAt: string
@@ -45,20 +46,21 @@ interface BookingAttributes {
 }
   
 
-interface UserAppRaw {
+export interface UserAppRaw {
     data: Data
     meta: Meta
-  }
+}
   
-interface Data {
+export interface Data {
     id: number
     attributes: UserAppAttributes
 }
-interface UserAppData {
-    data: UserAppAttributes;
+
+export interface UserAppData {
+    data: UserAppAttributes
 }
 
-interface UserAppAttributes {
+export interface UserAppAttributes {
     name: string
     surname: string
     idDocument: string
@@ -66,21 +68,17 @@ interface UserAppAttributes {
     createdAt?: string
     updatedAt?: string
     publishedAt?: string
-    bookings:BookingRaw | number | null,
+    bookings:BookingRaw | number | null
     user:UserRaw | number | null,
     picture:MediaRaw | number | null
 }
 
-interface BookingAttributes {
-    name: string
-}
-
-interface Meta {}
+export interface Meta {}
 
 @Injectable({
     providedIn: 'root'
   })
-  export class PeopleMappingStrapi implements IBaseMapping<UserApp> {
+  export class UserAppMappingStrapi implements IBaseMapping<UserApp> {
     
     setAdd(data: UserApp):UserAppData {
         return {
@@ -125,10 +123,10 @@ interface Meta {}
         })};
     }
     getOne(data: Data | UserAppRaw): UserApp {
-        const isPersonRaw = (data: Data | UserAppRaw): data is UserAppRaw => 'meta' in data;
+        const isUserAppRaw = (data: Data | UserAppRaw): data is UserAppRaw => 'meta' in data;
 
-        const attributes = isPersonRaw(data) ? data.data.attributes : data.attributes;
-        const id = isPersonRaw(data) ? data.data.id : data.id;
+        const attributes = isUserAppRaw(data) ? data.data.attributes : data.attributes;
+        const id = isUserAppRaw(data) ? data.data.id : data.id;
         
         return {
             id: id.toString(),

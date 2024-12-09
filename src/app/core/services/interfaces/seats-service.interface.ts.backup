@@ -1,0 +1,6 @@
+import { Seat } from "../../models/seat.model.ts.backup";
+import { IBaseService } from "./base-service.interface";
+
+export interface ISeatsService extends IBaseService<Seat>{
+    
+}
