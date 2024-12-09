@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { User } from 'src/app/core/models/auth.model';
 import { BaseAuthenticationService } from 'src/app/core/services/impl/base-authentication.service';
 import { UsersAppService } from 'src/app/core/services/impl/usersApp.service';
-import { passwordValidator } from 'src/app/core/utils/validators';
+import { matchPasswordsValidator, passwordValidator } from 'src/app/core/utils/validators';
 
 @Component({
   selector: 'app-register',
@@ -29,12 +29,11 @@ export class RegisterPage{
       password: ['', [Validators.required, passwordValidator]],
       confirmPassword: ['', [Validators.required]]
     },
-    { validators: passwordValidator });
+    { validators: matchPasswordsValidator });
   }
 
-
-  onSubmit(){
-    if(this.registerForm.valid){
+  onSubmit() {
+    if (this.registerForm.valid) {
       this.authSvc.signUp(this.registerForm.value).subscribe({
         next: (resp:User) => {
           const userData = {
