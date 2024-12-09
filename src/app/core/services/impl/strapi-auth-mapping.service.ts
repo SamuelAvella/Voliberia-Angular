@@ -46,10 +46,7 @@ interface StrapiSignUp{
     password:string,
     username:string
 }
-export interface GroupRaw {
-    id: string
-    nombre: string
-}
+
 @Injectable({
     providedIn: 'root'
   })

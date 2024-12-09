@@ -9,8 +9,6 @@ export interface SignUpPayload{
     name:string,
     surname:string,
     birthDate:string,
-    gender:string,
-    group:string,
     user:string
 }
 

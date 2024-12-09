@@ -30,7 +30,7 @@ export class SplashPage implements OnInit {
 
   ngOnInit() {
     timer(5000).subscribe(_=>{
-      this.router.navigate(['/home']);
+      this.router.navigate(['/register']);
     });
   }
 
