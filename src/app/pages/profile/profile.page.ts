@@ -47,7 +47,7 @@ export class ProfilePage implements OnInit {
           this.userApp = await lastValueFrom(this.usersAppService.getByUserId(user.id));
           console.log(this.userApp);
           if (this.userApp) {
-            const updatedPerson: any = {
+            const updatedUserApp: any = {
               ...this.userApp,
               email:user.email,
               userId:user.id,
@@ -55,7 +55,7 @@ export class ProfilePage implements OnInit {
                            this.userApp.picture.url : 
                            undefined
             };
-            this.formGroup.patchValue(updatedPerson);
+            this.formGroup.patchValue(updatedUserApp);
           }
       }
     } catch (error) {

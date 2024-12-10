@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { Flight } from 'src/app/core/models/flight.model';
-import { Paginated } from 'src/app/core/models/paginated.model';
-import { FlightsService } from 'src/app/core/services/impl/flights.service';
+import { Component, OnInit } from "@angular/core";
+import { AlertController, ModalController } from "@ionic/angular";
+import { BehaviorSubject, Observable } from "rxjs";
+import { Flight } from "src/app/core/models/flight.model";
+import { Paginated } from "src/app/core/models/paginated.model";
+import { FlightsService } from "src/app/core/services/impl/flights.service";
+import { FlightModalComponent } from "src/app/shared/components/flight-modal/flight-modal.component";
 
 @Component({
   selector: 'app-flights',
@@ -15,7 +17,11 @@ export class FlightsPage implements OnInit {
   page: number = 1;
   pageSize: number = 25;
 
-  constructor(private flightsSvc: FlightsService) {}
+  constructor(
+    private flightsSvc: FlightsService,
+    private modalCtrl: ModalController,
+    private alertCtrl: AlertController
+  ) {}
 
   ngOnInit(): void {
     this.getMoreFlights();
@@ -31,8 +37,63 @@ export class FlightsPage implements OnInit {
     });
   }
 
-  openFlightDetail(flight: Flight, index: number) {
-    console.log('Flight selected:', flight);
+  async onAddFlight() {
+    const modal = await this.modalCtrl.create({
+      component: FlightModalComponent,
+    });
+
+    modal.onDidDismiss().then((result) => {
+      if (result.data) {
+        this.flightsSvc.add(result.data).subscribe(() => this.refreshFlights());
+      }
+    });
+
+    await modal.present();
+  }
+
+  async onEditFlight(flight: Flight) {
+    const modal = await this.modalCtrl.create({
+      component: FlightModalComponent,
+      componentProps: { flight },
+    });
+
+    modal.onDidDismiss().then((result) => {
+      if (result.data) {
+        this.flightsSvc.update(flight.id, result.data).subscribe(() =>
+          this.refreshFlights()
+        );
+      }
+    });
+
+    await modal.present();
+  }
+
+  async onDeleteFlight(flight: Flight) {
+    const alert = await this.alertCtrl.create({
+      header: 'Confirm Deletion',
+      message: 'Are you sure you want to delete this flight and all its bookings?',
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+        },
+        {
+          text: 'Delete',
+          role: 'destructive',
+          handler: () => {
+            this.flightsSvc.delete(flight.id).subscribe(() => this.refreshFlights());
+          },
+        },
+      ],
+    });
+
+    await alert.present();
+  }
+
+  refreshFlights() {
+    this.page = 1;
+    this._flights.next([]);
+    this.getMoreFlights();
   }
 
   onIonInfinite(ev: any) {

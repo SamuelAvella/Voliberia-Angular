@@ -22,7 +22,7 @@ export class StrapiAuthenticationService extends BaseAuthenticationService imple
     private httpClient:HttpClient
   ) {
     super(authMapping);
-    this.jwt_token = localStorage.getItem('people-jwt-token');
+    this.jwt_token = localStorage.getItem('user-apps-jwt-token');
     if (this.jwt_token) {
       this.me().subscribe({
         next:(resp) => {
@@ -55,7 +55,7 @@ export class StrapiAuthenticationService extends BaseAuthenticationService imple
     return this.httpClient.post<StrapiSignInResponse>(
       `${this.signInUrl}`, 
       this.authMapping.signInPayload(authPayload)).pipe(map((resp:StrapiSignInResponse)=>{
-      localStorage.setItem("people-jwt-token",resp.jwt);
+      localStorage.setItem("user-apps-jwt-token",resp.jwt);
       this.jwt_token = resp.jwt;
       this._authenticated.next(true);
       this._user.next(this.authMapping.signIn(resp));
@@ -67,7 +67,7 @@ export class StrapiAuthenticationService extends BaseAuthenticationService imple
     return this.httpClient.post<StrapiSignUpResponse>(
       `${this.signUpUrl}`, 
       this.authMapping.signUpPayload(signUpPayload)).pipe(map((resp:StrapiSignUpResponse)=>{
-        localStorage.setItem("people-jwt-token",resp.jwt);
+        localStorage.setItem("user-apps-jwt-token",resp.jwt);
         this.jwt_token = resp.jwt;
         this._authenticated.next(true);
         return this.authMapping.signUp(resp);
@@ -76,7 +76,7 @@ export class StrapiAuthenticationService extends BaseAuthenticationService imple
 
   signOut(): Observable<any> {
     return of(true).pipe(tap(_=>{
-      localStorage.removeItem('people-jwt-token');
+      localStorage.removeItem('user-apps-jwt-token');
       this._authenticated.next(false);
       this._user.next(undefined);
     }));

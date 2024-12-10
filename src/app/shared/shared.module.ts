@@ -5,11 +5,13 @@ import { IonicModule } from "@ionic/angular";
 import { ReactiveFormsModule } from "@angular/forms";
 import { TranslateModule } from "@ngx-translate/core";
 import { LanguageSelectorComponent } from "./components/language-selector/language-selector.component";
+import { FlightModalComponent } from "./components/flight-modal/flight-modal.component";
 
 @NgModule({
     declarations:[
         PictureSelectableComponent,
-        LanguageSelectorComponent
+        LanguageSelectorComponent,
+        FlightModalComponent
     ],
     imports:[
         CommonModule,
@@ -19,7 +21,8 @@ import { LanguageSelectorComponent } from "./components/language-selector/langua
     ],
     exports:[
         PictureSelectableComponent,
-        LanguageSelectorComponent
+        LanguageSelectorComponent,
+        FlightModalComponent
     ]
 })
 export class SharedModule{}

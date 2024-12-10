@@ -1,0 +1,54 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{ flight ? 'Edit Flight' : 'New Flight' }}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="dismiss()">
+        <ion-icon slot="icon-only" name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+    <ion-item>
+      <ion-input
+        label="Origin"
+        label-placement="stacked"
+        formControlName="origin"
+      ></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input
+        label="Destination"
+        label-placement="stacked"
+        formControlName="destination"
+      ></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-datetime
+        label="Departure Date"
+        label-placement="stacked"
+        formControlName="departureDate"
+      ></ion-datetime>
+    </ion-item>
+    <ion-item>
+      <ion-datetime
+        label="Arrival Date"
+        label-placement="stacked"
+        formControlName="arrivalDate"
+      ></ion-datetime>
+    </ion-item>
+    <ion-item>
+      <ion-input
+        label="Seat Price"
+        label-placement="stacked"
+        type="number"
+        formControlName="seatPrice"
+      ></ion-input>
+    </ion-item>
+    <ion-button expand="block" type="submit" [disabled]="!formGroup.valid">
+      {{ flight ? 'Save' : 'Create' }}
+    </ion-button>
+  </form>
+</ion-content>

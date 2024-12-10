@@ -16,7 +16,7 @@ import { AUTH_ME_API_URL_TOKEN, AUTH_SIGN_IN_API_URL_TOKEN, AUTH_SIGN_UP_API_URL
 import { environment } from 'src/environments/environment';
 import { UsersAppService } from './core/services/impl/usersApp.service';
 import { FlightsService } from './core/services/impl/flights.service';
-import { AuthenticationServiceFactory, AuthMappingFactory, BookingsMappingFactory, BookingsRepositoryFactory, FlightsRepositoryFactory, FligthsMappingFactory, MediaServiceFactory, UsersAppMappingFactory, UsersAppRepositoryFactory } from './core/repositories/repository.factory';
+import { AuthenticationServiceFactory, AuthMappingFactory, BookingsMappingFactory, BookingsRepositoryFactory, FlightsRepositoryFactory, FlightsMappingFactory, MediaServiceFactory, UsersAppMappingFactory, UsersAppRepositoryFactory } from './core/repositories/repository.factory';
 import { FormsModule } from '@angular/forms';
 
 // Factory function para el loader de traducción
@@ -52,7 +52,7 @@ export function createTranslateLoader(http: HttpClient){
     }),
     provideHttpClient(),
     { provide: BACKEND_TOKEN, useValue: 'strapi' },
-    { provide: USERSAPP_RESOURCE_NAME_TOKEN, useValue: 'usersApp' },
+    { provide: USERSAPP_RESOURCE_NAME_TOKEN, useValue: 'user-apps' },
     { provide: BOOKINGS_RESOURCE_NAME_TOKEN, useValue: 'bookings' },
     { provide: FLIGHTS_RESOURCE_NAME_TOKEN, useValue: 'fligths' },
     { provide: USERSAPP_API_URL_TOKEN, useValue: `${environment.apiUrl}/api` },
@@ -65,7 +65,7 @@ export function createTranslateLoader(http: HttpClient){
     
     UsersAppMappingFactory,
     BookingsMappingFactory,
-    FligthsMappingFactory,
+    FlightsMappingFactory,
     AuthMappingFactory,
     UsersAppRepositoryFactory,
     BookingsRepositoryFactory,

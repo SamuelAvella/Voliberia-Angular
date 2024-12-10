@@ -97,7 +97,7 @@ export const BookingsMappingFactory = createBaseMappingFactory<Booking>(
     'booking'
 );
 
-export const FligthsMappingFactory = createBaseMappingFactory<Flight>(
+export const FlightsMappingFactory = createBaseMappingFactory<Flight>(
     FLIGHTS_REPOSITORY_MAPPING_TOKEN, 
     [BACKEND_TOKEN],
     'flight'
