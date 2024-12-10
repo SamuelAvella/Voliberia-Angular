@@ -1,0 +1,21 @@
+.booking-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+  }
+  
+  ion-card {
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  ion-card-header {
+    background-color: #484141;
+    border-bottom: 1px solid #484141;
+  }
+  
+  ion-card-title {
+    font-weight: bold;
+    font-size: 1.2rem;
+  }
+  

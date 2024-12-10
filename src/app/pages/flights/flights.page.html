@@ -19,24 +19,28 @@
     </ion-toolbar>
   </ion-header>
 
-  <ion-list>
-    <ion-item *ngFor="let flight of flights$ | async; let i = index">
-      <ion-label>
-        <h2>{{ flight.origin }} → {{ flight.destination }}</h2>
-        <p>Departure: {{ flight.departureDate | date: 'short' }}</p>
-        <p>Arrival: {{ flight.arrivalDate | date: 'short' }}</p>
-        <p>Price: {{ flight.seatPrice | currency: 'USD' }}</p>
-      </ion-label>
-      <ion-buttons slot="end">
-        <ion-button color="primary" (click)="onEditFlight(flight)">
-          <ion-icon slot="icon-only" name="create-outline"></ion-icon>
-        </ion-button>
-        <ion-button color="danger" (click)="onDeleteFlight(flight)">
-          <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
-        </ion-button>
-      </ion-buttons>
-    </ion-item>
-  </ion-list>
+  <div class="flight-container">
+    <ion-card *ngFor="let flight of flights$ | async" class="flight-card">
+      <ion-card-header>
+        <ion-card-title>
+          {{ flight.origin }} → {{ flight.destination }}
+        </ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <p><strong>Departure:</strong> {{ flight.departureDate | date:'short' }}</p>
+        <p><strong>Arrival:</strong> {{ flight.arrivalDate | date:'short' }}</p>
+        <p><strong>Price:</strong> {{ flight.seatPrice | currency:'USD' }}</p>
+        <ion-buttons>
+          <ion-button color="primary" (click)="onEditFlight(flight)">
+            <ion-icon name="create-outline" slot="icon-only"></ion-icon>
+          </ion-button>
+          <ion-button color="danger" (click)="onDeleteFlight(flight)">
+            <ion-icon name="trash-outline" slot="icon-only"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </ion-card-content>
+    </ion-card>
+  </div>
 
   <ion-infinite-scroll (ionInfinite)="onIonInfinite($event)">
     <ion-infinite-scroll-content></ion-infinite-scroll-content>

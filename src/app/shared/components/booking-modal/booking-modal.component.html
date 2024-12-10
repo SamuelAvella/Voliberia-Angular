@@ -1,3 +1,59 @@
-<p>
-  booking-modal works!
-</p>
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{ booking ? 'Edit Booking' : 'New Booking' }}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="dismiss()">
+        <ion-icon slot="icon-only" name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+    <!-- Selección de Usuario -->
+    <ion-item>
+      <ion-label>User</ion-label>
+      <ion-select
+        formControlName="userAppId"
+        placeholder="Select a user"
+        interface="popover"
+      >
+        <ion-select-option
+          *ngFor="let user of users"
+          [value]="user.id"
+        >
+          {{ user.email }}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-text color="danger" *ngIf="formGroup.get('userAppId')?.invalid && formGroup.get('userAppId')?.touched">
+      User is required.
+    </ion-text>
+
+    <!-- Selección de Vuelo (solo al crear) -->
+    <ion-item *ngIf="!booking">
+      <ion-label>Flight</ion-label>
+      <ion-select
+        formControlName="flightId"
+        placeholder="Select a flight"
+        interface="popover"
+      >
+        <ion-select-option
+          *ngFor="let flight of flights"
+          [value]="flight.id"
+        >
+          {{ flight.origin }} → {{ flight.destination }}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-text color="danger" *ngIf="!booking && formGroup.get('flightId')?.invalid && formGroup.get('flightId')?.touched">
+      Flight is required.
+    </ion-text>
+
+    <!-- Botón de Envío -->
+    <ion-button expand="block" type="submit" [disabled]="!formGroup.valid">
+      {{ booking ? 'Save Changes' : 'Create Booking' }}
+    </ion-button>
+  </form>
+</ion-content>

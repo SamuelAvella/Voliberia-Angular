@@ -1,33 +1,55 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-menu-button menu="mainMenu"></ion-menu-button>
-    </ion-buttons>
     <ion-title>Bookings</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="onAddBooking()">
+        <ion-icon name="add-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-list>
-    <ng-container *ngFor="let booking of bookings$ | async">
-      <ion-item>
-        <ion-label>
-          <div style="display:flex; justify-content: space-between; align-items:center;">
-            <h2>Estado: {{ booking.bookingState ? 'Activa' : 'Inactiva' }}</h2>
-            <ion-toggle [checked]="booking.bookingState" (ionChange)="onBookingStateChange(booking)"></ion-toggle>
-          </div>
-
-          <!-- Mostramos la info del vuelo si existe en flightsMap -->
-          <ng-container *ngIf="flightsMap[booking.flightId] as flight">
-            <h3>{{flight.origin}} -> {{flight.destination}}</h3>
-            <p>{{flight.departureDate | date:'short'}} - {{flight.arrivalDate | date:'short'}}</p>
-            <p>Precio: {{flight.seatPrice | currency}}</p>
-          </ng-container>
-        </ion-label>
-      </ion-item>
-    </ng-container>
-  </ion-list>
-
+  <ion-grid>
+    <ion-row>
+      <ion-col
+        size="12"
+        size-md="6"
+        *ngFor="let booking of bookings$ | async"
+      >
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title>
+              {{ flightsMap[booking.flightId]?.origin }} → {{ flightsMap[booking.flightId]?.destination }}
+            </ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <p><strong>User:</strong> {{ usersMap[booking.userAppId]?.email }}</p>
+            <p>
+              <strong>Flight:</strong>
+              {{ flightsMap[booking.flightId]?.departureDate | date: 'short' }} -
+              {{ flightsMap[booking.flightId]?.arrivalDate | date: 'short' }}
+            </p>
+            <p><strong>Price:</strong> {{ flightsMap[booking.flightId]?.seatPrice | currency }}</p>
+            <ion-buttons>
+              <ion-button
+                color="primary"
+                (click)="onEditBooking(booking)"
+              >
+                <ion-icon slot="icon-only" name="create-outline"></ion-icon>
+              </ion-button>
+              <ion-button
+                color="danger"
+                (click)="onDeleteBooking(booking)"
+              >
+                <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
+              </ion-button>
+            </ion-buttons>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
   <ion-infinite-scroll (ionInfinite)="onIonInfinite($event)">
     <ion-infinite-scroll-content></ion-infinite-scroll-content>
   </ion-infinite-scroll>

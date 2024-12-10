@@ -1,0 +1,14 @@
+.flight-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+  padding: 16px;
+}
+
+.flight-card {
+  transition: transform 0.2s;
+}
+
+.flight-card:hover {
+  transform: scale(1.03);
+}

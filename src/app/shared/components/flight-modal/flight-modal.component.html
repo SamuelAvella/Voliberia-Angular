@@ -16,39 +16,51 @@
         label="Origin"
         label-placement="stacked"
         formControlName="origin"
+        placeholder="Enter origin"
       ></ion-input>
     </ion-item>
+
     <ion-item>
       <ion-input
         label="Destination"
         label-placement="stacked"
         formControlName="destination"
+        placeholder="Enter destination"
       ></ion-input>
     </ion-item>
+
     <ion-item>
       <ion-datetime
         label="Departure Date"
         label-placement="stacked"
         formControlName="departureDate"
+        placeholder="Select departure date"
       ></ion-datetime>
     </ion-item>
+
     <ion-item>
       <ion-datetime
         label="Arrival Date"
         label-placement="stacked"
         formControlName="arrivalDate"
+        placeholder="Select arrival date"
       ></ion-datetime>
     </ion-item>
+
     <ion-item>
       <ion-input
         label="Seat Price"
         label-placement="stacked"
         type="number"
         formControlName="seatPrice"
+        placeholder="Enter price"
       ></ion-input>
     </ion-item>
-    <ion-button expand="block" type="submit" [disabled]="!formGroup.valid">
-      {{ flight ? 'Save' : 'Create' }}
-    </ion-button>
+
+    <div class="form-buttons">
+      <ion-button expand="block" type="submit" [disabled]="!formGroup.valid">
+        Save
+      </ion-button>
+    </div>
   </form>
 </ion-content>
