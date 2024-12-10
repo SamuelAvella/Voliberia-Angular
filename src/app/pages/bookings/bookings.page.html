@@ -19,8 +19,8 @@
 
           <!-- Mostramos la info del vuelo si existe en flightsMap -->
           <ng-container *ngIf="flightsMap[booking.flightId] as flight">
-            <h3>Origen: {{flight.origin}} - Destino: {{flight.destination}}</h3>
-            <p>Salida: {{flight.departureDate | date:'short'}} - Llegada: {{flight.arrivalDate | date:'short'}}</p>
+            <h3>{{flight.origin}} -> {{flight.destination}}</h3>
+            <p>{{flight.departureDate | date:'short'}} - {{flight.arrivalDate | date:'short'}}</p>
             <p>Precio: {{flight.seatPrice | currency}}</p>
           </ng-container>
         </ion-label>
