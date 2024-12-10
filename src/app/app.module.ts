@@ -52,7 +52,7 @@ export function createTranslateLoader(http: HttpClient){
     { provide: BACKEND_TOKEN, useValue: 'strapi' },
     { provide: USERSAPP_RESOURCE_NAME_TOKEN, useValue: 'usersApp' },
     { provide: BOOKINGS_RESOURCE_NAME_TOKEN, useValue: 'bookings' },
-    { provide: FLIGHTS_RESOURCE_NAME_TOKEN, useValue: 'flights' },
+    { provide: FLIGHTS_RESOURCE_NAME_TOKEN, useValue: 'fligths' },
     { provide: USERSAPP_API_URL_TOKEN, useValue: `${environment.apiUrl}/api` },
     { provide: BOOKINGS_API_URL_TOKEN, useValue: `${environment.apiUrl}/api` },
     { provide: FLIGHTS_API_URL_TOKEN, useValue: `${environment.apiUrl}/api` },

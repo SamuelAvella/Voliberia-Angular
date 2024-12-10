@@ -26,7 +26,13 @@ export class BaseRepositoryHttpService<T extends Model> implements IBaseReposito
     }
     
     getAll(page: number, pageSize: number, filters: SearchParams): Observable<T[] | Paginated<T>> {
-        return this.http.get<T[]>(`${this.apiUrl}/${this.resource}`).pipe(map(res=>this.mapping.getPaginated(page, pageSize, 0, res)));
+        return this.http.get<T[]>(`${this.apiUrl}/${this.resource}`).pipe(
+            map((res: any) => {
+                if (!res || !res.data) {
+                    throw new Error(`Invalid API response for resource ${this.resource}`);
+                }
+                return this.mapping.getPaginated(page, pageSize, 0, res.data);
+            }));
     }
 
     getById(id: string): Observable<T | null> {

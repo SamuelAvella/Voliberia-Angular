@@ -8,7 +8,7 @@ import { StrapiRepositoryService } from "./impl/strapi-repository.service";
 import { IStrapiAuthentication } from "../services/interfaces/strapi-authentication.interface";
 import { UserAppMappingStrapi } from "./impl/usersApp-mapping-strapi.service";
 import { BookingMappingStrapi } from "./impl/bookings-mapping-strapi.service";
-import { FlightMappingStrapi } from "./impl/flights-mapping-strapi.service";
+import { FlightsMappingStrapi } from "./impl/flights-mapping-strapi.service";
 import { StrapiAuthMappingService } from "../services/impl/strapi-auth-mapping.service";
 import { UserApp } from "../models/userApp.model";
 import { AUTH_MAPPING_TOKEN, AUTH_ME_API_URL_TOKEN, AUTH_SIGN_IN_API_URL_TOKEN, AUTH_SIGN_UP_API_URL_TOKEN, BACKEND_TOKEN, BOOKINGS_API_URL_TOKEN, BOOKINGS_REPOSITORY_MAPPING_TOKEN, BOOKINGS_REPOSITORY_TOKEN, BOOKINGS_RESOURCE_NAME_TOKEN, FLIGHTS_API_URL_TOKEN, FLIGHTS_REPOSITORY_MAPPING_TOKEN, FLIGHTS_REPOSITORY_TOKEN, FLIGHTS_RESOURCE_NAME_TOKEN, UPLOAD_API_URL_TOKEN, USERSAPP_API_URL_TOKEN, USERSAPP_REPOSITORY_MAPPING_TOKEN, USERSAPP_REPOSITORY_TOKEN, USERSAPP_RESOURCE_NAME_TOKEN } from "./repository.token";
@@ -56,7 +56,7 @@ export function createBaseMappingFactory<T extends Model>(
                     modelType === 'booking' 
                     ? new BookingMappingStrapi() :(
                     modelType === 'flight' 
-                    ? new FlightMappingStrapi() : null));
+                    ? new FlightsMappingStrapi() : null));
               default:
                 throw new Error("BACKEND NOT IMPLEMENTED");
             }

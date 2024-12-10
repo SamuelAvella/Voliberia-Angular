@@ -33,7 +33,7 @@ export interface Meta {}
 @Injectable({
     providedIn: 'root'
   })
-  export class FlightMappingStrapi implements IBaseMapping<Flight> {
+  export class FlightsMappingStrapi implements IBaseMapping<Flight> {
     
 
     setAdd(data: Flight):FlightData {
@@ -84,19 +84,25 @@ export interface Meta {}
     }
     getOne(data: Data | FlightRaw): Flight {
         const isFlightRaw = (data: Data | FlightRaw): data is FlightRaw => 'meta' in data;
-        
+      
         const attributes = isFlightRaw(data) ? data.data.attributes : data.attributes;
         const id = isFlightRaw(data) ? data.data.id : data.id;
-
+      
+        // Validar si 'id' es válido antes de usarlo
+        if (!id) {
+          console.log("El id de flight no lo pilla")
+        }
+      
         return {
-            id: id.toString(),
-            origin: attributes.origin,
-            destination: attributes.destination,
-            departureDate: attributes.departureDate,
-            arrivalDate: attributes.arrivalDate,
-            seatPrice: attributes.seatPrice
+          id: id.toString(),
+          origin: attributes.origin || '',
+          destination: attributes.destination || '',
+          departureDate: attributes.departureDate || '',
+          arrivalDate: attributes.arrivalDate || '',
+          seatPrice: attributes.seatPrice || 0,
         };
-    }
+      }
+      
     getAdded(data: FlightRaw):Flight {
         return this.getOne(data.data);
     }

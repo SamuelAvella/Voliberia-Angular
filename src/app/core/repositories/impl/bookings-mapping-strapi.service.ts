@@ -102,31 +102,53 @@ export class BookingMappingStrapi implements IBaseMapping<Booking> {
     }
 
 
-    getPaginated(page:number, pageSize: number, pages:number, data:Data[]): Paginated<Booking> {
-        return {page:page, pageSize:pageSize, pages:pages, data:data.map<Booking>((d:Data|BookingRaw)=>{
-            return this.getOne(d);
-        })};
-    }
-
-    getOne(data: Data | BookingRaw): Booking {
-        const isBookingRaw = (data: Data | BookingRaw): data is BookingRaw => 'meta' in data;
+    getPaginated(page: number, pageSize: number, pages: number, data: Data[]): Paginated<Booking> {
+        const validData = data.filter(d => d && d.id && d.attributes);
     
-        const attributes = isBookingRaw(data) ? data.data.attributes : data.attributes;
-        const id = isBookingRaw(data) ? data.data.id : data.id;
-        
         return {
-            id: id.toString(),
-            bookingState: attributes.bookingState,
-            userAppId: typeof attributes.userApp === 'object'
-                ? attributes.userApp.data.id.toString()  // Si es UserAppRaw
-                : attributes.userApp.toString(),          // Si es number
-            flightId: typeof attributes.flight === 'object'
-                ? attributes.flight.data.id.toString()    // Si es FlightRaw
-                : attributes.flight.toString(),           // Si es number
+            page: page,
+            pageSize: pageSize,
+            pages: pages,
+            data: validData.map<Booking>((d: Data | BookingRaw) => this.getOne(d)),
         };
     }
     
 
+    getOne(data: Data | BookingRaw): Booking {
+        const isBookingRaw = (data: Data | BookingRaw): data is BookingRaw => 'meta' in data;
+    
+        // Validar la estructura base
+        if (!data) {
+            throw new Error('Booking data is undefined or null.');
+        }
+    
+        const attributes = isBookingRaw(data) ? data.data?.attributes : data.attributes;
+        const id = isBookingRaw(data) ? data.data?.id : data.id;
+    
+        // Validar que id y attributes existan
+        if (!id) {
+            console.log("El id de booking no lo pilla")
+        }
+        if (!attributes) {
+            console.log("Los atributos de booking no los pilla")
+        }
+    
+        return {
+            id: id.toString(),
+            bookingState: attributes.bookingState || false,
+            userAppId: typeof attributes.userApp === 'object' && attributes.userApp?.data
+                ? attributes.userApp.data.id.toString()
+                : attributes.userApp
+                ? attributes.userApp.toString()
+                : '',
+            flightId: typeof attributes.flight === 'object' && attributes.flight?.data
+                ? attributes.flight.data.id.toString()
+                : attributes.flight
+                ? attributes.flight.toString()
+                : '',
+        };
+    }
+    
     getAdded(data: BookingRaw): Booking {
         return this.getOne(data.data);
     }
@@ -136,6 +158,8 @@ export class BookingMappingStrapi implements IBaseMapping<Booking> {
     getDeleted(data: BookingRaw): Booking {
         return this.getOne(data.data);
     }
+
+        
 
   
 }

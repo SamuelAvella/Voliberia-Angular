@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { InfiniteScrollCustomEvent, Platform } from '@ionic/angular';
-import { BehaviorSubject, Observable, lastValueFrom, forkJoin } from 'rxjs';
-import { Paginated } from 'src/app/core/models/paginated.model';
-import { Booking } from 'src/app/core/models/booking.model';
-import { BookingsService } from 'src/app/core/services/impl/bookings.service';
-import { FlightsService } from 'src/app/core/services/impl/flights.service';
-import { Flight } from 'src/app/core/models/flight.model';
+import { Component, OnInit } from "@angular/core";
+import { InfiniteScrollCustomEvent, Platform } from "@ionic/angular";
+import { BehaviorSubject, catchError, forkJoin, map, Observable, of } from "rxjs";
+import { Booking } from "src/app/core/models/booking.model";
+import { Flight } from "src/app/core/models/flight.model";
+import { Paginated } from "src/app/core/models/paginated.model";
+import { BookingsService } from "src/app/core/services/impl/bookings.service";
+import { FlightsService } from "src/app/core/services/impl/flights.service";
 
 @Component({
   selector: 'app-bookings',
@@ -13,11 +13,8 @@ import { Flight } from 'src/app/core/models/flight.model';
   styleUrls: ['./bookings.page.scss'],
 })
 export class BookingsPage implements OnInit {
-  
   private _bookings: BehaviorSubject<Booking[]> = new BehaviorSubject<Booking[]>([]);
   bookings$: Observable<Booking[]> = this._bookings.asObservable();
-
-  // Mapa para almacenar la info de vuelos por flightId
   flightsMap: { [flightId: string]: Flight } = {};
 
   page: number = 1;
@@ -27,10 +24,9 @@ export class BookingsPage implements OnInit {
 
   constructor(
     private bookingsSvc: BookingsService,
-    private flightSvc: FlightsService,
+    private flightsSvc: FlightsService,
     private platform: Platform
   ) {
-    // Detecta si se está en plataforma desktop (opcional, como en PeoplePage)
     this.isWeb = this.platform.is('desktop');
   }
 
@@ -38,77 +34,88 @@ export class BookingsPage implements OnInit {
     this.loadBookings();
   }
 
-  async loadBookings() {
+  loadBookings(): void {
     this.page = 1;
-    const response: Paginated<Booking> = await lastValueFrom(this.bookingsSvc.getAll(this.page, this.pageSize));
-    this._bookings.next([...response.data]);
-    this.page++;
-    this.pages = response.pages;
+    this.bookingsSvc.getAll(this.page, this.pageSize).subscribe({
+      next: async (response: Paginated<Booking>) => {
+        this._bookings.next([...response.data]);
+        this.page++;
+        this.pages = response.pages;
 
-    // Cargar info de vuelos para las reservas obtenidas
-    await this.loadFlightsForBookings(response.data);
+        // Cargar información de vuelos para las reservas obtenidas
+        this.loadFlightsForBookings(response.data);
+      },
+      error: (err) => console.error('Error loading bookings:', err),
+    });
   }
 
-  async loadMoreBookings(notify: HTMLIonInfiniteScrollElement | null = null) {
+  loadMoreBookings(event: InfiniteScrollCustomEvent): void {
     if (this.page <= this.pages) {
-      const response: Paginated<Booking> = await lastValueFrom(this.bookingsSvc.getAll(this.page, this.pageSize));
-      this._bookings.next([...this._bookings.value, ...response.data]);
-      this.page++;
-      notify?.complete();
-
-      // Cargar info de vuelos para las nuevas reservas
-      await this.loadFlightsForBookings(response.data);
+      this.bookingsSvc.getAll(this.page, this.pageSize).subscribe({
+        next: (response: Paginated<Booking>) => {
+          this._bookings.next([...this._bookings.value, ...response.data]);
+          this.page++;
+          this.loadFlightsForBookings(response.data);
+          event.target.complete();
+        },
+        error: (err) => {
+          console.error('Error loading more bookings:', err);
+          event.target.complete();
+        },
+      });
     } else {
-      notify?.complete();
+      event.target.complete();
     }
   }
 
-  onIonInfinite(ev: InfiniteScrollCustomEvent) {
-    this.loadMoreBookings(ev.target);
+  private loadFlightsForBookings(bookings: Booking[]): void {
+    const missingFlightIds = bookings
+        .map((b) => b.flightId)
+        .filter((fId) => fId && !this.flightsMap[fId]);
+
+    if (missingFlightIds.length === 0) return;
+
+    const flightRequests: Observable<Flight | null>[] = missingFlightIds.map((fId) =>
+        this.flightsSvc.getById(fId).pipe(
+            catchError((err) => {
+                console.error(`Error fetching flight with ID ${fId}:`, err);
+                return of(null); // Aquí se usa of(null) en lugar de null
+            })
+        )
+    );
+
+    forkJoin(flightRequests)
+        .pipe(
+            map((flights) => flights.filter((flight): flight is Flight => !!flight))
+        )
+        .subscribe({
+            next: (flights: Flight[]) => {
+                flights.forEach((flight) => {
+                    this.flightsMap[flight.id] = flight;
+                });
+            },
+            error: (err) => console.error('Error loading flights:', err),
+        });
+}
+
+  onIonInfinite(event: InfiniteScrollCustomEvent): void {
+    this.loadMoreBookings(event);
   }
 
-  // Método para invertir el estado de la reserva
-  onBookingStateChange(booking: Booking) {
+  onBookingStateChange(booking: Booking): void {
     const updatedBooking: Booking = {
       ...booking,
-      bookingState: !booking.bookingState
+      bookingState: !booking.bookingState,
     };
 
     this.bookingsSvc.update(booking.id, updatedBooking).subscribe({
       next: () => {
-        const updatedList = this._bookings.value.map(b =>
+        const updatedList = this._bookings.value.map((b) =>
           b.id === booking.id ? { ...b, bookingState: updatedBooking.bookingState } : b
         );
         this._bookings.next(updatedList);
       },
-      error: err => {
-        console.error("Error actualizando booking", err);
-      }
+      error: (err) => console.error('Error updating booking state:', err),
     });
   }
-
-  private async loadFlightsForBookings(bookings: Booking[]): Promise<void> {
-    // Filtramos aquellos flightId de los que aún no hemos obtenido el vuelo
-    const missingFlightIds = bookings
-      .map(b => b.flightId)
-      .filter(fId => !this.flightsMap[fId]);
-
-    if (missingFlightIds.length === 0) {
-      return;
-    }
-
-    // Aquí en lugar de getOne, usamos getById, que devuelve Observable<Flight | null>
-    const flightCalls = missingFlightIds.map(fId => this.flightSvc.getById(fId));
-
-    // Esperamos a que se resuelvan todas las llamadas
-    const flights = await lastValueFrom(forkJoin(flightCalls));
-
-    flights.forEach((flight, index) => {
-      const fId = missingFlightIds[index];
-      if (flight) { // Si no es null, almacenamos el vuelo
-        this.flightsMap[fId] = flight;
-      }
-    });
-  }
-
 }
