@@ -35,10 +35,6 @@ const routes: Routes = [
   {
     path: 'bookings',
     loadChildren: () => import('./pages/bookings/bookings.module').then( m => m.BookingsPageModule)
-  },
-  {
-    path: 'user-app',
-    loadChildren: () => import('./pages/user-app/user-app.module').then( m => m.UserAppPageModule)
   }
 ];
 

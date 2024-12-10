@@ -13,11 +13,16 @@
   },
 
   "MENU": {
-    "TITLE": "Menu",
-    "HOME": "Home",
-    "FLIGHTS": "Flights",
-    "BOOKINGS": "Groups",
+    "TITLE": "Voliberia",
+    "DESCRIPTION": "Flight Management",
+    "LANGUAGE": "Language",
     "LOGOUT": "Logout",
-    "PROFILE": "Profile"
+    "FOOTER": "Voliberia. All rights reserved.",
+    "PAGES": {
+      "HOME": "Home",
+      "FLIGHTS": "Flights",
+      "BOOKINGS": "Bookings",
+      "PROFILE": "Profile"
+    }
   }
 } 

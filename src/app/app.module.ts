@@ -17,6 +17,7 @@ import { environment } from 'src/environments/environment';
 import { UsersAppService } from './core/services/impl/usersApp.service';
 import { FlightsService } from './core/services/impl/flights.service';
 import { AuthenticationServiceFactory, AuthMappingFactory, BookingsMappingFactory, BookingsRepositoryFactory, FlightsRepositoryFactory, FligthsMappingFactory, MediaServiceFactory, UsersAppMappingFactory, UsersAppRepositoryFactory } from './core/repositories/repository.factory';
+import { FormsModule } from '@angular/forms';
 
 // Factory function para el loader de traducción
 export function createTranslateLoader(http: HttpClient){
@@ -32,6 +33,7 @@ export function createTranslateLoader(http: HttpClient){
     IonicModule.forRoot(), 
     AppRoutingModule,
     HttpClientModule,
+    FormsModule, 
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

@@ -117,3 +117,17 @@ ion-note {
 ion-item.selected {
   --color: var(--ion-color-primary);
 }
+
+ion-note {
+  font-size: 0.9em;
+  color: var(--ion-color-medium);
+}
+
+ion-item {
+  --min-height: 48px;
+}
+
+ion-footer {
+  text-align: center;
+  font-size: 0.8em;
+}

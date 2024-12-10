@@ -1,21 +1,56 @@
 <ion-app>
-  <!--<ion-split-pane main>-->
-    <ion-menu #menu menuId="mainMenu" contentId="main-content" type="overlay" >
-      <ion-content>
-        <ion-list id="inbox-list">
-          <ion-list-header>Menu</ion-list-header>
-          <ion-note>Voliberia</ion-note>
+  <ion-menu #menu menuId="mainMenu" contentId="main-content" type="overlay">
+    <ion-header>
+      <ion-toolbar color="primary">
+        <ion-title>{{ 'MENU.TITLE' | translate }}</ion-title>
+      </ion-toolbar>
+    </ion-header>
 
-          <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages; let i = index">
-            <ion-item routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false" routerLinkActive="selected">
-              <ion-icon aria-hidden="true" slot="start" [ios]="p.icon + '-outline'" [md]="p.icon + '-sharp'"></ion-icon>
-              <ion-label>{{ p.title }}</ion-label>
-            </ion-item>
-          </ion-menu-toggle>
-        </ion-list>
+    <ion-content>
+      <ion-list id="inbox-list">
+        <!-- Logo o encabezado -->
+        <ion-item lines="none">
+          <ion-avatar slot="start">
+            <img src="src/app/assets/img/logo.png" alt="{{ 'MENU.TITLE' | translate }}" />
+          </ion-avatar>
+          <ion-label>
+            <h2 class="ion-text-uppercase">{{ 'MENU.TITLE' | translate }}</h2>
+            <p>{{ 'MENU.DESCRIPTION' | translate }}</p>
+          </ion-label>
+        </ion-item>
 
-      </ion-content>
-    </ion-menu>
+        <!-- Selector de idioma con popover -->
+        <ion-item lines="full" (click)="openLanguageSelector($event)">
+          <ion-icon slot="start" name="language-outline"></ion-icon>
+          <ion-label>{{ 'MENU.LANGUAGE' | translate }}</ion-label>
+        </ion-item>
+
+        <!-- Opciones del menú -->
+        <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages">
+          <ion-item routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false" routerLinkActive="selected">
+            <ion-icon aria-hidden="true" slot="start" [ios]="p.icon + '-outline'" [md]="p.icon + '-sharp'"></ion-icon>
+            <ion-label>{{ p.title }}</ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+
+        <!-- Logout -->
+        <ion-item lines="none" button (click)="logout()">
+          <ion-icon aria-hidden="true" slot="start" ios="log-out-outline" md="log-out-sharp"></ion-icon>
+          <ion-label>{{ 'MENU.LOGOUT' | translate }}</ion-label>
+        </ion-item>
+      </ion-list>
+    </ion-content>
+
+    <ion-footer>
+      <ion-toolbar color="light">
+        <ion-item lines="none">
+          <ion-label>
+            <small>&copy;{{currentYear}}{{ 'MENU.FOOTER' | translate }}</small>
+          </ion-label>
+        </ion-item>
+      </ion-toolbar>
+    </ion-footer>
+  </ion-menu>
+
   <ion-router-outlet id="main-content"></ion-router-outlet>
-  <!--</ion-split-pane>-->
 </ion-app>

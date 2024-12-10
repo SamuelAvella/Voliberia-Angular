@@ -5,24 +5,34 @@ import { TranslateService } from '@ngx-translate/core';
   providedIn: 'root'
 })
 export class TranslationService {
-  private readonly LANG_KEY = 'SELECTED_LANGUAGE';
+  private readonly LANG_KEY = 'selectedLanguage';
+  private defaultLang = 'es';
 
   constructor(private translate: TranslateService) {
-    this.initTranslate();
+    translate.addLangs(['es', 'en']);
+    translate.setDefaultLang('es');
+    
+    const browserLang = translate.getBrowserLang();
+    translate.use(browserLang?.match(/es|en/) ? browserLang : 'es');
+
+    const storedLang = this.getStoredLanguage();
+    this.changeLanguage(storedLang);
   }
 
-  initTranslate() {
-    const savedLang = localStorage.getItem(this.LANG_KEY) || 'en'; // Idioma por defecto ingles
-    this.setLanguage(savedLang);
-  }
-
-  setLanguage(lang: string) {
+  changeLanguage(lang: string) {
     this.translate.use(lang);
-    localStorage.setItem(this.LANG_KEY, lang);
   }
 
-  getCurrentLanguage(): string {
-    return this.translate.currentLang || 'en';
+  getCurrentLang(): string {
+    return this.translate.currentLang;
+  }
+
+  getStoredLanguage(): string {
+    return localStorage.getItem(this.LANG_KEY) || this.defaultLang;
+  }
+
+  storeLanguage(lang: string): void {
+    localStorage.setItem(this.LANG_KEY, lang);
   }
 
 }
