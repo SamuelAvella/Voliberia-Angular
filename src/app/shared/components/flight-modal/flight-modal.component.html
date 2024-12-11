@@ -15,7 +15,13 @@
   <ion-card>
     <ion-card-header>
       <ion-card-title class="ion-text-center">
-        {{ flight ? 'Edit Flight Details' : 'Add New Flight' }}
+        @if (flight){
+          {{'FLIGHT.EDIT' | translate}}
+        }
+        @else {
+          {{ 'FLIGHT.NEW' | translate }}
+        }
+        
       </ion-card-title>
     </ion-card-header>
     <ion-card-content>
@@ -65,7 +71,7 @@
         <!-- Seat Price Input -->
         <ion-item class="form-item">
           <ion-input
-            label="Seat Price"
+            label="{{'FLIGHT.PRICE' | translate}}"
             label-placement="stacked"
             type="number"
             formControlName="seatPrice"

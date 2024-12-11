@@ -6,12 +6,14 @@ import { ReactiveFormsModule } from "@angular/forms";
 import { TranslateModule } from "@ngx-translate/core";
 import { LanguageSelectorComponent } from "./components/language-selector/language-selector.component";
 import { FlightModalComponent } from "./components/flight-modal/flight-modal.component";
+import { BookingModalComponent } from "./components/booking-modal/booking-modal.component";
 
 @NgModule({
     declarations:[
         PictureSelectableComponent,
         LanguageSelectorComponent,
-        FlightModalComponent
+        FlightModalComponent,
+        BookingModalComponent
     ],
     imports:[
         CommonModule,
@@ -22,7 +24,8 @@ import { FlightModalComponent } from "./components/flight-modal/flight-modal.com
     exports:[
         PictureSelectableComponent,
         LanguageSelectorComponent,
-        FlightModalComponent
+        FlightModalComponent,
+        BookingModalComponent
     ]
 })
 export class SharedModule{}

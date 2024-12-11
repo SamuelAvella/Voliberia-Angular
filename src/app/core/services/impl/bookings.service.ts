@@ -9,6 +9,7 @@ import { IBookingsService } from "../interfaces/bookings-service.interface";
 })
 
 export class BookingsService extends BaseService<Booking> implements IBookingsService{
+    
     constructor(
         @Inject(BOOKINGS_REPOSITORY_TOKEN) repository: IBookingsService
     ) {

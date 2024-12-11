@@ -1,9 +1,14 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-menu-button menu="mainMenu"></ion-menu-button>
+      <ion-menu-button></ion-menu-button>
     </ion-buttons>
     <ion-title>Bookings</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="addBooking()">
+        <ion-icon slot="icon-only" name="add-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -12,23 +17,22 @@
     <ng-container *ngFor="let booking of bookings$ | async">
       <ion-item>
         <ion-label>
-          <div style="display:flex; justify-content: space-between; align-items:center;">
-            <h2>Estado: {{ booking.bookingState ? 'Activa' : 'Inactiva' }}</h2>
-            <ion-toggle [checked]="booking.bookingState" (ionChange)="onBookingStateChange(booking)"></ion-toggle>
-          </div>
-
-          <!-- Mostramos la info del vuelo si existe en flightsMap -->
-          <ng-container *ngIf="flightsMap[booking.flightId] as flight">
-            <h3>{{flight.origin}} -> {{flight.destination}}</h3>
-            <p>{{flight.departureDate | date:'short'}} - {{flight.arrivalDate | date:'short'}}</p>
-            <p>Precio: {{flight.seatPrice | currency}}</p>
-          </ng-container>
+          <h2>Estado: {{ booking.bookingState ? 'Activa' : 'Inactiva' }}</h2>
+          <h3>Vuelo: {{ flightsMap[booking.flightId]?.origin }} -> {{ flightsMap[booking.flightId]?.destination }}</h3>
         </ion-label>
+        <ion-buttons slot="end">
+          <ion-button color="primary" (click)="editBooking(booking)">
+            <ion-icon name="create-outline" slot="icon-only"></ion-icon>
+          </ion-button>
+          <ion-button color="danger" (click)="deleteBooking(booking)">
+            <ion-icon name="trash-outline" slot="icon-only"></ion-icon>
+          </ion-button>
+        </ion-buttons>
       </ion-item>
     </ng-container>
   </ion-list>
 
-  <ion-infinite-scroll (ionInfinite)="onIonInfinite($event)">
+  <ion-infinite-scroll threshold="100px" (ionInfinite)="onIonInfinite($event)">
     <ion-infinite-scroll-content></ion-infinite-scroll-content>
   </ion-infinite-scroll>
 </ion-content>

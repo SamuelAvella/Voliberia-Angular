@@ -34,6 +34,7 @@
     "DEPARTURE": "Elige la fecha de salida",
     "ARRIVAL": "Elige la fecha de llegada", 
     "PRICE": "Precio",
+    "EDIT": "Editar detalles del vuelo",
     "NEW": "Nuevo vuelo",
     "CREATE": "Crear",
     "SAVE": "Guardar",

@@ -1,3 +1,32 @@
-<p>
-  booking-modal works!
-</p>
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      {{ mode === 'edit' ? 'Editar Reserva' : 'Nueva Reserva' }}
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="dismiss()">
+        <ion-icon name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+    <ion-item>
+      <ion-label position="stacked">Estado</ion-label>
+      <ion-toggle formControlName="bookingState"></ion-toggle>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Vuelo</ion-label>
+      <ion-select formControlName="flightId" placeholder="Selecciona un vuelo">
+        <ion-select-option *ngFor="let flight of flights" [value]="flight.id">
+          {{ flight.origin }} -> {{ flight.destination }}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-button expand="block" type="submit" [disabled]="formGroup.invalid">
+      {{ mode === 'edit' ? 'Actualizar' : 'Crear' }}
+    </ion-button>
+  </form>
+</ion-content>
