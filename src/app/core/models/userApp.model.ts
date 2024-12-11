@@ -3,7 +3,7 @@ import { Model } from "./base.model";
 export interface UserApp extends Model{
     name:string,
     surname:string,
-    idDocument:string,
+    idDocument?:string,
     age?:number,
     email?:string,
     picture?:{

@@ -15,7 +15,7 @@ export interface UserAppData {
 export interface UserAppAttributes{
     name: string
     surname: string
-    idDocument: string
+    idDocument?: string
     birthDate?: string
     createdAt?: string
     updatedAt?: string

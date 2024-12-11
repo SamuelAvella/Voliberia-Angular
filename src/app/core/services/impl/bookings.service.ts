@@ -14,4 +14,6 @@ export class BookingsService extends BaseService<Booking> implements IBookingsSe
     ) {
         super(repository);
     }
+
+    
 }

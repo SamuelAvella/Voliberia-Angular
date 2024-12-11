@@ -3,7 +3,6 @@ import { AlertController, ModalController } from "@ionic/angular";
 import { BehaviorSubject, Observable } from "rxjs";
 import { Flight } from "src/app/core/models/flight.model";
 import { Paginated } from "src/app/core/models/paginated.model";
-import { BookingsService } from "src/app/core/services/impl/bookings.service";
 import { FlightsService } from "src/app/core/services/impl/flights.service";
 import { FlightModalComponent } from "src/app/shared/components/flight-modal/flight-modal.component";
 

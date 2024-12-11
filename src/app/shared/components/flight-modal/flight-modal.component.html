@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar color="primary">
     <ion-title class="ion-text-center">
-      {{ flight ? 'Edit Flight' : 'New Flight' }}
+      
     </ion-title>
     <ion-buttons slot="end">
       <ion-button (click)="dismiss()" color="light">
@@ -23,7 +23,7 @@
         <!-- Origin Input -->
         <ion-item class="form-item">
           <ion-input
-            label="Origin"
+            label="{{'FLIGHT.ORIGIN' | translate}}"
             label-placement="stacked"
             formControlName="origin"
             placeholder="Enter Origin"
@@ -33,7 +33,7 @@
         <!-- Destination Input -->
         <ion-item class="form-item">
           <ion-input
-            label="Destination"
+            label="{{'FLIGHT.DESTINATION' | translate}}"
             label-placement="stacked"
             formControlName="destination"
             placeholder="Enter Destination"
@@ -42,7 +42,7 @@
 
         <!-- Departure Date -->
         <ion-item class="form-item">
-          <ion-label position="stacked">Departure Date</ion-label>
+          <ion-label position="stacked">{{'FLIGHT.DEPARTURE' | translate}}</ion-label>
           <ion-datetime
             formControlName="departureDate"
             placeholder="Select Departure Date"
@@ -53,7 +53,7 @@
 
         <!-- Arrival Date -->
         <ion-item class="form-item">
-          <ion-label position="stacked">Arrival Date</ion-label>
+          <ion-label position="stacked">{{'FLIGHT.ARRIVAL' | translate}}</ion-label>
           <ion-datetime
             formControlName="arrivalDate"
             placeholder="Select Arrival Date"
@@ -75,7 +75,7 @@
 
         <!-- Submit Button -->
         <div class="button-container">
-          <ion-button expand="block" type="submit" [disabled]="!formGroup.valid" color="success">
+          <ion-button button expand="block" type="submit" [disabled]="!formGroup.valid" color="success">
             {{ flight ? 'Save Changes' : 'Create Flight' }}
           </ion-button>
         </div>

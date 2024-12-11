@@ -48,7 +48,7 @@ export class StrapiRepositoryService<T extends Model> extends BaseRepositoryHttp
     super(http, auth, apiUrl, resource, mapping);
   }
 
-  private getHeaders() {
+  protected getHeaders() {
     const token = this.auth.getToken();
     return {
       headers: token ? { 'Authorization': `Bearer ${token}` } : undefined
