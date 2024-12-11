@@ -23,7 +23,7 @@
           *ngFor="let user of users"
           [value]="user.id"
         >
-          {{ user.name }} {{ user.surname }}
+          {{ user?.name }} {{ user?.surname }}
         </ion-select-option>
       </ion-select>
     </ion-item>
@@ -43,7 +43,7 @@
           *ngFor="let flight of flights"
           [value]="flight.id"
         >
-          {{ flight.origin }} → {{ flight.destination }}
+          {{ flight?.origin }} → {{ flight?.destination }}
         </ion-select-option>
       </ion-select>
     </ion-item>
