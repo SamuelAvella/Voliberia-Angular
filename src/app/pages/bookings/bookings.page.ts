@@ -19,7 +19,7 @@ export class BookingsPage implements OnInit {
   private _bookings: BehaviorSubject<Booking[]> = new BehaviorSubject<Booking[]>([]);
   bookings$: Observable<Booking[]> = this._bookings.asObservable();
   flightsMap: { [flightId: string]: Flight } = {};
-  usersMap: { [userAppId: string]: { email: string } } = {};
+  usersMap: { [userAppId: string]: { name: string; surname: string } } = {};
 
   page: number = 1;
   pageSize: number = 25;
@@ -77,26 +77,25 @@ export class BookingsPage implements OnInit {
   private loadUsersForBookings(bookings: Booking[]): void {
     const missingUserIds = bookings
       .map((b) => b.userAppId)
-      .filter((id) => id && !this.usersMap[id]);
+      .filter((uId) => uId && !this.usersMap[uId]);
   
     if (missingUserIds.length === 0) return;
   
-    forkJoin(
-      missingUserIds.map((id) =>
-        this.usersAppSvc.getById(id).pipe(
-          catchError((err) => {
-            console.error(`Error fetching user with ID ${id}:`, err);
-            return of(null); // En caso de error, devolvemos null
-          })
-        )
+    const userRequests = missingUserIds.map((uId) =>
+      this.usersAppSvc.getById(uId).pipe(
+        catchError((err) => {
+          console.error(`Error fetching user with ID ${uId}:`, err);
+          return of(null);
+        })
       )
-    ).subscribe({
+    );
+  
+    forkJoin(userRequests).subscribe({
       next: (users) => {
         users
-          .filter((user): user is UserApp => user !== null) // Aseguramos que no haya nulos
+          .filter((user): user is UserApp => !!user)
           .forEach((user) => {
-            // Mapeamos solo las propiedades necesarias
-            this.usersMap[user.id] = { email: user.email || 'Unknown' };
+            this.usersMap[user.id] = { name: user.name, surname: user.surname };
           });
       },
       error: (err) => console.error('Error loading users:', err),

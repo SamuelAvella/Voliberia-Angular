@@ -23,7 +23,7 @@
           *ngFor="let user of users"
           [value]="user.id"
         >
-          {{ user.email }}
+          {{ user.name }} {{ user.surname }}
         </ion-select-option>
       </ion-select>
     </ion-item>
@@ -31,7 +31,7 @@
       User is required.
     </ion-text>
 
-    <!-- Selección de Vuelo (solo al crear) -->
+    <!-- Selección de Vuelo -->
     <ion-item *ngIf="!booking">
       <ion-label>Flight</ion-label>
       <ion-select

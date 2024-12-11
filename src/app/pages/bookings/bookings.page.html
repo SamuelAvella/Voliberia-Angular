@@ -1,5 +1,8 @@
-<ion-header>
+<ion-header [translucent]="true">
   <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
     <ion-title>Bookings</ion-title>
     <ion-buttons slot="end">
       <ion-button (click)="onAddBooking()">
@@ -15,41 +18,47 @@
       <ion-col
         size="12"
         size-md="6"
-        *ngFor="let booking of bookings$ | async"
+        *ngFor="let booking of bookings$ | async; let i = index"
       >
         <ion-card>
           <ion-card-header>
             <ion-card-title>
-              {{ flightsMap[booking.flightId]?.origin }} → {{ flightsMap[booking.flightId]?.destination }}
+              {{ flightsMap[booking.flightId].origin }} → {{ flightsMap[booking.flightId].destination }}
             </ion-card-title>
           </ion-card-header>
           <ion-card-content>
-            <p><strong>User:</strong> {{ usersMap[booking.userAppId]?.email }}</p>
+            <p>
+              <strong>User:</strong>
+              {{ usersMap[booking.userAppId].name }} {{ usersMap[booking.userAppId].surname }}
+            </p>
             <p>
               <strong>Flight:</strong>
-              {{ flightsMap[booking.flightId]?.departureDate | date: 'short' }} -
-              {{ flightsMap[booking.flightId]?.arrivalDate | date: 'short' }}
+              {{ flightsMap[booking.flightId].departureDate | date: 'short' }} -
+              {{ flightsMap[booking.flightId].arrivalDate | date: 'short' }}
             </p>
-            <p><strong>Price:</strong> {{ flightsMap[booking.flightId]?.seatPrice | currency }}</p>
-            <ion-buttons>
+            <p><strong>Price:</strong> {{ flightsMap[booking.flightId].seatPrice | currency }}</p>
+            <div class="booking-actions">
               <ion-button
                 color="primary"
+                fill="clear"
                 (click)="onEditBooking(booking)"
               >
-                <ion-icon slot="icon-only" name="create-outline"></ion-icon>
+                <ion-icon name="create-outline"></ion-icon>
               </ion-button>
               <ion-button
                 color="danger"
+                fill="clear"
                 (click)="onDeleteBooking(booking)"
               >
-                <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
+                <ion-icon name="trash-outline"></ion-icon>
               </ion-button>
-            </ion-buttons>
+            </div>
           </ion-card-content>
         </ion-card>
       </ion-col>
     </ion-row>
   </ion-grid>
+
   <ion-infinite-scroll (ionInfinite)="onIonInfinite($event)">
     <ion-infinite-scroll-content></ion-infinite-scroll-content>
   </ion-infinite-scroll>

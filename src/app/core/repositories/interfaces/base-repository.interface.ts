@@ -12,4 +12,4 @@ export interface IBaseRepository<T extends Model>{
     add(entity: T): Observable<T>;
     update(id: string, entity: T): Observable<T>;
     delete(id: string): Observable<T>;
-}
+} 

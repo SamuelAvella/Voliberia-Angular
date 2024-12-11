@@ -12,7 +12,7 @@ import { FlightsService } from "src/app/core/services/impl/flights.service"; // 
 export class BookingModalComponent implements OnInit {
   @Input() booking: any; // Si existe, es para editar. Si no, es para crear.
   formGroup: FormGroup;
-  users: { id: string; email: string }[] = [];
+  users: { id: string; name: string; surname: string; }[] = [];
   flights: { id: string; origin: string; destination: string }[] = [];
 
   constructor(
@@ -46,16 +46,16 @@ export class BookingModalComponent implements OnInit {
   loadUsers(): void {
     this.usersAppSvc.getAll().subscribe({
       next: (users) => {
-        this.users = users
-          .filter((user) => user.email) // Filtramos usuarios sin email
-          .map((user) => ({
-            id: user.id,
-            email: user.email as string, // Aseguramos a TypeScript que el email existe
-          }));
+        this.users = users.map((user) => ({
+          id: user.id,
+          name: user.name,
+          surname: user.surname,
+        }));
       },
       error: (err) => console.error('Error loading users:', err),
     });
   }
+  
   
 
   loadFlights(): void {
