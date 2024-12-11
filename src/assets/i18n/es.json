@@ -22,7 +22,8 @@
       "HOME": "Inicio",
       "FLIGHTS": "Vuelos",
       "BOOKINGS": "Reservas",
-      "PROFILE": "Perfil"
+      "PROFILE": "Perfil",
+      "ABOUT": "Sobre creador"
     }
   },
 
@@ -42,5 +43,9 @@
     "DELETION_TEXT": "¿Estas seguro que deseas eliminar este vuelo y sus reservas?",
     "CANCEL" : "Cancelar",
     "DELETE" : "Eliminar"
+  },
+
+  "BOOKING": {
+
   }
 } 

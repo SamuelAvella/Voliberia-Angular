@@ -17,6 +17,7 @@ export class AppComponent {
     { key: 'MENU.PAGES.FLIGHTS', url: '/flights', icon: 'airplane', title: '' },
     { key: 'MENU.PAGES.BOOKINGS', url: '/bookings', icon: 'book', title: '' },
     { key: 'MENU.PAGES.PROFILE', url: '/profile', icon: 'person', title: '' },
+    { key: 'MENU.PAGES.ABOUT', url: '/about', icon: 'newspaper', title: ''}
   ];
 
   currentYear: number = new Date().getFullYear();

@@ -40,7 +40,13 @@ const routes: Routes = [
     path: 'bookings',
     canActivate: [authGuard],
     loadChildren: () => import('./pages/bookings/bookings.module').then( m => m.BookingsPageModule)
+  },
+  {
+    path: 'about',
+    canActivate: [authGuard],
+    loadChildren: () => import('./pages/about/about.module').then( m => m.AboutPageModule)
   }
+
 ];
 
 @NgModule({

@@ -22,7 +22,8 @@
       "HOME": "Home",
       "FLIGHTS": "Flights",
       "BOOKINGS": "Bookings",
-      "PROFILE": "Profile"
+      "PROFILE": "Profile",
+      "ABOUT": "About"
     }
   },
 
@@ -42,5 +43,9 @@
     "DELETION_TEXT": "Are you sure you want to delete this flight and all its bookings?",
     "CANCEL" : "Cancel",
     "DELETE" : "Delete"
+  },
+
+  "BOOKING": {
+
   }
 } 

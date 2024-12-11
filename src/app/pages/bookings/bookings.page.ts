@@ -30,6 +30,7 @@ export class BookingsPage implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.loadAllFlights(); // Cargar todos los vuelos
     this.loadBookings();
   }
 
@@ -80,54 +81,56 @@ export class BookingsPage implements OnInit {
       .catch((err) => console.error('Error loading flights:', err));
   }
   
+  private loadAllFlights(): void {
+    this.flightsSvc.getAll(1, 1000).subscribe({
+      next: (response: Paginated<Flight>) => {
+        response.data.forEach((flight) => {
+          this.flightsMap[flight.id] = flight;
+        });
+      },
+      error: (err) => console.error('Error loading all flights:', err),
+    });
+  }
 
   async addBooking(): Promise<void> {
     const modal = await this.modalCtrl.create({
       component: BookingModalComponent,
       componentProps: {
-        flights: Object.values(this.flightsMap),
+        flights: Object.values(this.flightsMap), // Pasar todos los vuelos
       },
     });
-
+  
     await modal.present();
     const { data } = await modal.onDidDismiss();
-
+  
     if (data) {
       this.bookingsSvc.add(data).subscribe({
-        next: (newBooking) => {
-          this._bookings.next([newBooking, ...this._bookings.value]);
-          this.refreshBookings();//TODO : probar llamado a refresh para que carguen bien las reservas
-        },
+        next: () => this.refreshBookings(),
         error: (err) => console.error('Error adding booking:', err),
       });
     }
   }
-
+  
   async editBooking(booking: Booking): Promise<void> {
     const modal = await this.modalCtrl.create({
       component: BookingModalComponent,
       componentProps: {
         booking,
-        flights: Object.values(this.flightsMap),
+        flights: Object.values(this.flightsMap), // Pasar todos los vuelos
       },
     });
-
+  
     await modal.present();
     const { data } = await modal.onDidDismiss();
-
+  
     if (data) {
       this.bookingsSvc.update(booking.id, data).subscribe({
-        next: (updatedBooking) => {
-          const updatedList = this._bookings.value.map((b) =>
-            b.id === booking.id ? updatedBooking : b
-          );
-          this._bookings.next(updatedList);
-          this.refreshBookings();//TODO : probar llamado a refresh para que carguen bien las reservas 
-        },
+        next: () => this.refreshBookings(),
         error: (err) => console.error('Error updating booking:', err),
       });
     }
   }
+  
 
   async deleteBooking(booking: Booking): Promise<void> {
     const alert = await this.alertCtrl.create({
