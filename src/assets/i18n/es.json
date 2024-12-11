@@ -24,5 +24,22 @@
       "BOOKINGS": "Reservas",
       "PROFILE": "Perfil"
     }
+  },
+
+  "FLIGHT":{
+    "TITLE": "Vuelos",
+    "USER": "Reservado por",
+    "ORIGIN": "Origen",
+    "DESTINATION": "Destino",
+    "DEPARTURE": "Salida",
+    "ARRIVAL": "Llegada", 
+    "PRICE": "Precio",
+    "NEW": "Nuevo vuelo",
+    "CREATE": "Crear",
+    "SAVE": "Guardar",
+    "CONFIRM_DELETION": "Confirmar eliminarción",
+    "DELETION_TEXT": "¿Estas seguro que deseas eliminar este vuelo y sus reservas?",
+    "CANCEL" : "Cancelar",
+    "DELETE" : "Eliminar"
   }
 } 

@@ -50,6 +50,11 @@ export class AppComponent {
     if (data?.language) {
       this.translationService.changeLanguage(data.language);
       this.loadTranslations(); // Cargar las traducciones actualizadas
+
+      const menu = document.querySelector('ion-menu');
+      if (menu) {
+        (menu as any).close();
+      }
     }
   }
 

@@ -1,54 +1,85 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>{{ flight ? 'Edit Flight' : 'New Flight' }}</ion-title>
+  <ion-toolbar color="primary">
+    <ion-title class="ion-text-center">
+      {{ flight ? 'Edit Flight' : 'New Flight' }}
+    </ion-title>
     <ion-buttons slot="end">
-      <ion-button (click)="dismiss()">
+      <ion-button (click)="dismiss()" color="light">
         <ion-icon slot="icon-only" name="close"></ion-icon>
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding">
-  <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
-    <ion-item>
-      <ion-input
-        label="Origin"
-        label-placement="stacked"
-        formControlName="origin"
-      ></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-input
-        label="Destination"
-        label-placement="stacked"
-        formControlName="destination"
-      ></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-datetime
-        label="Departure Date"
-        label-placement="stacked"
-        formControlName="departureDate"
-      ></ion-datetime>
-    </ion-item>
-    <ion-item>
-      <ion-datetime
-        label="Arrival Date"
-        label-placement="stacked"
-        formControlName="arrivalDate"
-      ></ion-datetime>
-    </ion-item>
-    <ion-item>
-      <ion-input
-        label="Seat Price"
-        label-placement="stacked"
-        type="number"
-        formControlName="seatPrice"
-      ></ion-input>
-    </ion-item>
-    <ion-button expand="block" type="submit" [disabled]="!formGroup.valid">
-      {{ flight ? 'Save' : 'Create' }}
-    </ion-button>
-  </form>
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title class="ion-text-center">
+        {{ flight ? 'Edit Flight Details' : 'Add New Flight' }}
+      </ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+        <!-- Origin Input -->
+        <ion-item class="form-item">
+          <ion-input
+            label="Origin"
+            label-placement="stacked"
+            formControlName="origin"
+            placeholder="Enter Origin"
+          ></ion-input>
+        </ion-item>
+
+        <!-- Destination Input -->
+        <ion-item class="form-item">
+          <ion-input
+            label="Destination"
+            label-placement="stacked"
+            formControlName="destination"
+            placeholder="Enter Destination"
+          ></ion-input>
+        </ion-item>
+
+        <!-- Departure Date -->
+        <ion-item class="form-item">
+          <ion-label position="stacked">Departure Date</ion-label>
+          <ion-datetime
+            formControlName="departureDate"
+            placeholder="Select Departure Date"
+            display-format="DD MMM YYYY, HH:mm"
+            picker-format="DD MMM YYYY HH:mm"
+          ></ion-datetime>
+        </ion-item>
+
+        <!-- Arrival Date -->
+        <ion-item class="form-item">
+          <ion-label position="stacked">Arrival Date</ion-label>
+          <ion-datetime
+            formControlName="arrivalDate"
+            placeholder="Select Arrival Date"
+            display-format="DD MMM YYYY, HH:mm"
+            picker-format="DD MMM YYYY HH:mm"
+          ></ion-datetime>
+        </ion-item>
+
+        <!-- Seat Price Input -->
+        <ion-item class="form-item">
+          <ion-input
+            label="Seat Price"
+            label-placement="stacked"
+            type="number"
+            formControlName="seatPrice"
+            placeholder="Enter Seat Price"
+          ></ion-input>
+        </ion-item>
+
+        <!-- Submit Button -->
+        <div class="button-container">
+          <ion-button expand="block" type="submit" [disabled]="!formGroup.valid" color="success">
+            {{ flight ? 'Save Changes' : 'Create Flight' }}
+          </ion-button>
+        </div>
+      </form>
+    </ion-card-content>
+  </ion-card>
 </ion-content>

@@ -19,8 +19,8 @@
           </ion-label>
         </ion-item>
 
-        <!-- Selector de idioma con popover -->
-        <ion-item lines="full" (click)="openLanguageSelector($event)">
+        <!-- Selector de idioma con popover, modal -->
+        <ion-item button lines="none" (click)="openLanguageSelector($event)">
           <ion-icon slot="start" name="language-outline"></ion-icon>
           <ion-label>{{ 'MENU.LANGUAGE' | translate }}</ion-label>
         </ion-item>
@@ -34,7 +34,7 @@
         </ion-menu-toggle>
 
         <!-- Logout -->
-        <ion-item lines="none" button (click)="logout()">
+        <ion-item (click)="menu.close()" lines="none" button (click)="logout()">
           <ion-icon aria-hidden="true" slot="start" ios="log-out-outline" md="log-out-sharp"></ion-icon>
           <ion-label>{{ 'MENU.LOGOUT' | translate }}</ion-label>
         </ion-item>
