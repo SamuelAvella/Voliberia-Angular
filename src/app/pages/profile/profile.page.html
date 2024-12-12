@@ -20,14 +20,6 @@
   <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
     <ion-grid>
       <ion-row>
-        <ion-col size="12" size-md="4" class="ion-text-center">
-          <ion-card class="ion-no-margin">
-            <ion-card-content>
-              <app-picture-selectable formControlName="picture"></app-picture-selectable>
-            </ion-card-content>
-          </ion-card>
-        </ion-col>
-
         <ion-col size="12" size-md="8">
           <ion-list>
             <ion-item>
@@ -59,7 +51,7 @@
     </ion-grid>
 
     <div class="ion-padding">
-      <ion-button [disabled]="!formGroup.valid || !formGroup.dirty" expand="full" type="submit">
+      <ion-button button  [disabled]="!formGroup.valid || !formGroup.dirty" expand="full" type="submit">
         Actualizar
       </ion-button>
     </div>

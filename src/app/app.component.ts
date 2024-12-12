@@ -21,6 +21,7 @@ export class AppComponent {
   ];
 
   currentYear: number = new Date().getFullYear();
+  currentUser: { username: string; } | undefined;
 
   constructor(
     private translationService: TranslationService,
@@ -63,5 +64,20 @@ export class AppComponent {
     this.authSvc.signOut().subscribe(() => {
       this.router.navigate(['/login']);
     });
+  }
+
+  async ngOnInit() {
+    try {
+      // Obtén el usuario autenticado desde el servicio de autenticación
+      const user = await this.authSvc.getCurrentUser();
+      if (user) {
+        // Si el usuario está autenticado, asigna el nombre y apellido
+        this.currentUser = {
+          username: user.username,
+        };
+      }
+    } catch (error) {
+      console.error('Error fetching user:', error);
+    }
   }
 }

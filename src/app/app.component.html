@@ -8,16 +8,20 @@
 
     <ion-content>
       <ion-list id="inbox-list">
-        <!-- Logo o encabezado -->
+
+        <!-- Logo y Usuario conectado -->
         <ion-item lines="none">
           <ion-avatar slot="start">
-            <img src="src/app/assets/img/logo.png" alt="{{ 'MENU.TITLE' | translate }}" />
+            <img src="src\assets\img\logo.png" alt="{{ 'MENU.TITLE' | translate }}" />
           </ion-avatar>
           <ion-label>
             <h2 class="ion-text-uppercase">{{ 'MENU.TITLE' | translate }}</h2>
-            <p>{{ 'MENU.DESCRIPTION' | translate }}</p>
+            <p *ngIf="currentUser">
+              {{ currentUser.username }}
+            </p>
           </ion-label>
         </ion-item>
+        
 
         <!-- Selector de idioma con popover, modal -->
         <ion-item button lines="none" (click)="openLanguageSelector($event)">
