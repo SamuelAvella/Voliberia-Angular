@@ -150,10 +150,20 @@ export const UsersAppRepositoryFactory: FactoryProvider = createBaseRepositoryFa
     [BACKEND_TOKEN, HttpClient, BaseAuthenticationService, USERSAPP_API_URL_TOKEN, USERSAPP_RESOURCE_NAME_TOKEN, USERSAPP_REPOSITORY_MAPPING_TOKEN]
 );
 
-export const BookingsRepositoryFactory: FactoryProvider = createBaseRepositoryFactory<Booking>(BOOKINGS_REPOSITORY_TOKEN,
-    [BACKEND_TOKEN, HttpClient, BaseAuthenticationService, BOOKINGS_API_URL_TOKEN, BOOKINGS_RESOURCE_NAME_TOKEN, BOOKINGS_REPOSITORY_MAPPING_TOKEN]
+export const BookingsRepositoryFactory: FactoryProvider = createBaseRepositoryFactory<Booking>(
+  BOOKINGS_REPOSITORY_TOKEN,
+  [
+    BACKEND_TOKEN,
+    HttpClient,
+    BaseAuthenticationService,
+    BOOKINGS_API_URL_TOKEN,
+    BOOKINGS_RESOURCE_NAME_TOKEN,
+    BOOKINGS_REPOSITORY_MAPPING_TOKEN,
+  ]
 );
+
 
 export const FlightsRepositoryFactory: FactoryProvider = createBaseRepositoryFactory<Flight>(FLIGHTS_REPOSITORY_TOKEN,
     [BACKEND_TOKEN, HttpClient, BaseAuthenticationService, FLIGHTS_API_URL_TOKEN, FLIGHTS_RESOURCE_NAME_TOKEN, FLIGHTS_REPOSITORY_MAPPING_TOKEN]
 );
+

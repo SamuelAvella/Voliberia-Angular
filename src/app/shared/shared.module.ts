@@ -1,5 +1,4 @@
 import { NgModule } from "@angular/core";
-import { PictureSelectableComponent } from "./components/picture-selectable/picture-selectable.component";
 import { CommonModule } from "@angular/common";
 import { IonicModule } from "@ionic/angular";
 import { ReactiveFormsModule } from "@angular/forms";
@@ -10,7 +9,6 @@ import { BookingModalComponent } from "./components/booking-modal/booking-modal.
 
 @NgModule({
     declarations:[
-        PictureSelectableComponent,
         LanguageSelectorComponent,
         FlightModalComponent,
         BookingModalComponent
@@ -22,7 +20,6 @@ import { BookingModalComponent } from "./components/booking-modal/booking-modal.
         TranslateModule.forChild()
     ],
     exports:[
-        PictureSelectableComponent,
         LanguageSelectorComponent,
         FlightModalComponent,
         BookingModalComponent

@@ -6,13 +6,12 @@ import { BOOKINGS_API_URL_TOKEN, BOOKINGS_REPOSITORY_MAPPING_TOKEN, BOOKINGS_RES
 import { HttpClient } from "@angular/common/http";
 import { IStrapiAuthentication } from "../../services/interfaces/strapi-authentication.interface";
 import { IBaseMapping } from "../interfaces/base-mapping.interface";
+import { map, Observable } from "rxjs";
 
 @Injectable({
     providedIn: 'root',
   })
-  export class BookingsStrapiRepositoryService
-    extends StrapiRepositoryService<Booking>
-    implements IBookingsRepository
+  export class BookingsStrapiRepositoryService extends StrapiRepositoryService<Booking> implements IBookingsRepository
   {
     constructor(
       http: HttpClient,
@@ -24,6 +23,18 @@ import { IBaseMapping } from "../interfaces/base-mapping.interface";
       super(http, auth, apiUrl, resource, mapping);
     }
     
+    deleteBookingsByFlightId(flightId: string): Observable<void> {
+      const url = `${this.apiUrl}/${this.resource}?filters[flight][id][$eq]=${flightId}`;
+      return this.http.get<{ data: { id: string }[] }>(url, this.getHeaders()).pipe(
+        map((response) => response.data.map((booking) => booking.id)),
+        map((ids) => {
+          ids.forEach((id) => {
+            this.http.delete<void>(`${this.apiUrl}/${this.resource}/${id}`, this.getHeaders()).subscribe();
+          });
+        }),
+        map(() => undefined) // Retornamos `undefined` ya que no necesitamos respuesta
+      );
+    };
     
 
   }
