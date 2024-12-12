@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertController, ModalController } from '@ionic/angular';
+import { TranslateService } from '@ngx-translate/core';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { catchError, finalize } from 'rxjs/operators';
 import { Booking } from 'src/app/core/models/booking.model';
@@ -22,12 +23,20 @@ export class BookingsPage implements OnInit {
   private readonly pageSize: number = 25;
   private loading: boolean = false;
 
+  currentLocale: string;
+
   constructor(
     private bookingsSvc: BookingsService,
     private flightsSvc: FlightsService,
     private modalCtrl: ModalController,
-    private alertCtrl: AlertController
-  ) {}
+    private alertCtrl: AlertController,
+    private translateService: TranslateService
+  ) {
+    this.currentLocale = this.translateService.currentLang || 'en-US';
+    this.translateService.onLangChange.subscribe((event) => {
+      this.currentLocale = event.lang; // Cambiar idioma cuando se actualice
+    });
+  }
 
   ngOnInit(): void {
     this.loadAllFlights(); // Cargar todos los vuelos

@@ -70,6 +70,7 @@ export class AppComponent {
     try {
       // Obtén el usuario autenticado desde el servicio de autenticación
       const user = await this.authSvc.getCurrentUser();
+      console.log(user)//Comprobar usuario
       if (user) {
         // Si el usuario está autenticado, asigna el nombre y apellido
         this.currentUser = {

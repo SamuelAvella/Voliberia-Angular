@@ -7,13 +7,19 @@ import { LanguageSelectorComponent } from "./components/language-selector/langua
 import { FlightModalComponent } from "./components/flight-modal/flight-modal.component";
 import { BookingModalComponent } from "./components/booking-modal/booking-modal.component";
 import { TogglePasswordPipe } from "./pipes/toggle-password.pipe";
+import { LocalizedDatePipe } from "./pipes/localized-date.pipe";
+import { LocalizedCurrencyPipe } from "./pipes/localized-currency-pipe";
+import { BookingStatusDirective } from "./directives/booking-status.directive";
 
 @NgModule({
     declarations:[
         LanguageSelectorComponent,
         FlightModalComponent,
         BookingModalComponent,
-        TogglePasswordPipe
+        TogglePasswordPipe,
+        LocalizedDatePipe,
+        LocalizedCurrencyPipe,
+        BookingStatusDirective
     ],
     imports:[
         CommonModule,
@@ -25,7 +31,10 @@ import { TogglePasswordPipe } from "./pipes/toggle-password.pipe";
         LanguageSelectorComponent,
         FlightModalComponent,
         BookingModalComponent,
-        TogglePasswordPipe
+        TogglePasswordPipe,
+        LocalizedDatePipe,
+        LocalizedCurrencyPipe,
+        BookingStatusDirective
     ]
 })
 export class SharedModule{}

@@ -23,9 +23,9 @@
     <ion-item *ngFor="let flight of flights$ | async; let i = index">
       <ion-label>
         <h2>{{ flight.origin }} → {{ flight.destination }}</h2>
-        <p>{{'FLIGHT.DEPARTURE' | translate}}: {{ flight.departureDate | date: 'short' }}</p>
-        <p>{{'FLIGHT.ARRIVAL' | translate}}: {{ flight.arrivalDate | date: 'short' }}</p>
-        <p>{{'FLIGHT.PRICE' | translate}}: {{ flight.seatPrice | currency: 'USD' }}</p>
+        <p>{{'FLIGHT.DEPARTURE' | translate}}: {{ flight.departureDate | localizedDate: currentLocale }}</p>
+        <p>{{'FLIGHT.ARRIVAL' | translate}}: {{ flight.arrivalDate | localizedDate: currentLocale }}</p>
+        <p>{{'FLIGHT.PRICE' | translate}}: {{ flight.seatPrice | localizedCurrency: currentLocale }}</p>
       </ion-label>
       <ion-buttons slot="end">
         <ion-button color="primary" (click)="onEditFlight(flight)">
