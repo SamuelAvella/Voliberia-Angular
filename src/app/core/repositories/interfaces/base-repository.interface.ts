@@ -7,7 +7,6 @@ export interface SearchParams {
   }
 
 export interface IBaseRepository<T extends Model>{
-    deleteBookingsByFlightId(flightId: string): Observable<void>;
     getAll(page:number, pageSize:number, filters:SearchParams): Observable< T[]| Paginated<T>>;
     getById(id: string): Observable<T | null>;
     add(entity: T): Observable<T>;
