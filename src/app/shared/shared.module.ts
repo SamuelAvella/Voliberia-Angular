@@ -6,12 +6,14 @@ import { TranslateModule } from "@ngx-translate/core";
 import { LanguageSelectorComponent } from "./components/language-selector/language-selector.component";
 import { FlightModalComponent } from "./components/flight-modal/flight-modal.component";
 import { BookingModalComponent } from "./components/booking-modal/booking-modal.component";
+import { TogglePasswordPipe } from "./pipes/toggle-password.pipe";
 
 @NgModule({
     declarations:[
         LanguageSelectorComponent,
         FlightModalComponent,
-        BookingModalComponent
+        BookingModalComponent,
+        TogglePasswordPipe
     ],
     imports:[
         CommonModule,
@@ -22,7 +24,8 @@ import { BookingModalComponent } from "./components/booking-modal/booking-modal.
     exports:[
         LanguageSelectorComponent,
         FlightModalComponent,
-        BookingModalComponent
+        BookingModalComponent,
+        TogglePasswordPipe
     ]
 })
 export class SharedModule{}

@@ -6,7 +6,6 @@
 
 <ion-content [fullscreen]="true" scrollY="true">
   <div class="login-container">
-    
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
       <ion-grid>
         <ion-row>
@@ -18,16 +17,38 @@
       <ion-grid>
         <ion-row>
           <ion-col style="display:flex" class="ion-justify-content-center ion-align-items-center">
-            ¿No tienes cuenta?<ion-button style="text-transform:none" (click)="onRegister()" fill="clear">Regístrate</ion-button>
+            ¿No tienes cuenta?
+            <ion-button style="text-transform:none" (click)="onRegister()" fill="clear">Regístrate</ion-button>
           </ion-col>
         </ion-row>
       </ion-grid>
+      
+      <!-- Campo de Email -->
       <ion-item>
-        <ion-input labelPlacement="floating" label="Email" type="email" formControlName="email" required></ion-input>
+        <ion-input
+          labelPlacement="floating"
+          label="Email"
+          type="email"
+          formControlName="email"
+          required
+        ></ion-input>
       </ion-item>
+
+      <!-- Campo de Contraseña con Visibilidad -->
       <ion-item>
-        <ion-input labelPlacement="floating" label="Contraseña" type="password" formControlName="password" required></ion-input>
+        <ion-input
+          labelPlacement="floating"
+          label="Contraseña"
+          [type]="passwordVisible | togglePassword"
+          formControlName="password"
+          required
+        ></ion-input>
+        <ion-button fill="clear" slot="end" (click)="togglePasswordVisibility()">
+          <ion-icon [name]="passwordVisible ? 'eye-off-outline' : 'eye-outline'"></ion-icon>
+        </ion-button>
       </ion-item>
+
+      <!-- Mensajes de Error -->
       <ion-text class="input-error" color="danger" *ngIf="email?.invalid && (email?.dirty || email?.touched)">
         <p *ngIf="email?.errors?.['required']">*Debe introducir un email</p>
         <p *ngIf="email?.errors?.['email']">*Debe introducir un email correcto</p>
@@ -35,6 +56,8 @@
       <ion-text class="input-error" color="danger" *ngIf="password?.invalid && (password?.dirty || password?.touched)">
         <p *ngIf="password?.errors?.['required']">*Debe introducir una contraseña</p>
       </ion-text>
+
+      <!-- Botón de Inicio de Sesión -->
       <ion-button style="text-transform:none" expand="block" type="submit" [disabled]="loginForm.invalid">
         Iniciar sesión
       </ion-button>
