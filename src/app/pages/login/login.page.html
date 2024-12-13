@@ -8,7 +8,6 @@
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
       <h2 class="login-title">Inicia sesión en Voliberia</h2>
 
-      <!-- Campo de Email -->
       <ion-item class="input-item">
         <ion-label position="floating">Email</ion-label>
         <ion-input
@@ -18,7 +17,6 @@
         </ion-input>
       </ion-item>
 
-      <!-- Campo de Contraseña con Icono de Visibilidad -->
       <ion-item class="input-item">
         <ion-label position="floating">Contraseña</ion-label>
         <ion-input
@@ -40,7 +38,6 @@
       <ion-text class="input-error" color="danger" *ngIf="password?.invalid && (password?.dirty || password?.touched)">
         <p *ngIf="password?.errors?.['required']">*Debe introducir una contraseña</p>
       </ion-text>
-      <!-- Botón de Inicio de Sesión -->
       <ion-button
         expand="block"
         class="login-button"
@@ -49,7 +46,6 @@
         Iniciar Sesión
       </ion-button>
 
-      <!-- Enlace a Registrarse -->
       <div class="register-link">
         <ion-text>¿No tienes cuenta?</ion-text>
         <ion-button fill="clear" class="register-button" (click)="onRegister()">Regístrate</ion-button>

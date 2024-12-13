@@ -26,7 +26,6 @@
     </ion-card-header>
     <ion-card-content>
       <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
-        <!-- Origin Input -->
         <ion-item class="form-item">
           <ion-input
             label="{{'FLIGHT.ORIGIN' | translate}}"
@@ -36,7 +35,6 @@
           ></ion-input>
         </ion-item>
 
-        <!-- Destination Input -->
         <ion-item class="form-item">
           <ion-input
             label="{{'FLIGHT.DESTINATION' | translate}}"
@@ -46,7 +44,6 @@
           ></ion-input>
         </ion-item>
 
-        <!-- Departure Date -->
         <ion-item class="form-item">
           <ion-label position="stacked">{{'FLIGHT.DEPARTURE' | translate}}</ion-label>
           <ion-datetime
@@ -57,7 +54,6 @@
           ></ion-datetime>
         </ion-item>
 
-        <!-- Arrival Date -->
         <ion-item class="form-item">
           <ion-label position="stacked">{{'FLIGHT.ARRIVAL' | translate}}</ion-label>
           <ion-datetime
@@ -68,7 +64,6 @@
           ></ion-datetime>
         </ion-item>
 
-        <!-- Seat Price Input -->
         <ion-item class="form-item">
           <ion-input
             label="{{'FLIGHT.PRICE' | translate}}"
@@ -79,7 +74,6 @@
           ></ion-input>
         </ion-item>
 
-        <!-- Submit Button -->
         <div class="button-container">
           <ion-button button expand="block" type="submit" [disabled]="!formGroup.valid" color="success">
             {{ flight ? ('FLIGHT.SAVE' | translate) : ('FLIGHT.CREATE' | translate) }}
