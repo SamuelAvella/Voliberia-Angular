@@ -13,6 +13,7 @@
   },
 
   "MENU": {
+    "MENU": "Menu",
     "TITLE": "Voliberia",
     "DESCRIPTION": "Flight Management",
     "LANGUAGE": "Language",
@@ -27,14 +28,27 @@
     }
   },
 
+  "HOME": {
+    "TITLE": "HOME",
+    "FLIGHTS": "FLIGHTS",
+    "FLIGHTS_DESC": "Consult, edit and manages the flights",
+    "BOOKINGS": "BOOKINGS",
+    "BOOKINGS_DESC": "Review and manage flight reservations"
+  },
+
   "FLIGHT":{
     "TITLE": "Flights",
     "USER": "Book by",
     "ORIGIN": "Origin",
+    "ORIGIN_INSERT": "Insert origin",
     "DESTINATION": "Destination",
+    "DESTINATION_INSERT": "Insert destination",
+    "DEPARTURE_TITLE": "Departure",
     "DEPARTURE": "Select departure date",
+    "ARRIVAL_TITLE": "Arrival",
     "ARRIVAL": "Select arrival date", 
     "PRICE": "Price",
+    "EDIT_TITLE": "Edit",
     "EDIT": "Edit flight details",
     "NEW": "New flight",
     "CREATE": "Create",
@@ -46,6 +60,62 @@
   },
 
   "BOOKING": {
+    "TITLE": "BOOKINGS",
+    "FLIGHT": "Flight",
+    "SELECT": "Select flight",
+    "DATE": "Date",
+    "PRICE": "Price",
+    "STATE": "Booking state",
+    "ACTIVE": "ACTIVE",
+    "INACTIVE": "INACTIVE",
+    "EDIT_TITLE": "Edit",
+    "EDIT": "Edit booking details",
+    "NEW": "New booking",
+    "CREATE": "Create",
+    "SAVE": "Save changes",
+    "CONFIRM_DELETION": "Confirm deletion",
+    "DELETION_TEXT": "Are you sure you want to delete this bookings",
+    "CANCEL" : "Cancel",
+    "DELETE" : "Delete"
+    
+  },
 
+  "PROFILE": {
+    "TITLE": "Profile",
+    "PERSONAL_INFO": "Your Personal Information",
+    "FIELDS": {
+      "NAME": "Name",
+      "SURNAME": "Surname",
+      "EMAIL": "Email"
+    },
+    "ERRORS": {
+      "NAME_REQUIRED": "Name is required",
+      "NAME_MINLENGTH": "Name must be at least 2 characters long",
+      "SURNAME_REQUIRED": "Surname is required",
+      "SURNAME_MINLENGTH": "Surname must be at least 2 characters long",
+      "EMAIL_REQUIRED": "Email is required",
+      "EMAIL_INVALID": "Please enter a valid email"
+    },
+    "BUTTONS": {
+      "UPDATE": "Update"
+    }
+  },
+
+  "ABOUT": {
+    "TITLE": "About",
+    "APP_INFO": {
+      "TITLE": "About this app",
+      "NAME": "Name",
+      "CREATION_DATE": "Creation date",
+      "DESCRIPTION": "Description",
+      "DESCRIPTION_TEXT": "This app was created to manage flights and bookings for the airline Voliberia."
+    },
+    "ADDITIONAL_INFO": {
+      "TITLE": "Additional Information",
+      "INTRODUCTION": "My name is Samuel Avella Pérez, and I am a student of Multiplatform Application Development. I created this application driven by my passion for traveling and with the goal of facilitating flight and booking management for the airline Voliberia.",
+      "CONTACT": "Contact",
+      "CONTACT_TEXT": "You can contact me at:",
+      "LINKEDIN": "LinkedIn"
+    }
   }
 } 

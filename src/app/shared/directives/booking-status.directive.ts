@@ -1,7 +1,7 @@
 import { Directive, ElementRef, Input, Renderer2, OnChanges } from '@angular/core';
 
 @Directive({
-  selector: '[appBookingState]'
+  selector: '[appBookingState]',
 })
 export class BookingStatusDirective implements OnChanges {
   @Input('appBookingState') status!: boolean; // Recibe el estado de la reserva
@@ -13,22 +13,17 @@ export class BookingStatusDirective implements OnChanges {
   }
 
   private updateAppearance(): void {
-    if (this.status) {
-      // Reserva activa: Cambia a verde o muestra el ícono de tick
-      this.renderer.setStyle(this.el.nativeElement, 'color', 'green');
-      this.renderer.setProperty(
-        this.el.nativeElement,
-        'innerHTML',
-        '<ion-icon name="checkmark-circle"></ion-icon> Activa'
-      );
-    } else {
-      // Reserva inactiva: Cambia a rojo o muestra otro ícono
-      this.renderer.setStyle(this.el.nativeElement, 'color', 'red');
-      this.renderer.setProperty(
-        this.el.nativeElement,
-        'innerHTML',
-        '<ion-icon name="close-circle"></ion-icon> Inactiva'
-      );
-    }
+    // Limpia el contenido inicial
+    this.renderer.setProperty(this.el.nativeElement, 'innerHTML', '');
+
+    const icon = this.renderer.createElement('ion-icon');
+    const color = this.status ? 'green' : 'red';
+    const iconName = this.status ? 'checkmark-circle' : 'close-circle';
+
+    this.renderer.setAttribute(icon, 'name', iconName);
+    this.renderer.setStyle(icon, 'color', color);
+    this.renderer.setStyle(icon, 'margin-left', '8px'); // Espacio entre texto e ícono
+
+    this.renderer.appendChild(this.el.nativeElement, icon);
   }
 }

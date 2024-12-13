@@ -1,66 +1,53 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>Iniciar Sesión</ion-title>
+  <ion-toolbar color="primary">
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true" scrollY="true">
+<ion-content>
   <div class="login-container">
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-      <ion-grid>
-        <ion-row>
-          <ion-col style="display:flex" class="ion-justify-content-center">
-            <ion-text><h1>Iniciar sesión</h1></ion-text>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-      <ion-grid>
-        <ion-row>
-          <ion-col style="display:flex" class="ion-justify-content-center ion-align-items-center">
-            ¿No tienes cuenta?
-            <ion-button style="text-transform:none" (click)="onRegister()" fill="clear">Regístrate</ion-button>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-      
+      <h2 class="login-title">Inicia sesión en Voliberia</h2>
+
       <!-- Campo de Email -->
-      <ion-item>
+      <ion-item class="input-item">
+        <ion-label position="floating">Email</ion-label>
         <ion-input
-          labelPlacement="floating"
-          label="Email"
           type="email"
           formControlName="email"
-          required
-        ></ion-input>
+          required>
+        </ion-input>
       </ion-item>
 
-      <!-- Campo de Contraseña con Visibilidad -->
-      <ion-item>
+      <!-- Campo de Contraseña con Icono de Visibilidad -->
+      <ion-item class="input-item">
+        <ion-label position="floating">Contraseña</ion-label>
         <ion-input
-          labelPlacement="floating"
-          label="Contraseña"
-          [type]="passwordVisible | togglePassword"
+          [type]="passwordVisible ? 'text' : 'password'"
           formControlName="password"
-          required
-        ></ion-input>
+          required>
+        </ion-input>
         <ion-button fill="clear" slot="end" (click)="togglePasswordVisibility()">
-          <ion-icon [name]="passwordVisible ? 'eye-off-outline' : 'eye-outline'"></ion-icon>
+          <ion-icon
+            [name]="passwordVisible ? 'eye-off-outline' : 'eye-outline'"
+            class="toggle-password-icon">
+          </ion-icon>
         </ion-button>
       </ion-item>
 
-      <!-- Mensajes de Error -->
-      <ion-text class="input-error" color="danger" *ngIf="email?.invalid && (email?.dirty || email?.touched)">
-        <p *ngIf="email?.errors?.['required']">*Debe introducir un email</p>
-        <p *ngIf="email?.errors?.['email']">*Debe introducir un email correcto</p>
-      </ion-text>
-      <ion-text class="input-error" color="danger" *ngIf="password?.invalid && (password?.dirty || password?.touched)">
-        <p *ngIf="password?.errors?.['required']">*Debe introducir una contraseña</p>
-      </ion-text>
-
       <!-- Botón de Inicio de Sesión -->
-      <ion-button style="text-transform:none" expand="block" type="submit" [disabled]="loginForm.invalid">
-        Iniciar sesión
+      <ion-button
+        expand="block"
+        class="login-button"
+        type="submit"
+        [disabled]="loginForm.invalid">
+        Iniciar Sesión
       </ion-button>
+
+      <!-- Enlace a Registrarse -->
+      <div class="register-link">
+        <ion-text>¿No tienes cuenta?</ion-text>
+        <ion-button fill="clear" class="register-button" (click)="onRegister()">Regístrate</ion-button>
+      </div>
     </form>
   </div>
 </ion-content>

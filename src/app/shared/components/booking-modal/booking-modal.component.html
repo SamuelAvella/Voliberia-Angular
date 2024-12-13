@@ -1,32 +1,47 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>
-      {{ mode === 'edit' ? 'Editar Reserva' : 'Nueva Reserva' }}
-    </ion-title>
+  <ion-toolbar color="primary">
     <ion-buttons slot="end">
-      <ion-button (click)="dismiss()">
-        <ion-icon name="close"></ion-icon>
+      <ion-button (click)="dismiss()" color="light">
+        <ion-icon slot="icon-only" name="close"></ion-icon>
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
-    <ion-item>
-      <ion-label position="stacked">Estado</ion-label>
-      <ion-toggle formControlName="bookingState"></ion-toggle>
-    </ion-item>
-    <ion-item>
-      <ion-label position="stacked">Vuelo</ion-label>
-      <ion-select formControlName="flightId" placeholder="Selecciona un vuelo">
-        <ion-select-option *ngFor="let flight of flights" [value]="flight.id">
-          {{ flight.origin }} -> {{ flight.destination }}
-        </ion-select-option>
-      </ion-select>
-    </ion-item>
-    <ion-button expand="block" type="submit" [disabled]="formGroup.invalid">
-      {{ mode === 'edit' ? 'Actualizar' : 'Crear' }}
-    </ion-button>
-  </form>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title class="ion-text-center">
+        {{ mode === 'edit' ? ('BOOKING.EDIT' | translate) : ('BOOKING.NEW' | translate) }}
+      </ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+        <!-- Estado -->
+        <ion-item class="form-item">
+          <ion-label position="stacked">{{'BOOKING.STATE' | translate}}</ion-label>
+          <ion-toggle formControlName="bookingState"></ion-toggle>
+        </ion-item>
+
+        <!-- Selección de Vuelo -->
+        <ion-item class="form-item">
+          <ion-label position="stacked">{{'BOOKING.FLIGHT' | translate}}</ion-label>
+          <ion-select formControlName="flightId" placeholder="{{'BOOKING.SELECT' | translate}}">
+            <ion-select-option *ngFor="let flight of flights" [value]="flight.id">
+              <p><strong>{{ flight.origin }} → {{ flight.destination }} </strong></p>
+              <p>{{ flight.departureDate | localizedDate: currentLocale }} - {{ flight.arrivalDate | localizedDate: currentLocale }} </p>
+              <p>{{ flight.seatPrice | localizedCurrency: currentLocale }}</p>
+            </ion-select-option>
+          </ion-select>
+        </ion-item>
+
+        <!-- Botón de Submit -->
+        <div class="button-container">
+          <ion-button button expand="block" type="submit" [disabled]="formGroup.invalid" color="success">
+            {{ mode === 'edit' ? ('BOOKING.SAVE' | translate) : ('BOOKING.CREATE' | translate) }}
+          </ion-button>
+        </div>
+      </form>
+    </ion-card-content>
+  </ion-card>
 </ion-content>

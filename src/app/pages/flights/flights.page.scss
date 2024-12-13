@@ -1,0 +1,107 @@
+.flight-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Dos columnas por defecto */
+    gap: 1rem; /* Espacio entre las tarjetas */
+    padding: 1rem;
+  }
+  
+  .flight-card {
+    margin: 1rem;
+    padding: 1rem;
+    border-radius: 12px;
+    background-color: #007bff; /* Azul corporativo */
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  
+  .flight-card ion-card-header {
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 1.2rem;
+  }
+  
+  .flight-origin {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: white;
+  }
+  
+  .flight-destination {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: yellow;
+  }
+  
+  .flight-card p {
+    font-size: 1rem;
+    margin: 0.5rem 0;
+  }
+  
+  .flight-card-buttons {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  ion-button {
+    --background: white; /* Fondo blanco */
+    --color: #007bff; /* Texto azul */
+    --border-radius: 8px;
+    --padding-start: 1rem;
+    --padding-end: 1rem;
+    --transition: all 0.3s ease;
+    font-weight: bold;
+  }
+  
+  ion-button:hover {
+    --background: transparent; /* Fondo transparente al pasar el mouse */
+    --color: white;
+  }
+  
+  ion-button.edit-button:hover {
+    --border-color: orange; /* Borde naranja */
+    --border-width: 2px;
+  }
+  
+  ion-button.delete-button:hover {
+    --border-color: red; /* Borde rojo */
+    --border-width: 2px;
+  }
+  
+  /* Ajuste para pantallas pequeñas */
+  @media (max-width: 768px) {
+    .flight-grid {
+      grid-template-columns: 1fr; /* Una columna en pantallas pequeñas */
+    }
+  }
+  
+  ion-toolbar {
+    --background: #007bff; /* Azul corporativo */
+    --color: white; /* Texto e iconos en blanco */
+  }
+  
+  .menu-button {
+    color: white; /* Color del icono del menú */
+  }
+  
+  .header-title {
+    color: white; /* Color del título */
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  
+  .add-button {
+    --background: transparent; /* Fondo transparente */
+    --color: white; /* Icono en blanco */
+    --padding-start: 1rem;
+    --padding-end: 1rem;
+    --border-radius: 50%; /* Botón circular */
+    --transition: all 0.3s ease;
+  }
+  
+  .add-button:hover {
+    --background: white; /* Fondo blanco al pasar el mouse */
+    --color: #007bff; /* Texto azul corporativo */
+  }
+  

@@ -1,40 +1,38 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
+  <ion-toolbar color="primary">
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title>About</ion-title>
+    <ion-title class="header-title">{{'ABOUT.TITLE' | translate}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">About</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
+<ion-content>
   <div class="about-container">
-    <ion-card>
+    <ion-card class="about-card">
       <ion-card-header>
-        <ion-card-title>About This App</ion-card-title>
+        <ion-card-title class="card-title">{{'ABOUT.APP_INFO.TITLE' | translate}}</ion-card-title>
       </ion-card-header>
       <ion-card-content>
-        <p><strong>Name:</strong> Samuel Avella Pérez</p>
-        <p><strong>Date Created:</strong> 11/12/2024</p>
-        <p><strong>Description:</strong> Esta app fue creada para gestionar vuelos y reservas para la aerolínea Voliberia.</p>
+        <p><strong>{{'ABOUT.APP_INFO.NAME' | translate}}:</strong> Samuel Avella Pérez</p>
+        <p><strong>{{'ABOUT.APP_INFO.CREATION_DATE' | translate}}:</strong> 11/12/2024</p>
+        <p><strong>{{'ABOUT.APP_INFO.DESCRIPTION' | translate}}:</strong> {{'ABOUT.APP_INFO.DESCRIPTION_TEXT' | translate}}</p>
       </ion-card-content>
     </ion-card>
 
-    <ion-card>
+    <ion-card class="about-card">
       <ion-card-header>
-        <ion-card-title>Additional Information</ion-card-title>
+        <ion-card-title class="card-title"> {{'ABOUT.ADDITIONAL_INFO.TITLE' | translate}}</ion-card-title>
       </ion-card-header>
       <ion-card-content>
-        <p>Mi nombre es Samuel Avella Pérez, soy estudiante de Desarrollo de Aplicaciones Multiplataforma. Creé esta aplicación motivado por mi pasión por viajar y con el objetivo de facilitar la gestión de vuelos y reservas para la aerolínea Voliberia. Esta es mi primera experiencia desarrollando una aplicación móvil, y estoy emocionado de compartirla contigo.</p>
-        <p><strong>Contact:</strong></p>
-        <p>Puedes contactarme en: <a href="https://linkedin.com/in/samuelavella" target="_blank">
-          <ion-icon name="logo-linkedin" style="font-size: 20px; color: #0A66C2;"></ion-icon> LinkedIn</a></p>
+        <p>{{'ABOUT.ADDITIONAL_INFO.INTRODUCTION' | translate}}</p>
+        <p><strong>{{'ABOUT.ADDITIONAL_INFO.CONTACT' | translate}}:</strong></p>
+        <p>
+          {{'ABOUT.ADDITIONAL_INFO.CONTACT_TEXT' | translate}}
+          <a href="https://linkedin.com/in/samuelavella" target="_blank">
+            <ion-icon name="logo-linkedin" class="linkedin-icon"></ion-icon> LinkedIn
+          </a>
+        </p>
       </ion-card-content>
     </ion-card>
   </div>

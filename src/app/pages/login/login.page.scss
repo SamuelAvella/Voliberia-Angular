@@ -1,30 +1,70 @@
-div.login-container {
-    display: flex;
-    flex-direction: column; 
-    justify-content: flex-start;
-    align-items: center;
-    height: 100%;
-    padding: 16px; /* Espaciado para evitar bordes ajustados */
-    overflow-y: auto; /* Permitir scroll vertical si el contenido crece */
-  }
-  
-  form {
-    width: 100%;
-    max-width: 400px;
-    height:100%;
-  }
-  
-  .error {
-    color: red;
-    font-size: 12px;
-    margin-top: -8px;
-    margin-bottom: 8px;
-  }
-  ion-item{
-    margin-bottom:10px;
-  }
-  ion-text.input-error{
-    margin-top:-10px;
-  }
-  
-  
+/* Contenedor Principal */
+.login-container {
+  margin: 2rem auto;
+  padding: 2rem;
+  max-width: 400px;
+  background-color: rgba(255, 255, 255, 0.9); /* Fondo blanco translúcido */
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+/* Título */
+.login-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #007bff; /* Azul corporativo */
+  margin-bottom: 2rem;
+}
+
+/* Campos de Entrada */
+.input-item {
+  margin-bottom: 1.2rem;
+  --highlight-color-focused: #007bff; /* Azul corporativo al enfocar */
+  --background: white;
+  border-radius: 8px;
+}
+
+/* Icono de Mostrar/Ocultar Contraseña */
+.toggle-password-icon {
+  font-size: 1.2rem;
+  color: #007bff; /* Azul corporativo */
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.toggle-password-icon:hover {
+  transform: scale(1.2); /* Aumentar tamaño al pasar el mouse */
+}
+
+/* Botón de Inicio de Sesión */
+.login-button {
+  --background: #007bff; /* Azul corporativo */
+  --color: white;
+  --border-radius: 8px;
+  font-weight: bold;
+  margin-top: 1.5rem;
+  transition: transform 0.2s ease;
+}
+
+.login-button:hover {
+  transform: scale(1.05); /* Efecto hover */
+}
+
+/* Enlace a Registrarse */
+.register-link {
+  margin-top: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  color: black;
+}
+
+.register-button {
+  --color: #007bff;
+  --padding-start: 0;
+  --padding-end: 0;
+  font-weight: bold;
+  text-transform: none;
+}

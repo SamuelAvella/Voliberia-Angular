@@ -19,7 +19,7 @@ import { BookingStatusDirective } from "./directives/booking-status.directive";
         TogglePasswordPipe,
         LocalizedDatePipe,
         LocalizedCurrencyPipe,
-        BookingStatusDirective
+        BookingStatusDirective,
     ],
     imports:[
         CommonModule,

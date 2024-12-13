@@ -44,7 +44,7 @@ export function createTranslateLoader(http: HttpClient){
         deps: [HttpClient]
       }
     }),
-    SharedModule
+    SharedModule,
   ],
   providers: [
     { provide: RouteReuseStrategy, 

@@ -4,7 +4,7 @@ import { Pipe, PipeTransform } from '@angular/core';
   name: 'localizedDate'
 })
 export class LocalizedDatePipe implements PipeTransform {
-  transform(value: Date | string, locale: string = 'en-US', options?: Intl.DateTimeFormatOptions): string {
+  transform(value: Date | string | undefined, locale: string = 'en-US', options?: Intl.DateTimeFormatOptions): string {
     if (!value) return '';
     const date = new Date(value);
 

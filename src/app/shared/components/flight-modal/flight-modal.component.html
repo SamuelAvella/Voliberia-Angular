@@ -32,7 +32,7 @@
             label="{{'FLIGHT.ORIGIN' | translate}}"
             label-placement="stacked"
             formControlName="origin"
-            placeholder="Enter Origin"
+            placeholder="{{'FLIGHT.ORIGIN_INSERT' | translate}}"
           ></ion-input>
         </ion-item>
 
@@ -42,7 +42,7 @@
             label="{{'FLIGHT.DESTINATION' | translate}}"
             label-placement="stacked"
             formControlName="destination"
-            placeholder="Enter Destination"
+            placeholder="{{'FLIGHT.DESTINATION_INSERT' | translate}}"
           ></ion-input>
         </ion-item>
 
@@ -82,7 +82,7 @@
         <!-- Submit Button -->
         <div class="button-container">
           <ion-button button expand="block" type="submit" [disabled]="!formGroup.valid" color="success">
-            {{ flight ? 'Save Changes' : 'Create Flight' }}
+            {{ flight ? ('FLIGHT.SAVE' | translate) : ('FLIGHT.CREATE' | translate) }}
           </ion-button>
         </div>
       </form>

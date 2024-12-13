@@ -2,7 +2,7 @@
   <ion-menu #menu menuId="mainMenu" contentId="main-content" type="overlay">
     <ion-header>
       <ion-toolbar color="primary">
-        <ion-title>{{ 'MENU.TITLE' | translate }}</ion-title>
+        <ion-title>{{ 'MENU.MENU' | translate }}</ion-title>
       </ion-toolbar>
     </ion-header>
 
@@ -12,12 +12,12 @@
         <!-- Logo y Usuario conectado -->
         <ion-item lines="none">
           <ion-avatar slot="start">
-            <img src="src\assets\img\logo.png" alt="{{ 'MENU.TITLE' | translate }}" />
+            <img src="/src/assets/img/logo.png" alt="{{ 'MENU.TITLE' | translate }}" />
           </ion-avatar>
           <ion-label>
             <h2 class="ion-text-uppercase">{{ 'MENU.TITLE' | translate }}</h2>
             <p *ngIf="currentUser">
-              {{ currentUser.username }}
+              Hola {{ currentUser.username }}
             </p>
           </ion-label>
         </ion-item>

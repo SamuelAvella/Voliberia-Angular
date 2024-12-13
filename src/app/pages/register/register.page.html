@@ -1,6 +1,5 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>Crear cuenta</ion-title>
+  <ion-toolbar color="primary">
   </ion-toolbar>
 </ion-header>
 
@@ -17,11 +16,16 @@
       </ion-grid>
       <ion-grid>
         <ion-row>
-          <ion-col style="display:flex" class="ion-justify-content-center ion-align-items-center">
-            ¿Tienes una cuenta?<ion-button style="text-transform:none" (click)="onLogin()" fill="clear">Inicia sesión</ion-button>
+          <ion-col style="display: flex; color:black; justify-content: center; align-items: center;">
+            <ion-text>
+              ¿Tienes una cuenta?
+              
+            </ion-text>
+            <ion-button class="redirect-button" (click)="onLogin()" fill="clear" style="color:white">Inicia sesión</ion-button>
           </ion-col>
         </ion-row>
       </ion-grid>
+      
       <ion-item>
         <ion-input labelPlacement="floating" label="Nombre" type="text" formControlName="name" required></ion-input>
       </ion-item>
