@@ -33,7 +33,13 @@
           </ion-icon>
         </ion-button>
       </ion-item>
-
+      <ion-text class="input-error" color="danger" *ngIf="email?.invalid && (email?.dirty || email?.touched)">
+        <p *ngIf="email?.errors?.['required']">*Debe introducir un email</p>
+        <p *ngIf="email?.errors?.['email']">*Debe introducir un email correcto</p>
+      </ion-text>
+      <ion-text class="input-error" color="danger" *ngIf="password?.invalid && (password?.dirty || password?.touched)">
+        <p *ngIf="password?.errors?.['required']">*Debe introducir una contraseña</p>
+      </ion-text>
       <!-- Botón de Inicio de Sesión -->
       <ion-button
         expand="block"
