@@ -14,7 +14,6 @@ import { provideLottieOptions } from 'ngx-lottie';
 import player from 'lottie-web';
 import { AUTH_ME_API_URL_TOKEN, AUTH_SIGN_IN_API_URL_TOKEN, AUTH_SIGN_UP_API_URL_TOKEN, BACKEND_TOKEN, BOOKINGS_API_URL_TOKEN, BOOKINGS_RESOURCE_NAME_TOKEN, FLIGHTS_API_URL_TOKEN, FLIGHTS_RESOURCE_NAME_TOKEN, STRAPI_AUTH_TOKEN, UPLOAD_API_URL_TOKEN, USERSAPP_API_URL_TOKEN, USERSAPP_RESOURCE_NAME_TOKEN } from './core/repositories/repository.token';
 import { environment } from 'src/environments/environment';
-import {  } from 'src/environments/environment.prod';
 import { UsersAppService } from './core/services/impl/usersApp.service';
 import { FlightsService } from './core/services/impl/flights.service';
 import { AuthenticationServiceFactory, AuthMappingFactory, BookingsMappingFactory, BookingsRepositoryFactory, FlightsRepositoryFactory, FlightsMappingFactory, MediaServiceFactory, UsersAppMappingFactory, UsersAppRepositoryFactory } from './core/repositories/repository.factory';
