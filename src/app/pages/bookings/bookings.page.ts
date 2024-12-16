@@ -34,12 +34,12 @@ export class BookingsPage implements OnInit {
   ) {
     this.currentLocale = this.translateService.currentLang || 'en-US';
     this.translateService.onLangChange.subscribe((event) => {
-      this.currentLocale = event.lang; // Cambiar idioma cuando se actualice
+      this.currentLocale = event.lang; 
     });
   }
 
   ngOnInit(): void {
-    this.loadAllFlights(); // Cargar todos los vuelos
+    this.loadAllFlights(); 
     this.loadBookings();
   }
 

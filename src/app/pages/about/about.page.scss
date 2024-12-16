@@ -2,39 +2,39 @@
   padding: 20px;
   display: flex;
   flex-direction: column;
-  gap: 1.5rem; /* Espaciado entre tarjetas */
-  align-items: center; /* Centra las tarjetas horizontalmente */
+  gap: 1.5rem; 
+  align-items: center;
 }
 
 .about-card {
   width: 100%;
-  max-width: 600px; /* Ancho máximo para evitar que se extienda demasiado */
-  background-color: rgba(255, 255, 255, 0.95); /* Fondo semitransparente */
+  max-width: 600px; 
+  background-color: rgba(255, 255, 255, 0.95);
   border-radius: 12px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra suave */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
 }
 
 .card-title {
   font-size: 1.5rem;
   font-weight: bold;
-  color: #007bff; /* Azul corporativo */
+  color: #007bff; 
   text-align: center;
 }
 
 ion-card-content {
   font-size: 1rem;
   line-height: 1.6;
-  color: #333; /* Texto oscuro */
+  color: #333; 
 }
 
 .linkedin-icon {
   font-size: 20px;
-  color: #0A66C2; /* Azul de LinkedIn */
+  color: #0A66C2; 
   margin-right: 0.3rem;
 }
 
 .header-title {
-  color: white; /* Cambia el color del título a blanco */
+  color: white; 
   font-weight: bold;
   text-transform: uppercase; /* Opcional: convierte el texto a mayúsculas */
   font-size: 1.5rem; /* Tamaño de fuente */
