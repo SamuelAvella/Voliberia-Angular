@@ -52,6 +52,9 @@
             display-format="DD MMM YYYY, HH:mm"
             picker-format="DD MMM YYYY HH:mm"
           ></ion-datetime>
+          <ion-text *ngIf="formGroup?.get('departureDate')?.errors?.['dateNotInThePast']" color="danger">
+            La fecha de salida no puede ser anterior a hoy
+          </ion-text>
         </ion-item>
 
         <ion-item class="form-item">
@@ -62,6 +65,12 @@
             display-format="DD MMM YYYY, HH:mm"
             picker-format="DD MMM YYYY HH:mm"
           ></ion-datetime>
+          <div *ngIf="formGroup.hasError('arrivalDateInvalid')">
+            <ion-text color="danger">La fecha de llegada debe ser posterior a la de salida.</ion-text>
+          </div>
+          <div *ngIf="formGroup.hasError('arrivalDateTooClose')">
+            <ion-text color="danger">La fecha de llegada debe ser al menos 40 minutos después de la salida.</ion-text>
+          </div>
         </ion-item>
 
         <ion-item class="form-item">
