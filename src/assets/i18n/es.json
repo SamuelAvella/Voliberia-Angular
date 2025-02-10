@@ -79,7 +79,12 @@
     "DELETE": "Eliminar"
   },
 
-  
+  "FLIGHT_SELECTABLE": {
+    "SELECT_FLIGHT": "Seleccione un vuelo",
+    "NONE": "Ninguno",
+    "SEARCH": "Buscar"
+  },
+
   "PROFILE": {
     "TITLE": "Perfil",
     "PERSONAL_INFO": "Tu Información Personal",

@@ -1,0 +1,37 @@
+<div id="popover-button" #popoverButton>
+  <div class="selectable-container">
+    <div class="selectable-text">
+      <ion-text *ngIf="!flightSelected && !disabled">{{ 'FLIGHT_SELECTABLE.SELECT_FLIGHT' | translate }}</ion-text>
+      <ion-text *ngIf="!flightSelected && disabled">{{ 'FLIGHT_SELECTABLE.NONE' | translate }}</ion-text>
+      <ion-text *ngIf="flightSelected">{{ flightSelected.origin }} → {{ flightSelected.destination }}</ion-text>
+      <ion-icon *ngIf="!popover" name="chevron-down-outline" color="medium"></ion-icon>
+      <ion-icon *ngIf="!popover" name="chevron-up-outline" color="medium"></ion-icon>
+    </div>
+  </div>
+
+  <ion-popover class="selectable-popover" trigger="popover-button" #popover (willPresent)="onLoadFlights()">
+    <ng-template>
+      <ion-content class="popover-content">
+        <ion-list class="list-scrollable">
+          <div class="fixed-search">
+            <ion-item>
+              <ion-input #search placeholder="{{ 'FLIGHT_SELECTABLE.SEARCH' | translate }}" type="text" (ionInput)="onFilter($event)" debounce="200"></ion-input>
+              <ion-button color="medium" slot="end" fill="clear" (click)="clearSearch(search)">
+                <ion-icon slot="icon-only" name="close-outline"></ion-icon>
+              </ion-button>
+            </ion-item>
+          </div>
+
+          <div class="scrollable-content">
+            <ion-item *ngFor="let flight of flights$ | async" button (click)="onFlightClicked(popover, flight)">
+              <ion-text>{{ flight.origin }} → {{ flight.destination }}</ion-text>
+            </ion-item>
+            <ion-infinite-scroll (ionInfinite)="onMoreFlights($event)">
+              <ion-infinite-scroll-content></ion-infinite-scroll-content>
+            </ion-infinite-scroll>
+          </div>
+        </ion-list>
+      </ion-content>
+    </ng-template>
+  </ion-popover>
+</div>

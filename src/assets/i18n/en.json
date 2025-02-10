@@ -80,6 +80,12 @@
     
   },
 
+  "FLIGHT_SELECTABLE": {
+    "SELECT_FLIGHT": "Select a flight",
+    "NONE": "None",
+    "SEARCH": "Search"
+  },
+
   "PROFILE": {
     "TITLE": "Profile",
     "PERSONAL_INFO": "Your Personal Information",

@@ -57,7 +57,7 @@ export class StrapiRepositoryService<T extends Model> extends BaseRepositoryHttp
 
   override getAll(page:number, pageSize:number, filters:SearchParams = {}): Observable<T[] | Paginated<T>> {
     let search: string = Object.entries(filters)
-      .map(([k, v]) => `filters[${k}]=${v}`)
+      .map(([k, v]) => `filters[${k}][$contains]=${v}`)
       .reduce((p, v) => `${p}${v}`, "");
     if(page!=-1){
       return this.http.get<PaginatedRaw<T>>(

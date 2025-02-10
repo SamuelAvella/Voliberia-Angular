@@ -25,14 +25,7 @@
 
         <!-- Selección de Vuelo -->
         <ion-item class="form-item">
-          <ion-label position="stacked">{{'BOOKING.FLIGHT' | translate}}</ion-label>
-          <ion-select formControlName="flightId" placeholder="{{'BOOKING.SELECT' | translate}}">
-            <ion-select-option *ngFor="let flight of flights" [value]="flight.id">
-              <p><strong>{{ flight.origin }} → {{ flight.destination }} </strong></p>
-              <p>{{ flight.departureDate | localizedDate: currentLocale }} - {{ flight.arrivalDate | localizedDate: currentLocale }} </p>
-              <p>{{ flight.seatPrice | localizedCurrency: currentLocale }}</p>
-            </ion-select-option>
-          </ion-select>
+          <app-flight-selectable formControlName="flightId"></app-flight-selectable>
         </ion-item>
 
         <!-- Botón de Submit -->
