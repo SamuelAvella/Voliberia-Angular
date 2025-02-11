@@ -90,7 +90,7 @@ export interface Meta {}
       
         // Validar si 'id' es válido antes de usarlo
         if (!id) {
-          console.log("El id de flight no lo pilla")
+            throw new Error("Flight ID is missing");
         }
       
         return {

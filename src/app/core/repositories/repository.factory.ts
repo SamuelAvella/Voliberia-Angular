@@ -80,11 +80,11 @@ export function createBaseMappingFactory<T extends Model>(
                     ? new FlightsMappingStrapi() : null));
               case 'firebase':
                 return modelType === 'userApp'
-                    ? new UsersAppMappingFirebaseService(/*firebaseConfig*/) :(
+                    ? new UsersAppMappingFirebaseService(firebaseConfig) :(
                     modelType === 'booking' 
-                    ? new BookingsMappingFirebaseService(/*firebaseConfig*/) :(
+                    ? new BookingsMappingFirebaseService(firebaseConfig) :(
                     modelType === 'flight' 
-                    ? new FlightsMappingFirebaseService(/*firebaseConfig*/) : null));
+                    ? new FlightsMappingFirebaseService(firebaseConfig) : null));
               default:
                 throw new Error("BACKEND NOT IMPLEMENTED");
             }
