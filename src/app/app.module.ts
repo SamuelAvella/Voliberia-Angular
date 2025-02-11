@@ -15,7 +15,7 @@ import { provideLottieOptions } from 'ngx-lottie';
 import player from 'lottie-web';
 
 import { SharedModule } from './shared/shared.module';
-import { AUTH_ME_API_URL_TOKEN, AUTH_SIGN_IN_API_URL_TOKEN, AUTH_SIGN_UP_API_URL_TOKEN, BACKEND_TOKEN, BOOKINGS_API_URL_TOKEN, BOOKINGS_RESOURCE_NAME_TOKEN, FLIGHTS_API_URL_TOKEN, FLIGHTS_RESOURCE_NAME_TOKEN, STRAPI_AUTH_TOKEN, UPLOAD_API_URL_TOKEN, USERSAPP_API_URL_TOKEN, USERSAPP_RESOURCE_NAME_TOKEN } from './core/repositories/repository.token';
+import { AUTH_ME_API_URL_TOKEN, AUTH_SIGN_IN_API_URL_TOKEN, AUTH_SIGN_UP_API_URL_TOKEN, BACKEND_TOKEN, BOOKINGS_API_URL_TOKEN, BOOKINGS_RESOURCE_NAME_TOKEN, FLIGHTS_API_URL_TOKEN, FLIGHTS_RESOURCE_NAME_TOKEN, STRAPI_AUTH_TOKEN, UPLOAD_API_URL_TOKEN, USERSAPP_API_URL_TOKEN, USERSAPP_RESOURCE_NAME_TOKEN, FIREBASE_CONFIG_TOKEN } from './core/repositories/repository.token';
 import { environment } from 'src/environments/environment';
 
 //Services
@@ -70,6 +70,17 @@ export function createTranslateLoader(http: HttpClient){
     { provide: AUTH_SIGN_UP_API_URL_TOKEN, useValue: `${environment.apiUrl}/api/auth/local/register` },
     { provide: AUTH_ME_API_URL_TOKEN, useValue: `${environment.apiUrl}/api/users/me` },
     { provide: UPLOAD_API_URL_TOKEN, useValue: `${environment.apiUrl}/api/upload` },
+    { provide: FIREBASE_CONFIG_TOKEN, useValue: 
+      {
+        apiKey: "AIzaSyAH7qPi9Hh7yUJXUuL0-RAKBQRZWbdcswQ",
+        authDomain: "voliberia-c2248.firebaseapp.com",
+        projectId: "voliberia-c2248",
+        storageBucket: "voliberia-c2248.firebasestorage.app",
+        messagingSenderId: "4884367469",
+        appId: "1:4884367469:web:9e6415b64229d44057d764",
+        measurementId: "G-HFMKX3HBVS"
+      }
+    },
     
     UsersAppMappingFactory,
     BookingsMappingFactory,

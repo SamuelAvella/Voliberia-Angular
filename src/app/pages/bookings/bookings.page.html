@@ -21,9 +21,9 @@
             {{ booking.bookingState ? ('BOOKING.ACTIVE' | translate) : ('BOOKING.INACTIVE' | translate) }}
             <span [appBookingState]="booking.bookingState"></span>
           </h2>
-          <h3>{{'BOOKING.FLIGHT' | translate}}: {{ flightsMap[booking.flightId]?.origin }} - {{ flightsMap[booking.flightId]?.destination }}</h3>
-          <h3>{{'BOOKING.DATE' | translate}}: {{ flightsMap[booking.flightId]?.departureDate | localizedDate: currentLocale }} - {{ flightsMap[booking.flightId]?.arrivalDate | localizedDate: currentLocale }}</h3>
-          <h3>{{'BOOKING.PRICE' | translate}}: {{ flightsMap[booking.flightId]?.seatPrice | localizedCurrency: currentLocale }}</h3>
+          <h3>{{'BOOKING.FLIGHT' | translate}}: {{ flightsMap[booking.flightId].origin }} - {{ flightsMap[booking.flightId].destination }}</h3>
+          <h3>{{'BOOKING.DATE' | translate}}: {{ flightsMap[booking.flightId].departureDate | localizedDate: currentLocale }} - {{ flightsMap[booking.flightId].arrivalDate | localizedDate: currentLocale }}</h3>
+          <h3>{{'BOOKING.PRICE' | translate}}: {{ flightsMap[booking.flightId].seatPrice | localizedCurrency: currentLocale }}</h3>
           <div class="booking-card-buttons">
             <ion-button class="edit-button" (click)="editBooking(booking)">
               <ion-icon name="create-outline"></ion-icon> {{'BOOKING.EDIT_TITLE' | translate}}

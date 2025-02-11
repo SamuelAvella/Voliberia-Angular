@@ -50,7 +50,15 @@ export const BOOKINGS_REPOSITORY_MAPPING_TOKEN = new InjectionToken<IBaseMapping
 export const FLIGHTS_REPOSITORY_MAPPING_TOKEN = new InjectionToken<IBaseMapping<Flight>>('IBaseRepositoryMapping');
 //export const SEATS_REPOSITORY_MAPPING_TOKEN = new InjectionToken<IBaseMapping<Seat>>('IBaseRepositoryMapping');
 export const USERSAPP_REPOSITORY_MAPPING_TOKEN = new InjectionToken<IBaseMapping<UserApp>>('IBaseRepositoryMapping');
+
+//Auth
 export const AUTH_TOKEN = new InjectionToken<IAuthentication>('IAuthentication');
-export const STRAPI_AUTH_TOKEN = new InjectionToken<IStrapiAuthentication>('IStrapiAuthentication');
 export const AUTH_MAPPING_TOKEN = new InjectionToken<IBaseMapping<UserApp>>('IAuthMapping');
+export const STRAPI_AUTH_TOKEN = new InjectionToken<IStrapiAuthentication>('IStrapiAuthentication');
+
+//Backend
 export const BACKEND_TOKEN = new InjectionToken<string>('Backend'); //TODO For firebase implementation
+
+//Firebase
+export const FIREBASE_CONFIG_TOKEN = new InjectionToken<any>('FIREBASE_CONFIG_TOKEN');
+export const FIREBASE_COLLECTION_TOKEN = new InjectionToken<string>('FIREBASE_COLLECTION_TOKEN');
