@@ -1,25 +1,35 @@
-import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
-import { IonicModule } from "@ionic/angular";
+import { NgModule } from "@angular/core";
 import { ReactiveFormsModule } from "@angular/forms";
+
+import { IonicModule } from "@ionic/angular";
+
 import { TranslateModule } from "@ngx-translate/core";
-import { LanguageSelectorComponent } from "./components/language-selector/language-selector.component";
-import { FlightModalComponent } from "./components/flight-modal/flight-modal.component";
+
+//Components
 import { BookingModalComponent } from "./components/booking-modal/booking-modal.component";
-import { TogglePasswordPipe } from "./pipes/toggle-password.pipe";
-import { LocalizedDatePipe } from "./pipes/localized-date.pipe";
+import { FlightModalComponent } from "./components/flight-modal/flight-modal.component";
+import { FlightSelectableComponent } from "./components/flight-selectable/flight-selectable.component";
+import { LanguageSelectorComponent } from "./components/language-selector/language-selector.component";
+
+//Pipes
 import { LocalizedCurrencyPipe } from "./pipes/localized-currency-pipe";
+import { LocalizedDatePipe } from "./pipes/localized-date.pipe";
+import { TogglePasswordPipe } from "./pipes/toggle-password.pipe";
+
+//Directives
 import { BookingStatusDirective } from "./directives/booking-status.directive";
 
 @NgModule({
     declarations:[
-        LanguageSelectorComponent,
-        FlightModalComponent,
         BookingModalComponent,
-        TogglePasswordPipe,
-        LocalizedDatePipe,
-        LocalizedCurrencyPipe,
         BookingStatusDirective,
+        FlightModalComponent,
+        FlightSelectableComponent,
+        LanguageSelectorComponent,
+        LocalizedCurrencyPipe,
+        LocalizedDatePipe,
+        TogglePasswordPipe,
     ],
     imports:[
         CommonModule,
@@ -28,13 +38,13 @@ import { BookingStatusDirective } from "./directives/booking-status.directive";
         TranslateModule.forChild()
     ],
     exports:[
-        LanguageSelectorComponent,
-        FlightModalComponent,
         BookingModalComponent,
-        TogglePasswordPipe,
-        LocalizedDatePipe,
+        BookingStatusDirective,
+        FlightModalComponent,
+        LanguageSelectorComponent,
         LocalizedCurrencyPipe,
-        BookingStatusDirective
+        LocalizedDatePipe,
+        TogglePasswordPipe,
     ]
 })
 export class SharedModule{}

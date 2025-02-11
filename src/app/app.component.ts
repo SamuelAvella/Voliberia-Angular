@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { PopoverController } from '@ionic/angular';
-import { TranslationService } from './core/services/translation.service';
+
 import { BaseAuthenticationService } from './core/services/impl/base-authentication.service';
+
 import { LanguageSelectorComponent } from './shared/components/language-selector/language-selector.component';
 import { TranslateService } from '@ngx-translate/core';
+import { TranslationService } from './core/services/translation.service';
 
 @Component({
   selector: 'app-root',

@@ -1,7 +1,7 @@
 import { Component, forwardRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { InfiniteScrollCustomEvent, IonInput, IonPopover } from '@ionic/angular';
-import { BehaviorSubject, lastValueFrom } from 'rxjs';
+import { BehaviorSubject, debounceTime, lastValueFrom, Subject } from 'rxjs';
 import { Flight } from 'src/app/core/models/flight.model';
 import { Paginated } from 'src/app/core/models/paginated.model';
 import { FlightsService } from 'src/app/core/services/impl/flights.service';
@@ -23,6 +23,10 @@ export class FlightSelectableComponent implements OnInit, ControlValueAccessor, 
   disabled: boolean = true;
   private _flights: BehaviorSubject<Flight[]> = new BehaviorSubject<Flight[]>([]);
   public flights$ = this._flights.asObservable();
+  public popoverOpen = false;
+  private searchSubject = new Subject<string>();
+
+
 
   propagateChange = (obj: any) => {}
 
@@ -33,9 +37,19 @@ export class FlightSelectableComponent implements OnInit, ControlValueAccessor, 
   pages: number = 0;
 
   constructor(private flightsSvc: FlightsService) { }
+  
+  ngOnInit() {
+    this.popoverOpen = false;
+    this.searchSubject.pipe(
+      debounceTime(100) // Espera 500ms tras el último evento
+    ).subscribe(searchText => {
+      this.filter(searchText);
+    });
+  }
 
   ngOnDestroy(): void {
     this.popover?.dismiss();
+    this.popoverOpen = false;
   }
 
   onLoadFlights() {
@@ -47,10 +61,12 @@ export class FlightSelectableComponent implements OnInit, ControlValueAccessor, 
     
     this.flightsSvc.getAll(this.page, this.pageSize, {"origin" : filter} ).subscribe({
       next: response => {
-        this._flights.next([...response.data]);
+        const sortedFlights = response.data.sort((a, b) => a.origin.localeCompare(b.origin)); // Ordena alfabéticamente
+
+        this._flights.next([...sortedFlights]);
         this.page++;
         this.pages = response.pages;
-        console.log("Vuelo",...response.data)
+        console.log("Vuelo",...sortedFlights)
       },
       error: err => {}
     });
@@ -99,14 +115,12 @@ export class FlightSelectableComponent implements OnInit, ControlValueAccessor, 
     this.disabled = isDisabled;
   }
 
-  ngOnInit() {}
-
   private async filter(filtering: string) {
     this.loadFlights(filtering);
   }
 
   onFilter(evt: any) {
-    this.filter(evt.detail.value);
+    this.searchSubject.next(evt.detail.value);
   }
 
   onFlightClicked(popover: IonPopover, flight: Flight) {

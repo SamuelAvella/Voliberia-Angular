@@ -1,25 +1,35 @@
 import { FactoryProvider, InjectionToken, model } from "@angular/core";
-import { Model } from "../models/base.model";
-import { IBaseRepository } from "./interfaces/base-repository.interface";
 import { HttpClient } from "@angular/common/http";
-import { IBaseMapping } from "./interfaces/base-mapping.interface";
+
+//Models
+import { Model } from "../models/base.model";
+import { Booking } from "../models/booking.model";
+import { Flight } from "../models/flight.model";
+import { UserApp } from "../models/userApp.model";
+import { User } from "../models/auth.model";
+
+//Repositories
+import { IBaseRepository } from "./interfaces/base-repository.interface";
+
+//Services
 import { BaseRepositoryHttpService } from "./impl/base-repository-http.service";
+import { BaseAuthenticationService } from "../services/impl/base-authentication.service";
+import { BaseMediaService } from "../services/impl/base-media.service";
 import { StrapiRepositoryService } from "./impl/strapi-repository.service";
+import { StrapiMediaService } from "../services/impl/strapi-media.service";
+import { StrapiAuthenticationService } from "../services/impl/strapi-authentication.service";
 import { IStrapiAuthentication } from "../services/interfaces/strapi-authentication.interface";
+
+//Mapping
+import { IAuthMapping } from "../services/interfaces/auth-mapping.interface";
+import { IBaseMapping } from "./interfaces/base-mapping.interface";
 import { UserAppMappingStrapi } from "./impl/usersApp-mapping-strapi.service";
 import { BookingMappingStrapi } from "./impl/bookings-mapping-strapi.service";
 import { FlightsMappingStrapi } from "./impl/flights-mapping-strapi.service";
 import { StrapiAuthMappingService } from "../services/impl/strapi-auth-mapping.service";
-import { UserApp } from "../models/userApp.model";
+
+//Tokens
 import { AUTH_MAPPING_TOKEN, AUTH_ME_API_URL_TOKEN, AUTH_SIGN_IN_API_URL_TOKEN, AUTH_SIGN_UP_API_URL_TOKEN, BACKEND_TOKEN, BOOKINGS_API_URL_TOKEN, BOOKINGS_REPOSITORY_MAPPING_TOKEN, BOOKINGS_REPOSITORY_TOKEN, BOOKINGS_RESOURCE_NAME_TOKEN, FLIGHTS_API_URL_TOKEN, FLIGHTS_REPOSITORY_MAPPING_TOKEN, FLIGHTS_REPOSITORY_TOKEN, FLIGHTS_RESOURCE_NAME_TOKEN, UPLOAD_API_URL_TOKEN, USERSAPP_API_URL_TOKEN, USERSAPP_REPOSITORY_MAPPING_TOKEN, USERSAPP_REPOSITORY_TOKEN, USERSAPP_RESOURCE_NAME_TOKEN } from "./repository.token";
-import { Booking } from "../models/booking.model";
-import { Flight } from "../models/flight.model";
-import { BaseAuthenticationService } from "../services/impl/base-authentication.service";
-import { IAuthMapping } from "../services/interfaces/auth-mapping.interface";
-import { StrapiAuthenticationService } from "../services/impl/strapi-authentication.service";
-import { BaseMediaService } from "../services/impl/base-media.service";
-import { StrapiMediaService } from "../services/impl/strapi-media.service";
-import { User } from "../models/auth.model";
 
 export function createBaseRepositoryFactory<T extends Model>(
     token: InjectionToken<IBaseRepository<T>>,

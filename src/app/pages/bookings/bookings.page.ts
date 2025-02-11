@@ -53,9 +53,17 @@ export class BookingsPage implements OnInit {
       .subscribe({
         next: (response: Paginated<Booking>) => {
           const currentBookings = this._bookings.value;
-          this._bookings.next([...currentBookings, ...response.data]);
+          const allBookings = [...currentBookings, ...response.data];
+
+          this.loadFlightsForBookings(response.data).then( () => {
+            const sortedBookings = allBookings.sort((a, b) => {
+              const flightA = this.flightsMap[a.flightId]?.origin || '';
+              const flightB = this.flightsMap[b.flightId]?.origin || '';
+              return flightA.localeCompare(flightB);
+            });
+            this._bookings.next(sortedBookings);
+          });
           this.page++;
-          this.loadFlightsForBookings(response.data);
           notify?.complete();
         },
         error: (err) => {
@@ -65,7 +73,7 @@ export class BookingsPage implements OnInit {
       });
   }
 
-  private loadFlightsForBookings(bookings: Booking[]): void {
+  private async loadFlightsForBookings(bookings: Booking[]): Promise<void> {
     const missingFlightIds = bookings
       .map((b) => b.flightId)
       .filter((fId) => fId && !this.flightsMap[fId]);
@@ -79,15 +87,16 @@ export class BookingsPage implements OnInit {
       ).toPromise()
     );
   
-    Promise.all(flightRequests)
-      .then((flights) => {
-        // Filtrar valores null o undefined
-        const validFlights = flights.filter((flight): flight is Flight => flight !== null && flight !== undefined);
-        validFlights.forEach((flight) => {
+    try {
+      const flights = await Promise.all(flightRequests);
+      flights.forEach((flight) => {
+        if (flight) {
           this.flightsMap[flight.id] = flight;
-        });
-      })
-      .catch((err) => console.error('Error loading flights:', err));
+        }
+      });
+    } catch (err) {
+      console.error('Error loading flights:', err);
+    }
   }
   
   private loadAllFlights(): void {

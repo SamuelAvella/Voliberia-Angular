@@ -1,25 +1,31 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
+
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient, HttpClientModule, provideHttpClient } from '@angular/common/http';
 import { TranslateModule,TranslateLoader } from '@ngx-translate/core';
-import { SharedModule } from './shared/shared.module';
 import { provideLottieOptions } from 'ngx-lottie';
 import player from 'lottie-web';
+
+import { SharedModule } from './shared/shared.module';
 import { AUTH_ME_API_URL_TOKEN, AUTH_SIGN_IN_API_URL_TOKEN, AUTH_SIGN_UP_API_URL_TOKEN, BACKEND_TOKEN, BOOKINGS_API_URL_TOKEN, BOOKINGS_RESOURCE_NAME_TOKEN, FLIGHTS_API_URL_TOKEN, FLIGHTS_RESOURCE_NAME_TOKEN, STRAPI_AUTH_TOKEN, UPLOAD_API_URL_TOKEN, USERSAPP_API_URL_TOKEN, USERSAPP_RESOURCE_NAME_TOKEN } from './core/repositories/repository.token';
 import { environment } from 'src/environments/environment';
+
+//Services
 import { UsersAppService } from './core/services/impl/usersApp.service';
 import { FlightsService } from './core/services/impl/flights.service';
-import { AuthenticationServiceFactory, AuthMappingFactory, BookingsMappingFactory, BookingsRepositoryFactory, FlightsRepositoryFactory, FlightsMappingFactory, MediaServiceFactory, UsersAppMappingFactory, UsersAppRepositoryFactory } from './core/repositories/repository.factory';
-import { FormsModule } from '@angular/forms';
 import { BookingsService } from './core/services/impl/bookings.service';
 import { StrapiAuthenticationService } from './core/services/impl/strapi-authentication.service';
+
+//Factory
+import { AuthenticationServiceFactory, AuthMappingFactory, BookingsMappingFactory, BookingsRepositoryFactory, FlightsRepositoryFactory, FlightsMappingFactory, MediaServiceFactory, UsersAppMappingFactory, UsersAppRepositoryFactory } from './core/repositories/repository.factory';
 
 // Factory function para el loader de traducción
 export function createTranslateLoader(http: HttpClient){

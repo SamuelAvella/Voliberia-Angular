@@ -47,7 +47,10 @@ export class FlightsPage implements OnInit {
         const existingIds = this._flights.value.map((flight) => flight.id);
         const newFlights = response.data.filter((flight) => !existingIds.includes(flight.id));
         
-        this._flights.next([...this._flights.value, ...newFlights]);
+        const sortedFlights = [...this._flights.value, ...newFlights]
+          .sort((a, b) => a.origin.localeCompare(b.origin)); 
+
+        this._flights.next(sortedFlights);
         this.page++;
         notify?.complete();
       },
