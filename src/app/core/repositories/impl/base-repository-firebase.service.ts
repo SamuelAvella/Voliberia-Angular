@@ -60,17 +60,22 @@ export class BaseRepositoryFirebaseService<T extends Model> implements IBaseRepo
   getAll(page: number, pageSize: number, filters: SearchParams): Observable<T[] | Paginated<T>> {
     return from(this.getLastDocumentOfPreviousPage(page, pageSize)).pipe(
       map(lastDoc => {
-        let constraints: QueryConstraint[] = [
-          limit(pageSize)
-        ];
+        let constraints: QueryConstraint[] = [];
+        Object.entries(filters).forEach(([key, value]) => {
+          
+            const start = value;
+            const end = start + "\uf8ff";
+            constraints.push(where(key, ">=", start));
+            constraints.push(where(key, "<", end));
+          
+        });
 
         if (lastDoc) {
           constraints.push(startAfter(lastDoc));
         }
+        constraints.push(limit(pageSize));
+
         let q = query(this.collectionRef, ...constraints);
-        Object.entries(filters).forEach(([key, value]) => {
-            q = query(q, where(key, "==", value));
-        });
         return q;
       }),
       mergeMap(q => getDocs(q)),
@@ -83,6 +88,7 @@ export class BaseRepositoryFirebaseService<T extends Model> implements IBaseRepo
       })
     );
   }
+
 
   getById(id: string): Observable<T | null> {
     const docRef = doc(this.db, this.collectionName, id);

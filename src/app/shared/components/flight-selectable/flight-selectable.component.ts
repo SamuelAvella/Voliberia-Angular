@@ -1,3 +1,4 @@
+import { TitleCasePipe } from '@angular/common';
 import { Component, forwardRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { InfiniteScrollCustomEvent, IonInput, IonPopover } from '@ionic/angular';
@@ -26,6 +27,7 @@ export class FlightSelectableComponent implements OnInit, ControlValueAccessor, 
   public popoverOpen = false;
   private searchSubject = new Subject<string>();
 
+  private titleCasePipe = new TitleCasePipe();
 
 
   propagateChange = (obj: any) => {}
@@ -57,9 +59,10 @@ export class FlightSelectableComponent implements OnInit, ControlValueAccessor, 
   }
 
   private async loadFlights(filter: string) {
+
     this.page = 1;
     
-    this.flightsSvc.getAll(this.page, this.pageSize, {"origin" : filter} ).subscribe({
+    this.flightsSvc.getAll(this.page, this.pageSize, {"origin" : this.titleCasePipe.transform(filter)} ).subscribe({
       next: response => {
         const sortedFlights = response.data.sort((a, b) => a.origin.localeCompare(b.origin)); // Ordena alfabéticamente
 
