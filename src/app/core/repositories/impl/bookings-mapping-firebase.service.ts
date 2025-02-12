@@ -49,14 +49,26 @@ export class BookingsMappingFirebaseService implements IBaseMapping<Booking>{
     }
 
     setAdd(data: Booking): FirebaseBooking {
-        return {
+
+        let dataMapping:FirebaseBooking = {
             bookingState: data.bookingState,
             flight: doc(this.db, 'flights', data.flightId), // Debe existir siempre
-            user_app: data.userAppId ? doc(this.db, 'user-apps', data.userAppId) : undefined // Opcional
         };
+        if(dataMapping.user_app){
+            dataMapping.user_app = doc(this.db, 'group', data.userAppId|| '')
+        }
+
+        return dataMapping;
     }
-    setUpdate(data: any) {
-        throw new Error("Method not implemented.");
+    
+    setUpdate(data: Partial<Booking>): FirebaseBooking {
+        const result: any = {};
+
+        if (data.bookingState) result.bookingState = data.bookingState;
+        if (data.flightId) result.flight = data.flightId;
+        if (data.userAppId) result.user_app = data.userAppId;
+
+        return result;
     }
     
 }
