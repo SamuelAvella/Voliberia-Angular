@@ -48,7 +48,7 @@
     "DEPARTURE_ERROR": "The departure date must be later than today",
     "ARRIVAL_TITLE": "Arrival",
     "ARRIVAL": "Select arrival date", 
-    "ARRIVAL_ERROR_DATE": "La fecha de llegada debe ser posterior a la de salida",
+    "ARRIVAL_ERROR_DATE": "Arrival date must be later thand the departure one",
     "ARRIVAL_ERROR_MINUTES": "Must arrive at least 40 minutes later",
     "PRICE": "Price",
     "EDIT_TITLE": "Edit",
