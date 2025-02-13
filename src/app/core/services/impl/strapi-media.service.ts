@@ -1,9 +1,9 @@
 import { HttpClient } from "@angular/common/http";
 import { BaseMediaService } from "./base-media.service";
+import { STRAPI_AUTH_TOKEN, UPLOAD_API_URL_TOKEN } from "../../repositories/repository.token";
 import { Inject } from "@angular/core";
 import { map, Observable } from "rxjs";
 import { IStrapiAuthentication } from "../interfaces/strapi-authentication.interface";
-import { STRAPI_AUTH_TOKEN, UPLOAD_API_URL_TOKEN } from "../../repositories/repository.token";
 
 export type StrapiUploadResponse = StrapiMediaData[]
 
@@ -96,7 +96,7 @@ export interface ProviderMetadata {
   resource_type: string
 }
 
-export class StrapiMediaService extends BaseMediaService{
+export class StrapiMediaService extends BaseMediaService<number> {
 
     constructor(
         @Inject(UPLOAD_API_URL_TOKEN) private uploadUrl: string,

@@ -1,14 +1,14 @@
 {
   "COMMON": {
-    "LANGUAGE": "Language",
-    "SPANISH": "Spanish",
-    "ENGLISH": "English",
+    "LANGUAGE": "Idioma",
+    "SPANISH": "Español",
+    "ENGLISH": "Inglés",
     "ERROR": {
-      "LOAD": "Error loading data",
-      "SAVE": "Error saving changes"
+      "LOAD": "Error cargando datos",
+      "SAVE": "Error guardando datos"
     },
     "SUCCESS": {
-      "SAVE": "Changes saved successfully"
+      "SAVE": "Cambios guardados correctamente"
     }
   },
 

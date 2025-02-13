@@ -59,6 +59,9 @@ export class FlightSelectableComponent implements OnInit, ControlValueAccessor, 
   private async loadFlights(filter: string) {
     this.page = 1;
     
+    const exactMatch = true
+
+
     this.flightsSvc.getAll(this.page, this.pageSize, {"origin" : filter} ).subscribe({
       next: response => {
         const sortedFlights = response.data.sort((a, b) => a.origin.localeCompare(b.origin)); // Ordena alfabéticamente

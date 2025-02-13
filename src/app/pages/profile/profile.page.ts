@@ -5,6 +5,7 @@ import { TranslateService } from "@ngx-translate/core";
 import { lastValueFrom } from "rxjs";
 import { UserApp } from "src/app/core/models/userApp.model";
 import { BaseAuthenticationService } from "src/app/core/services/impl/base-authentication.service";
+import { BaseMediaService } from "src/app/core/services/impl/base-media.service";
 import { UsersAppService } from "src/app/core/services/impl/usersApp.service";
 
 @Component({
@@ -18,16 +19,18 @@ export class ProfilePage implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private usersAppService: UsersAppService,
-    private authService: BaseAuthenticationService,
+    private usersAppSvc: UsersAppService,
+    private authSvc: BaseAuthenticationService,
+    private mediaSvc: BaseMediaService,
     private loadingController: LoadingController,
     private toastController: ToastController,
-    private translateService: TranslateService
+    private translateSvc: TranslateService
   ) {
     this.formGroup = this.formBuilder.group({
       name: ['', [Validators.required]],
       surname: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
+      picture: ['']
     });
   }
 
@@ -36,11 +39,11 @@ export class ProfilePage implements OnInit {
     await loading.present();
 
     try {
-      const user = await this.authService.getCurrentUser();
+      const user = await this.authSvc.getCurrentUser();
       if (user) {
         // Obtener información de UserApp relacionada
-        this.userApp = await lastValueFrom(this.usersAppService.getByUserId(user.id));
-        console.log(this.userApp);
+        this.userApp = await lastValueFrom(this.usersAppSvc.getByUserId(user.id));
+        console.log("El userApp",this.userApp);
 
         if (this.userApp) {
           // Solo cargar información de UserApp, no afectar username
@@ -48,6 +51,9 @@ export class ProfilePage implements OnInit {
             ...this.userApp,
             email: user.email,
             userId: user.id,
+            picture: typeof this.userApp.picture === 'object' ?
+                            this.userApp.picture.url : 
+                            undefined
           };
           this.formGroup.patchValue(updatedUserApp);
         }
@@ -55,7 +61,7 @@ export class ProfilePage implements OnInit {
     } catch (error) {
       console.error(error);
       const toast = await this.toastController.create({
-        message: await lastValueFrom(this.translateService.get('COMMON.ERROR.LOAD')),
+        message: await lastValueFrom(this.translateSvc.get('COMMON.ERROR.LOAD')),
         duration: 3000,
         position: 'bottom',
       });
@@ -78,11 +84,18 @@ export class ProfilePage implements OnInit {
           }
         });
 
+        if(changedValues.picture){
+          const base64Response = await fetch(changedValues.picture);
+          const blob = await base64Response.blob();
+          const uploadedBlob = await lastValueFrom(this.mediaSvc.upload(blob));
+          changedValues.picture = uploadedBlob[0];
+        }
+
         // Actualizar solo los campos de UserApp, sin tocar el username
-        await lastValueFrom(this.usersAppService.update(this.userApp.id, changedValues));
+        await lastValueFrom(this.usersAppSvc.update(this.userApp.id, changedValues));
 
         const toast = await this.toastController.create({
-          message: await this.translateService.get('COMMON.SUCCESS.SAVE').toPromise(),
+          message: await this.translateSvc.get('COMMON.SUCCESS.SAVE').toPromise(),
           duration: 3000,
           position: 'bottom',
         });
@@ -90,7 +103,7 @@ export class ProfilePage implements OnInit {
       } catch (error) {
         console.error(error);
         const toast = await this.toastController.create({
-          message: await this.translateService.get('COMMON.ERROR.SAVE').toPromise(),
+          message: await this.translateSvc.get('COMMON.ERROR.SAVE').toPromise(),
           duration: 3000,
           position: 'bottom',
         });

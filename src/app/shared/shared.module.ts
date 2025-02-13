@@ -11,6 +11,8 @@ import { BookingModalComponent } from "./components/booking-modal/booking-modal.
 import { FlightModalComponent } from "./components/flight-modal/flight-modal.component";
 import { FlightSelectableComponent } from "./components/flight-selectable/flight-selectable.component";
 import { LanguageSelectorComponent } from "./components/language-selector/language-selector.component";
+import { PictureOptionsComponent } from "./components/picture-options/picture-options.component";
+import { PictureSelectableComponent } from "./components/picture-selectable/picture-selectable.component";
 
 //Pipes
 import { LocalizedCurrencyPipe } from "./pipes/localized-currency-pipe";
@@ -29,6 +31,8 @@ import { BookingStatusDirective } from "./directives/booking-status.directive";
         LanguageSelectorComponent,
         LocalizedCurrencyPipe,
         LocalizedDatePipe,
+        PictureOptionsComponent,
+        PictureSelectableComponent,
         TogglePasswordPipe,
     ],
     imports:[
@@ -44,6 +48,7 @@ import { BookingStatusDirective } from "./directives/booking-status.directive";
         LanguageSelectorComponent,
         LocalizedCurrencyPipe,
         LocalizedDatePipe,
+        PictureSelectableComponent,
         TogglePasswordPipe,
     ]
 })

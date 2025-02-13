@@ -39,6 +39,8 @@ import { StrapiAuthMappingService } from "../services/impl/strapi-auth-mapping.s
 
 //Tokens
 import { AUTH_MAPPING_TOKEN, AUTH_ME_API_URL_TOKEN, AUTH_SIGN_IN_API_URL_TOKEN, AUTH_SIGN_UP_API_URL_TOKEN, BACKEND_TOKEN, BOOKINGS_API_URL_TOKEN, BOOKINGS_REPOSITORY_MAPPING_TOKEN, BOOKINGS_REPOSITORY_TOKEN, BOOKINGS_RESOURCE_NAME_TOKEN, FLIGHTS_API_URL_TOKEN, FLIGHTS_REPOSITORY_MAPPING_TOKEN, FLIGHTS_REPOSITORY_TOKEN, FLIGHTS_RESOURCE_NAME_TOKEN, UPLOAD_API_URL_TOKEN, USERSAPP_API_URL_TOKEN, USERSAPP_REPOSITORY_MAPPING_TOKEN, USERSAPP_REPOSITORY_TOKEN, USERSAPP_RESOURCE_NAME_TOKEN, FIREBASE_CONFIG_TOKEN } from "./repository.token";
+import { IAuthentication } from "../services/interfaces/authentication.interface";
+import { FirebaseMediaService } from "../services/impl/firebase-media.service";
 
 export function createBaseRepositoryFactory<T extends Model>(
     token: InjectionToken<IBaseRepository<T>>,
@@ -159,7 +161,7 @@ export const AuthenticationServiceFactory:FactoryProvider = {
 
 export const MediaServiceFactory:FactoryProvider = {
     provide: BaseMediaService,
-    useFactory: (backend:string, firebaseConfig: any, upload:string, auth:IStrapiAuthentication, http:HttpClient) => {
+    useFactory: (backend:string, firebaseConfig: any, upload:string, auth:IAuthentication, http:HttpClient) => {
       switch(backend){
         case 'http':
           throw new Error("BACKEND NOT IMPLEMENTED");
@@ -168,8 +170,9 @@ export const MediaServiceFactory:FactoryProvider = {
         case 'json-server':
           throw new Error("BACKEND NOT IMPLEMENTED");
         case 'firebase':
+          return new FirebaseMediaService(firebaseConfig, auth)
         case 'strapi':
-          return new StrapiMediaService(upload, auth, http);
+          return new StrapiMediaService(upload, auth as IStrapiAuthentication, http);
         default:
           throw new Error("BACKEND NOT IMPLEMENTED");
       }

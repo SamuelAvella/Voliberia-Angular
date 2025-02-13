@@ -12,37 +12,41 @@
     <h2 class="profile-title">{{'PROFILE.PERSONAL_INFO' | translate}}</h2>
     <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
       <ion-grid>
-        <ion-row>
-          <ion-col size="12" size-md="12">
+        <ion-row class="profile-row">
+          <!-- Imagen a la izquierda -->
+          <ion-col size="12" size-md="6" class="profile-image">
+            <ion-card class="ion-no-margin full-height">
+              <ion-card-content>
+                <app-picture-selectable formControlName="picture"></app-picture-selectable>
+              </ion-card-content>
+            </ion-card>
+          </ion-col>
+
+          <!-- Campos de texto a la derecha -->
+          <ion-col size="12" size-md="6">
             <ion-list>
-              <!-- Nombre -->
               <ion-item class="input-item">
                 <ion-label position="stacked">{{'PROFILE.FIELDS.NAME' | translate}}</ion-label>
                 <ion-input type="text" formControlName="name"></ion-input>
               </ion-item>
               <ion-text color="danger" *ngIf="name.invalid && (name.dirty || name.touched)">
                 <p *ngIf="name.errors?.['required']">{{'PROFILE.ERRORS.NAME_REQUIRED' | translate}}</p>
-                <p *ngIf="name.errors?.['minlength']">{{'PROFILE.ERRORS.NAME_MINLEGTH' | translate}}</p>
               </ion-text>
 
-              <!-- Apellido -->
               <ion-item class="input-item">
                 <ion-label position="stacked">{{'PROFILE.FIELDS.SURNAME' | translate}}</ion-label>
                 <ion-input type="text" formControlName="surname"></ion-input>
               </ion-item>
               <ion-text color="danger" *ngIf="surname.invalid && (surname.dirty || surname.touched)">
                 <p *ngIf="surname.errors?.['required']">{{'PROFILE.ERRORS.SURNAME_REQUIRED' | translate}}</p>
-                <p *ngIf="surname.errors?.['minlength']">{{'PROFILE.ERRORS.SURNAME_MINLENGTH' | translate}}</p>
               </ion-text>
 
-              <!-- Email -->
               <ion-item class="input-item">
                 <ion-label position="stacked">{{'PROFILE.FIELDS.EMAIL' | translate}}</ion-label>
                 <ion-input type="email" formControlName="email"></ion-input>
               </ion-item>
               <ion-text color="danger" *ngIf="email.invalid && (email.dirty || email.touched)">
                 <p *ngIf="email.errors?.['required']">{{'PROFILE.ERRORS.EMAIL_REQUIRED' | translate}}</p>
-                <p *ngIf="email.errors?.['email']">{{'PROFILE.ERRORS.EMAIL_INVALID'}}</p>
               </ion-text>
             </ion-list>
           </ion-col>

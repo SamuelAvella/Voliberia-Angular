@@ -1,116 +1,97 @@
 /* Contenedor principal */
 .profile-container {
-    margin: 2rem auto;
-    padding: 2rem;
-    max-width: 600px;
-    background-color: rgba(255, 255, 255, 0.9); /* Fondo semitransparente */
-    border-radius: 12px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra */
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* Centra horizontalmente */
-    justify-content: center; /* Centra verticalmente */
-  }
-  
-  /* Título del formulario */
-  .profile-title {
-    font-size: 1.8rem;
-    font-weight: bold;
-    color: #007bff; /* Azul corporativo */
-    margin-bottom: 1.5rem;
-  }
-  
-  /* Contenedor de la lista */
-  ion-list {
-    --background: transparent; /* Fondo transparente para evitar el negro */
-    background: transparent !important; /* Asegura que no haya fondo negro */
-    width: 100%; /* Asegura que ocupa el ancho del contenedor */
-    max-width: 500px; /* Ajusta el ancho máximo */
-  }
-  
-  /* Elementos individuales */
-  .input-item {
-    margin-bottom: 1.2rem;
-    --highlight-color-focused: #007bff; /* Azul corporativo */
+  margin: 2rem auto;
+  padding: 2rem;
+  max-width: 900px; /* Ahora permite más espacio en pantallas grandes */
+  background-color: rgba(255, 255, 255, 0.712);
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+/* Título */
+.profile-title {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #007bff;
+  margin-bottom: 1.5rem;
+}
+
+/* Filas del formulario */
+.profile-row {
+  align-items: center; /* Asegura alineación vertical */
+  display: flex;
+  flex-wrap: wrap;
+}
+
+/* Imagen ocupa la misma altura que los campos */
+.profile-image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+ion-list {
+  --background: transparent; /* Fondo transparente para evitar el negro */
+  background: transparent !important; /* Asegura que no haya fondo negro */
+  width: 100%; /* Asegura que ocupa el ancho del contenedor */
+  max-width: 500px; /* Ajusta el ancho máximo */
+}
+
+
+/* Inputs */
+.input-item {
+  margin-bottom: 1.2rem;
+  --highlight-color-focused: #007bff; /* Azul corporativo */
     --background: white; /* Fondo blanco para los inputs */
     --placeholder-color: #aaa; /* Color del marcador de posición */
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra ligera */
-    width: 100%; /* Extiende los campos al ancho del contenedor */
-  }
-  
-  /* Ajustar el ion-input */
-  ion-input {
-    font-size: 1.1rem;
-    padding: 0.5rem;
-    border: none; /* Sin bordes */
-    background: transparent; /* Fondo transparente dentro del input */
-    color: #000; /* Texto negro */
-    width: 100%; /* Asegura que los inputs ocupen todo el ancho */
-  }
-  
-  /* Ajuste de errores */
-  ion-text {
-    font-size: 0.85rem;
-    margin-top: -0.5rem;
-    text-align: left; /* Alinea los mensajes de error a la izquierda */
-  }
-  
-  /* Contenedor del botón */
-  .button-container {
-    margin-top: 1.5rem;
-    width: 100%;
-    display: flex;
-    justify-content: center; /* Centra el botón */
-  }
-  
-  /* Estilo del botón */
-  .update-button {
-    --background: #007bff; /* Azul corporativo */
-    --color: white; /* Texto blanco */
-    --border-radius: 12px;
-    --padding-start: 1.5rem;
-    --padding-end: 1.5rem;
-    font-weight: bold;
-    font-size: 1.1rem;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra para el botón */
-    width: 100%; /* Botón ocupa el ancho completo */
-    max-width: 300px; /* Ancho máximo del botón */
-  }
-  
-  .update-button:hover {
-    --background: #0056b3; /* Azul más oscuro al pasar el mouse */
-    transform: scale(1.02); /* Ligeramente más grande */
-  }
-  
-  .update-button:disabled {
-    --background: #e0e0e0; /* Botón deshabilitado */
-    --color: #aaa;
-    cursor: not-allowed;
-  }
-  
-  
-  .header-title {
-    color: white; /* Cambia el color del título a blanco */
-    font-weight: bold;
-    text-transform: uppercase; /* Opcional: convierte el texto a mayúsculas */
-    font-size: 1.5rem; /* Tamaño de fuente */
+      border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 100%;
+}
+
+ion-input {
+  font-size: 1.1rem;
+  padding: 0.5rem;
+  background: transparent;
+  color: #000;
+  width: 100%;
+}
+
+/* Botón */
+.button-container {
+  margin-top: 1.5rem;
+  display: flex;
+  justify-content: center;
+}
+
+.update-button {
+  --background: #007bff;
+  --color: white;
+  font-weight: bold;
+  font-size: 1.1rem;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  width: 100%;
+  max-width: 300px;
+}
+
+.update-button:hover {
+  --background: #0056b3;
+  transform: scale(1.02);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .profile-container {
+    padding: 1.5rem;
   }
 
-  /* Ajuste para pantallas pequeñas */
-  @media (max-width: 768px) {
-    .profile-container {
-      padding: 1.5rem;
-    }
-  
-    .profile-title {
-      font-size: 1.5rem;
-    }
-  
-    ion-input {
-      font-size: 1rem;
-    }
+  .profile-title {
+    font-size: 1.5rem;
   }
-  
+
+  ion-input {
+    font-size: 1rem;
+  }
+}
+

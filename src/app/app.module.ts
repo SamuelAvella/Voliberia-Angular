@@ -59,7 +59,7 @@ export function createTranslateLoader(http: HttpClient){
       player:() => player,
     }),
     provideHttpClient(),
-    { provide: BACKEND_TOKEN, useValue: 'firebase' },
+    { provide: BACKEND_TOKEN, useValue: 'strapi' },
     { provide: USERSAPP_RESOURCE_NAME_TOKEN, useValue: 'user-apps' },
     { provide: BOOKINGS_RESOURCE_NAME_TOKEN, useValue: 'bookings' },
     { provide: FLIGHTS_RESOURCE_NAME_TOKEN, useValue: 'fligths' },

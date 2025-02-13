@@ -15,4 +15,5 @@ export class FlightsService extends BaseService<Flight> implements IFlightsServi
     ) {
         super(repository);
     }
+    
 }
