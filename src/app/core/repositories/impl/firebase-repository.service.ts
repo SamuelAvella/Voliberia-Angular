@@ -30,7 +30,7 @@ import { Paginated } from '../../models/paginated.model';
 @Injectable({
   providedIn: 'root'
 })
-export class BaseRepositoryFirebaseService<T extends Model> implements IBaseRepository<T> {
+export class FirebaseRepositoryService<T extends Model> implements IBaseRepository<T> {
   private db;
   private collectionRef;
 

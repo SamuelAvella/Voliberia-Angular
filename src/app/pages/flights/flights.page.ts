@@ -5,6 +5,7 @@ import { BehaviorSubject, Observable } from "rxjs";
 import { Flight } from "src/app/core/models/flight.model";
 import { Paginated } from "src/app/core/models/paginated.model";
 import { BookingsStrapiRepositoryService } from "src/app/core/repositories/impl/bookings-strapi-repository.service";
+import { BookingsService } from "src/app/core/services/impl/bookings.service";
 import { FlightsService } from "src/app/core/services/impl/flights.service";
 import { FlightModalComponent } from "src/app/shared/components/flight-modal/flight-modal.component";
 
@@ -26,7 +27,7 @@ export class FlightsPage implements OnInit {
     private flightsSvc: FlightsService,
     private modalCtrl: ModalController,
     private alertCtrl: AlertController,
-    private bookingsSvc: BookingsStrapiRepositoryService,
+    private bookingsSvc: BookingsService,
     private translateService: TranslateService
 
   ) {
@@ -100,7 +101,7 @@ export class FlightsPage implements OnInit {
   async onDeleteFlight(flight: Flight) {
     const alert = await this.alertCtrl.create({
       header: 'Confirm Deletion',
-      message: 'Are you sure you want to delete this flight and all its bookings?',
+      message: 'Are you sure you want to delete this booking?',
       buttons: [
         {
           text: 'Cancel',
@@ -110,20 +111,20 @@ export class FlightsPage implements OnInit {
           text: 'Delete',
           role: 'destructive',
           handler: () => {
-            this.bookingsSvc.deleteBookingsByFlightId(flight.id).subscribe({
+            this.flightsSvc.delete(flight.id).subscribe({
               next: () => {
-                this.flightsSvc.delete(flight.id).subscribe(() => {
-                  console.log('Vuelo eliminado, refrescando lista');
-                  this.refreshFlights();
-                });
+                this._flights.next(
+                  this._flights.value.filter((b) => b.id !== flight.id)
+                );
+                this.refreshFlights();//TODO : probar llamado a refresh para que carguen bien las reservas
               },
-              error: (err) => console.error('Error eliminando bookings:', err),
+              error: (err) => console.error('Error deleting booking:', err),
             });
           },
         },
       ],
     });
-  
+
     await alert.present();
   }
   

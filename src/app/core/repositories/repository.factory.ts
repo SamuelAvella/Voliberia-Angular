@@ -22,7 +22,7 @@ import { BaseMediaService } from "../services/impl/base-media.service";
   import { IStrapiAuthentication } from "../services/interfaces/strapi-authentication.interface";
 
   //Firebase
-  import { BaseRepositoryFirebaseService } from './impl/base-repository-firebase.service';
+  import { FirebaseRepositoryService } from './impl/firebase-repository.service';
   import { FlightsMappingFirebaseService } from './impl/flights-mapping-firebase.service';
   import { BookingsMappingFirebaseService } from './impl/bookings-mapping-firebase.service';
   import { UsersAppMappingFirebaseService } from './impl/usersApp-mapping-firebase.service';
@@ -55,7 +55,7 @@ export function createBaseRepositoryFactory<T extends Model>(
                 case 'strapi':
                     return new StrapiRepositoryService<T>(http, auth, apiURL, resource, mapping);
                 case 'firebase':
-                    return new BaseRepositoryFirebaseService<T>(firebaseConfig, resource, mapping);
+                    return new FirebaseRepositoryService<T>(firebaseConfig, resource, mapping);
                 default:
                     throw new Error("BACKEND NOT IMPLEMENTED");
             }
