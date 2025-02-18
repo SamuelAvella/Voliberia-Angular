@@ -13,7 +13,7 @@
     <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
       <ion-grid>
         <ion-row class="profile-row">
-          <!-- Imagen a la izquierda -->
+          <!-- Image at the left side -->
           <ion-col size="12" size-md="6" class="profile-image">
             <ion-card class="ion-no-margin full-height">
               <ion-card-content>
@@ -22,7 +22,7 @@
             </ion-card>
           </ion-col>
 
-          <!-- Campos de texto a la derecha -->
+          <!-- Text inputs at the rights side -->
           <ion-col size="12" size-md="6">
             <ion-list>
               <ion-item class="input-item">
@@ -41,7 +41,7 @@
                 <p *ngIf="surname.errors?.['required']">{{'PROFILE.ERRORS.SURNAME_REQUIRED' | translate}}</p>
               </ion-text>
 
-              <ion-item class="input-item">
+              <ion-item class="input-item" (click)="showEmailWarning()">
                 <ion-label position="stacked">{{'PROFILE.FIELDS.EMAIL' | translate}}</ion-label>
                 <ion-input type="email" formControlName="email"></ion-input>
               </ion-item>

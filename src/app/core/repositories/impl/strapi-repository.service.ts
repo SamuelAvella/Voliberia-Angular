@@ -41,8 +41,8 @@ export class StrapiRepositoryService<T extends Model> extends BaseRepositoryHttp
   constructor(
     http: HttpClient,
     @Inject(STRAPI_AUTH_TOKEN) override auth: IStrapiAuthentication,
-    @Inject(API_URL_TOKEN) apiUrl: string, // URL base de la API para el modelo
-    @Inject(RESOURCE_NAME_TOKEN) resource:string, //nombre del recurso del repositorio
+    @Inject(API_URL_TOKEN) apiUrl: string, // Base URL of the API for the model
+    @Inject(RESOURCE_NAME_TOKEN) resource:string, // Name of the repository resource
     @Inject(REPOSITORY_MAPPING_TOKEN) mapping:IBaseMapping<T>
   ) {
     super(http, auth, apiUrl, resource, mapping);

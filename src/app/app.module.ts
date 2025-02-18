@@ -89,8 +89,9 @@ export function createTranslateLoader(http: HttpClient){
     UsersAppRepositoryFactory,
     BookingsRepositoryFactory,
     FlightsRepositoryFactory,
-    // Registrar otros repositorios según sea necesario
-    // Servicios de aplicación
+    // Register other repositories as it is necesary
+    
+    // App services
     {
       provide: 'UsersAppService',
       useClass: UsersAppService
@@ -105,13 +106,13 @@ export function createTranslateLoader(http: HttpClient){
     },
     {
       provide: STRAPI_AUTH_TOKEN,
-      useClass: StrapiAuthenticationService // o el servicio concreto que implementa esta interfaz
+      useClass: StrapiAuthenticationService // Or the exact service this interface implements
     },
     
     AuthenticationServiceFactory,
     MediaServiceFactory,
 
-    // ... otros proveedores],
+    // ... other providers],
   ],
   bootstrap: [
     AppComponent

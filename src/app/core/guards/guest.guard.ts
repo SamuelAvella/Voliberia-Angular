@@ -9,16 +9,16 @@ export const guestGuard: CanActivateFn = (route, state) => {
     const router = inject(Router);
 
     return authService.ready$.pipe(
-        filter(isReady => isReady), // Esperar a que `ready$` sea true
-        take(1), // Solo tomar el primer valor true
-        switchMap(() => authService.authenticated$), // Obtener el estado de autenticación
+        filter(isReady => isReady), // Wait till `ready$` is true
+        take(1), // Only take the first true value
+        switchMap(() => authService.authenticated$), // Obtain the actual authentication value
         map(isLoggedIn => {
             if (isLoggedIn) {
-                // Si el usuario está autenticado, redirigir a `home`
+                // User authenticated, redirect to '/home'
                 router.navigate(['/home']);
-                return false; // Bloquear acceso a la ruta
+                return false; // Block route access
             }
-            return true; // Permitir acceso
+            return true; // Allow access
         })
     );
 };

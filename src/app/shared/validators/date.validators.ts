@@ -22,9 +22,6 @@ export const arrivalDateValidator = (group: AbstractControl): ValidationErrors |
   
     const departureDate = new Date(departureDateControl.value);
     const arrivalDate = new Date(arrivalDateControl.value);
-
-    console.log(arrivalDate.getHours())
-    console.log(arrivalDate.getMinutes())
   
     // 1. Arrival date must be later than departure Date
     if (arrivalDate <= departureDate) {

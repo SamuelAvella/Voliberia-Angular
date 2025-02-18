@@ -7,17 +7,16 @@ import { IBookingsRepository } from "../../repositories/interfaces/bookings-repo
 import { Observable } from "rxjs";
 
 @Injectable({
-    providedIn: 'root',
-  })
-  export class BookingsService extends BaseService<Booking> implements IBookingsService {
-    constructor(
-      @Inject(BOOKINGS_REPOSITORY_TOKEN) private bookingsRepository: IBookingsRepository
-    ) {
-      super(bookingsRepository);
-    }
-  
-    deleteBookingsByFlightId(flightId: string): Observable<void> {
-      return this.bookingsRepository.deleteBookingsByFlightId(flightId);
-    }
+  providedIn: 'root',
+})
+export class BookingsService extends BaseService<Booking> implements IBookingsService {
+  constructor(
+    @Inject(BOOKINGS_REPOSITORY_TOKEN) public bookingsRepository: IBookingsRepository
+  ) {
+    super(bookingsRepository);
   }
-  
+
+  deleteBookingsByFlightId(flightId: string): Observable<void> {
+    return this.bookingsRepository.deleteBookingsByFlightId(flightId);
+  }
+}

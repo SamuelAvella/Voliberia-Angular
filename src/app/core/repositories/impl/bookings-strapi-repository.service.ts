@@ -11,8 +11,8 @@ import { map, Observable } from "rxjs";
 @Injectable({
     providedIn: 'root',
   })
-  export class BookingsStrapiRepositoryService extends StrapiRepositoryService<Booking> implements IBookingsRepository
-  {
+  export class BookingsStrapiRepositoryService extends StrapiRepositoryService<Booking> implements IBookingsRepository  {
+    
     constructor(
       http: HttpClient,
       @Inject(STRAPI_AUTH_TOKEN) override auth: IStrapiAuthentication,
@@ -25,6 +25,7 @@ import { map, Observable } from "rxjs";
     
     deleteBookingsByFlightId(flightId: string): Observable<void> {
       const url = `${this.apiUrl}/${this.resource}?filters[flight][id][$eq]=${flightId}`;
+      console.log("Delete on cascade de Booking Strapi Repository Service")
       return this.http.get<{ data: { id: string }[] }>(url, this.getHeaders()).pipe(
         map((response) => response.data.map((booking) => booking.id)),
         map((ids) => {
@@ -32,7 +33,7 @@ import { map, Observable } from "rxjs";
             this.http.delete<void>(`${this.apiUrl}/${this.resource}/${id}`, this.getHeaders()).subscribe();
           });
         }),
-        map(() => undefined) // Retornamos `undefined` ya que no necesitamos respuesta
+        map(() => undefined) // Return `undefined` since we don't need answer
       );
     };
     

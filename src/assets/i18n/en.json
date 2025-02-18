@@ -15,6 +15,7 @@
   "MENU": {
     "MENU": "Menu",
     "TITLE": "Voliberia",
+    "GREETING": "Hi",
     "DESCRIPTION": "Flight Management",
     "LANGUAGE": "Language",
     "LOGOUT": "Logout",
@@ -103,7 +104,8 @@
       "SURNAME_REQUIRED": "Surname is required",
       "SURNAME_MINLENGTH": "Surname must be at least 2 characters long",
       "EMAIL_REQUIRED": "Email is required",
-      "EMAIL_INVALID": "Please enter a valid email"
+      "EMAIL_INVALID": "Please enter a valid email",
+      "EMAIL_CANNOT_BE_CHANGED": "The email cannot be modified because is linked to your authentication method"
     },
     "BUTTONS": {
       "UPDATE": "Update"

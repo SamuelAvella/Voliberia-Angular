@@ -111,14 +111,14 @@ export class FlightsPage implements OnInit {
           text: 'Delete',
           role: 'destructive',
           handler: () => {
-            this.flightsSvc.delete(flight.id).subscribe({
+            this.bookingsSvc.deleteBookingsByFlightId(flight.id).subscribe({
               next: () => {
-                this._flights.next(
-                  this._flights.value.filter((b) => b.id !== flight.id)
-                );
-                this.refreshFlights();//TODO : probar llamado a refresh para que carguen bien las reservas
+                this.flightsSvc.delete(flight.id).subscribe(() => {
+                  console.log('Vuelo eliminado, refrescando lista');
+                  this.refreshFlights();
+                });
               },
-              error: (err) => console.error('Error deleting booking:', err),
+              error: (err) => console.error('Error eliminando bookings:', err),
             });
           },
         },

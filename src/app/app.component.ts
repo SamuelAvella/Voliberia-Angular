@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { PopoverController } from '@ionic/angular';
 
@@ -7,13 +7,16 @@ import { BaseAuthenticationService } from './core/services/impl/base-authenticat
 import { LanguageSelectorComponent } from './shared/components/language-selector/language-selector.component';
 import { TranslateService } from '@ngx-translate/core';
 import { TranslationService } from './core/services/translation.service';
+import { UserApp } from './core/models/userApp.model';
+import { lastValueFrom } from 'rxjs';
+import { UsersAppService } from './core/services/impl/usersApp.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.scss'],
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   public appPages = [
     { key: 'MENU.PAGES.HOME', url: '/home', icon: 'home', title: '' },
     { key: 'MENU.PAGES.FLIGHTS', url: '/flights', icon: 'airplane', title: '' },
@@ -23,12 +26,13 @@ export class AppComponent {
   ];
 
   currentYear: number = new Date().getFullYear();
-  currentUser: { username: string; } | undefined;
+  userApp?: UserApp | null;
 
   constructor(
     private translationService: TranslationService,
     private translate: TranslateService,
     public authSvc: BaseAuthenticationService,
+    private usersAppSvc: UsersAppService,
     private router: Router,
     private popoverCtrl: PopoverController
   ) {
@@ -53,7 +57,7 @@ export class AppComponent {
     const { data } = await popover.onDidDismiss();
     if (data?.language) {
       this.translationService.changeLanguage(data.language);
-      this.loadTranslations(); // Cargar las traducciones actualizadas
+      this.loadTranslations(); // Load updated translations
 
       const menu = document.querySelector('ion-menu');
       if (menu) {
@@ -68,16 +72,16 @@ export class AppComponent {
     });
   }
 
+  
   async ngOnInit() {
     try {
-      // Obtén el usuario autenticado desde el servicio de autenticación
+      // Get authenticated user from authService
       const user = await this.authSvc.getCurrentUser();
-      console.log(user)//Comprobar usuario
+
       if (user) {
-        // Si el usuario está autenticado, asigna el nombre y apellido
-        this.currentUser = {
-          username: user.username,
-        };
+        this.userApp = await lastValueFrom(this.usersAppSvc.getByUserId(user.id));
+        console.log("El userApp",this.userApp);
+        
       }
     } catch (error) {
       console.error('Error fetching user:', error);

@@ -31,8 +31,8 @@ import { Paginated } from '../../models/paginated.model';
   providedIn: 'root'
 })
 export class FirebaseRepositoryService<T extends Model> implements IBaseRepository<T> {
-  private db;
-  private collectionRef;
+  protected db;
+  protected collectionRef;
 
   constructor(
     @Inject(FIREBASE_CONFIG_TOKEN) protected firebaseConfig: any,

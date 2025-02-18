@@ -9,14 +9,14 @@ export const authGuard: CanActivateFn = (route, state) => {
     const router = inject(Router);
   
     return authService.ready$.pipe(
-        filter(isReady => isReady), // Esperar a que `ready$` sea true
-        take(1), // Solo tomar el primer valor true
-        switchMap(() => authService.authenticated$), // Obtener el valor actual de autenticación
+        filter(isReady => isReady), // Wait till `ready$` is true
+        take(1), // Only take the first true value
+        switchMap(() => authService.authenticated$), // Obtain the actual authentication value
         map(isLoggedIn => {
           if (isLoggedIn) {
-            return true; // Usuario autenticado, permitir acceso
+            return true; // User authenticated, access aproved
           } else {
-            // Usuario no autenticado, redirigir al login
+            // User unauthenticated, redirect to login 
             router.navigate(['/login'], { queryParams: { returnUrl: state.url } });
             return false;
           }

@@ -10,37 +10,45 @@ import { User } from "../models/auth.model";
 
 //Repositories
 import { IBaseRepository } from "./interfaces/base-repository.interface";
+import { StrapiRepositoryService } from "./impl/strapi-repository.service";
+  import { BookingsStrapiRepositoryService } from "./impl/bookings-strapi-repository.service";
+
+import { FirebaseRepositoryService } from './impl/firebase-repository.service';
+  import { BookingsFirebaseRepositoryService } from "./impl/bookings-firebase-repository.service";
 
 //Services
 import { BaseRepositoryHttpService } from "./impl/base-repository-http.service";
 import { BaseAuthenticationService } from "../services/impl/base-authentication.service";
 import { BaseMediaService } from "../services/impl/base-media.service";
   //Strapi
-  import { StrapiRepositoryService } from "./impl/strapi-repository.service";
   import { StrapiMediaService } from "../services/impl/strapi-media.service";
   import { StrapiAuthenticationService } from "../services/impl/strapi-authentication.service";
   import { IStrapiAuthentication } from "../services/interfaces/strapi-authentication.interface";
 
   //Firebase
-  import { FirebaseRepositoryService } from './impl/firebase-repository.service';
-  import { FlightsMappingFirebaseService } from './impl/flights-mapping-firebase.service';
-  import { BookingsMappingFirebaseService } from './impl/bookings-mapping-firebase.service';
-  import { UsersAppMappingFirebaseService } from './impl/usersApp-mapping-firebase.service';
   import { FirebaseAuthenticationService } from '../services/impl/firebase-authentication.service';
-  import { FirebaseAuthMappingService } from '../services/impl/firebase-auth-mapping.service';
-
+  import { FirebaseMediaService } from "../services/impl/firebase-media.service";
+  
 //Mapping
 import { IAuthMapping } from "../services/interfaces/auth-mapping.interface";
 import { IBaseMapping } from "./interfaces/base-mapping.interface";
-import { UserAppMappingStrapi } from "./impl/usersApp-mapping-strapi.service";
-import { BookingMappingStrapi } from "./impl/bookings-mapping-strapi.service";
-import { FlightsMappingStrapi } from "./impl/flights-mapping-strapi.service";
-import { StrapiAuthMappingService } from "../services/impl/strapi-auth-mapping.service";
+  
+  //Strapi
+  import { UserAppMappingStrapi } from "./impl/usersApp-mapping-strapi.service";
+  import { BookingMappingStrapi } from "./impl/bookings-mapping-strapi.service";
+  import { FlightsMappingStrapi } from "./impl/flights-mapping-strapi.service";
+  import { StrapiAuthMappingService } from "../services/impl/strapi-auth-mapping.service";
+  
+  //Firebase
+  import { FlightsMappingFirebaseService } from './impl/flights-mapping-firebase.service';
+  import { BookingsMappingFirebaseService } from './impl/bookings-mapping-firebase.service';
+  import { UsersAppMappingFirebaseService } from './impl/usersApp-mapping-firebase.service';
+  import { FirebaseAuthMappingService } from '../services/impl/firebase-auth-mapping.service';
 
 //Tokens
-import { AUTH_MAPPING_TOKEN, AUTH_ME_API_URL_TOKEN, AUTH_SIGN_IN_API_URL_TOKEN, AUTH_SIGN_UP_API_URL_TOKEN, BACKEND_TOKEN, BOOKINGS_API_URL_TOKEN, BOOKINGS_REPOSITORY_MAPPING_TOKEN, BOOKINGS_REPOSITORY_TOKEN, BOOKINGS_RESOURCE_NAME_TOKEN, FLIGHTS_API_URL_TOKEN, FLIGHTS_REPOSITORY_MAPPING_TOKEN, FLIGHTS_REPOSITORY_TOKEN, FLIGHTS_RESOURCE_NAME_TOKEN, UPLOAD_API_URL_TOKEN, USERSAPP_API_URL_TOKEN, USERSAPP_REPOSITORY_MAPPING_TOKEN, USERSAPP_REPOSITORY_TOKEN, USERSAPP_RESOURCE_NAME_TOKEN, FIREBASE_CONFIG_TOKEN } from "./repository.token";
 import { IAuthentication } from "../services/interfaces/authentication.interface";
-import { FirebaseMediaService } from "../services/impl/firebase-media.service";
+
+import { AUTH_MAPPING_TOKEN, AUTH_ME_API_URL_TOKEN, AUTH_SIGN_IN_API_URL_TOKEN, AUTH_SIGN_UP_API_URL_TOKEN, BACKEND_TOKEN, BOOKINGS_API_URL_TOKEN, BOOKINGS_REPOSITORY_MAPPING_TOKEN, BOOKINGS_REPOSITORY_TOKEN, BOOKINGS_RESOURCE_NAME_TOKEN, FLIGHTS_API_URL_TOKEN, FLIGHTS_REPOSITORY_MAPPING_TOKEN, FLIGHTS_REPOSITORY_TOKEN, FLIGHTS_RESOURCE_NAME_TOKEN, UPLOAD_API_URL_TOKEN, USERSAPP_API_URL_TOKEN, USERSAPP_REPOSITORY_MAPPING_TOKEN, USERSAPP_REPOSITORY_TOKEN, USERSAPP_RESOURCE_NAME_TOKEN, FIREBASE_CONFIG_TOKEN } from "./repository.token";
 
 export function createBaseRepositoryFactory<T extends Model>(
     token: InjectionToken<IBaseRepository<T>>,
@@ -182,7 +190,8 @@ export const MediaServiceFactory:FactoryProvider = {
 };
   
 
-export const UsersAppRepositoryFactory: FactoryProvider = createBaseRepositoryFactory<User>(USERSAPP_REPOSITORY_TOKEN,
+export const UsersAppRepositoryFactory: FactoryProvider = createBaseRepositoryFactory<User>(
+  USERSAPP_REPOSITORY_TOKEN,
     [
       BACKEND_TOKEN, 
       HttpClient, 
@@ -203,12 +212,13 @@ export const BookingsRepositoryFactory: FactoryProvider = createBaseRepositoryFa
     BOOKINGS_API_URL_TOKEN,
     BOOKINGS_RESOURCE_NAME_TOKEN,
     BOOKINGS_REPOSITORY_MAPPING_TOKEN,
-    FIREBASE_CONFIG_TOKEN
+    FIREBASE_CONFIG_TOKEN,
   ]
 );
 
 
-export const FlightsRepositoryFactory: FactoryProvider = createBaseRepositoryFactory<Flight>(FLIGHTS_REPOSITORY_TOKEN,
+export const FlightsRepositoryFactory: FactoryProvider = createBaseRepositoryFactory<Flight>(
+  FLIGHTS_REPOSITORY_TOKEN,
     [
       BACKEND_TOKEN, 
       HttpClient, 

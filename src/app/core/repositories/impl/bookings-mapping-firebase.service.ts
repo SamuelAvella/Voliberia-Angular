@@ -52,7 +52,7 @@ export class BookingsMappingFirebaseService implements IBaseMapping<Booking>{
 
         let dataMapping:FirebaseBooking = {
             bookingState: data.bookingState,
-            flight: doc(this.db, 'flights', data.flightId), // Debe existir siempre
+            flight: doc(this.db, 'flights', data.flightId), // Must exist
         };
         if(dataMapping.user_app){
             dataMapping.user_app = doc(this.db, 'group', data.userAppId|| '')

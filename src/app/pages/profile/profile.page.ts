@@ -29,7 +29,7 @@ export class ProfilePage implements OnInit {
     this.formGroup = this.formBuilder.group({
       name: ['', [Validators.required]],
       surname: ['', [Validators.required]],
-      email: ['', [Validators.required, Validators.email]],
+      email: [{value:'', disabled: true}, [Validators.required, Validators.email]],
       picture: ['']
     });
   }
@@ -124,5 +124,14 @@ export class ProfilePage implements OnInit {
 
   get email() {
     return this.formGroup.controls['email'];
+  }
+
+  async showEmailWarning() {
+    const toast = await this.toastController.create({
+      message: await this.translateSvc.get('PROFILE.ERRORS.EMAIL_CANNOT_BE_CHANGED').toPromise(),
+      duration: 3000,
+      position: 'bottom',
+    });
+    await toast.present();
   }
 }

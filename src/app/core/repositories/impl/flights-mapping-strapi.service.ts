@@ -88,7 +88,7 @@ export interface Meta {}
         const attributes = isFlightRaw(data) ? data.data.attributes : data.attributes;
         const id = isFlightRaw(data) ? data.data.id : data.id;
       
-        // Validar si 'id' es válido antes de usarlo
+        // Validate if 'id' is valid before using it
         if (!id) {
             throw new Error("Flight ID is missing");
         }

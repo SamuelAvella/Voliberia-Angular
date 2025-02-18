@@ -16,7 +16,6 @@ export class BaseRepositoryHttpService<T extends Model> implements IBaseReposito
 
     constructor(
         protected http: HttpClient,
-        //TODO añadir auth
         @Inject(AUTH_TOKEN) protected auth: IAuthentication,
         @Inject(API_URL_TOKEN) protected apiUrl: string, 
         @Inject(RESOURCE_NAME_TOKEN) protected resource:string, 
