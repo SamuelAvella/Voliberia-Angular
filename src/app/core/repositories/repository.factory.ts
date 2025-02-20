@@ -49,6 +49,7 @@ import { IBaseMapping } from "./interfaces/base-mapping.interface";
 import { IAuthentication } from "../services/interfaces/authentication.interface";
 
 import { AUTH_MAPPING_TOKEN, AUTH_ME_API_URL_TOKEN, AUTH_SIGN_IN_API_URL_TOKEN, AUTH_SIGN_UP_API_URL_TOKEN, BACKEND_TOKEN, BOOKINGS_API_URL_TOKEN, BOOKINGS_REPOSITORY_MAPPING_TOKEN, BOOKINGS_REPOSITORY_TOKEN, BOOKINGS_RESOURCE_NAME_TOKEN, FLIGHTS_API_URL_TOKEN, FLIGHTS_REPOSITORY_MAPPING_TOKEN, FLIGHTS_REPOSITORY_TOKEN, FLIGHTS_RESOURCE_NAME_TOKEN, UPLOAD_API_URL_TOKEN, USERSAPP_API_URL_TOKEN, USERSAPP_REPOSITORY_MAPPING_TOKEN, USERSAPP_REPOSITORY_TOKEN, USERSAPP_RESOURCE_NAME_TOKEN, FIREBASE_CONFIG_TOKEN } from "./repository.token";
+import { collection } from "firebase/firestore";
 
 export function createBaseRepositoryFactory<T extends Model>(
     token: InjectionToken<IBaseRepository<T>>,
@@ -56,14 +57,25 @@ export function createBaseRepositoryFactory<T extends Model>(
 
     return {
         provide: token,
-        useFactory: (backend: string, http: HttpClient, auth:IStrapiAuthentication, apiURL: string, resource: string, mapping: IBaseMapping<T>, firebaseConfig?: any) => {
+        useFactory: (backend: string, http: HttpClient, auth:IStrapiAuthentication, apiURL: string, resource: string, mapping: IBaseMapping<any>, firebaseConfig?: any) => {
             switch(backend){
                 case 'http':
                     return new BaseRepositoryHttpService<T>(http, auth, apiURL, resource, mapping);
                 case 'strapi':
+                  switch(resource){
+                    case 'bookings':
+                      return new BookingsStrapiRepositoryService(http, auth, apiURL, resource, mapping);
+                    default:
                     return new StrapiRepositoryService<T>(http, auth, apiURL, resource, mapping);
+                
+                  }
                 case 'firebase':
-                    return new FirebaseRepositoryService<T>(firebaseConfig, resource, mapping);
+                  switch(resource){
+                    case 'bookings':
+                      return new BookingsFirebaseRepositoryService(firebaseConfig, resource, mapping);
+                    default: 
+                      return new FirebaseRepositoryService<T>(firebaseConfig, resource, mapping);
+                  } 
                 default:
                     throw new Error("BACKEND NOT IMPLEMENTED");
             }

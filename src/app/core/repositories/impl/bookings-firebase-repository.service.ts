@@ -37,26 +37,24 @@ export class BookingsFirebaseRepositoryService extends FirebaseRepositoryService
 
 
   constructor(
-    @Inject(FIREBASE_CONFIG_TOKEN) override firebaseConfig: any,
-    @Inject(FIREBASE_COLLECTION_TOKEN) override collectionName: string,
-    @Inject(BOOKINGS_REPOSITORY_MAPPING_TOKEN) override mapping: IBaseMapping<Booking>
+    @Inject(FIREBASE_CONFIG_TOKEN) protected override firebaseConfig: any,
+    @Inject(FIREBASE_COLLECTION_TOKEN) protected  override collectionName: string,
+    @Inject(BOOKINGS_REPOSITORY_MAPPING_TOKEN) mapping: IBaseMapping<Booking>
   ) {
       super(firebaseConfig, collectionName, mapping);
-    const app = initializeApp(firebaseConfig);
-    this.db = getFirestore(app);
-    this.collectionRef = collection(this.db, this.collectionName);
+
   }
   
     deleteBookingsByFlightId(flightId: string): Observable<void> {
-        const q = query(this.collectionRef, where("flight.id", "==", flightId));
+      const bookingsQuery = query(this.collectionRef, where("flight", "==", doc(this.db, "flights", flightId)));
 
-        return from(getDocs(q)).pipe(
-        mergeMap(snapshot => {
-            const deleteOps = snapshot.docs.map(doc => deleteDoc(doc.ref));
-            return from(Promise.all(deleteOps));
-        }),
-        map(() => undefined)
-        );
+      return from(getDocs(bookingsQuery)).pipe(
+        map(snapshot => snapshot.docs.map(doc => doc.ref)), 
+        mergeMap(refs => 
+          from(Promise.all(refs.map(ref => deleteDoc(ref)))) 
+        ),
+        map(() => undefined) 
+      );
     }
 
 } 
