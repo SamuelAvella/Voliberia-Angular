@@ -61,7 +61,7 @@ export class FirebaseRepositoryService<T extends Model> implements IBaseReposito
     return from(this.getLastDocumentOfPreviousPage(page, pageSize)).pipe(
       map(lastDoc => {
         let constraints: QueryConstraint[] = [];
-        Object.entries(filters).forEach(([key, value]) => {
+        Object.entries(filters).forEach(([key, value]) => { //NOS QUEDAMOS SOLO CON EL KEY Y EL VALUE
           
             const start = value;
             const end = start + "\uf8ff";

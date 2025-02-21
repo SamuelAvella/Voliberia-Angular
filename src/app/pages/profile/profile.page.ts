@@ -49,6 +49,7 @@ export class ProfilePage implements OnInit {
           // Solo cargar información de UserApp, no afectar username
           const updatedUserApp: any = {
             ...this.userApp,
+            username: `${this.userApp.name} ${this.userApp.surname}`,
             email: user.email,
             userId: user.id,
             picture: typeof this.userApp.picture === 'object' ?
