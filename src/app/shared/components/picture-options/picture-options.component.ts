@@ -6,15 +6,15 @@ import { PopoverController } from '@ionic/angular';
     <ion-list>
       <ion-item button (click)="onOption('camera')">
         <ion-icon name="camera" slot="start"></ion-icon>
-        <ion-label>Tomar foto</ion-label>
+        <ion-label>{{'PICTURE.OPTIONS.TAKE_PHOTO' | translate}}</ion-label>
       </ion-item>
       <ion-item button (click)="onOption('gallery')">
         <ion-icon name="image" slot="start"></ion-icon>
-        <ion-label>Seleccionar de galería</ion-label>
+        <ion-label>{{'PICTURE.OPTIONS.SELECT_FROM_GALLERY' | translate}}</ion-label>
       </ion-item>
       <ion-item button (click)="onOption('cancel')">
         <ion-icon name="close" slot="start"></ion-icon>
-        <ion-label>Cancelar</ion-label>
+        <ion-label>{{'PICTURE.OPTIONS.CANCEL' | translate}}</ion-label>
       </ion-item>
     </ion-list>
   `

@@ -112,6 +112,14 @@
     }
   },
 
+  "PICTURE":{
+    "OPTIONS": {
+      "TAKE_PHOTO": "Take photo",
+      "SELECT_FROM_GALLERY": "Select from gallery",
+      "CANCEL": "Cancel"
+    }
+  },
+
   "ABOUT": {
     "TITLE": "About",
     "APP_INFO": {

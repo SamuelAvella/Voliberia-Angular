@@ -73,9 +73,11 @@ export class FirebaseRepositoryService<T extends Model> implements IBaseReposito
         if (lastDoc) {
           constraints.push(startAfter(lastDoc));
         }
+        
         constraints.push(limit(pageSize));
 
         let q = query(this.collectionRef, ...constraints);
+      
         return q;
       }),
       mergeMap(q => getDocs(q)),
