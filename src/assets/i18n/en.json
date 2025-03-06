@@ -12,6 +12,48 @@
     }
   },
 
+  "REGISTER": {
+    "TITLE": "Create an Account",
+    "HAVE_ACCOUNT": "Already have an account?",
+    "LOGIN": "Log in",
+    "NAME": "First Name",
+    "SURNAME": "Last Name",
+    "EMAIL": "Email",
+    "PASSWORD": "Password",
+    "CONFIRM_PASSWORD": "Confirm Password",
+    "ERRORS": {
+      "NAME_REQUIRED": "Please enter your first name",
+      "NAME_MINLENGTH": "The first name must be at least two characters",
+      "SURNAME_REQUIRED": "Please enter your last name",
+      "SURNAME_MINLENGTH": "The last name must be at least two characters",
+      "EMAIL_REQUIRED": "Please enter an email",
+      "EMAIL_INVALID": "Please enter a valid email",
+      "PASSWORD_REQUIRED": "Please enter a password",
+      "PASSWORD_WEAK": "At least 10 characters, one uppercase letter, one number, and one special character.",
+      "PASSWORDS_MISMATCH": "Passwords do not match",
+      "EMAIL_IN_USE": "This email is already in use. Please try another one.",
+      "GENERAL_ERROR": "An error occurred. Please try again later."
+    },
+    "SUBMIT": "Create Account"
+  },
+
+  "LOGIN": {
+    "TITLE": "Log in to Voliberia",
+    "EMAIL": "Email",
+    "PASSWORD": "Password",
+    "SHOW_PASSWORD": "Show Password",
+    "HIDE_PASSWORD": "Hide Password",
+    "ERRORS": {
+      "EMAIL_REQUIRED": "Please enter an email",
+      "EMAIL_INVALID": "Please enter a valid email",
+      "PASSWORD_REQUIRED": "Please enter a password",
+      "INVALID_CREDENTIALS": "Incorrect email or password. Please try again."
+    },
+    "SUBMIT": "Log in",
+    "NO_ACCOUNT": "Don't have an account?",
+    "REGISTER": "Register"
+  },
+  
   "MENU": {
     "MENU": "Menu",
     "TITLE": "Voliberia",
@@ -137,4 +179,4 @@
       "LINKEDIN": "LinkedIn"
     }
   }
-} 
+}

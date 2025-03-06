@@ -6,10 +6,10 @@
 <ion-content>
   <div class="login-container">
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-      <h2 class="login-title">Inicia sesión en Voliberia</h2>
+      <h2 class="login-title">{{'LOGIN.TITLE' | translate}}</h2>
 
       <ion-item class="input-item">
-        <ion-label position="floating">Email</ion-label>
+        <ion-label position="floating">{{'LOGIN.EMAIL' | translate}}</ion-label>
         <ion-input
           type="email"
           formControlName="email"
@@ -18,7 +18,7 @@
       </ion-item>
 
       <ion-item class="input-item">
-        <ion-label position="floating">Contraseña</ion-label>
+        <ion-label position="floating">{{'LOGIN.PASSWORD' | translate}}</ion-label>
         <ion-input
           [type]="passwordVisible ? 'text' : 'password'"
           formControlName="password"
@@ -32,23 +32,30 @@
         </ion-button>
       </ion-item>
       <ion-text class="input-error" color="danger" *ngIf="email?.invalid && (email?.dirty || email?.touched)">
-        <p *ngIf="email?.errors?.['required']">*Debe introducir un email</p>
-        <p *ngIf="email?.errors?.['email']">*Debe introducir un email correcto</p>
+        <p *ngIf="email?.errors?.['required']">{{'LOGIN.ERRORS.EMAIL_REQUIRED' | translate}}</p>
+        <p *ngIf="email?.errors?.['email']">{{'LOGIN.ERRORS.EMAIL_INVALID' | translate}}</p>
       </ion-text>
       <ion-text class="input-error" color="danger" *ngIf="password?.invalid && (password?.dirty || password?.touched)">
-        <p *ngIf="password?.errors?.['required']">*Debe introducir una contraseña</p>
+        <p *ngIf="password?.errors?.['required']">{{'LOGIN.ERRORS.PASSWORD_REQUIRED' | translate}}</p>
       </ion-text>
+
+      <ion-text class="input-error" color="danger" *ngIf="errorMessage">
+        <p>{{ errorMessage }}</p>
+      </ion-text>
+      
       <ion-button
         expand="block"
         class="login-button"
         type="submit"
         [disabled]="loginForm.invalid">
-        Iniciar Sesión
+        {{'LOGIN.SUBMIT' | translate}}
       </ion-button>
 
       <div class="register-link">
-        <ion-text>¿No tienes cuenta?</ion-text>
-        <ion-button fill="clear" class="register-button" (click)="onRegister()">Regístrate</ion-button>
+        <ion-text>{{'LOGIN.NO_ACCOUNT' | translate}}</ion-text>
+        <ion-button fill="clear" class="register-button" (click)="onRegister()">
+          {{'LOGIN.REGISTER' | translate}}
+        </ion-button>
       </div>
     </form>
   </div>
