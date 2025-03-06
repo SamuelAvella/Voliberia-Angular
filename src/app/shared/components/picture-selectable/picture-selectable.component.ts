@@ -1,7 +1,10 @@
 import { Component, Input, OnDestroy, OnInit, ViewChild, forwardRef } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { ModalController } from '@ionic/angular';
+import { ActionSheetController, ModalController, Platform, PopoverController } from '@ionic/angular';
 import { BehaviorSubject } from 'rxjs';
+import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
+import { TranslationService } from 'src/app/core/services/translation.service'; // Ajusta la ruta si es necesario
+import { PictureOptionsComponent } from '../picture-options/picture-options.component';
 
 export const PICTURE_SELECTABLE_VALUE_ACCESSOR: any = {
   provide: NG_VALUE_ACCESSOR,
@@ -21,6 +24,7 @@ export const PICTURE_SELECTABLE_VALUE_ACCESSOR: any = {
 })
 export class PictureSelectableComponent  implements OnInit, ControlValueAccessor, OnDestroy {
 
+
   /** Subject que mantiene el valor actual de la imagen */
   private _picture = new BehaviorSubject("");
   /** Observable público para la imagen seleccionada */
@@ -29,16 +33,28 @@ export class PictureSelectableComponent  implements OnInit, ControlValueAccessor
   isDisabled:boolean = false;
   /** Indica si hay una imagen seleccionada */
   hasValue:boolean = false;
-  constructor(
-    private pictureModal:ModalController
-  ) { }
+  hasCameraFeature: boolean = false;
 
+  constructor(
+    private pictureModal:ModalController,
+    private platform: Platform,
+    private actionSheetCtrl: ActionSheetController,
+    private popoverCtrl: PopoverController,
+    private translateService: TranslationService
+
+  ) {
+    this.checkCameraAvailabilty();
+   }
+  
   /** Limpia los recursos al destruir el componente */
   ngOnDestroy(): void {
     this._picture.complete();
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    console.log("Working picture-selectable");
+    
+  }
 
   /** Función que propaga los cambios al formulario padre */
   propagateChange = (obj: any) => {
@@ -111,6 +127,105 @@ export class PictureSelectableComponent  implements OnInit, ControlValueAccessor
   /** Cierra el modal de selección de imagen */
   close(){
     this.pictureModal?.dismiss();
+  }
+
+  private async checkCameraAvailabilty() {
+    if ( this.platform.is('hybrid')){
+      try {
+        const permission = await Camera.checkPermissions();
+        this.hasCameraFeature = permission.camera === 'granted'
+      } catch {
+        this.hasCameraFeature = false
+      }
+    } else {
+      this.hasCameraFeature = !!(navigator?.mediaDevices?.getUserMedia);
+    }
+  }
+
+  async takePicture(){
+    try {
+      if (this.platform.is('hybrid')) {
+        const image = await Camera.getPhoto({
+          quality: 90,
+          allowEditing: false,
+          resultType: CameraResultType.DataUrl,
+          source: CameraSource.Camera
+        });
+        
+        if (image.dataUrl) {
+          this.changePicture(image.dataUrl);
+        }
+      } else {
+        // Para navegadores web
+        const image = await Camera.getPhoto({
+          quality: 90,
+          allowEditing: false,
+          resultType: CameraResultType.DataUrl,
+          source: CameraSource.Camera,
+          webUseInput: false // Esto fuerza el uso de la cámara web
+        });
+        
+        if (image.dataUrl) {
+          this.changePicture(image.dataUrl);
+        }
+      }
+    } catch (error) {
+      console.error('Error al tomar la foto:', error);
+    }
+  }
+  
+
+  async presentPictureOptions(event: Event, fileLoader: HTMLInputElement) {
+    event.stopPropagation();
+    
+    if (this.hasCameraFeature) {
+      const buttons = [
+        {
+          text: 'Take photo',
+          icon: 'camera',
+          handler: () => {
+            this.takePicture();
+          }
+        },
+        {
+          text: "Select from gallery",
+          icon: 'image',
+          handler: () => {
+            this.onChangePicture(event, fileLoader);
+          }
+        },
+        {
+          text: "Cancel",
+          icon: 'close',
+          role: 'cancel'
+        }
+      ];
+
+      if (window.innerHeight < window.innerWidth) {  // Es landscape
+        const popover = await this.popoverCtrl.create({
+          component: PictureOptionsComponent,
+          event: event,
+          alignment: 'center',
+          translucent: true,
+          size: 'auto'
+        });
+        await popover.present();
+        const { data } = await popover.onDidDismiss();
+        
+        if (data === 'camera') {
+          this.takePicture();
+        } else if (data === 'gallery') {
+          this.onChangePicture(event, fileLoader);
+        }
+      } else {  // Es portrait
+        const actionSheet = await this.actionSheetCtrl.create({
+          buttons: buttons
+        });
+        await actionSheet.present();
+      }
+    } else {
+      this.onChangePicture(event, fileLoader);
+    }
   }
 
 }

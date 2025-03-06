@@ -1,59 +1,40 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>{{ booking ? 'Edit Booking' : 'New Booking' }}</ion-title>
+  <ion-toolbar color="primary">
     <ion-buttons slot="end">
-      <ion-button (click)="dismiss()">
+      <ion-button (click)="dismiss()" color="light">
         <ion-icon slot="icon-only" name="close"></ion-icon>
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding">
-  <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
-    <!-- Selección de Usuario -->
-    <ion-item>
-      <ion-label>User</ion-label>
-      <ion-select
-        formControlName="userAppId"
-        placeholder="Select a user"
-        interface="popover"
-      >
-        <ion-select-option
-          *ngFor="let user of users"
-          [value]="user.id"
-        >
-          {{ user?.name }} {{ user?.surname }}
-        </ion-select-option>
-      </ion-select>
-    </ion-item>
-    <ion-text color="danger" *ngIf="formGroup.get('userAppId')?.invalid && formGroup.get('userAppId')?.touched">
-      User is required.
-    </ion-text>
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title class="ion-text-center">
+        {{ mode === 'edit' ? ('BOOKING.EDIT' | translate) : ('BOOKING.NEW' | translate) }}
+      </ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+        <!-- Estado -->
+        <ion-item class="form-item">
+          <ion-label position="stacked">{{'BOOKING.STATE' | translate}}</ion-label>
+          <ion-toggle formControlName="bookingState"></ion-toggle>
+        </ion-item>
 
-    <!-- Selección de Vuelo -->
-    <ion-item *ngIf="!booking">
-      <ion-label>Flight</ion-label>
-      <ion-select
-        formControlName="flightId"
-        placeholder="Select a flight"
-        interface="popover"
-      >
-        <ion-select-option
-          *ngFor="let flight of flights"
-          [value]="flight.id"
-        >
-          {{ flight?.origin }} → {{ flight?.destination }}
-        </ion-select-option>
-      </ion-select>
-    </ion-item>
-    <ion-text color="danger" *ngIf="!booking && formGroup.get('flightId')?.invalid && formGroup.get('flightId')?.touched">
-      Flight is required.
-    </ion-text>
+        <!-- Selección de Vuelo -->
+        <ion-item class="form-item">
+          <app-flight-selectable formControlName="flightId"></app-flight-selectable>
+        </ion-item>
 
-    <!-- Botón de Envío -->
-    <ion-button expand="block" type="submit" [disabled]="!formGroup.valid">
-      {{ booking ? 'Save Changes' : 'Create Booking' }}
-    </ion-button>
-  </form>
+        <!-- Botón de Submit -->
+        <div class="button-container">
+          <ion-button button expand="block" type="submit" [disabled]="formGroup.invalid" color="success">
+            {{ mode === 'edit' ? ('BOOKING.SAVE' | translate) : ('BOOKING.CREATE' | translate) }}
+          </ion-button>
+        </div>
+      </form>
+    </ion-card-content>
+  </ion-card>
 </ion-content>

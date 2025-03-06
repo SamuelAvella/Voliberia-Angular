@@ -3,7 +3,7 @@ import { Model } from "../../models/base.model";
 import { Paginated } from "../../models/paginated.model";
 
 export interface SearchParams {
-    [key: string]: string | number | boolean | string[]; // Para filtrar y encontrar datos necesarios de la strapi
+    [key: string]: string; // Need to be changed, decir la operación que es, y en firebase con funcion
   }
 
 export interface IBaseRepository<T extends Model>{

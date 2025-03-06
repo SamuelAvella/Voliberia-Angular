@@ -14,25 +14,22 @@ import { UsersAppService } from "src/app/core/services/impl/usersApp.service";
   styleUrls: ['./profile.page.scss'],
 })
 export class ProfilePage implements OnInit {
-
-  genders:string[] = ['Masculino', 'Femenino', 'Otros'];
   formGroup: FormGroup;
   userApp?: UserApp | null;
 
   constructor(
     private formBuilder: FormBuilder,
-    private usersAppService: UsersAppService,
-    private authService:BaseAuthenticationService,
-    private mediaService:BaseMediaService,
+    private usersAppSvc: UsersAppService,
+    private authSvc: BaseAuthenticationService,
+    private mediaSvc: BaseMediaService,
     private loadingController: LoadingController,
     private toastController: ToastController,
-    private translateService: TranslateService
+    private translateSvc: TranslateService
   ) {
     this.formGroup = this.formBuilder.group({
       name: ['', [Validators.required]],
       surname: ['', [Validators.required]],
-      email: ['', [Validators.required, Validators.email]],
-      gender: ['', [Validators.required]],
+      email: [{value:'', disabled: true}, [Validators.required, Validators.email]],
       picture: ['']
     });
   }
@@ -42,28 +39,32 @@ export class ProfilePage implements OnInit {
     await loading.present();
 
     try {
-      const user = await this.authService.getCurrentUser();
-      if(user){
-          this.userApp = await lastValueFrom(this.usersAppService.getByUserId(user.id));
-          console.log(this.userApp);
-          if (this.userApp) {
-            const updatedUserApp: any = {
-              ...this.userApp,
-              email:user.email,
-              userId:user.id,
-              picture: typeof this.userApp.picture === 'object' ? 
-                           this.userApp.picture.url : 
-                           undefined
-            };
-            this.formGroup.patchValue(updatedUserApp);
-          }
+      const user = await this.authSvc.getCurrentUser();
+      if (user) {
+        // Obtener información de UserApp relacionada
+        this.userApp = await lastValueFrom(this.usersAppSvc.getByUserId(user.id));
+        console.log("El userApp",this.userApp);
+
+        if (this.userApp) {
+          // Solo cargar información de UserApp, no afectar username
+          const updatedUserApp: any = {
+            ...this.userApp,
+            username: `${this.userApp.name} ${this.userApp.surname}`,
+            email: user.email,
+            userId: user.id,
+            picture: typeof this.userApp.picture === 'object' ?
+                            this.userApp.picture.url : 
+                            undefined
+          };
+          this.formGroup.patchValue(updatedUserApp);
+        }
       }
     } catch (error) {
       console.error(error);
       const toast = await this.toastController.create({
-        message: await lastValueFrom(this.translateService.get('COMMON.ERROR.LOAD')),
+        message: await lastValueFrom(this.translateSvc.get('COMMON.ERROR.LOAD')),
         duration: 3000,
-        position: 'bottom'
+        position: 'bottom',
       });
       await toast.present();
     } finally {
@@ -78,34 +79,34 @@ export class ProfilePage implements OnInit {
 
       try {
         const changedValues = {} as Record<keyof UserApp, any>;
-        Object.keys(this.formGroup.controls).forEach(key => {
+        Object.keys(this.formGroup.controls).forEach((key) => {
           if (this.formGroup.get(key)?.dirty) {
             changedValues[key as keyof UserApp] = this.formGroup.get(key)?.value;
           }
         });
 
         if(changedValues.picture){
-          // Convertir base64 a Blob
           const base64Response = await fetch(changedValues.picture);
           const blob = await base64Response.blob();
-          const uploadedBlob = await lastValueFrom(this.mediaService.upload(blob));
+          const uploadedBlob = await lastValueFrom(this.mediaSvc.upload(blob));
           changedValues.picture = uploadedBlob[0];
-        } 
-        
-        await lastValueFrom(this.usersAppService.update(this.userApp.id, changedValues));
-        
+        }
+
+        // Actualizar solo los campos de UserApp, sin tocar el username
+        await lastValueFrom(this.usersAppSvc.update(this.userApp.id, changedValues));
+
         const toast = await this.toastController.create({
-          message: await this.translateService.get('COMMON.SUCCESS.SAVE').toPromise(),
+          message: await this.translateSvc.get('COMMON.SUCCESS.SAVE').toPromise(),
           duration: 3000,
-          position: 'bottom'
+          position: 'bottom',
         });
         await toast.present();
       } catch (error) {
         console.error(error);
         const toast = await this.toastController.create({
-          message: await this.translateService.get('COMMON.ERROR.SAVE').toPromise(),
+          message: await this.translateSvc.get('COMMON.ERROR.SAVE').toPromise(),
           duration: 3000,
-          position: 'bottom'
+          position: 'bottom',
         });
         await toast.present();
       } finally {
@@ -114,23 +115,24 @@ export class ProfilePage implements OnInit {
     }
   }
 
-  get name(){
+  get name() {
     return this.formGroup.controls['name'];
   }
 
-  get surname(){
+  get surname() {
     return this.formGroup.controls['surname'];
   }
 
-  get age(){
-    return this.formGroup.controls['age'];
-  }
-
-  get email(){
+  get email() {
     return this.formGroup.controls['email'];
   }
 
-  get gender(){
-    return this.formGroup.controls['gender'];
+  async showEmailWarning() {
+    const toast = await this.toastController.create({
+      message: await this.translateSvc.get('PROFILE.ERRORS.EMAIL_CANNOT_BE_CHANGED').toPromise(),
+      duration: 3000,
+      position: 'bottom',
+    });
+    await toast.present();
   }
 }

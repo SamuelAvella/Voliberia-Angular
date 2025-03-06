@@ -1,0 +1,38 @@
+.selectable-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.selectable-text {
+  font-size: 1rem;
+}
+
+.selectable-popover {
+  --margin-left: 20px;
+  --width: 500px; /* Ajusta este valor según necesites */
+  --max-width: 97vw; /* Opcional: evita que se desborde en pantallas pequeñas */
+}
+
+
+.popover-content {
+  max-height: 700px;
+}
+
+.fixed-search {
+  position: sticky;
+  top: 0;
+  background: white;
+  z-index: 10;
+}
+
+.scrollable-content {
+  max-height: 250px;
+  overflow-y: auto;
+}
+
+.list-scrollable {
+  max-height: 300px;
+}

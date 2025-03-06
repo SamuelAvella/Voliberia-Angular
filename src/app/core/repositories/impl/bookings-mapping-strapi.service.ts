@@ -15,7 +15,7 @@ export interface UserAppData {
 export interface UserAppAttributes{
     name: string
     surname: string
-    idDocument: string
+    idDocument?: string
     birthDate?: string
     createdAt?: string
     updatedAt?: string
@@ -117,7 +117,7 @@ export class BookingMappingStrapi implements IBaseMapping<Booking> {
     getOne(data: Data | BookingRaw): Booking {
         const isBookingRaw = (data: Data | BookingRaw): data is BookingRaw => 'meta' in data;
     
-        // Validar la estructura base
+        // Validate structure base
         if (!data) {
             throw new Error('Booking data is undefined or null.');
         }
@@ -125,7 +125,7 @@ export class BookingMappingStrapi implements IBaseMapping<Booking> {
         const attributes = isBookingRaw(data) ? data.data?.attributes : data.attributes;
         const id = isBookingRaw(data) ? data.data?.id : data.id;
     
-        // Validar que id y attributes existan
+        // Validate id and attributes exits
         if (!id) {
             console.log("El id de booking no lo pilla")
         }

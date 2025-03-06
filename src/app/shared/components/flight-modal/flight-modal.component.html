@@ -1,66 +1,94 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>{{ flight ? 'Edit Flight' : 'New Flight' }}</ion-title>
+  <ion-toolbar color="primary">
+    <ion-title class="ion-text-center">
+      
+    </ion-title>
     <ion-buttons slot="end">
-      <ion-button (click)="dismiss()">
+      <ion-button (click)="dismiss()" color="light">
         <ion-icon slot="icon-only" name="close"></ion-icon>
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding">
-  <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
-    <ion-item>
-      <ion-input
-        label="Origin"
-        label-placement="stacked"
-        formControlName="origin"
-        placeholder="Enter origin"
-      ></ion-input>
-    </ion-item>
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title class="ion-text-center">
+        @if (flight){
+          {{'FLIGHT.EDIT' | translate}}
+        }
+        @else {
+          {{ 'FLIGHT.NEW' | translate }}
+        }
+        
+      </ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+        <ion-item class="form-item">
+          <ion-input
+            label="{{'FLIGHT.ORIGIN' | translate}}"
+            label-placement="stacked"
+            formControlName="origin"
+            placeholder="{{'FLIGHT.ORIGIN_INSERT' | translate}}"
+          ></ion-input>
+        </ion-item>
 
-    <ion-item>
-      <ion-input
-        label="Destination"
-        label-placement="stacked"
-        formControlName="destination"
-        placeholder="Enter destination"
-      ></ion-input>
-    </ion-item>
+        <ion-item class="form-item">
+          <ion-input
+            label="{{'FLIGHT.DESTINATION' | translate}}"
+            label-placement="stacked"
+            formControlName="destination"
+            placeholder="{{'FLIGHT.DESTINATION_INSERT' | translate}}"
+          ></ion-input>
+        </ion-item>
 
-    <ion-item>
-      <ion-datetime
-        label="Departure Date"
-        label-placement="stacked"
-        formControlName="departureDate"
-        placeholder="Select departure date"
-      ></ion-datetime>
-    </ion-item>
+        <ion-item class="form-item">
+          <ion-label position="stacked">{{'FLIGHT.DEPARTURE' | translate}}</ion-label>
+          <ion-datetime
+            formControlName="departureDate"
+            placeholder="Select Departure Date"
+            display-format="DD MMM YYYY, HH:mm"
+            picker-format="DD MMM YYYY HH:mm"
+          ></ion-datetime>
+          <ion-text *ngIf="formGroup?.get('departureDate')?.errors?.['dateNotInThePast']" color="danger">
+            {{"FLIGHT.DEPARTURE_ERROR" | translate}}
+          </ion-text>
+        </ion-item>
 
-    <ion-item>
-      <ion-datetime
-        label="Arrival Date"
-        label-placement="stacked"
-        formControlName="arrivalDate"
-        placeholder="Select arrival date"
-      ></ion-datetime>
-    </ion-item>
+        <ion-item class="form-item">
+          <ion-label position="stacked">{{'FLIGHT.ARRIVAL' | translate}}</ion-label>
+          <ion-datetime
+            formControlName="arrivalDate"
+            placeholder="Select Arrival Date"
+            display-format="DD MMM YYYY, HH:mm"
+            picker-format="DD MMM YYYY HH:mm"
+          ></ion-datetime>
+          <div *ngIf="formGroup.hasError('arrivalDateInvalid')">
+            <ion-text color="danger">{{"FLIGHT.ARRIVAL_ERROR_DATE" | translate}}</ion-text>
+          </div>
+          <div *ngIf="formGroup.hasError('arrivalDateTooClose')">
+            <ion-text color="danger">{{"FLIGHT.ARRIVAL_ERROR_MINUTES" | translate}}</ion-text>
+          </div>
+        </ion-item>
 
-    <ion-item>
-      <ion-input
-        label="Seat Price"
-        label-placement="stacked"
-        type="number"
-        formControlName="seatPrice"
-        placeholder="Enter price"
-      ></ion-input>
-    </ion-item>
+        <ion-item class="form-item">
+          <ion-input
+            label="{{'FLIGHT.PRICE' | translate}}"
+            label-placement="stacked"
+            type="number"
+            formControlName="seatPrice"
+            placeholder="Enter Seat Price"
+          ></ion-input>
+        </ion-item>
 
-    <div class="form-buttons">
-      <ion-button expand="block" type="submit" [disabled]="!formGroup.valid">
-        Save
-      </ion-button>
-    </div>
-  </form>
+        <div class="button-container">
+          <ion-button button expand="block" type="submit" [disabled]="!formGroup.valid" color="success">
+            {{ flight ? ('FLIGHT.SAVE' | translate) : ('FLIGHT.CREATE' | translate) }}
+          </ion-button>
+        </div>
+      </form>
+    </ion-card-content>
+  </ion-card>
 </ion-content>

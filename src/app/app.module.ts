@@ -1,23 +1,31 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
+
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient, HttpClientModule, provideHttpClient } from '@angular/common/http';
 import { TranslateModule,TranslateLoader } from '@ngx-translate/core';
-import { SharedModule } from './shared/shared.module';
 import { provideLottieOptions } from 'ngx-lottie';
 import player from 'lottie-web';
-import { AUTH_ME_API_URL_TOKEN, AUTH_SIGN_IN_API_URL_TOKEN, AUTH_SIGN_UP_API_URL_TOKEN, BACKEND_TOKEN, BOOKINGS_API_URL_TOKEN, BOOKINGS_RESOURCE_NAME_TOKEN, FLIGHTS_API_URL_TOKEN, FLIGHTS_RESOURCE_NAME_TOKEN, UPLOAD_API_URL_TOKEN, USERSAPP_API_URL_TOKEN, USERSAPP_RESOURCE_NAME_TOKEN } from './core/repositories/repository.token';
+
+import { SharedModule } from './shared/shared.module';
+import { AUTH_ME_API_URL_TOKEN, AUTH_SIGN_IN_API_URL_TOKEN, AUTH_SIGN_UP_API_URL_TOKEN, BACKEND_TOKEN, BOOKINGS_API_URL_TOKEN, BOOKINGS_RESOURCE_NAME_TOKEN, FLIGHTS_API_URL_TOKEN, FLIGHTS_RESOURCE_NAME_TOKEN, STRAPI_AUTH_TOKEN, UPLOAD_API_URL_TOKEN, USERSAPP_API_URL_TOKEN, USERSAPP_RESOURCE_NAME_TOKEN, FIREBASE_CONFIG_TOKEN } from './core/repositories/repository.token';
 import { environment } from 'src/environments/environment';
+
+//Services
 import { UsersAppService } from './core/services/impl/usersApp.service';
 import { FlightsService } from './core/services/impl/flights.service';
+import { BookingsService } from './core/services/impl/bookings.service';
+import { StrapiAuthenticationService } from './core/services/impl/strapi-authentication.service';
+
+//Factory
 import { AuthenticationServiceFactory, AuthMappingFactory, BookingsMappingFactory, BookingsRepositoryFactory, FlightsRepositoryFactory, FlightsMappingFactory, MediaServiceFactory, UsersAppMappingFactory, UsersAppRepositoryFactory } from './core/repositories/repository.factory';
-import { FormsModule } from '@angular/forms';
 
 // Factory function para el loader de traducción
 export function createTranslateLoader(http: HttpClient){
@@ -41,7 +49,7 @@ export function createTranslateLoader(http: HttpClient){
         deps: [HttpClient]
       }
     }),
-    SharedModule
+    SharedModule,
   ],
   providers: [
     { provide: RouteReuseStrategy, 
@@ -51,7 +59,7 @@ export function createTranslateLoader(http: HttpClient){
       player:() => player,
     }),
     provideHttpClient(),
-    { provide: BACKEND_TOKEN, useValue: 'strapi' },
+    { provide: BACKEND_TOKEN, useValue: 'firebase' },
     { provide: USERSAPP_RESOURCE_NAME_TOKEN, useValue: 'user-apps' },
     { provide: BOOKINGS_RESOURCE_NAME_TOKEN, useValue: 'bookings' },
     { provide: FLIGHTS_RESOURCE_NAME_TOKEN, useValue: 'fligths' },
@@ -62,6 +70,17 @@ export function createTranslateLoader(http: HttpClient){
     { provide: AUTH_SIGN_UP_API_URL_TOKEN, useValue: `${environment.apiUrl}/api/auth/local/register` },
     { provide: AUTH_ME_API_URL_TOKEN, useValue: `${environment.apiUrl}/api/users/me` },
     { provide: UPLOAD_API_URL_TOKEN, useValue: `${environment.apiUrl}/api/upload` },
+    { provide: FIREBASE_CONFIG_TOKEN, useValue: 
+      {
+        apiKey: "AIzaSyAH7qPi9Hh7yUJXUuL0-RAKBQRZWbdcswQ",
+        authDomain: "voliberia-c2248.firebaseapp.com",
+        projectId: "voliberia-c2248",
+        storageBucket: "voliberia-c2248.firebasestorage.app",
+        messagingSenderId: "4884367469",
+        appId: "1:4884367469:web:9e6415b64229d44057d764",
+        measurementId: "G-HFMKX3HBVS"
+      }
+    },
     
     UsersAppMappingFactory,
     BookingsMappingFactory,
@@ -70,8 +89,9 @@ export function createTranslateLoader(http: HttpClient){
     UsersAppRepositoryFactory,
     BookingsRepositoryFactory,
     FlightsRepositoryFactory,
-    // Registrar otros repositorios según sea necesario
-    // Servicios de aplicación
+    // Register other repositories as it is necesary
+    
+    // App services
     {
       provide: 'UsersAppService',
       useClass: UsersAppService
@@ -80,10 +100,19 @@ export function createTranslateLoader(http: HttpClient){
       provide: 'FlightsService',
       useClass: FlightsService
     },
+    {
+      provide: 'BookingsService',
+      useClass: BookingsService
+    },
+    {
+      provide: STRAPI_AUTH_TOKEN,
+      useClass: StrapiAuthenticationService // Or the exact service this interface implements
+    },
+    
     AuthenticationServiceFactory,
-    MediaServiceFactory
+    MediaServiceFactory,
 
-    // ... otros proveedores],
+    // ... other providers],
   ],
   bootstrap: [
     AppComponent

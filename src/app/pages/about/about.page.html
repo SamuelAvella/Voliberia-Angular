@@ -1,0 +1,39 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title class="header-title">{{'ABOUT.TITLE' | translate}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="about-container">
+    <ion-card class="about-card">
+      <ion-card-header>
+        <ion-card-title class="card-title">{{'ABOUT.APP_INFO.TITLE' | translate}}</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <p><strong>{{'ABOUT.APP_INFO.NAME' | translate}}:</strong> Samuel Avella Pérez</p>
+        <p><strong>{{'ABOUT.APP_INFO.CREATION_DATE' | translate}}:</strong> 11/12/2024</p>
+        <p><strong>{{'ABOUT.APP_INFO.DESCRIPTION' | translate}}:</strong> {{'ABOUT.APP_INFO.DESCRIPTION_TEXT' | translate}}</p>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card class="about-card">
+      <ion-card-header>
+        <ion-card-title class="card-title"> {{'ABOUT.ADDITIONAL_INFO.TITLE' | translate}}</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <p>{{'ABOUT.ADDITIONAL_INFO.INTRODUCTION' | translate}}</p>
+        <p><strong>{{'ABOUT.ADDITIONAL_INFO.CONTACT' | translate}}:</strong></p>
+        <p>
+          {{'ABOUT.ADDITIONAL_INFO.CONTACT_TEXT' | translate}}
+          <a href="https://linkedin.com/in/samuelavella" target="_blank">
+            <ion-icon name="logo-linkedin" class="linkedin-icon"></ion-icon> LinkedIn
+          </a>
+        </p>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>

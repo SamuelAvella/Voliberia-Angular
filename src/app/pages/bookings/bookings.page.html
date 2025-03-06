@@ -1,12 +1,12 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
+  <ion-toolbar color="primary">
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title>Bookings</ion-title>
+    <ion-title class="header-title">{{'BOOKING.TITLE' | translate}}</ion-title>
     <ion-buttons slot="end">
-      <ion-button (click)="onAddBooking()">
-        <ion-icon name="add-outline"></ion-icon>
+      <ion-button (click)="addBooking()">
+        <ion-icon slot="icon-only" name="add-outline"></ion-icon>
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
@@ -15,51 +15,25 @@
 <ion-content>
   <ion-grid>
     <ion-row>
-      <ion-col
-        size="12"
-        size-md="6"
-        *ngFor="let booking of bookings$ | async; let i = index"
-      >
-        <ion-card>
-          <ion-card-header>
-            <ion-card-title>
-              {{ flightsMap[booking.flightId]?.origin }} → {{ flightsMap[booking.flightId]?.destination }}
-            </ion-card-title>
-          </ion-card-header>
-          <ion-card-content>
-            <p>
-              <strong>User:</strong>
-              {{ usersMap[booking.userAppId]?.name }} {{ usersMap[booking.userAppId]?.surname }}
-            </p>
-            <p>
-              <strong>Flight:</strong>
-              {{ flightsMap[booking.flightId]?.departureDate | date: 'short' }} -
-              {{ flightsMap[booking.flightId]?.arrivalDate | date: 'short' }}
-            </p>
-            <p><strong>Price:</strong> {{ flightsMap[booking.flightId]?.seatPrice | currency }}</p>
-            <div class="booking-actions">
-              <ion-button
-                color="primary"
-                fill="clear"
-                (click)="onEditBooking(booking)"
-              >
-                <ion-icon name="create-outline"></ion-icon>
-              </ion-button>
-              <ion-button
-                color="danger"
-                fill="clear"
-                (click)="onDeleteBooking(booking)"
-              >
-                <ion-icon name="trash-outline"></ion-icon>
-              </ion-button>
-            </div>
-          </ion-card-content>
-        </ion-card>
+      <ion-col size="12" size-md="6" *ngFor="let booking of bookings$ | async">
+        <div class="booking-card">
+          <h2>
+            {{ booking.bookingState ? ('BOOKING.ACTIVE' | translate) : ('BOOKING.INACTIVE' | translate) }}
+            <span [appBookingState]="booking.bookingState"></span>
+          </h2>
+          <h3>{{'BOOKING.FLIGHT' | translate}}: {{ flightsMap[booking.flightId].origin }} - {{ flightsMap[booking.flightId].destination }}</h3>
+          <h3>{{'BOOKING.DATE' | translate}}: {{ flightsMap[booking.flightId].departureDate | localizedDate: currentLocale }} - {{ flightsMap[booking.flightId].arrivalDate | localizedDate: currentLocale }}</h3>
+          <h3>{{'BOOKING.PRICE' | translate}}: {{ flightsMap[booking.flightId].seatPrice | localizedCurrency: currentLocale }}</h3>
+          <div class="booking-card-buttons">
+            <ion-button class="edit-button" (click)="editBooking(booking)">
+              <ion-icon name="create-outline"></ion-icon> {{'BOOKING.EDIT_TITLE' | translate}}
+            </ion-button>
+            <ion-button class="delete-button" color="danger" (click)="deleteBooking(booking)">
+              <ion-icon name="trash-outline"></ion-icon> {{'BOOKING.DELETE' | translate}}
+            </ion-button>
+          </div>
+        </div>
       </ion-col>
     </ion-row>
   </ion-grid>
-
-  <ion-infinite-scroll (ionInfinite)="onIonInfinite($event)">
-    <ion-infinite-scroll-content></ion-infinite-scroll-content>
-  </ion-infinite-scroll>
 </ion-content>

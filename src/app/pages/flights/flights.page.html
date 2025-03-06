@@ -1,44 +1,42 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
+  <ion-toolbar color="primary">
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title>Flights</ion-title>
+    <ion-title class="header-title">{{ 'FLIGHT.TITLE' | translate }}</ion-title>
     <ion-buttons slot="end">
-      <ion-button (click)="onAddFlight()">
+      <ion-button class="add-button" (click)="onAddFlight()">
         <ion-icon slot="icon-only" name="add-outline"></ion-icon>
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Flights</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <div class="flight-container">
-    <ion-card *ngFor="let flight of flights$ | async" class="flight-card">
+<ion-content>
+  <div class="flight-grid">
+    <ion-card class="flight-card" *ngFor="let flight of flights$ | async">
       <ion-card-header>
         <ion-card-title>
-          {{ flight.origin }} → {{ flight.destination }}
+          <span class="flight-origin">{{ flight.origin }}</span>
+          <span> → </span>
+          <span class="flight-destination">{{ flight.destination }}</span>
         </ion-card-title>
       </ion-card-header>
       <ion-card-content>
-        <p><strong>Departure:</strong> {{ flight.departureDate | date:'short' }}</p>
-        <p><strong>Arrival:</strong> {{ flight.arrivalDate | date:'short' }}</p>
-        <p><strong>Price:</strong> {{ flight.seatPrice | currency:'USD' }}</p>
-        <ion-buttons>
-          <ion-button color="primary" (click)="onEditFlight(flight)">
-            <ion-icon name="create-outline" slot="icon-only"></ion-icon>
-          </ion-button>
-          <ion-button color="danger" (click)="onDeleteFlight(flight)">
-            <ion-icon name="trash-outline" slot="icon-only"></ion-icon>
-          </ion-button>
-        </ion-buttons>
+        <p>{{ 'FLIGHT.DEPARTURE_TITLE' | translate }}: {{ flight.departureDate | localizedDate: currentLocale }}</p>
+        <p>{{ 'FLIGHT.ARRIVAL_TITLE' | translate }}: {{ flight.arrivalDate | localizedDate: currentLocale }}</p>
+        <p>{{ 'FLIGHT.PRICE' | translate }}: {{ flight.seatPrice | localizedCurrency: currentLocale }}</p>
       </ion-card-content>
+      <ion-card-footer>
+        <div class="flight-card-buttons">
+          <ion-button class="edit-button" (click)="onEditFlight(flight)">
+            <ion-icon slot="icon-only" name="create-outline"></ion-icon> {{ 'FLIGHT.EDIT_TITLE' | translate }}
+          </ion-button>
+          <ion-button class="delete-button" color="danger" (click)="onDeleteFlight(flight)">
+            <ion-icon slot="icon-only" name="trash-outline"></ion-icon> {{ 'FLIGHT.DELETE' | translate }}
+          </ion-button>
+        </div>
+      </ion-card-footer>
     </ion-card>
   </div>
 

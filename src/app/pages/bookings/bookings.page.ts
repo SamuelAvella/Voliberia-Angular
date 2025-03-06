@@ -1,14 +1,14 @@
-import { Component, OnInit } from "@angular/core";
-import { AlertController, InfiniteScrollCustomEvent, ModalController, Platform } from "@ionic/angular";
-import { BehaviorSubject, catchError, forkJoin, map, Observable, of } from "rxjs";
-import { Booking } from "src/app/core/models/booking.model";
-import { Flight } from "src/app/core/models/flight.model";
-import { Paginated } from "src/app/core/models/paginated.model";
-import { UserApp } from "src/app/core/models/userApp.model";
-import { BookingsService } from "src/app/core/services/impl/bookings.service";
-import { FlightsService } from "src/app/core/services/impl/flights.service";
-import { UsersAppService } from "src/app/core/services/impl/usersApp.service";
-import { BookingModalComponent } from "src/app/shared/components/booking-modal/booking-modal.component";
+import { Component, OnInit } from '@angular/core';
+import { AlertController, ModalController } from '@ionic/angular';
+import { TranslateService } from '@ngx-translate/core';
+import { BehaviorSubject, Observable, of } from 'rxjs';
+import { catchError, finalize } from 'rxjs/operators';
+import { Booking } from 'src/app/core/models/booking.model';
+import { Flight } from 'src/app/core/models/flight.model';
+import { Paginated } from 'src/app/core/models/paginated.model';
+import { BookingsService } from 'src/app/core/services/impl/bookings.service';
+import { FlightsService } from 'src/app/core/services/impl/flights.service';
+import { BookingModalComponent } from 'src/app/shared/components/booking-modal/booking-modal.component';
 
 @Component({
   selector: 'app-bookings',
@@ -16,123 +16,141 @@ import { BookingModalComponent } from "src/app/shared/components/booking-modal/b
   styleUrls: ['./bookings.page.scss'],
 })
 export class BookingsPage implements OnInit {
-  private _bookings: BehaviorSubject<Booking[]> = new BehaviorSubject<Booking[]>([]);
+  private _bookings = new BehaviorSubject<Booking[]>([]);
   bookings$: Observable<Booking[]> = this._bookings.asObservable();
   flightsMap: { [flightId: string]: Flight } = {};
-  usersMap: { [userAppId: string]: { name: string; surname: string } } = {};
+  private page: number = 1;
+  private readonly pageSize: number = 25;
+  private loading: boolean = false;
 
-  page: number = 1;
-  pageSize: number = 25;
+  currentLocale: string;
 
   constructor(
     private bookingsSvc: BookingsService,
     private flightsSvc: FlightsService,
-    private usersAppSvc: UsersAppService,
     private modalCtrl: ModalController,
     private alertCtrl: AlertController,
-    private platform: Platform
-  ) {}
+    private translateService: TranslateService
+  ) {
+    this.currentLocale = this.translateService.currentLang || 'en-US';
+    this.translateService.onLangChange.subscribe((event) => {
+      this.currentLocale = event.lang; 
+    });
+  }
 
   ngOnInit(): void {
+    this.loadAllFlights(); 
     this.loadBookings();
   }
 
-  loadBookings(): void {
-    this.page = 1;
-    this.bookingsSvc.getAll(this.page, this.pageSize).subscribe({
-      next: (response: Paginated<Booking>) => {
-        this._bookings.next([...response.data]);
-        this.loadFlightsForBookings(response.data);
-        this.loadUsersForBookings(response.data);
-      },
-      error: (err) => console.error('Error loading bookings:', err),
-    });
+  loadBookings(notify: HTMLIonInfiniteScrollElement | null = null): void {
+    if (this.loading) return; // Evitar solicitudes múltiples simultáneamente
+    this.loading = true;
+
+    this.bookingsSvc
+      .getAll(this.page, this.pageSize)
+      .pipe(finalize(() => (this.loading = false)))
+      .subscribe({
+        next: (response: Paginated<Booking>) => {
+          const currentBookings = this._bookings.value;
+          const allBookings = [...currentBookings, ...response.data];
+
+          this.loadFlightsForBookings(response.data).then( () => {
+            const sortedBookings = allBookings.sort((a, b) => {
+              const flightA = this.flightsMap[a.flightId]?.origin || '';
+              const flightB = this.flightsMap[b.flightId]?.origin || '';
+              return flightA.localeCompare(flightB);
+            });
+            this._bookings.next(sortedBookings);
+          });
+          this.page++;
+          notify?.complete();
+        },
+        error: (err) => {
+          console.error('Error loading bookings:', err);
+          notify?.complete();
+        },
+      });
   }
 
-  private loadFlightsForBookings(bookings: Booking[]): void {
+  private async loadFlightsForBookings(bookings: Booking[]): Promise<void> {
     const missingFlightIds = bookings
       .map((b) => b.flightId)
-      .filter((id) => id && !this.flightsMap[id]);
-
+      .filter((fId) => fId && !this.flightsMap[fId]);
+  
     if (missingFlightIds.length === 0) return;
-
-    forkJoin(
-      missingFlightIds.map((id) =>
-        this.flightsSvc.getById(id).pipe(
-          catchError((err) => {
-            console.error(`Error fetching flight with ID ${id}:`, err);
-            return of(null);
-          })
-        )
-      )
-    ).subscribe({
-      next: (flights) => {
-        flights.filter((flight): flight is Flight => !!flight).forEach((flight) => {
+  
+    const flightRequests = missingFlightIds.map((fId) =>
+      this.flightsSvc.getById(fId).pipe(
+        // Atrapar errores y devolver null para vuelos fallidos
+        catchError(() => of(null))
+      ).toPromise()
+    );
+  
+    try {
+      const flights = await Promise.all(flightRequests);
+      flights.forEach((flight) => {
+        if (flight) {
+          this.flightsMap[flight.id] = flight;
+        }
+      });
+    } catch (err) {
+      console.error('Error loading flights:', err);
+    }
+  }
+  
+  private loadAllFlights(): void {
+    this.flightsSvc.getAll(1, 1000).subscribe({
+      next: (response: Paginated<Flight>) => {
+        response.data.forEach((flight) => {
           this.flightsMap[flight.id] = flight;
         });
       },
+      error: (err) => console.error('Error loading all flights:', err),
     });
   }
 
-  private loadUsersForBookings(bookings: Booking[]): void {
-    const missingUserIds = bookings
-      .map((b) => b.userAppId)
-      .filter((uId) => uId && !this.usersMap[uId]);
-  
-    if (missingUserIds.length === 0) return;
-  
-    const userRequests = missingUserIds.map((uId) =>
-      this.usersAppSvc.getById(uId).pipe(
-        catchError((err) => {
-          console.error(`Error fetching user with ID ${uId}:`, err);
-          return of(null);
-        })
-      )
-    );
-  
-    forkJoin(userRequests).subscribe({
-      next: (users) => {
-        users
-          .filter((user): user is UserApp => !!user)
-          .forEach((user) => {
-            this.usersMap[user.id] = { name: user.name, surname: user.surname };
-          });
+  async addBooking(): Promise<void> {
+    const modal = await this.modalCtrl.create({
+      component: BookingModalComponent,
+      componentProps: {
+        flights: Object.values(this.flightsMap), // Pasar todos los vuelos
       },
-      error: (err) => console.error('Error loading users:', err),
     });
+  
+    await modal.present();
+    const { data } = await modal.onDidDismiss();
+  
+    if (data) {
+      this.bookingsSvc.add(data).subscribe({
+        next: () => this.refreshBookings(),
+        error: (err) => console.error('Error adding booking:', err),
+      });
+    }
+  }
+  
+  async editBooking(booking: Booking): Promise<void> {
+    const modal = await this.modalCtrl.create({
+      component: BookingModalComponent,
+      componentProps: {
+        booking,
+        flights: Object.values(this.flightsMap), // Pasar todos los vuelos
+      },
+    });
+  
+    await modal.present();
+    const { data } = await modal.onDidDismiss();
+  
+    if (data) {
+      this.bookingsSvc.update(booking.id, data).subscribe({
+        next: () => this.refreshBookings(),
+        error: (err) => console.error('Error updating booking:', err),
+      });
+    }
   }
   
 
-  async onAddBooking(): Promise<void> {
-    const modal = await this.modalCtrl.create({
-      component: BookingModalComponent,
-    });
-
-    modal.onDidDismiss().then((result) => {
-      if (result.data) {
-        this.bookingsSvc.add(result.data).subscribe(() => this.loadBookings());
-      }
-    });
-
-    await modal.present();
-  }
-
-  async onEditBooking(booking: Booking): Promise<void> {
-    const modal = await this.modalCtrl.create({
-      component: BookingModalComponent,
-      componentProps: { booking },
-    });
-
-    modal.onDidDismiss().then((result) => {
-      if (result.data) {
-        this.bookingsSvc.update(booking.id, result.data).subscribe(() => this.loadBookings());
-      }
-    });
-
-    await modal.present();
-  }
-
-  async onDeleteBooking(booking: Booking): Promise<void> {
+  async deleteBooking(booking: Booking): Promise<void> {
     const alert = await this.alertCtrl.create({
       header: 'Confirm Deletion',
       message: 'Are you sure you want to delete this booking?',
@@ -145,7 +163,15 @@ export class BookingsPage implements OnInit {
           text: 'Delete',
           role: 'destructive',
           handler: () => {
-            this.bookingsSvc.delete(booking.id).subscribe(() => this.loadBookings());
+            this.bookingsSvc.delete(booking.id).subscribe({
+              next: () => {
+                this._bookings.next(
+                  this._bookings.value.filter((b) => b.id !== booking.id)
+                );
+                this.refreshBookings();//TODO : probar llamado a refresh para que carguen bien las reservas
+              },
+              error: (err) => console.error('Error deleting booking:', err),
+            });
           },
         },
       ],
@@ -154,13 +180,13 @@ export class BookingsPage implements OnInit {
     await alert.present();
   }
 
-  onIonInfinite(event: InfiniteScrollCustomEvent): void {
-    this.bookingsSvc.getAll(this.page, this.pageSize).subscribe({
-      next: (response: Paginated<Booking>) => {
-        this._bookings.next([...this._bookings.value, ...response.data]);
-        event.target.complete();
-      },
-      error: () => event.target.complete(),
-    });
+  refreshBookings(): void {
+    this.page = 1;
+    this._bookings.next([]);
+    this.loadBookings();
+  }
+
+  onIonInfinite(ev: any) {
+    this.loadBookings(ev.target);
   }
 }

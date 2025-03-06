@@ -1,0 +1,64 @@
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Dos columnas por defecto */
+    gap: 1rem; /* Espaciado entre las tarjetas */
+    padding: 1rem;
+  }
+  
+  .home-card {
+    margin: 1rem;
+    padding: 1rem;
+    border-radius: 12px;
+    background-color: #007bff; /* Azul corporativo */
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    cursor: pointer;
+  }
+  
+  .home-card:hover {
+    transform: translateY(-5px); /* Eleva la tarjeta al pasar el mouse */
+    box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.2); /* Sombra más intensa */
+  }
+  
+  .home-card ion-card-header {
+    font-weight: bold;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+  }
+  
+  .home-card ion-card-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-align: center;
+  }
+  
+  
+  .home-card ion-card-content {
+        font-size: 1rem;
+        text-align: center;
+    }
+
+    .header-title {
+        color: white; /* Color del título */
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+  ion-button {
+    --background: white; /* Fondo blanco */
+    --color: #007bff; /* Texto azul */
+    --border-radius: 8px;
+    --padding-start: 1rem;
+    --padding-end: 1rem;
+    --transition: all 0.3s ease;
+    font-weight: bold;
+  }
+  @media (max-width: 768px) {
+    .card-grid {
+      grid-template-columns: 1fr; /* Una columna en pantallas pequeñas */
+    }
+  }
+  

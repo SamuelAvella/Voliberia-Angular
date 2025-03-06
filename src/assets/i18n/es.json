@@ -1,19 +1,21 @@
 {
   "COMMON": {
-    "LANGUAGE": "Language",
-    "SPANISH": "Spanish",
-    "ENGLISH": "English",
+    "LANGUAGE": "Idioma",
+    "SPANISH": "Español",
+    "ENGLISH": "Inglés",
     "ERROR": {
-      "LOAD": "Error loading data",
-      "SAVE": "Error saving changes"
+      "LOAD": "Error cargando datos",
+      "SAVE": "Error guardando datos"
     },
     "SUCCESS": {
-      "SAVE": "Changes saved successfully"
+      "SAVE": "Cambios guardados correctamente"
     }
   },
 
   "MENU": {
+    "MENU": "Menú",
     "TITLE": "Voliberia",
+    "GREETING": "Hola",
     "DESCRIPTION": "Gestión de vuelos",
     "LANGUAGE": "Idioma",
     "LOGOUT": "Cerrar sesión",
@@ -22,7 +24,119 @@
       "HOME": "Inicio",
       "FLIGHTS": "Vuelos",
       "BOOKINGS": "Reservas",
-      "PROFILE": "Perfil"
+      "PROFILE": "Perfil",
+      "ABOUT": "Sobre creador"
+    }
+  },
+
+  "HOME": {
+    "TITLE": "INICIO",
+    "FLIGHTS": "VUELOS",
+    "FLIGHTS_DESC": "Consulta, edita y crea los vuelos",
+    "BOOKINGS": "RESERVAS",
+    "BOOKINGS_DESC": "Revisa, administra y añade reserva de vuelos"
+  },
+
+  "FLIGHT":{
+    "TITLE": "Vuelos",
+    "USER": "Reservado por",
+    "ORIGIN": "Origen",
+    "ORIGIN_INSERT": "Introduce el origen",
+    "DESTINATION": "Destino",
+    "DESTINATION_INSERT": "Introduce el destino",
+    "DEPARTURE_TITLE": "Salida",
+    "DEPARTURE": "Elige la fecha de salida",
+    "DEPARTURE_ERROR": "La fecha de salida debe ser posterior a hoy",
+    "ARRIVAL_TITLE": "Llegada",
+    "ARRIVAL": "Elige la fecha de llegada", 
+    "ARRIVAL_ERROR_DATE": "La fecha de llegada debe ser posterior a la de salida",
+    "ARRIVAL_ERROR_MINUTES": "Debe llegar mínimo 40 minutos más tarde",
+    "PRICE": "Precio",
+    "EDIT_TITLE": "Editar",
+    "EDIT": "Editar detalles del vuelo",
+    "NEW": "Nuevo vuelo",
+    "CREATE": "Crear",
+    "SAVE": "Guardar",
+    "CONFIRM_DELETION": "Confirmar eliminarción",
+    "DELETION_TEXT": "¿Estas seguro que deseas eliminar este vuelo y sus reservas?",
+    "CANCEL" : "Cancelar",
+    "DELETE" : "Eliminar"
+  },
+
+  "BOOKING": {
+    "TITLE": "RESERVAS",
+    "FLIGHT": "Vuelo",
+    "SELECT": "Selecciona un vuelo",
+    "DATE": "Fecha",
+    "PRICE": "Precio",
+    "STATE": "Estado reserva",
+    "ACTIVE": "ACTIVA",
+    "INACTIVE": "INACTIVA",
+    "EDIT_TITLE": "Editar",
+    "EDIT": "Editar detalles de la reserva",
+    "NEW": "Nueva reserva",
+    "CREATE": "Crear",
+    "SAVE": "Guardar cambios",
+    "CONFIRM_DELETION": "Confirmar eliminación",
+    "DELETION_TEXT": "¿Estás seguro de que deseas eliminar esta reserva?",
+    "CANCEL": "Cancelar",
+    "DELETE": "Eliminar"
+  },
+
+  "FLIGHT_SELECTABLE": {
+    "SELECT_FLIGHT": "Seleccione un vuelo",
+    "NONE": "Ninguno",
+    "SEARCH": "Buscar"
+  },
+
+  "PROFILE": {
+    "TITLE": "Perfil",
+    "PERSONAL_INFO": "Tu Información Personal",
+    "FIELDS": {
+      "NAME": "Nombre",
+      "SURNAME": "Apellido",
+      "EMAIL": "Correo electrónico"
+    },
+    "ERRORS": {
+      "NAME_REQUIRED": "El nombre es obligatorio",
+      "NAME_MINLENGTH": "El nombre debe tener al menos 2 caracteres",
+      "SURNAME_REQUIRED": "El apellido es obligatorio",
+      "SURNAME_MINLENGTH": "El apellido debe tener al menos 2 caracteres",
+      "EMAIL_REQUIRED": "El correo electrónico es obligatorio",
+      "EMAIL_INVALID": "Por favor, introduce un correo electrónico válido",
+      "EMAIL_CANNOT_BE_CHANGED": "El correo electrónico no se puede cambiar porque está vinculado a tu método de autenticación"
+    },
+    "BUTTONS": {
+      "UPDATE": "Actualizar"
+    }
+    
+  },
+
+  "PICTURE":{
+    "OPTIONS": {
+      "TAKE_PHOTO": "Tomar foto",
+      "SELECT_FROM_GALLERY": "Seleccionar de galería",
+      "CANCEL": "Cancelar"
+    }
+  },
+
+  "ABOUT": {
+    "TITLE": "Acerca de",
+    "APP_INFO": {
+      "TITLE": "Acerca de esta app",
+      "NAME": "Nombre",
+      "CREATION_DATE": "Fecha de creación",
+      "DESCRIPTION": "Descripción",
+      "DESCRIPTION_TEXT": "Esta app fue creada para gestionar vuelos y reservas para la aerolínea Voliberia."
+    },
+    "ADDITIONAL_INFO": {
+      "TITLE": "Información adicional",
+      "INTRODUCTION": "Mi nombre es Samuel Avella Pérez, soy estudiante de Desarrollo de Aplicaciones Multiplataforma. Creé esta aplicación motivado por mi pasión por viajar y con el objetivo de facilitar la gestión de vuelos y reservas para la aerolínea Voliberia.",
+      "CONTACT": "Contacto",
+      "CONTACT_TEXT": "Puedes contactarme en:",
+      "LINKEDIN": "LinkedIn"
     }
   }
+  
+
 } 

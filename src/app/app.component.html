@@ -2,30 +2,34 @@
   <ion-menu #menu menuId="mainMenu" contentId="main-content" type="overlay">
     <ion-header>
       <ion-toolbar color="primary">
-        <ion-title>{{ 'MENU.TITLE' | translate }}</ion-title>
+        <ion-title>{{ 'MENU.MENU' | translate }}</ion-title>
       </ion-toolbar>
     </ion-header>
 
     <ion-content>
       <ion-list id="inbox-list">
-        <!-- Logo o encabezado -->
+
+        <!-- Logo and current user -->
         <ion-item lines="none">
           <ion-avatar slot="start">
-            <img src="src/app/assets/img/logo.png" alt="{{ 'MENU.TITLE' | translate }}" />
+            <img src="https://i.ibb.co/W27FPk3/logo.png" alt="{{ 'MENU.TITLE' | translate }}" />
           </ion-avatar>
           <ion-label>
             <h2 class="ion-text-uppercase">{{ 'MENU.TITLE' | translate }}</h2>
-            <p>{{ 'MENU.DESCRIPTION' | translate }}</p>
+            <p *ngIf="userApp">
+              {{ 'MENU.GREETING' | translate}} {{ userApp.name }}
+            </p>
           </ion-label>
         </ion-item>
+        
 
-        <!-- Selector de idioma con popover -->
-        <ion-item lines="full" (click)="openLanguageSelector($event)">
+        <!-- Language selector with a popover, a modal -->
+        <ion-item button lines="none" (click)="openLanguageSelector($event)">
           <ion-icon slot="start" name="language-outline"></ion-icon>
           <ion-label>{{ 'MENU.LANGUAGE' | translate }}</ion-label>
         </ion-item>
 
-        <!-- Opciones del menú -->
+        <!-- Menu options -->
         <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages">
           <ion-item routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false" routerLinkActive="selected">
             <ion-icon aria-hidden="true" slot="start" [ios]="p.icon + '-outline'" [md]="p.icon + '-sharp'"></ion-icon>
@@ -34,7 +38,7 @@
         </ion-menu-toggle>
 
         <!-- Logout -->
-        <ion-item lines="none" button (click)="logout()">
+        <ion-item (click)="menu.close()" lines="none" button (click)="logout()">
           <ion-icon aria-hidden="true" slot="start" ios="log-out-outline" md="log-out-sharp"></ion-icon>
           <ion-label>{{ 'MENU.LOGOUT' | translate }}</ion-label>
         </ion-item>

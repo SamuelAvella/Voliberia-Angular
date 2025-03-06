@@ -14,6 +14,8 @@ import { matchPasswordsValidator, passwordValidator } from 'src/app/core/utils/v
 export class RegisterPage{
 
   registerForm: FormGroup;
+  passwordVisible = false; 
+  confirmPasswordVisible = false;
 
   constructor(
     private fb: FormBuilder,
@@ -64,6 +66,14 @@ export class RegisterPage{
     this.router.navigate(['/login'], {queryParams:{ returnUrl:returnUrl}, replaceUrl:true});
   }
 
+  togglePasswordVisibility() {
+    this.passwordVisible = !this.passwordVisible;
+  }
+
+  toggleConfirmPasswordVisibility() {
+    this.confirmPasswordVisible = !this.confirmPasswordVisible;
+  }
+  
   get name(){
     return this.registerForm.controls['name'];
   }

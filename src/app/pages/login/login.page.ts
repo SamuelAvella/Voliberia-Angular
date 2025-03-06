@@ -10,6 +10,7 @@ import { BaseAuthenticationService } from 'src/app/core/services/impl/base-authe
 })
 export class LoginPage {
   loginForm: FormGroup;
+  passwordVisible: boolean = false;
 
   constructor(
     private fb: FormBuilder,
@@ -23,6 +24,10 @@ export class LoginPage {
     });
   }
 
+  togglePasswordVisibility(): void {
+    this.passwordVisible = !this.passwordVisible;
+  }
+  
   onSubmit() {
     if (this.loginForm.valid) {
       this.authSvc.signIn(this.loginForm.value).subscribe({
