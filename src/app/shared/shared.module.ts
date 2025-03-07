@@ -50,6 +50,7 @@ import { BookingStatusDirective } from "./directives/booking-status.directive";
         LocalizedDatePipe,
         PictureSelectableComponent,
         TogglePasswordPipe,
+        TranslateModule
     ]
 })
 export class SharedModule{}

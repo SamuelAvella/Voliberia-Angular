@@ -11,6 +11,8 @@ import { BaseAuthenticationService } from 'src/app/core/services/impl/base-authe
 export class LoginPage {
   loginForm: FormGroup;
   passwordVisible: boolean = false;
+  errorMessage: string | null = null;
+
 
   constructor(
     private fb: FormBuilder,
@@ -37,6 +39,11 @@ export class LoginPage {
         },
         error: err=>{
           console.log(err);
+          if (err.status === 400 && err.error?.error?.message) {
+            this.errorMessage = "Credential invalids";
+          } else {
+            this.errorMessage = "Invalid credentials";
+          }
         }
       });
       
@@ -63,4 +70,3 @@ export class LoginPage {
     return this.loginForm.controls['password'];
   }
 }
-

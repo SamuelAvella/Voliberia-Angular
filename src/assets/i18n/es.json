@@ -12,6 +12,49 @@
     }
   },
 
+  
+    "REGISTER": {
+      "TITLE": "Crear una cuenta",
+      "HAVE_ACCOUNT": "¿Tienes una cuenta?",
+      "LOGIN": "Inicia sesión",
+      "NAME": "Nombre",
+      "SURNAME": "Apellidos",
+      "EMAIL": "Correo electrónico",
+      "PASSWORD": "Contraseña",
+      "CONFIRM_PASSWORD": "Repita contraseña",
+      "ERRORS": {
+        "NAME_REQUIRED": "Debe introducir su nombre",
+        "NAME_MINLENGTH": "El nombre debe tener al menos dos caracteres",
+        "SURNAME_REQUIRED": "Debe introducir su/s apellido/s",
+        "SURNAME_MINLENGTH": "Su/s apellido/s debe/n tener al menos dos caracteres",
+        "EMAIL_REQUIRED": "Debe introducir un correo electrónico",
+        "EMAIL_INVALID": "Debe introducir un correo electrónico válido",
+        "PASSWORD_REQUIRED": "Debe introducir una contraseña",
+        "PASSWORD_WEAK": "Al menos 10 caracteres, una mayúscula, un número y un carácter especial.",
+        "PASSWORDS_MISMATCH": "Las contraseñas no coinciden",
+        "EMAIL_IN_USE": "Este correo ya está en uso. Intenta con otro.",
+        "GENERAL_ERROR": "Ocurrió un error. Inténtelo de nuevo más tarde."
+      },
+      "SUBMIT": "Crear cuenta"
+    },
+  
+    "LOGIN": {
+      "TITLE": "Inicia sesión en Voliberia",
+      "EMAIL": "Correo electrónico",
+      "PASSWORD": "Contraseña",
+      "SHOW_PASSWORD": "Mostrar contraseña",
+      "HIDE_PASSWORD": "Ocultar contraseña",
+      "ERRORS": {
+        "EMAIL_REQUIRED": "Debe introducir un correo electrónico",
+        "EMAIL_INVALID": "Debe introducir un correo electrónico válido",
+        "PASSWORD_REQUIRED": "Debe introducir una contraseña",
+        "INVALID_CREDENTIALS": "Correo o contraseña incorrectos. Inténtalo de nuevo."
+      },
+      "SUBMIT": "Iniciar Sesión",
+      "NO_ACCOUNT": "¿No tienes cuenta?",
+      "REGISTER": "Regístrate"
+    },
+  
   "MENU": {
     "MENU": "Menú",
     "TITLE": "Voliberia",
@@ -139,4 +182,4 @@
   }
   
 
-} 
+}

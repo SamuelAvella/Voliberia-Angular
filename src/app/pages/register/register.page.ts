@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import { User } from 'src/app/core/models/auth.model';
 import { BaseAuthenticationService } from 'src/app/core/services/impl/base-authentication.service';
 import { UsersAppService } from 'src/app/core/services/impl/usersApp.service';
@@ -22,7 +23,8 @@ export class RegisterPage{
     private router: Router,
     private route:ActivatedRoute,
     private authSvc:BaseAuthenticationService,
-    private userAppSvc:UsersAppService
+    private userAppSvc:UsersAppService,
+    private translateService: TranslateService
   ) {
     this.registerForm = this.fb.group({
       name: ['', [Validators.required, Validators.minLength(2)]],
@@ -32,6 +34,7 @@ export class RegisterPage{
       confirmPassword: ['', [Validators.required]]
     },
     { validators: matchPasswordsValidator });
+    
   }
 
   onSubmit() {

@@ -1,3 +1,4 @@
+
 <input type="file" #fileLoader accept="image/png, image/gif, image/jpeg" hidden>
 <div class="user-picture" id="picture">
   <ng-container *ngIf="hasValue">
@@ -20,7 +21,7 @@
       class="change-picture-btn"
       expand="full" 
       (click)="presentPictureOptions($event, fileLoader)">
-        <ion-icon slot="icon-only" name="camera"></ion-icon>
+        <ion-icon slot="icon-only" name="image"></ion-icon>
     </ion-button>
     <ion-button *ngIf="!isDisabled"
       class="delete-picture-btn"
