@@ -48,8 +48,11 @@ import { IBaseMapping } from "./interfaces/base-mapping.interface";
 //Tokens
 import { IAuthentication } from "../services/interfaces/authentication.interface";
 
-import { AUTH_MAPPING_TOKEN, AUTH_ME_API_URL_TOKEN, AUTH_SIGN_IN_API_URL_TOKEN, AUTH_SIGN_UP_API_URL_TOKEN, BACKEND_TOKEN, BOOKINGS_API_URL_TOKEN, BOOKINGS_REPOSITORY_MAPPING_TOKEN, BOOKINGS_REPOSITORY_TOKEN, BOOKINGS_RESOURCE_NAME_TOKEN, FLIGHTS_API_URL_TOKEN, FLIGHTS_REPOSITORY_MAPPING_TOKEN, FLIGHTS_REPOSITORY_TOKEN, FLIGHTS_RESOURCE_NAME_TOKEN, UPLOAD_API_URL_TOKEN, USERSAPP_API_URL_TOKEN, USERSAPP_REPOSITORY_MAPPING_TOKEN, USERSAPP_REPOSITORY_TOKEN, USERSAPP_RESOURCE_NAME_TOKEN, FIREBASE_CONFIG_TOKEN } from "./repository.token";
+import { AUTH_MAPPING_TOKEN, AUTH_ME_API_URL_TOKEN, AUTH_SIGN_IN_API_URL_TOKEN, AUTH_SIGN_UP_API_URL_TOKEN, BACKEND_TOKEN, BOOKINGS_API_URL_TOKEN, BOOKINGS_REPOSITORY_MAPPING_TOKEN, BOOKINGS_REPOSITORY_TOKEN, BOOKINGS_RESOURCE_NAME_TOKEN, FLIGHTS_API_URL_TOKEN, FLIGHTS_REPOSITORY_MAPPING_TOKEN, FLIGHTS_REPOSITORY_TOKEN, FLIGHTS_RESOURCE_NAME_TOKEN, UPLOAD_API_URL_TOKEN, USERSAPP_API_URL_TOKEN, USERSAPP_REPOSITORY_MAPPING_TOKEN, USERSAPP_REPOSITORY_TOKEN, USERSAPP_RESOURCE_NAME_TOKEN, FIREBASE_CONFIG_TOKEN, FLIGHTS_COLLECTION_SUBSCRIPTION_TOKEN, BOOKINGS_COLLECTION_SUBSCRIPTION_TOKEN } from "./repository.token";
 import { collection } from "firebase/firestore";
+import { FirebaseCollectionSubscriptionService } from '../services/impl/firebase-collection-subscription.service';
+import { ICollectionSubscription } from '../services/interfaces/collection-subscription.interface';
+
 
 export function createBaseRepositoryFactory<T extends Model>(
     token: InjectionToken<IBaseRepository<T>>,
@@ -242,3 +245,34 @@ export const FlightsRepositoryFactory: FactoryProvider = createBaseRepositoryFac
     ]
 );
 
+export function createCollectionSubscriptionFactory<T extends Model>(
+  collectionName: string,
+  mappingToken: InjectionToken<IBaseMapping<T>>,
+  collectionSubscriptionToken: InjectionToken<ICollectionSubscription<T>>
+): FactoryProvider {
+  return {
+    provide: collectionSubscriptionToken,
+    useFactory: (backend: string, firebaseConfig: any, mapping: IBaseMapping<T>) => {
+      switch (backend) {
+        case 'firebase':
+          return new FirebaseCollectionSubscriptionService<T>(firebaseConfig, mapping);
+        default:
+          throw new Error("BACKEND NOT IMPLEMENTED");
+      }
+    },
+    deps: [BACKEND_TOKEN, FIREBASE_CONFIG_TOKEN, mappingToken]
+  };
+}
+
+// Factorías específicas para cada tipo
+export const FlightsCollectionSubscriptionFactory = createCollectionSubscriptionFactory<Flight>(
+  'fligths',
+  FLIGHTS_REPOSITORY_MAPPING_TOKEN,
+  FLIGHTS_COLLECTION_SUBSCRIPTION_TOKEN
+);
+
+export const BookingsCollectionSubscriptionFactory = createCollectionSubscriptionFactory<Booking>(
+  'bookings',
+  BOOKINGS_REPOSITORY_MAPPING_TOKEN,
+  BOOKINGS_COLLECTION_SUBSCRIPTION_TOKEN
+);

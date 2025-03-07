@@ -26,7 +26,7 @@ import { StrapiAuthenticationService } from './core/services/impl/strapi-authent
 
 //Factory
 import { AuthenticationServiceFactory, AuthMappingFactory, BookingsMappingFactory, BookingsRepositoryFactory, FlightsRepositoryFactory, FlightsMappingFactory, MediaServiceFactory, UsersAppMappingFactory, UsersAppRepositoryFactory } from './core/repositories/repository.factory';
-
+import { FlightsCollectionSubscriptionFactory, BookingsCollectionSubscriptionFactory } from './core/repositories/repository.factory';
 // Factory function para el loader de traducción
 export function createTranslateLoader(http: HttpClient){
   return new TranslateHttpLoader(http, './assets/i18n/', '.json')
@@ -111,6 +111,8 @@ export function createTranslateLoader(http: HttpClient){
     
     AuthenticationServiceFactory,
     MediaServiceFactory,
+    FlightsCollectionSubscriptionFactory,
+    BookingsCollectionSubscriptionFactory
 
     // ... other providers],
   ],

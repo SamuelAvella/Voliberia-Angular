@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { AlertController, ModalController } from '@ionic/angular';
 import { TranslateService } from '@ngx-translate/core';
 import { BehaviorSubject, Observable, of } from 'rxjs';
@@ -6,8 +6,10 @@ import { catchError, finalize } from 'rxjs/operators';
 import { Booking } from 'src/app/core/models/booking.model';
 import { Flight } from 'src/app/core/models/flight.model';
 import { Paginated } from 'src/app/core/models/paginated.model';
+import { BOOKINGS_COLLECTION_SUBSCRIPTION_TOKEN, FLIGHTS_COLLECTION_SUBSCRIPTION_TOKEN } from 'src/app/core/repositories/repository.token';
 import { BookingsService } from 'src/app/core/services/impl/bookings.service';
 import { FlightsService } from 'src/app/core/services/impl/flights.service';
+import { CollectionChange, ICollectionSubscription } from 'src/app/core/services/interfaces/collection-subscription.interface';
 import { BookingModalComponent } from 'src/app/shared/components/booking-modal/booking-modal.component';
 
 @Component({
@@ -18,19 +20,30 @@ import { BookingModalComponent } from 'src/app/shared/components/booking-modal/b
 export class BookingsPage implements OnInit {
   private _bookings = new BehaviorSubject<Booking[]>([]);
   bookings$: Observable<Booking[]> = this._bookings.asObservable();
+
+  _flights: BehaviorSubject<Flight[]> = new BehaviorSubject<Flight[]>([]);
+  flights$: Observable<Flight[]> = this._flights.asObservable();
+
   flightsMap: { [flightId: string]: Flight } = {};
   private page: number = 1;
   private readonly pageSize: number = 25;
   private loading: boolean = false;
 
   currentLocale: string;
+  private loadedIds: Set<String> = new Set()
+
 
   constructor(
     private bookingsSvc: BookingsService,
     private flightsSvc: FlightsService,
     private modalCtrl: ModalController,
     private alertCtrl: AlertController,
-    private translateService: TranslateService
+    private translateService: TranslateService,
+    @Inject(BOOKINGS_COLLECTION_SUBSCRIPTION_TOKEN)
+    private bookingsSubscription: ICollectionSubscription<Booking>,
+
+    @Inject(FLIGHTS_COLLECTION_SUBSCRIPTION_TOKEN)
+    private flightsSubscription: ICollectionSubscription<Flight> 
   ) {
     this.currentLocale = this.translateService.currentLang || 'en-US';
     this.translateService.onLangChange.subscribe((event) => {
@@ -41,6 +54,66 @@ export class BookingsPage implements OnInit {
   ngOnInit(): void {
     this.loadAllFlights(); 
     this.loadBookings();
+    this.bookingsSubscription.subscribe('bookings').subscribe((change: CollectionChange<Booking>) =>{
+      const currentBooking = [...this._bookings.value];
+
+      if(!this.loadedIds.has(change.id) && change.type !== "added"){
+        return;
+      }
+
+      switch(change.type) {
+        case 'added':
+        case 'modified':
+          const index = currentBooking.findIndex(f => f.id === change.id);
+          if (index >= 0) {
+            currentBooking[index] = change.data!;
+          }
+          break;
+        case 'removed':
+          const removeIndex = currentBooking.findIndex(f => f.id === change.id);
+          if (removeIndex >= 0) {
+            currentBooking.splice(removeIndex, 1);
+            this.loadedIds.delete(change.id);
+          }
+          break;
+        }
+
+        this._bookings.next(currentBooking)
+      }
+    )
+
+    this.flightsSubscription.subscribe('fligths').subscribe((change: CollectionChange<Flight>) =>{
+      console.log('Cambio recibido de la suscripción de vuelos:', change);  // Log del cambio
+      const currentFlight = [...this._flights.value];
+
+      if(!this.loadedIds.has(change.id) && change.type !== "added"){
+        console.log('El vuelo no ha sido cargado o no es un vuelo añadido');  // Log si no es un vuelo nuevo
+        return;
+      }
+
+      switch(change.type) {
+        case 'added':
+        case 'modified':
+          console.log(`Vuelo ${change.type}:`, change.data);  // Log de los vuelos añadidos o modificados
+          const index = currentFlight.findIndex(f => f.id === change.id);
+          if (index >= 0) {
+            currentFlight[index] = change.data!;
+          }
+          break;
+        case 'removed':
+          console.log(`Vuelo removido:`, change.id);  // Log de vuelos eliminados
+          const removeIndex = currentFlight.findIndex(f => f.id === change.id);
+          if (removeIndex >= 0) {
+            currentFlight.splice(removeIndex, 1);
+            this.loadedIds.delete(change.id);
+          }
+          break;
+        }
+
+        this._flights.next(currentFlight);
+      }
+    )
+    
   }
 
   loadBookings(notify: HTMLIonInfiniteScrollElement | null = null): void {
@@ -50,12 +123,14 @@ export class BookingsPage implements OnInit {
     this.bookingsSvc
       .getAll(this.page, this.pageSize)
       .pipe(finalize(() => (this.loading = false)))
-      .subscribe({
+      .subscribe({  
         next: (response: Paginated<Booking>) => {
+          response.data.forEach(booking => this.loadedIds.add(booking.id));
           const currentBookings = this._bookings.value;
           const allBookings = [...currentBookings, ...response.data];
 
           this.loadFlightsForBookings(response.data).then( () => {
+            response.data.forEach(flight => this.loadedIds.add(flight.id));
             const sortedBookings = allBookings.sort((a, b) => {
               const flightA = this.flightsMap[a.flightId]?.origin || '';
               const flightB = this.flightsMap[b.flightId]?.origin || '';

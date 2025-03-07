@@ -19,6 +19,8 @@ import { IUsersAppRepository } from "./interfaces/usersApp-repository.interface"
 //Authentication
 import { IAuthentication } from "../services/interfaces/authentication.interface";
 import { IStrapiAuthentication } from "../services/interfaces/strapi-authentication.interface";
+import { ICollectionSubscription } from "../services/interfaces/collection-subscription.interface";
+import { Model } from "../models/base.model";
 
 //Resources and repositories
 export const RESOURCE_NAME_TOKEN = new InjectionToken<String>('ResourceName');
@@ -62,3 +64,9 @@ export const BACKEND_TOKEN = new InjectionToken<string>('Backend'); //TODO For f
 //Firebase
 export const FIREBASE_CONFIG_TOKEN = new InjectionToken<any>('FIREBASE_CONFIG_TOKEN');
 export const FIREBASE_COLLECTION_TOKEN = new InjectionToken<string>('FIREBASE_COLLECTION_TOKEN');
+
+//SubscriptionCollection
+
+export const COLLECTION_SUBSCRIPTION_TOKEN = new InjectionToken<ICollectionSubscription<Model>>('CollectionSubscriptionToken');
+export const FLIGHTS_COLLECTION_SUBSCRIPTION_TOKEN = new InjectionToken<ICollectionSubscription<Flight>>('FlightsCollectionSubscriptionToken');
+export const BOOKINGS_COLLECTION_SUBSCRIPTION_TOKEN = new InjectionToken<ICollectionSubscription<Booking>>('BookingsCollectionSubscriptionToken');

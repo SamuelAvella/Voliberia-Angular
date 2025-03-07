@@ -1,12 +1,14 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, Inject, OnInit } from "@angular/core";
 import { AlertController, ModalController } from "@ionic/angular";
 import { TranslateService } from "@ngx-translate/core";
 import { BehaviorSubject, Observable } from "rxjs";
 import { Flight } from "src/app/core/models/flight.model";
 import { Paginated } from "src/app/core/models/paginated.model";
 import { BookingsStrapiRepositoryService } from "src/app/core/repositories/impl/bookings-strapi-repository.service";
+import { FLIGHTS_COLLECTION_SUBSCRIPTION_TOKEN } from "src/app/core/repositories/repository.token";
 import { BookingsService } from "src/app/core/services/impl/bookings.service";
 import { FlightsService } from "src/app/core/services/impl/flights.service";
+import { CollectionChange, ICollectionSubscription } from "src/app/core/services/interfaces/collection-subscription.interface";
 import { FlightModalComponent } from "src/app/shared/components/flight-modal/flight-modal.component";
 
 @Component({
@@ -21,6 +23,7 @@ export class FlightsPage implements OnInit {
   pageSize: number = 25;
 
   currentLocale: string;
+  private loadedIds: Set<String> = new Set()
 
 
   constructor(
@@ -28,7 +31,9 @@ export class FlightsPage implements OnInit {
     private modalCtrl: ModalController,
     private alertCtrl: AlertController,
     private bookingsSvc: BookingsService,
-    private translateService: TranslateService
+    private translateService: TranslateService,
+    @Inject(FLIGHTS_COLLECTION_SUBSCRIPTION_TOKEN)
+    private flightsSubscription: ICollectionSubscription<Flight>
 
   ) {
     this.currentLocale = this.translateService.currentLang || 'en-US';
@@ -39,19 +44,51 @@ export class FlightsPage implements OnInit {
 
   ngOnInit(): void {
     this.getMoreFlights();
+    this.flightsSubscription.subscribe('fligths').subscribe((change: CollectionChange<Flight>) =>{
+      console.log('Cambio recibido de la suscripción de vuelos:', change);  // Log del cambio
+      const currentFlight = [...this._flights.value];
+
+      if(!this.loadedIds.has(change.id) && change.type !== "added"){
+        console.log('El vuelo no ha sido cargado o no es un vuelo añadido');  // Log si no es un vuelo nuevo
+        return;
+      }
+
+      switch(change.type) {
+        case 'added':
+        case 'modified':
+          console.log(`Vuelo ${change.type}:`, change.data);  // Log de los vuelos añadidos o modificados
+          const index = currentFlight.findIndex(f => f.id === change.id);
+          if (index >= 0) {
+            currentFlight[index] = change.data!;
+          }
+          break;
+        case 'removed':
+          console.log(`Vuelo removido:`, change.id);  // Log de vuelos eliminados
+          const removeIndex = currentFlight.findIndex(f => f.id === change.id);
+          if (removeIndex >= 0) {
+            currentFlight.splice(removeIndex, 1);
+            this.loadedIds.delete(change.id);
+          }
+          break;
+        }
+
+        this._flights.next(currentFlight);
+      }
+    )
   }
 
   getMoreFlights(notify: HTMLIonInfiniteScrollElement | null = null): void {
     console.log('Llamando a getMoreFlights');
     this.flightsSvc.getAll(this.page, this.pageSize).subscribe({
       next: (response: Paginated<Flight>) => {
-        const existingIds = this._flights.value.map((flight) => flight.id);
-        const newFlights = response.data.filter((flight) => !existingIds.includes(flight.id));
+        response.data.forEach(flight => this.loadedIds.add(flight.id));
+        // const existingIds = this._flights.value.map((flight) => flight.id);
+        // const newFlights = response.data.filter((flight) => !existingIds.includes(flight.id));
         
-        const sortedFlights = [...this._flights.value, ...newFlights]
-          .sort((a, b) => a.origin.localeCompare(b.origin)); 
+        // const sortedFlights = [...this._flights.value, ...newFlights]
+        //   .sort((a, b) => a.origin.localeCompare(b.origin)); 
 
-        this._flights.next(sortedFlights);
+        this._flights.next([...this._flights.value, ...response.data]);
         this.page++;
         notify?.complete();
       },
