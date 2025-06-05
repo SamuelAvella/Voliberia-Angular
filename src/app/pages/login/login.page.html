@@ -1,62 +1,103 @@
 <ion-header [translucent]="true">
-  <ion-toolbar color="primary">
+  <ion-toolbar color="primary" class="h-[56px] sm:h-[64px]">
+    <!-- Puedes meter logo o título aquí si lo necesitas -->
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <div class="login-container">
-    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-      <h2 class="login-title">{{'LOGIN.TITLE' | translate}}</h2>
+<ion-content [fullscreen]="true" class="bg-cover bg-center" style="background-image: url('../../../assets/img/fondoVoliberia.png')">
+  <div class="flex flex-col items-center h-full sm:justify-center pt-10 sm:pt-0 px-4">
+    <form
+      [formGroup]="loginForm"
+      (ngSubmit)="onSubmit()"
+      class="bg-white/90 rounded-xl shadow-lg p-6 sm:p-8 w-full max-w-md text-center transition-all"
+    >
+    <!-- Título -->
+    <h2 class="text-xl sm:text-2xl font-bold text-blue-800 mb-6">
+      {{ 'LOGIN.TITLE' | translate }}
+    </h2>
 
-      <ion-item class="input-item">
-        <ion-label position="floating">{{'LOGIN.EMAIL' | translate}}</ion-label>
-        <ion-input
-          type="email"
-          formControlName="email"
-          required>
-        </ion-input>
-      </ion-item>
+    <!-- Email -->
+    <div class="mb-4 text-left">
+      <label class="block text-sm font-medium mb-1 text-gray-800">
+        {{ 'LOGIN.EMAIL' | translate }}
+      </label>
+      <ion-input
+        type="email"
+        formControlName="email"
+        required
+        class="w-full text-black border border-gray-300 rounded-md px-3 py-2 focus:border-blue-500 focus:outline-none ion-padding"
+        
+      ></ion-input>
+      <p
+        *ngIf="email?.invalid && (email?.dirty || email?.touched)"
+        class="text-red-500 text-sm mt-1"
+      >
+        <span *ngIf="email?.errors?.['required']">
+          {{ 'LOGIN.ERRORS.EMAIL_REQUIRED' | translate }}
+        </span>
+        <span *ngIf="email?.errors?.['email']">
+          {{ 'LOGIN.ERRORS.EMAIL_INVALID' | translate }}
+        </span>
+      </p>
+    </div>
 
-      <ion-item class="input-item">
-        <ion-label position="floating">{{'LOGIN.PASSWORD' | translate}}</ion-label>
+    <!-- Password -->
+    <div class="mb-4 text-left">
+      <label class="block text-sm font-medium mb-1 text-gray-800">
+        {{ 'LOGIN.PASSWORD' | translate }}
+      </label>
+      <div class="relative">
         <ion-input
           [type]="passwordVisible ? 'text' : 'password'"
           formControlName="password"
-          required>
-        </ion-input>
-        <ion-button fill="clear" slot="end" (click)="togglePasswordVisibility()">
+          required
+          class="w-full text-black border border-gray-300 rounded-md px-3 py-2 focus:border-blue-500 focus:outline-none pr-10 ion-padding"
+        ></ion-input>
+        <ion-button
+          fill="clear"
+          size="small"
+          class="absolute right-1 top-1/2 -translate-y-1/2 z-10"
+          (click)="togglePasswordVisibility()"
+        >
           <ion-icon
             [name]="passwordVisible ? 'eye-off-outline' : 'eye-outline'"
-            class="toggle-password-icon">
-          </ion-icon>
-        </ion-button>
-      </ion-item>
-      <ion-text class="input-error" color="danger" *ngIf="email?.invalid && (email?.dirty || email?.touched)">
-        <p *ngIf="email?.errors?.['required']">{{'LOGIN.ERRORS.EMAIL_REQUIRED' | translate}}</p>
-        <p *ngIf="email?.errors?.['email']">{{'LOGIN.ERRORS.EMAIL_INVALID' | translate}}</p>
-      </ion-text>
-      <ion-text class="input-error" color="danger" *ngIf="password?.invalid && (password?.dirty || password?.touched)">
-        <p *ngIf="password?.errors?.['required']">{{'LOGIN.ERRORS.PASSWORD_REQUIRED' | translate}}</p>
-      </ion-text>
-
-      <ion-text class="input-error" color="danger" *ngIf="errorMessage">
-        <p>{{ errorMessage }}</p>
-      </ion-text>
-      
-      <ion-button
-        expand="block"
-        class="login-button"
-        type="submit"
-        [disabled]="loginForm.invalid">
-        {{'LOGIN.SUBMIT' | translate}}
-      </ion-button>
-
-      <div class="register-link">
-        <ion-text>{{'LOGIN.NO_ACCOUNT' | translate}}</ion-text>
-        <ion-button fill="clear" class="register-button" (click)="onRegister()">
-          {{'LOGIN.REGISTER' | translate}}
+            class="text-blue-600 text-xl"
+          ></ion-icon>
         </ion-button>
       </div>
-    </form>
+      <p
+        *ngIf="password?.invalid && (password?.dirty || password?.touched)"
+        class="text-red-500 text-sm mt-1"
+      >
+        {{ 'LOGIN.ERRORS.PASSWORD_REQUIRED' | translate }}
+      </p>
+    </div>
+
+    <!-- Error general -->
+    <p *ngIf="errorMessage" class="text-red-600 text-sm mb-4">
+      {{ errorMessage }}
+    </p>
+
+    <!-- Botón de login -->
+    <ion-button
+      type="submit"
+      [disabled]="loginForm.invalid"
+      color="tertiary"
+    >
+      {{ 'LOGIN.SUBMIT' | translate }}
+    </ion-button>
+
+    <!-- Enlace de registro -->
+    <div class="mt-4 flex justify-center gap-2 text-sm text-gray-700">
+      <span>{{ 'LOGIN.NO_ACCOUNT' | translate }}</span>
+      <button
+        type="button"
+        (click)="onRegister()"
+        class="text-blue-600 font-semibold hover:underline"
+      >
+        {{ 'LOGIN.REGISTER' | translate }}
+      </button>
+    </div>
+  </form>
   </div>
 </ion-content>

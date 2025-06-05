@@ -1,3 +1,8 @@
+@import 'tailwindcss/base';
+
+@import 'tailwindcss/components';
+
+@import 'tailwindcss/utilities';
 /*
  * App Global CSS
  * ----------------------------------------------------------------------------
@@ -36,9 +41,7 @@
 /* @import "@ionic/angular/css/palettes/dark.class.css"; */
 @import "@ionic/angular/css/palettes/dark.system.css";
 
-ion-content {
-    --background: url('/assets/img/fondoVoliberia.png') no-repeat center center/cover;
-  }
-  
 
-  
+ion-content {
+  --background: none;
+}
