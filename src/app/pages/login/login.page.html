@@ -1,33 +1,44 @@
 <ion-header [translucent]="true">
-  <ion-toolbar color="primary" class="h-[56px] sm:h-[64px]">
-    <!-- Puedes meter logo o título aquí si lo necesitas -->
+  <ion-toolbar color="primary" class="h-[45px] sm:h-[64px] px-4">
+    <div class="flex items-center h-full space-x-3">
+      <img src="assets/img/logo.png" alt="Logo" class="h-6 sm:h-8 w-auto" />
+
+      <div class="text-white leading-tight">
+        <div class="font-istokWeb font-bold text-sm sm:text-base">VOLIBERIA</div>
+        <div class="font-inter text-xs sm:text-sm opacity-80 -mt-1 hidden sm:block">
+          {{ 'HEADER.TITLE' | translate}}
+        </div>
+      </div>
+    </div>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true" class="bg-cover bg-center" style="background-image: url('../../../assets/img/fondoVoliberia.png')">
+<ion-content [fullscreen]="true" class="bg-cover bg-center font-inter" style="background-image: url('../../../assets/img/fondoVoliberia.png');">
   <div class="flex flex-col items-center h-full sm:justify-center pt-10 sm:pt-0 px-4">
     <form
       [formGroup]="loginForm"
       (ngSubmit)="onSubmit()"
       class="bg-white/90 rounded-xl shadow-lg p-6 sm:p-8 w-full max-w-md text-center transition-all"
     >
-    <!-- Título -->
-    <h2 class="text-xl sm:text-2xl font-bold text-blue-800 mb-6">
+    <!-- Title -->
+    <h2 class="text-xl sm:text-2xl font-istokWeb font-bold text-blue-800 mb-6">
       {{ 'LOGIN.TITLE' | translate }}
     </h2>
 
-    <!-- Email -->
+    <!-- Email-->
     <div class="mb-4 text-left">
-      <label class="block text-sm font-medium mb-1 text-gray-800">
-        {{ 'LOGIN.EMAIL' | translate }}
-      </label>
-      <ion-input
+
+        <ion-input
+        style="--padding-start: 12px;"
+        labelPlacement="floating"
+        label="{{'LOGIN.EMAIL' | translate}}"
         type="email"
         formControlName="email"
         required
-        class="w-full text-black border border-gray-300 rounded-md px-3 py-2 focus:border-blue-500 focus:outline-none ion-padding"
-        
-      ></ion-input>
+        class="w-full font-instrumentalSans text-black border border-gray-300 rounded-md px-3 py-2 focus:border-blue-500 focus:outline-none"
+        id="own-input"
+        ></ion-input>
+
       <p
         *ngIf="email?.invalid && (email?.dirty || email?.touched)"
         class="text-red-500 text-sm mt-1"
@@ -41,17 +52,18 @@
       </p>
     </div>
 
+
     <!-- Password -->
     <div class="mb-4 text-left">
-      <label class="block text-sm font-medium mb-1 text-gray-800">
-        {{ 'LOGIN.PASSWORD' | translate }}
-      </label>
       <div class="relative">
         <ion-input
+          style="--padding-start: 12px;"
+          label="{{ 'LOGIN.PASSWORD' | translate }}"
+          labelPlacement="floating"
           [type]="passwordVisible ? 'text' : 'password'"
           formControlName="password"
           required
-          class="w-full text-black border border-gray-300 rounded-md px-3 py-2 focus:border-blue-500 focus:outline-none pr-10 ion-padding"
+          class="w-full text-black border border-gray-300 rounded-md px-3 py-2 focus:border-blue-500 focus:outline-none"
         ></ion-input>
         <ion-button
           fill="clear"

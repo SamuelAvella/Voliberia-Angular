@@ -12,7 +12,7 @@
     }
   },
 
-  
+
     "REGISTER": {
       "TITLE": "Crear una cuenta",
       "HAVE_ACCOUNT": "¿Tienes una cuenta?",
@@ -37,7 +37,7 @@
       },
       "SUBMIT": "Crear cuenta"
     },
-  
+
     "LOGIN": {
       "TITLE": "Inicia sesión en Voliberia",
       "EMAIL": "Correo electrónico",
@@ -54,7 +54,7 @@
       "NO_ACCOUNT": "¿No tienes cuenta?",
       "REGISTER": "Regístrate"
     },
-  
+
   "MENU": {
     "MENU": "Menú",
     "TITLE": "Voliberia",
@@ -91,7 +91,7 @@
     "DEPARTURE": "Elige la fecha de salida",
     "DEPARTURE_ERROR": "La fecha de salida debe ser posterior a hoy",
     "ARRIVAL_TITLE": "Llegada",
-    "ARRIVAL": "Elige la fecha de llegada", 
+    "ARRIVAL": "Elige la fecha de llegada",
     "ARRIVAL_ERROR_DATE": "La fecha de llegada debe ser posterior a la de salida",
     "ARRIVAL_ERROR_MINUTES": "Debe llegar mínimo 40 minutos más tarde",
     "PRICE": "Precio",
@@ -152,7 +152,7 @@
     "BUTTONS": {
       "UPDATE": "Actualizar"
     }
-    
+
   },
 
   "PICTURE":{
@@ -179,7 +179,11 @@
       "CONTACT_TEXT": "Puedes contactarme en:",
       "LINKEDIN": "LinkedIn"
     }
+  },
+
+  "HEADER": {
+    "TITLE": "Descubre cada rincón ibérico"
   }
-  
+
 
 }

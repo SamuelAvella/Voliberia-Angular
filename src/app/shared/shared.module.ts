@@ -21,10 +21,12 @@ import { TogglePasswordPipe } from "./pipes/toggle-password.pipe";
 
 //Directives
 import { BookingStatusDirective } from "./directives/booking-status.directive";
+import { BookingStateStylePipe } from "./pipes/booking-state-style.pipe";
 
 @NgModule({
     declarations:[
         BookingModalComponent,
+        BookingStateStylePipe,
         BookingStatusDirective,
         FlightModalComponent,
         FlightSelectableComponent,
@@ -50,7 +52,8 @@ import { BookingStatusDirective } from "./directives/booking-status.directive";
         LocalizedDatePipe,
         PictureSelectableComponent,
         TogglePasswordPipe,
-        TranslateModule
+        TranslateModule,
+        BookingStateStylePipe,
     ]
 })
 export class SharedModule{}

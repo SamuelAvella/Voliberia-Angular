@@ -2,7 +2,13 @@
 module.exports = {
   content: ['./src/**/*.{html,ts}'],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        istokWeb: ['IstokWeb', 'sans-serif'],
+        instrumentalSans: ['InstrumentalSans', 'sans-serif'],
+        inter: ['Inter', 'sans-serif']
+      }
+    },
   },
   plugins: [],
 };
