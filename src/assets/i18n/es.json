@@ -104,7 +104,9 @@
     "CONFIRM_DELETION": "Confirmar eliminarción",
     "DELETION_TEXT": "¿Estas seguro que deseas eliminar este vuelo y sus reservas?",
     "CANCEL" : "Cancelar",
-    "DELETE" : "Eliminar"
+    "DELETE" : "Eliminar",
+    "HERO_TITLE": "Hola admin, ¡echa un vistazo!",
+    "HERO_TEXT": "Crea, edita y elimina vuelos"
   },
 
   "BOOKING": {
@@ -129,7 +131,7 @@
     "HERO_TEXT": "Cancela aquellos que no estan confirmados"
   },
 
-  
+
   "BOOK": {
     "ORIGIN": "Origen",
     "DESTINATION": "Destino",
@@ -138,7 +140,8 @@
     "CLEAR_FILTERS": "Limpiar filtros",
     "HERO_TITLE": "Ven a volar con nosotros",
     "HERO_TEXT": "¡Descubre la península ibérica!",
-    "HERO_BUTTON": "Muestrame"
+    "HERO_BUTTON": "Muestrame",
+    "DATE": "Salida"
   },
 
 

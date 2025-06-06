@@ -4,43 +4,115 @@
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
     <ion-title class="header-title">{{ 'FLIGHT.TITLE' | translate }}</ion-title>
-    <ion-buttons slot="end">
-      <ion-button class="add-button" (click)="onAddFlight()">
-        <ion-icon slot="icon-only" name="add-outline"></ion-icon>
-      </ion-button>
-    </ion-buttons>
+
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <div class="flight-grid">
-    <ion-card class="flight-card" *ngFor="let flight of flights$ | async">
-      <ion-card-header>
-        <ion-card-title>
-          <span class="flight-origin">{{ flight.origin }}</span>
-          <span> → </span>
-          <span class="flight-destination">{{ flight.destination }}</span>
-        </ion-card-title>
-      </ion-card-header>
-      <ion-card-content>
-        <p>{{ 'FLIGHT.DEPARTURE_TITLE' | translate }}: {{ flight.departureDate | localizedDate: currentLocale }}</p>
-        <p>{{ 'FLIGHT.ARRIVAL_TITLE' | translate }}: {{ flight.arrivalDate | localizedDate: currentLocale }}</p>
-        <p>{{ 'FLIGHT.PRICE' | translate }}: {{ flight.seatPrice | localizedCurrency: currentLocale }}</p>
-      </ion-card-content>
-      <ion-card-footer>
-        <div class="flight-card-buttons">
-          <ion-button class="edit-button" (click)="onEditFlight(flight)">
-            <ion-icon slot="icon-only" name="create-outline"></ion-icon> {{ 'FLIGHT.EDIT_TITLE' | translate }}
-          </ion-button>
-          <ion-button class="delete-button" color="danger" (click)="onDeleteFlight(flight)">
-            <ion-icon slot="icon-only" name="trash-outline"></ion-icon> {{ 'FLIGHT.DELETE' | translate }}
-          </ion-button>
+<ion-content [fullscreen]="true" class="bg-cover bg-center font-inter bg-white">
+
+  <div class="md:px-14 md:pt-6">
+    <ion-grid
+      class="w-full md:max-w-7xl md:rounded-sm bg-cover bg-center bg-no-repeat"
+      style="background-image: url('../../../assets/img/flight-header.png');"
+    >
+      <div class="flex flex-col md:h-70 md:flex-row">
+        <!-- En móvil: caja centrada con márgenes -->
+        <!-- En escritorio: caja a la izquierda tocando bordes internos -->
+        <div
+          class="bg-white/40
+                m-4 md:m-0
+                md:w-1/2
+                md:h-full
+                rounded-sm
+                flex flex-col justify-center
+                items-center md:items-start
+                text-center md:text-left
+                p-6 md:p-12
+                shadow-lg"
+        >
+          <h2 class="text-3xl font-istokWeb font-bold text-black">{{ 'FLIGHT.HERO_TITLE' | translate}}</h2>
+          <p class="font-inter text-black mt-2">{{ 'FLIGHT.HERO_TEXT' | translate}}</p>
         </div>
-      </ion-card-footer>
-    </ion-card>
+      </div>
+    </ion-grid>
   </div>
+
+  <div class="w-full flex justify-center px-6">
+    <div class="mt-4 h-[1px] w-full bg-black rounded-full"></div>
+  </div>
+
+  <ion-grid class="mx-8">
+    <ion-row>
+      <ion-col size="12" size-md="6" *ngFor="let flight of flights$ | async">
+        <ion-card class="mx-auto mb-6 max-w-xl rounded-2xl bg-blue-50 p-4 shadow-md">
+          <div class="mb-4 border-b pb-2 text-center font-semibold text-gray-600">
+            {{ flight.departureDate | localizedDate: currentLocale }}
+          </div>
+
+          <div class="flex items-center justify-between px-4">
+            <div class="text-center">
+              <div class="text-sm text-gray-600">- {{ flight.origin.slice(0, -6) }} -</div>
+              <div class="text-2xl font-bold text-black">{{ flight.origin.slice(-6) }}</div>
+              <div class="mt-1 text-sm text-gray-500">{{ flight.departureDate | date: 'shortTime' }}</div>
+            </div>
+            <div class="flex items-center justify-center text-gray-500">
+              <div class="my-1 w-10 border-t border-gray-300"></div>
+              <div class="mx-1 text-xl">✈️</div>
+              <div class="my-1 w-10 border-t border-gray-300"></div>
+            </div>
+            <div class="text-center">
+              <div class="text-sm text-gray-600">- {{ flight.destination.slice(0, -6) }} -</div>
+              <div class="text-2xl font-bold text-black">{{ flight.destination.slice(-6) }}</div>
+              <div class="mt-1 text-sm text-gray-500">{{ flight.arrivalDate | date: 'shortTime' }}</div>
+            </div>
+          </div>
+
+          <div class="mt-4 flex items-center justify-between px-2">
+            <div class="text-lg font-semibold text-blue-700">
+              {{ flight.seatPrice | localizedCurrency: currentLocale }}
+            </div>
+            <div class="flex gap-2">
+              <ion-button
+                size="small"
+                fill="clear"
+                class="text-blue-700 font-semibold"
+                (click)="onEditFlight(flight)">
+                <ion-icon name="create-outline" slot="start"></ion-icon>
+                {{ 'FLIGHT.EDIT_TITLE' | translate }}
+              </ion-button>
+              <ion-button
+                size="small"
+                fill="clear"
+                color="danger"
+                (click)="onDeleteFlight(flight)">
+                <ion-icon name="trash-outline" slot="start"></ion-icon>
+                {{ 'FLIGHT.DELETE' | translate }}
+              </ion-button>
+            </div>
+          </div>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <!-- Botón flotante "Crear" abajo a la derecha -->
+  <div class="fixed bottom-6 right-6 z-50 w-full px-4 md:px-0 md:w-auto">
+    <ion-button
+      color="tertiary"
+      expand="block"
+      class="w-full md:w-[300px] mx-auto text-white font-semibold py-2 rounded-lg shadow-lg transition-all hover:brightness-90"
+      (click)="onAddFlight()"
+    >
+      <ion-icon slot="start" name="add-outline"></ion-icon>
+      {{ 'FLIGHT.CREATE' | translate }}
+    </ion-button>
+  </div>
+
+
 
   <ion-infinite-scroll (ionInfinite)="onIonInfinite($event)">
     <ion-infinite-scroll-content></ion-infinite-scroll-content>
   </ion-infinite-scroll>
+
 </ion-content>
+

@@ -1,8 +1,14 @@
+@import '../node_modules/@syncfusion/ej2-material-theme/styles/material.css';
 @import 'tailwindcss/base';
 
 @import 'tailwindcss/components';
 
 @import 'tailwindcss/utilities';
+
+@import 'swiper/css';
+@import 'swiper/css/navigation';
+@import 'swiper/css/pagination';
+
 /*
  * App Global CSS
  * ----------------------------------------------------------------------------

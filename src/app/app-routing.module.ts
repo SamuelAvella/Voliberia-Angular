@@ -9,7 +9,7 @@ const routes: Routes = [
     redirectTo: 'splash',
     pathMatch: 'full'
   },
-  
+
   {
     path: 'splash',
     loadComponent: () => import('./pages/splash/splash.page').then(m => m.SplashPage)
@@ -48,7 +48,8 @@ const routes: Routes = [
     path: 'about',
     canActivate: [authGuard],
     loadChildren: () => import('./pages/about/about.module').then( m => m.AboutPageModule)
-  },  {
+  },
+  {
     path: 'book',
     loadChildren: () => import('./pages/book/book.module').then( m => m.BookPageModule)
   }

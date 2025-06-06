@@ -6,6 +6,9 @@ import { Paginated } from "src/app/core/models/paginated.model";
 import { FlightsService } from "src/app/core/services/impl/flights.service";
 import { CollectionChange, ICollectionSubscription } from "src/app/core/services/interfaces/collection-subscription.interface";
 import { FLIGHTS_COLLECTION_SUBSCRIPTION_TOKEN } from "src/app/core/repositories/repository.token";
+import { DatetimeChangeEventDetail } from "@ionic/angular";
+import { IonDatetimeCustomEvent } from "@ionic/core";
+import { CalendarEvent } from "angular-calendar";
 
 @Component({
   selector: 'app-book',
@@ -13,7 +16,10 @@ import { FLIGHTS_COLLECTION_SUBSCRIPTION_TOKEN } from "src/app/core/repositories
   styleUrls: ['./book.page.scss'],
 })
 export class BookPage implements OnInit {
- 
+onDateChange($event: IonDatetimeCustomEvent<DatetimeChangeEventDetail>) {
+throw new Error('Method not implemented.');
+}
+
   private _flights = new BehaviorSubject<Flight[]>([]);
   flights$: Observable<Flight[]> = this._flights.asObservable();
   private loadedIds: Set<string> = new Set();
@@ -32,7 +38,7 @@ export class BookPage implements OnInit {
   filteredOrigins: string[] = [];
   filteredDestinations: string[] = [];
 
-  
+
   toggleOriginSelector = false;
   searchOrigin = "";
   filteredOriginsSearch: string[] = [];
@@ -40,13 +46,31 @@ export class BookPage implements OnInit {
   @ViewChild("originWrapper") originWrapper!: ElementRef;
   @ViewChild("originInput") originInput!: ElementRef<HTMLInputElement>;
 
-  
+
   toggleDestinationSelector = false;
   searchDestination = "";
   filteredDestinationsSearch: string[] = [];
 
   @ViewChild("destinationWrapper") destinationWrapper!: ElementRef;
   @ViewChild("destinationInput") destinationInput!: ElementRef<HTMLInputElement>;
+
+  @ViewChild("dateWrapper") dateWrapper!: ElementRef;
+
+
+
+  viewDate: Date = new Date();
+  events: CalendarEvent[] = [
+    {
+      start: new Date(),
+      title: 'Hoy',
+      allDay: true
+    },
+    {
+      start: new Date(new Date().setDate(new Date().getDate() + 1)),
+      title: 'Evento mañana',
+      allDay: true
+    }
+  ];
 
 
   constructor(
@@ -95,7 +119,7 @@ export class BookPage implements OnInit {
     });
   }
 
- 
+
   filterOrigins(): void {
     if (!this.selectedDestination) {
       this.filteredOrigins = [...this.uniqueOrigins];
@@ -187,7 +211,7 @@ export class BookPage implements OnInit {
     this.selectedDestination = destination;
     this.toggleDestinationSelector = false;
     this.filterOrigins();
-    this.updateAvailableDates;
+    this.updateAvailableDates();
   }
 
   filterDestinationsSearch(): void {
@@ -224,6 +248,15 @@ export class BookPage implements OnInit {
     ) {
       this.toggleDestinationSelector = false;
     }
+
+    if (
+      this.toggleDateSelector &&
+      this.dateWrapper &&
+      !path.includes(this.dateWrapper.nativeElement)
+    ) {
+      this.toggleDateSelector = false;
+    }
+
   }
 
 
@@ -286,6 +319,34 @@ isFlightDate = (dateIsoString: string): boolean => {
   const dateOnly = dateIsoString.split('T')[0];
   return allowedDates.includes(dateOnly);
 };
+
+// book.page.ts
+toggleDateSelector = false;
+
+openDateSelector(event: Event): void {
+  event.stopPropagation();
+  this.toggleDateSelector = true;
+  this.toggleOriginSelector = false;
+  this.toggleDestinationSelector = false;
+}
+
+onDateSelected(): void {
+  this.toggleDateSelector = false;
+}
+
+destinationImages = [
+  { name: 'Madrid (MAD)', image: 'assets/img/destinations/madrid.jpg' },
+  { name: 'Barcelona', image: 'assets/img/destinations/barcelona.jpg' },
+  { name: 'Sevilla', image: 'assets/img/destinations/sevilla.jpg' },
+  { name: 'Valencia', image: 'assets/img/destinations/valencia.jpg' },
+  { name: 'Bilbao', image: 'assets/img/destinations/bilbao.jpg' },
+];
+
+selectDestinationFromImage(destinationName: string): void {
+  this.selectedDestination = destinationName;
+  this.filterOrigins();
+  this.updateAvailableDates();
+}
 
 
 }

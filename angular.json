@@ -36,9 +36,15 @@
                 "output": "./"
               }
             ],
-            "styles": ["src/global.scss", "src/theme/variables.scss"],
+            "styles": [
+              "src/global.scss",
+              "src/theme/variables.scss",
+              "./node_modules/@syncfusion/ej2-material-theme/styles/material.css"
+            ],
             "scripts": [],
-            "allowedCommonJsDependencies": ["lottie-web"]
+            "allowedCommonJsDependencies": [
+              "lottie-web"
+            ]
           },
           "configurations": {
             "production": {
@@ -117,7 +123,11 @@
                 "output": "./svg"
               }
             ],
-            "styles": ["src/global.scss", "src/theme/variables.scss"],
+            "styles": [
+              "src/global.scss",
+              "src/theme/variables.scss",
+              "./node_modules/@syncfusion/ej2-material-theme/styles/material.css"
+            ],
             "scripts": []
           },
           "configurations": {
