@@ -19,6 +19,7 @@ import { UsersAppService } from './core/services/impl/usersApp.service';
 export class AppComponent implements OnInit {
   public appPages = [
     { key: 'MENU.PAGES.HOME', url: '/home', icon: 'home', title: '' },
+    { key: 'MENU.PAGES.BOOK', url: '/book', icon: 'book', title: '' },
     { key: 'MENU.PAGES.FLIGHTS', url: '/flights', icon: 'airplane', title: '' },
     { key: 'MENU.PAGES.BOOKINGS', url: '/bookings', icon: 'book', title: '' },
     { key: 'MENU.PAGES.PROFILE', url: '/profile', icon: 'person', title: '' },

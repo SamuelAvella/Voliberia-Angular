@@ -63,11 +63,12 @@
     "LOGOUT": "Logout",
     "FOOTER": "Voliberia. All rights reserved.",
     "PAGES": {
-      "HOME": "Home",
+      "ABOUT": "About",
+      "BOOK": "Book",
+      "BOOKINGS": "My trips",
       "FLIGHTS": "Flights",
-      "BOOKINGS": "Bookings",
-      "PROFILE": "Profile",
-      "ABOUT": "About"
+      "HOME": "Home",
+      "PROFILE": "Profile"
     }
   },
 
@@ -124,6 +125,14 @@
     "CANCEL" : "Cancel",
     "DELETE" : "Delete"
 
+  },
+
+  "BOOK": {
+    "ORIGIN": "Origin",
+    "DESTINATION": "Destination",
+    "SEARCH_ORIGIN": "Search origin...",
+    "SEARCH_DESTINATION": "Search destination...",
+    "CLEAR_FILTERS": "Clear filters"
   },
 
   "FLIGHT_SELECTABLE": {

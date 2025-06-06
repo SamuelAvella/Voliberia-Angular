@@ -64,11 +64,12 @@
     "LOGOUT": "Cerrar sesión",
     "FOOTER": "Voliberia. Todos los derechos reservados.",
     "PAGES": {
-      "HOME": "Inicio",
-      "FLIGHTS": "Vuelos",
+      "ABOUT": "Sobre creador",
+      "BOOK": "Book",
       "BOOKINGS": "Reservas",
-      "PROFILE": "Perfil",
-      "ABOUT": "Sobre creador"
+      "FLIGHTS": "Vuelos",
+      "HOME": "Inicio",
+      "PROFILE": "Perfil"
     }
   },
 
@@ -125,6 +126,16 @@
     "CANCEL": "Cancelar",
     "DELETE": "Eliminar"
   },
+
+  
+  "BOOK": {
+    "ORIGIN": "Origen",
+    "DESTINATION": "Destino",
+    "SEARCH_ORIGIN": "Buscar origen...",
+    "SEARCH_DESTINATION": "Buscar destino...",
+    "CLEAR_FILTERS": "Limpiar filtros"
+  },
+
 
   "FLIGHT_SELECTABLE": {
     "SELECT_FLIGHT": "Seleccione un vuelo",
