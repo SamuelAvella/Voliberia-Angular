@@ -155,6 +155,7 @@ export class BookPage implements OnInit {
     this.selectedOrigin = origin;
     this.toggleOriginSelector = false;
     this.filterDestinations();
+    this.updateAvailableDates(); // 👈 Añadir
   }
 
   filterOriginsSearch(): void {
@@ -186,6 +187,7 @@ export class BookPage implements OnInit {
     this.selectedDestination = destination;
     this.toggleDestinationSelector = false;
     this.filterOrigins();
+    this.updateAvailableDates;
   }
 
   filterDestinationsSearch(): void {
@@ -228,4 +230,62 @@ export class BookPage implements OnInit {
   onIonInfinite(ev: any): void {
     this.getAllFlights(ev.target);
   }
+
+  selectedDate: string | null = null;
+minSelectableDate: string = '';
+maxSelectableDate: string = '';
+disabledDates: string[] = [];
+
+updateAvailableDates(): void {
+  if (!this.selectedOrigin || !this.selectedDestination) return;
+
+  const matchingFlights = this.allFlights.filter(f =>
+    f.origin === this.selectedOrigin && f.destination === this.selectedDestination
+  );
+
+  const allDates = matchingFlights.map(f => f.departureDate.split('T')[0]);
+  const uniqueDates = [...new Set(allDates)].sort();
+
+  if (uniqueDates.length > 0) {
+    this.minSelectableDate = uniqueDates[0];
+    this.maxSelectableDate = uniqueDates[uniqueDates.length - 1];
+    this.disabledDates = this.getDisabledDatesInRange(this.minSelectableDate, this.maxSelectableDate, uniqueDates);
+  } else {
+    this.minSelectableDate = '';
+    this.maxSelectableDate = '';
+    this.disabledDates = [];
+  }
+
+  this.selectedDate = null;
+}
+
+getDisabledDatesInRange(min: string, max: string, allowed: string[]): string[] {
+  const disabled: string[] = [];
+  const current = new Date(min);
+  const end = new Date(max);
+
+  while (current <= end) {
+    const iso = current.toISOString().split('T')[0];
+    if (!allowed.includes(iso)) {
+      disabled.push(iso);
+    }
+    current.setDate(current.getDate() + 1);
+  }
+
+  return disabled;
+}
+
+
+isFlightDate = (dateIsoString: string): boolean => {
+  if (!this.selectedOrigin || !this.selectedDestination) return false;
+
+  const allowedDates = this.allFlights
+    .filter(f => f.origin === this.selectedOrigin && f.destination === this.selectedDestination)
+    .map(f => f.departureDate.split('T')[0]); // o ajusta si no hay T
+
+  const dateOnly = dateIsoString.split('T')[0];
+  return allowedDates.includes(dateOnly);
+};
+
+
 }
