@@ -124,7 +124,9 @@
     "CONFIRM_DELETION": "Confirmar eliminación",
     "DELETION_TEXT": "¿Estás seguro de que deseas eliminar esta reserva?",
     "CANCEL": "Cancelar",
-    "DELETE": "Eliminar"
+    "DELETE": "Eliminar",
+    "HERO_TITLE": "Todos tus viajes",
+    "HERO_TEXT": "Cancela aquellos que no estan confirmados"
   },
 
   
@@ -133,7 +135,10 @@
     "DESTINATION": "Destino",
     "SEARCH_ORIGIN": "Buscar origen...",
     "SEARCH_DESTINATION": "Buscar destino...",
-    "CLEAR_FILTERS": "Limpiar filtros"
+    "CLEAR_FILTERS": "Limpiar filtros",
+    "HERO_TITLE": "Ven a volar con nosotros",
+    "HERO_TEXT": "¡Descubre la península ibérica!",
+    "HERO_BUTTON": "Muestrame"
   },
 
 

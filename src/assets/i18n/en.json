@@ -123,7 +123,9 @@
     "CONFIRM_DELETION": "Confirm deletion",
     "DELETION_TEXT": "Are you sure you want to delete this bookings",
     "CANCEL" : "Cancel",
-    "DELETE" : "Delete"
+    "DELETE" : "Delete",
+    "HERO_TITLE": "All your trips",
+    "HERO_TEXT": "Manage them that aren’t confirmed"
 
   },
 
@@ -132,7 +134,10 @@
     "DESTINATION": "Destination",
     "SEARCH_ORIGIN": "Search origin...",
     "SEARCH_DESTINATION": "Search destination...",
-    "CLEAR_FILTERS": "Clear filters"
+    "CLEAR_FILTERS": "Clear filters",
+    "HERO_TITLE": "Come flight with us",
+    "HERO_TEXT": "Discover the iberian peninsule!",
+    "HERO_BUTTON": "Show me"
   },
 
   "FLIGHT_SELECTABLE": {

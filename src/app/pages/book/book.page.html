@@ -7,15 +7,49 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">book</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content [fullscreen]="true" class="font-inter">
+
+  <div class="md:px-14 md:pt-6">
+    <ion-grid
+      class="w-full md:max-w-7xl md:rounded-sm bg-cover bg-center bg-no-repeat"
+      style="background-image: url('../../../assets/img/book-hero.png');"
+    >
+      <div class="flex flex-col md:h-55 md:flex-row">
+        <!-- En móvil: caja centrada con márgenes -->
+        <!-- En escritorio: caja a la izquierda tocando bordes internos -->
+        <div
+          class="bg-white/40
+                m-4 md:m-0
+                md:w-1/2
+                md:h-full
+                rounded-sm
+                flex flex-col justify-center
+                items-center md:items-start
+                text-center md:text-left
+                p-6 md:p-12
+                shadow-lg"
+        >
+          <h2 class="text-3xl font-istokWeb font-bold text-black">{{ 'BOOK.HERO_TITLE' | translate}}</h2>
+          <p class="font-inter text-black mt-2">{{ 'BOOK.HERO_TEXT' | translate}}</p>
+          <ion-button
+            color="tertiary"
+            expand="block"
+            class="w-full md:w-[200px] text-white hover:color:tertiary-shade font-semibold py-2 rounded-lg transition-all"
+          >
+            {{ 'BOOK.HERO_BUTTON' | translate }}
+          </ion-button>
+        </div>
+      </div>
+    </ion-grid>
+  </div>
+
+  <div class="w-full flex justify-center px-6">
+    <div class="mt-4 h-[1px] w-full bg-black rounded-full"></div>
+  </div>
+
 
 <!-- CONTENEDOR ORIGIN + DESTINATION RESPONSIVE -->
-<div class="w-full flex flex-col md:flex-row md:gap-4 px-4 mt-4">
+<div class="w-full flex flex-col md:flex-row md:gap-4 md:px-[150px] px-4 mt-4">
 
   <!-- ORIGIN -->
   <div class="relative w-full md:w-1/2" #originWrapper>
@@ -97,9 +131,9 @@
     </div>
   </div>
 </div>
+<ion-button expand="block" (click)="resetFilters()" class="ion-margin">
+  {{ 'BOOK.CLEAR_FILTERS' | translate }}
+</ion-button>
 
 
-  <ion-button expand="block" (click)="resetFilters()" class="ion-margin">
-    {{ 'BOOK.CLEAR_FILTERS' | translate }}
-  </ion-button>
 </ion-content>
