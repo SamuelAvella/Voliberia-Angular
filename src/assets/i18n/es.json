@@ -64,13 +64,17 @@
     "LOGOUT": "Cerrar sesión",
     "FOOTER": "Voliberia. Todos los derechos reservados.",
     "PAGES": {
-      "ABOUT": "Sobre creador",
-      "BOOK": "Book",
-      "BOOKINGS": "Reservas",
+      "ABOUT": "Sobre nosotros",
+      "BOOK": "Reservar",
+      "BOOKINGS": "Mis viajes",
       "FLIGHTS": "Vuelos",
       "HOME": "Inicio",
       "PROFILE": "Perfil"
-    }
+    },
+   "CURRENT-LANGUAGE": "ES",
+    "CURRENT-LANGUAGE-LONG": "Español"
+
+
   },
 
   "HOME": {

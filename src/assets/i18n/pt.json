@@ -1,0 +1,205 @@
+{
+  "COMMON": {
+    "LANGUAGE": "Idioma",
+    "SPANISH": "Espanhol",
+    "ENGLISH": "Inglês",
+    "ERROR": {
+      "LOAD": "Erro ao carregar os dados",
+      "SAVE": "Erro ao salvar os dados"
+    },
+    "SUCCESS": {
+      "SAVE": "Alterações salvas com sucesso"
+    }
+  },
+
+  "REGISTER": {
+    "TITLE": "Criar uma conta",
+    "HAVE_ACCOUNT": "Já tem uma conta?",
+    "LOGIN": "Iniciar sessão",
+    "NAME": "Nome",
+    "SURNAME": "Sobrenome",
+    "EMAIL": "Email",
+    "PASSWORD": "Senha",
+    "CONFIRM_PASSWORD": "Repetir senha",
+    "ERRORS": {
+      "NAME_REQUIRED": "Por favor, insira seu nome",
+      "NAME_MINLENGTH": "O nome deve ter pelo menos dois caracteres",
+      "SURNAME_REQUIRED": "Por favor, insira seu(s) sobrenome(s)",
+      "SURNAME_MINLENGTH": "O(s) sobrenome(s) deve(m) ter pelo menos dois caracteres",
+      "EMAIL_REQUIRED": "Por favor, insira um e-mail",
+      "EMAIL_INVALID": "Por favor, insira um e-mail válido",
+      "PASSWORD_REQUIRED": "Por favor, insira uma senha",
+      "PASSWORD_WEAK": "Pelo menos 10 caracteres, uma letra maiúscula, um número e um caractere especial.",
+      "PASSWORDS_MISMATCH": "As senhas não coincidem",
+      "EMAIL_IN_USE": "Este e-mail já está em uso. Tente outro.",
+      "GENERAL_ERROR": "Ocorreu um erro. Por favor, tente novamente mais tarde."
+    },
+    "SUBMIT": "Criar conta"
+  },
+
+  "LOGIN": {
+    "TITLE": "Entrar no Voliberia",
+    "EMAIL": "Email",
+    "PASSWORD": "Senha",
+    "SHOW_PASSWORD": "Mostrar senha",
+    "HIDE_PASSWORD": "Ocultar senha",
+    "ERRORS": {
+      "EMAIL_REQUIRED": "Por favor, insira um e-mail",
+      "EMAIL_INVALID": "Por favor, insira um e-mail válido",
+      "PASSWORD_REQUIRED": "Por favor, insira uma senha",
+      "INVALID_CREDENTIALS": "Email ou senha incorretos. Tente novamente."
+    },
+    "SUBMIT": "Entrar",
+    "NO_ACCOUNT": "Ainda não tem conta?",
+    "REGISTER": "Registar-se"
+  },
+
+  "MENU": {
+    "MENU": "Menu",
+    "TITLE": "Voliberia",
+    "GREETING": "Olá",
+    "DESCRIPTION": "Gestão de voos",
+    "LANGUAGE": "Idioma",
+    "LOGOUT": "Sair",
+    "FOOTER": "Voliberia. Todos os direitos reservados.",
+    "PAGES": {
+      "ABOUT": "Sobre",
+      "BOOK": "Reservar",
+      "BOOKINGS": "Minhas viagens",
+      "FLIGHTS": "Voos",
+      "HOME": "Início",
+      "PROFILE": "Perfil"
+    },
+    "CURRENT-LANGUAGE": "PT",
+    "CURRENT-LANGUAGE-LONG": "Português"
+
+  },
+
+  "HOME": {
+    "TITLE": "INÍCIO",
+    "FLIGHTS": "VOOS",
+    "FLIGHTS_DESC": "Consulte, edite e crie voos",
+    "BOOKINGS": "RESERVAS",
+    "BOOKINGS_DESC": "Revise, administre e adicione reservas de voo"
+  },
+
+  "FLIGHT": {
+    "TITLE": "Voos",
+    "USER": "Reservado por",
+    "ORIGIN": "Origem",
+    "ORIGIN_INSERT": "Insira a origem",
+    "DESTINATION": "Destino",
+    "DESTINATION_INSERT": "Insira o destino",
+    "DEPARTURE_TITLE": "Partida",
+    "DEPARTURE": "Escolha a data de partida",
+    "DEPARTURE_ERROR": "A data de partida deve ser posterior a hoje",
+    "ARRIVAL_TITLE": "Chegada",
+    "ARRIVAL": "Escolha a data de chegada",
+    "ARRIVAL_ERROR_DATE": "A data de chegada deve ser posterior à de partida",
+    "ARRIVAL_ERROR_MINUTES": "Deve chegar pelo menos 40 minutos depois",
+    "PRICE": "Preço",
+    "EDIT_TITLE": "Editar",
+    "EDIT": "Editar detalhes do voo",
+    "NEW": "Novo voo",
+    "CREATE": "Criar",
+    "SAVE": "Guardar",
+    "CONFIRM_DELETION": "Confirmar eliminação",
+    "DELETION_TEXT": "Tem certeza que deseja apagar este voo e as suas reservas?",
+    "CANCEL": "Cancelar",
+    "DELETE": "Apagar",
+    "HERO_TITLE": "Olá admin, dá uma olhada!",
+    "HERO_TEXT": "Crie, edite e elimine voos"
+  },
+
+  "BOOKING": {
+    "TITLE": "RESERVAS",
+    "FLIGHT": "Voo",
+    "SELECT": "Selecionar voo",
+    "DATE": "Data",
+    "PRICE": "Preço",
+    "STATE": "Estado da reserva",
+    "ACTIVE": "ATIVA",
+    "INACTIVE": "INATIVA",
+    "EDIT_TITLE": "Editar",
+    "EDIT": "Editar detalhes da reserva",
+    "NEW": "Nova reserva",
+    "CREATE": "Criar",
+    "SAVE": "Guardar alterações",
+    "CONFIRM_DELETION": "Confirmar eliminação",
+    "DELETION_TEXT": "Tem certeza que deseja apagar esta reserva?",
+    "CANCEL": "Cancelar",
+    "DELETE": "Apagar",
+    "HERO_TITLE": "Todas as suas viagens",
+    "HERO_TEXT": "Cancele as que não estejam confirmadas"
+  },
+
+  "BOOK": {
+    "ORIGIN": "Origem",
+    "DESTINATION": "Destino",
+    "SEARCH_ORIGIN": "Pesquisar origem...",
+    "SEARCH_DESTINATION": "Pesquisar destino...",
+    "CLEAR_FILTERS": "Limpar filtros",
+    "HERO_TITLE": "Venha voar connosco",
+    "HERO_TEXT": "Descubra a península ibérica!",
+    "HERO_BUTTON": "Mostra-me",
+    "DATE": "Partida"
+  },
+
+  "FLIGHT_SELECTABLE": {
+    "SELECT_FLIGHT": "Selecionar um voo",
+    "NONE": "Nenhum",
+    "SEARCH": "Pesquisar"
+  },
+
+  "PROFILE": {
+    "TITLE": "Perfil",
+    "PERSONAL_INFO": "Suas informações pessoais",
+    "FIELDS": {
+      "NAME": "Nome",
+      "SURNAME": "Sobrenome",
+      "EMAIL": "Email"
+    },
+    "ERRORS": {
+      "NAME_REQUIRED": "O nome é obrigatório",
+      "NAME_MINLENGTH": "O nome deve ter pelo menos 2 caracteres",
+      "SURNAME_REQUIRED": "O sobrenome é obrigatório",
+      "SURNAME_MINLENGTH": "O sobrenome deve ter pelo menos 2 caracteres",
+      "EMAIL_REQUIRED": "O email é obrigatório",
+      "EMAIL_INVALID": "Por favor, insira um email válido",
+      "EMAIL_CANNOT_BE_CHANGED": "O email não pode ser alterado porque está vinculado ao seu método de autenticação"
+    },
+    "BUTTONS": {
+      "UPDATE": "Atualizar"
+    }
+  },
+
+  "PICTURE": {
+    "OPTIONS": {
+      "TAKE_PHOTO": "Tirar foto",
+      "SELECT_FROM_GALLERY": "Selecionar da galeria",
+      "CANCEL": "Cancelar"
+    }
+  },
+
+  "ABOUT": {
+    "TITLE": "Sobre",
+    "APP_INFO": {
+      "TITLE": "Sobre este app",
+      "NAME": "Nome",
+      "CREATION_DATE": "Data de criação",
+      "DESCRIPTION": "Descrição",
+      "DESCRIPTION_TEXT": "Este app foi criado para gerir voos e reservas da companhia aérea Voliberia."
+    },
+    "ADDITIONAL_INFO": {
+      "TITLE": "Informações adicionais",
+      "INTRODUCTION": "Meu nome é Samuel Avella Pérez, sou estudante de Desenvolvimento de Aplicações Multiplataforma. Criei este aplicativo motivado pela minha paixão por viajar e com o objetivo de facilitar a gestão de voos e reservas para a companhia aérea Voliberia.",
+      "CONTACT": "Contato",
+      "CONTACT_TEXT": "Pode entrar em contato comigo em:",
+      "LINKEDIN": "LinkedIn"
+    }
+  },
+
+  "HEADER": {
+    "TITLE": "Descubra cada canto da Ibéria"
+  }
+}

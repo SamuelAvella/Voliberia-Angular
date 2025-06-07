@@ -335,11 +335,12 @@ onDateSelected(): void {
 }
 
 destinationImages = [
+  { name: 'Barcelona (BCN)', image: 'assets/img/destinations/barcelona.jpg' },
+  { name: 'Lisboa (LIS)', image: 'assets/img/destinations/lisboa.jpg' },
   { name: 'Madrid (MAD)', image: 'assets/img/destinations/madrid.jpg' },
-  { name: 'Barcelona', image: 'assets/img/destinations/barcelona.jpg' },
-  { name: 'Sevilla', image: 'assets/img/destinations/sevilla.jpg' },
-  { name: 'Valencia', image: 'assets/img/destinations/valencia.jpg' },
-  { name: 'Bilbao', image: 'assets/img/destinations/bilbao.jpg' },
+  { name: 'Malaga (AGP)', image: 'assets/img/destinations/malaga.jpg' },
+  { name: 'Palma (PMI)', image: 'assets/img/destinations/palma.jpg' },
+  { name: 'Porto (POR)', image: 'assets/img/destinations/porto.jpg' },
 ];
 
 selectDestinationFromImage(destinationName: string): void {

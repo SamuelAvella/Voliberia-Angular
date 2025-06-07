@@ -69,7 +69,9 @@
       "FLIGHTS": "Flights",
       "HOME": "Home",
       "PROFILE": "Profile"
-    }
+    },
+    "CURRENT-LANGUAGE": "EN",
+    "CURRENT-LANGUAGE-LONG": "English"
   },
 
   "HOME": {

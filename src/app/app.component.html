@@ -1,5 +1,57 @@
 <ion-app>
-  <ion-menu #menu menuId="mainMenu" contentId="main-content" type="overlay">
+  <!-- Responsive Header/Navbar -->
+  <ion-header class="shadow" *ngIf="!shouldHideHeader">
+    <ion-toolbar class="px-4" color="primary">
+      <!-- Mobile (left) -->
+      <div class="flex items-center justify-between sm:hidden">
+        <div class="flex items-center gap-2">
+          <ion-menu-button autoHide="false"></ion-menu-button>
+          <span class="text-xl font-bold text-white">Voliberia</span>
+        </div>
+      </div>
+
+      <!-- Desktop -->
+      <div class="hidden sm:grid sm:grid-cols-3 sm:items-center w-full text">
+        <!-- Left Navigation -->
+        <div class="flex gap-4 justify-start">
+          <a *ngFor="let p of leftPages"
+             [routerLink]="p.url"
+             routerLinkActive="text-blue-300"
+             class="text-white hover:text-blue-300 transition">
+            {{ p.title }}
+          </a>
+        </div>
+
+        <!-- Center Title -->
+        <div class="flex justify-center items-center gap-2 text-2xl font-black text-white">
+          <img src="assets/img/logo.png" alt="Logo Voliberia" class="h-8 w-8 object-contain" />
+          Voliberia
+        </div>
+
+
+        <!-- Right Icons -->
+        <div class="flex gap-4 justify-end text-white">
+          <a
+            (click)="openLanguageSelector($event)"
+            class="uppercase font-bold text-white hover:text-blue-300 transition text-sm tracking-wide"
+          >
+            {{ 'MENU.CURRENT-LANGUAGE' | translate }}
+          </a>
+          <a *ngFor="let p of rightPages"
+             [routerLink]="p.url"
+             class="hover:text-blue-300 text-xl">
+            <ion-icon [name]="p.icon"></ion-icon>
+          </a>
+          <a (click)="logout()" class="hover:text-blue-300 text-xl">
+            <ion-icon slot="start" name="log-out-outline"></ion-icon>
+          </a>
+        </div>
+      </div>
+    </ion-toolbar>
+  </ion-header>
+
+  <!-- Mobile Menu -->
+  <ion-menu menuId="mainMenu" contentId="main-content" type="overlay" *ngIf="!shouldHideHeader">
     <ion-header>
       <ion-toolbar color="primary">
         <ion-title>{{ 'MENU.MENU' | translate }}</ion-title>
@@ -7,39 +59,37 @@
     </ion-header>
 
     <ion-content>
-      <ion-list id="inbox-list">
-
-        <!-- Logo and current user -->
+      <ion-list>
+        <!-- Current User -->
         <ion-item lines="none">
           <ion-avatar slot="start">
-            <img src="https://i.ibb.co/W27FPk3/logo.png" alt="{{ 'MENU.TITLE' | translate }}" />
+            <img src="https://i.ibb.co/W27FPk3/logo.png" alt="Logo" />
           </ion-avatar>
           <ion-label>
             <h2 class="ion-text-uppercase">{{ 'MENU.TITLE' | translate }}</h2>
             <p *ngIf="userApp">
-              {{ 'MENU.GREETING' | translate}} {{ userApp.name }}
+              {{ 'MENU.GREETING' | translate }} {{ userApp.name }}
             </p>
           </ion-label>
         </ion-item>
-        
 
-        <!-- Language selector with a popover, a modal -->
+        <!-- Language Selector -->
         <ion-item button lines="none" (click)="openLanguageSelector($event)">
           <ion-icon slot="start" name="language-outline"></ion-icon>
-          <ion-label>{{ 'MENU.LANGUAGE' | translate }}</ion-label>
+          <ion-label>{{ 'MENU.CURRENT-LANGUAGE-LONG' | translate }}</ion-label>
         </ion-item>
 
-        <!-- Menu options -->
+        <!-- Dynamic Pages -->
         <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages">
-          <ion-item routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false" routerLinkActive="selected">
-            <ion-icon aria-hidden="true" slot="start" [ios]="p.icon + '-outline'" [md]="p.icon + '-sharp'"></ion-icon>
+          <ion-item routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false">
+            <ion-icon slot="start" [name]="p.icon"></ion-icon>
             <ion-label>{{ p.title }}</ion-label>
           </ion-item>
         </ion-menu-toggle>
 
         <!-- Logout -->
-        <ion-item (click)="menu.close()" lines="none" button (click)="logout()">
-          <ion-icon aria-hidden="true" slot="start" ios="log-out-outline" md="log-out-sharp"></ion-icon>
+        <ion-item lines="none" button (click)="logout()">
+          <ion-icon slot="start" name="log-out-outline"></ion-icon>
           <ion-label>{{ 'MENU.LOGOUT' | translate }}</ion-label>
         </ion-item>
       </ion-list>
@@ -49,12 +99,14 @@
       <ion-toolbar color="light">
         <ion-item lines="none">
           <ion-label>
-            <small>&copy;{{currentYear}}{{ 'MENU.FOOTER' | translate }}</small>
+            <small>&copy;{{ currentYear }} {{ 'MENU.FOOTER' | translate }}</small>
           </ion-label>
         </ion-item>
       </ion-toolbar>
     </ion-footer>
   </ion-menu>
 
+  <!-- Router outlet -->
   <ion-router-outlet id="main-content"></ion-router-outlet>
+
 </ion-app>

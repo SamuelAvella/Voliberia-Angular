@@ -51,6 +51,7 @@ const routes: Routes = [
   },
   {
     path: 'book',
+    canActivate: [authGuard],
     loadChildren: () => import('./pages/book/book.module').then( m => m.BookPageModule)
   }
 

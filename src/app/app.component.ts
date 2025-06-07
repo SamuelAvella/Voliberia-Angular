@@ -17,15 +17,34 @@ import { UsersAppService } from './core/services/impl/usersApp.service';
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent implements OnInit {
+ 
+  // Todas las páginas, centralizadas
   public appPages = [
-    { key: 'MENU.PAGES.HOME', url: '/home', icon: 'home', title: '' },
-    { key: 'MENU.PAGES.BOOK', url: '/book', icon: 'book', title: '' },
-    { key: 'MENU.PAGES.FLIGHTS', url: '/flights', icon: 'airplane', title: '' },
-    { key: 'MENU.PAGES.BOOKINGS', url: '/bookings', icon: 'book', title: '' },
-    { key: 'MENU.PAGES.PROFILE', url: '/profile', icon: 'person', title: '' },
-    { key: 'MENU.PAGES.ABOUT', url: '/about', icon: 'newspaper', title: ''}
+    { key: 'MENU.PAGES.HOME', url: '/home', icon: 'home-outline', title: '', position: 'left' },
+    { key: 'MENU.PAGES.BOOK', url: '/book', icon: 'book-outline', title: '', position: 'left' },
+    { key: 'MENU.PAGES.FLIGHTS', url: '/flights', icon: 'airplane-outline', title: '', position: 'left' },
+    { key: 'MENU.PAGES.BOOKINGS', url: '/bookings', icon: 'file-tray-full-outline', title: '', position: 'left' },
+    { key: 'MENU.PAGES.ABOUT', url: '/about', icon: 'information-circle-outline', title: '', position: 'left' },
+    { key: 'MENU.PAGES.PROFILE', url: '/profile', icon: 'person-circle-outline', title: '', position: 'right' },
   ];
 
+  // Filtrados para el header
+  get leftPages() {
+    return this.appPages.filter(p => p.position === 'left');
+  }
+
+  get rightPages() {
+    return this.appPages.filter(p => p.position === 'right');
+  }
+
+  hiddenHeaderRoutes: string[] = ['/login', '/register', '/splash', '/register?returnUrl=%2Fhome', '/login?returnUrl=%2Fhome'];
+
+  get shouldHideHeader(): boolean {
+    const current = this.router.url;
+    return this.hiddenHeaderRoutes.includes(current);
+  }
+
+  currentLang: string = 'es'; 
   currentYear: number = new Date().getFullYear();
   userApp?: UserApp | null;
 
@@ -39,6 +58,7 @@ export class AppComponent implements OnInit {
   ) {
     this.loadTranslations();
     this.translate.onLangChange.subscribe(() => this.loadTranslations());
+    this.currentLang = this.translate.currentLang || this.translate.getDefaultLang();
   }
 
   private loadTranslations() {
