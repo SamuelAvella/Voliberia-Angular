@@ -27,16 +27,24 @@
 
 }
 
-body.dark {
-  // Color primary en modo oscuro (más oscuro, menos saturado)
-  --ion-color-primary: #1a4d8f;
-  --ion-color-primary-rgb: 26, 77, 143;
-  --ion-color-primary-contrast: #ffffff;
-  --ion-color-primary-contrast-rgb: 255, 255, 255;
-  --ion-color-primary-shade: #17467f;
-  --ion-color-primary-tint: #3566a3;
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* NavBar - azul + blanco */
+    --ion-color-primary: #3b90ff;                      /* tono más claro */
+    --ion-color-primary-contrast: #ffffff;             /* texto blanco encima */
+    --ion-color-primary-shade: #2a6ccf;
+    --ion-color-primary-tint: #67a7ff;
 
-  // Color del toolbar
-  --ion-toolbar-background: var(--ion-color-primary);
-  --ion-toolbar-color: var(--ion-color-primary-contrast);
+    /* Titles - más claro para que destaque sobre fondo oscuro */
+    --ion-color-secondary: #4b6fd7;
+    --ion-color-secondary-contrast: #ffffff;
+    --ion-color-secondary-shade: #3a5db6;
+    --ion-color-secondary-tint: #6686de;
+
+    /* Buttons - menos saturado que #0040FE para evitar fatiga visual */
+    --ion-color-tertiary: #5c7cff;
+    --ion-color-tertiary-contrast: #ffffff;
+    --ion-color-tertiary-shade: #435dcc;
+    --ion-color-tertiary-tint: #7e96ff;
+  }
 }

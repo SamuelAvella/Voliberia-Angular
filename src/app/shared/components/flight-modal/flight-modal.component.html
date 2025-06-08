@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar color="primary">
     <ion-title class="ion-text-center">
-      
+      {{ flight ? ('FLIGHT.EDIT' | translate) : ('FLIGHT.NEW' | translate) }}
     </ion-title>
     <ion-buttons slot="end">
       <ion-button (click)="dismiss()" color="light">
@@ -11,84 +11,121 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <ion-card>
-    <ion-card-header>
-      <ion-card-title class="ion-text-center">
-        @if (flight){
-          {{'FLIGHT.EDIT' | translate}}
-        }
-        @else {
-          {{ 'FLIGHT.NEW' | translate }}
-        }
-        
-      </ion-card-title>
-    </ion-card-header>
-    <ion-card-content>
-      <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
-        <ion-item class="form-item">
-          <ion-input
-            label="{{'FLIGHT.ORIGIN' | translate}}"
-            label-placement="stacked"
-            formControlName="origin"
-            placeholder="{{'FLIGHT.ORIGIN_INSERT' | translate}}"
-          ></ion-input>
-        </ion-item>
+<ion-content class="bg-white font-inter">
+  <div class="w-full max-w-xl mx-auto px-6 py-4">
+    <form [formGroup]="formGroup" (ngSubmit)="onSubmit()" class="space-y-4">
 
-        <ion-item class="form-item">
-          <ion-input
-            label="{{'FLIGHT.DESTINATION' | translate}}"
-            label-placement="stacked"
-            formControlName="destination"
-            placeholder="{{'FLIGHT.DESTINATION_INSERT' | translate}}"
-          ></ion-input>
-        </ion-item>
+      <!-- ORIGIN -->
+      <div>
+        <label class="text-sm font-semibold text-gray-700">{{ 'FLIGHT.ORIGIN' | translate }}</label>
+        <ion-input
+          formControlName="origin"
+          placeholder="{{ 'FLIGHT.ORIGIN_INSERT' | translate }}"
+          class="h-[40px] w-full mt-1 px-3 border border-gray-300 rounded-md text-sm text-black bg-white focus:outline-none shadow-sm">
+        </ion-input>
+      </div>
 
-        <ion-item class="form-item">
-          <ion-label position="stacked">{{'FLIGHT.DEPARTURE' | translate}}</ion-label>
-          <ion-datetime
-            formControlName="departureDate"
-            placeholder="Select Departure Date"
-            display-format="DD MMM YYYY, HH:mm"
-            picker-format="DD MMM YYYY HH:mm"
-          ></ion-datetime>
-          <ion-text *ngIf="formGroup?.get('departureDate')?.errors?.['dateNotInThePast']" color="danger">
-            {{"FLIGHT.DEPARTURE_ERROR" | translate}}
-          </ion-text>
-        </ion-item>
+      <!-- DESTINATION -->
+      <div>
+        <label class="text-sm font-semibold text-gray-700">{{ 'FLIGHT.DESTINATION' | translate }}</label>
+        <ion-input
+          formControlName="destination"
+          placeholder="{{ 'FLIGHT.DESTINATION_INSERT' | translate }}"
+          class="h-[40px] w-full mt-1 px-3 border border-gray-300 rounded-md text-sm text-black bg-white focus:outline-none shadow-sm">
+        </ion-input>
+      </div>
 
-        <ion-item class="form-item">
-          <ion-label position="stacked">{{'FLIGHT.ARRIVAL' | translate}}</ion-label>
-          <ion-datetime
-            formControlName="arrivalDate"
-            placeholder="Select Arrival Date"
-            display-format="DD MMM YYYY, HH:mm"
-            picker-format="DD MMM YYYY HH:mm"
-          ></ion-datetime>
-          <div *ngIf="formGroup.hasError('arrivalDateInvalid')">
-            <ion-text color="danger">{{"FLIGHT.ARRIVAL_ERROR_DATE" | translate}}</ion-text>
-          </div>
-          <div *ngIf="formGroup.hasError('arrivalDateTooClose')">
-            <ion-text color="danger">{{"FLIGHT.ARRIVAL_ERROR_MINUTES" | translate}}</ion-text>
-          </div>
-        </ion-item>
+      <!-- DEPARTURE -->
+<div class="relative z-[9999]" #departureWrapper>
+  <label class="text-sm font-medium text-gray-700">{{ 'FLIGHT.DEPARTURE' | translate }}</label>
+  <div
+    class="h-[40px] mt-1 border rounded-md px-3 text-sm flex justify-between items-center cursor-pointer bg-white text-black border-gray-300 hover:shadow-sm"
+    (click)="openDateSelector('departure', $event)">
+    <div class="flex items-center gap-2">
+      <ion-icon name="calendar-outline" class="text-gray-400"></ion-icon>
+      <span *ngIf="departureDate && departureTime; else depPlaceholder">
+        {{ departureDate | date: 'mediumDate' }} - {{ departureTime }}
+      </span>
+      <ng-template #depPlaceholder>
+        {{ 'FLIGHT.DEPARTURE' | translate }}
+      </ng-template>
+    </div>
+    <ion-icon *ngIf="departureDate" name="close-outline" (click)="clearDate('departure'); $event.stopPropagation()" class="text-gray-400 hover:text-gray-700 cursor-pointer"></ion-icon>
+  </div>
 
-        <ion-item class="form-item">
-          <ion-input
-            label="{{'FLIGHT.PRICE' | translate}}"
-            label-placement="stacked"
-            type="number"
-            formControlName="seatPrice"
-            placeholder="Enter Seat Price"
-          ></ion-input>
-        </ion-item>
+  <div *ngIf="toggleDateSelector === 'departure'" class="absolute z-[9999] mt-2 w-full bg-white border border-gray-300 rounded-md shadow-md p-2" (click)="$event.stopPropagation()">
+    <ion-datetime
+      presentation="date"
+      [min]="minDepartureDate"
+      (ionChange)="onDatePartSelected($event, 'departure', $event)">
+    </ion-datetime>
+  </div>
 
-        <div class="button-container">
-          <ion-button button expand="block" type="submit" [disabled]="!formGroup.valid" color="success">
-            {{ flight ? ('FLIGHT.SAVE' | translate) : ('FLIGHT.CREATE' | translate) }}
-          </ion-button>
-        </div>
-      </form>
-    </ion-card-content>
-  </ion-card>
+  <div *ngIf="toggleTimeSelector === 'departure'" class="absolute z-[9999] mt-2 w-full bg-white border border-gray-300 rounded-md shadow-md p-2" (click)="$event.stopPropagation()">
+    <ion-datetime
+      presentation="time"
+      (ionChange)="onTimePartSelected($event, 'departure')">
+    </ion-datetime>
+  </div>
+</div>
+
+<!-- ARRIVAL -->
+<div class="relative z-[9999]" #arrivalWrapper>
+  <label class="text-sm font-medium text-gray-700">{{ 'FLIGHT.ARRIVAL' | translate }}</label>
+  <div
+    class="h-[40px] mt-1 border rounded-md px-3 text-sm flex justify-between items-center cursor-pointer bg-white text-black border-gray-300 hover:shadow-sm"
+    (click)="openDateSelector('arrival', $event)">
+    <div class="flex items-center gap-2">
+      <ion-icon name="calendar-outline" class="text-gray-400"></ion-icon>
+      <span *ngIf="arrivalDate && arrivalTime; else arrPlaceholder">
+        {{ arrivalDate | date: 'mediumDate' }} - {{ arrivalTime }}
+      </span>
+      <ng-template #arrPlaceholder>
+        {{ 'FLIGHT.ARRIVAL' | translate }}
+      </ng-template>
+    </div>
+    <ion-icon *ngIf="arrivalDate" name="close-outline" (click)="clearDate('arrival'); $event.stopPropagation()" class="text-gray-400 hover:text-gray-700 cursor-pointer"></ion-icon>
+  </div>
+
+  <div *ngIf="toggleDateSelector === 'arrival'" class="absolute z-[9999] mt-2 w-full bg-white border border-gray-300 rounded-md shadow-md p-2" (click)="$event.stopPropagation()">
+    <ion-datetime
+      presentation="date"
+      [min]="minDepartureDate"
+      (ionChange)="onDatePartSelected($event, 'arrival', $event)">
+    </ion-datetime>
+  </div>
+
+  <div *ngIf="toggleTimeSelector === 'arrival'" class="absolute z-[9999] mt-2 w-full bg-white border border-gray-300 rounded-md shadow-md p-2" (click)="$event.stopPropagation()">
+    <ion-datetime
+      presentation="time"
+      (ionChange)="onTimePartSelected($event, 'arrival')">
+    </ion-datetime>
+  </div>
+</div>
+
+      <!-- PRICE -->
+      <div>
+        <label class="text-sm font-semibold text-gray-700">{{ 'FLIGHT.PRICE' | translate }}</label>
+        <ion-input
+          type="number"
+          formControlName="seatPrice"
+          placeholder="Enter Seat Price"
+          class="h-[40px] w-full mt-1 px-3 border border-gray-300 rounded-md text-sm text-black bg-white focus:outline-none shadow-sm">
+        </ion-input>
+      </div>
+
+      <!-- SUBMIT -->
+      <div>
+        <ion-button
+          type="submit"
+          expand="block"
+          color="success"
+          [disabled]="!formGroup.valid"
+          class="h-[40px] text-white font-medium rounded-md">
+          {{ flight ? ('FLIGHT.SAVE' | translate) : ('FLIGHT.CREATE' | translate) }}
+        </ion-button>
+      </div>
+
+    </form>
+  </div>
 </ion-content>

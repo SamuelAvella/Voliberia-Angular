@@ -170,6 +170,7 @@ throw new Error('Method not implemented.');
     event.stopPropagation();
     this.toggleOriginSelector = true;
     this.toggleDestinationSelector = false;
+    this.toggleDateSelector = false;
     this.searchOrigin = "";
     this.filteredOriginsSearch = [...this.filteredOrigins];
     setTimeout(() => this.originInput?.nativeElement.focus(), 0);
@@ -202,6 +203,7 @@ throw new Error('Method not implemented.');
     event.stopPropagation();
     this.toggleDestinationSelector = true;
     this.toggleOriginSelector = false;
+    this.toggleDateSelector = false;
     this.searchDestination = "";
     this.filteredDestinationsSearch = [...this.filteredDestinations];
     setTimeout(() => this.destinationInput?.nativeElement.focus(), 0);
@@ -330,7 +332,8 @@ openDateSelector(event: Event): void {
   this.toggleDestinationSelector = false;
 }
 
-onDateSelected(): void {
+onDateSelected(event: CustomEvent): void {
+  this.selectedDate = event.detail.value as string;
   this.toggleDateSelector = false;
 }
 
@@ -347,6 +350,13 @@ selectDestinationFromImage(destinationName: string): void {
   this.selectedDestination = destinationName;
   this.filterOrigins();
   this.updateAvailableDates();
+}
+
+clearDateSelection(event: Event): void {
+  event.stopPropagation();
+  this.selectedDate = null;
+    this.toggleDateSelector = false; // por si estaba abierto
+
 }
 
 
