@@ -24,6 +24,7 @@ export class UsersAppMappingFirebaseService implements IBaseMapping<UserApp>{
             name: data.name,
             surname: data.surname,
             userId: data.user || '',
+            role: data.role || 'user',
             picture: data.picture ? {
               url: data.picture,
               large: data.picture,
@@ -60,7 +61,8 @@ export class UsersAppMappingFirebaseService implements IBaseMapping<UserApp>{
             name: data.name,
             surname: data.surname,
             user: data.userId || '',
-            picture: data.picture ? data.picture.url : ''
+            picture: data.picture ? data.picture.url : '',
+            role: data.role || 'user'
         };
     }
 
@@ -71,6 +73,7 @@ export class UsersAppMappingFirebaseService implements IBaseMapping<UserApp>{
         if (data.surname) result.surname = data.surname;
         if (data.userId) result.user = data.userId || '';
         if (data.picture) result.picture = data.picture;
+        if (data.role) result.role = data.role;
 
         return result
     }

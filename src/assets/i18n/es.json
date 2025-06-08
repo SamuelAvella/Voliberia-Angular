@@ -8,7 +8,9 @@
       "SAVE": "Error guardando datos"
     },
     "SUCCESS": {
-      "SAVE": "Cambios guardados correctamente"
+      "SAVE": "Cambios guardados correctamente",
+      "GO_BACK": "Volver",
+      "GO_HOME": "Ir a Inicio"
     }
   },
 
@@ -58,21 +60,22 @@
   "MENU": {
     "MENU": "Menú",
     "TITLE": "Voliberia",
-    "GREETING": "Hola",
+    "GREETING": "Bienvenido,",
     "DESCRIPTION": "Gestión de vuelos",
     "LANGUAGE": "Idioma",
     "LOGOUT": "Cerrar sesión",
     "FOOTER": "Voliberia. Todos los derechos reservados.",
     "PAGES": {
-      "ABOUT": "Sobre nosotros",
-      "BOOK": "Reservar",
-      "BOOKINGS": "Mis viajes",
-      "FLIGHTS": "Vuelos",
       "HOME": "Inicio",
+      "BOOK": "Reservar Vuelo",
+      "FLIGHTS": "Gestionar Vuelos",
+      "BOOKINGS": "Mis Reservas",
+      "USERS": "Gestionar Usuarios",
+      "ABOUT": "Acerca de",
       "PROFILE": "Perfil"
     },
    "CURRENT-LANGUAGE": "ES",
-    "CURRENT-LANGUAGE-LONG": "Español"
+    "CURRENT-LANGUAGE-LONG": "Idioma: Español"
 
 
   },
@@ -82,7 +85,38 @@
     "FLIGHTS": "VUELOS",
     "FLIGHTS_DESC": "Consulta, edita y crea los vuelos",
     "BOOKINGS": "RESERVAS",
-    "BOOKINGS_DESC": "Revisa, administra y añade reserva de vuelos"
+    "BOOKINGS_DESC": "Revisa, administra y añade reserva de vuelos",
+    "WELCOME": "Bienvenido a Voliberia",
+    "GREETING": "Bienvenido",
+    "SUBTITLE": "Tu plataforma de gestión de vuelos y reservas",
+    "ADMIN": {
+      "FLIGHTS": {
+        "TITLE": "Gestión de Vuelos",
+        "DESCRIPTION": "Administra los vuelos disponibles, horarios y rutas"
+      },
+      "USERS": {
+        "TITLE": "Gestión de Usuarios",
+        "DESCRIPTION": "Administra los usuarios y sus roles en la plataforma"
+      },
+      "ANALYTICS": {
+        "TITLE": "Análisis",
+        "DESCRIPTION": "Visualiza estadísticas y métricas importantes"
+      }
+    },
+    "USER": {
+      "BOOK": {
+        "TITLE": "Reservar Vuelo",
+        "DESCRIPTION": "Explora y reserva tu próximo vuelo"
+      },
+      "BOOKINGS": {
+        "TITLE": "Mis Reservas",
+        "DESCRIPTION": "Gestiona tus reservas actuales y pasadas"
+      },
+      "PROFILE": {
+        "TITLE": "Mi Perfil",
+        "DESCRIPTION": "Actualiza tu información personal y preferencias"
+      }
+    }
   },
 
   "FLIGHT":{
@@ -206,6 +240,43 @@
 
   "HEADER": {
     "TITLE": "Descubre cada rincón ibérico"
+  },
+
+  "ACCESS_DENIED": {
+    "TITLE": "Acceso Denegado",
+    "MESSAGE": "No tienes permiso para acceder a esta página. Por favor, contacta con tu administrador si crees que esto es un error."
+  },
+
+  "NOT_FOUND": {
+    "TITLE": "Página No Encontrada",
+    "MESSAGE": "La página que estás buscando no existe o ha sido movida."
+  },
+
+  "USERS": {
+    "TITLE": "Gestión de Usuarios",
+    "SUBTITLE": "Ver y gestionar roles de usuarios en la plataforma",
+    "SEARCH_PLACEHOLDER": "Buscar por nombre o ID...",
+    "ROLE": "Rol",
+    "ROLES": {
+      "USER": "Usuario",
+      "ADMIN": "Administrador"
+    },
+    "SECTIONS": {
+      "ADMINS": "Administradores",
+      "USERS": "Usuarios"
+    },
+    "NO_USERS": "No se encontraron usuarios",
+    "NO_ADMINS": "No hay administradores",
+    "NO_REGULAR_USERS": "No hay usuarios regulares"
+  },
+
+  "MODALS": {
+    "CONFIRM_ROLE": {
+      "TITLE": "Confirmar cambio de rol",
+      "MESSAGE": "¿Estás seguro de que deseas cambiar el rol de este usuario?",
+      "FROM": "De",
+      "TO": "A"
+    }
   }
 
 

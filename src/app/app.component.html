@@ -80,7 +80,7 @@
         </ion-item>
 
         <!-- Dynamic Pages -->
-        <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages">
+        <ion-menu-toggle auto-hide="false" *ngFor="let p of availablePages">
           <ion-item routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false">
             <ion-icon slot="start" [name]="p.icon"></ion-icon>
             <ion-label>{{ p.title }}</ion-label>

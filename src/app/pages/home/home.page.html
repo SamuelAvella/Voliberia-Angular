@@ -1,112 +1,165 @@
 <ion-header [translucent]="true">
-  <ion-toolbar color="primary">
+  <ion-toolbar class="bg-white dark:bg-zinc-900 shadow-md">
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title style="color: white;">{{'HOME.TITLE' | translate}}</ion-title>
+    <ion-title class="text-zinc-800 dark:text-white font-bold text-lg">
+      {{ 'HOME.TITLE' | translate }}
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <div class="card-grid">
-    <ion-card class="home-card" routerLink="/flights">
-      <ion-card-header>
-        <ion-card-title>{{'HOME.FLIGHTS' | translate}}</ion-card-title>
-      </ion-card-header>
-      <ion-card-content>
-        {{'HOME.FLIGHTS_DESC' | translate}}
-      </ion-card-content>
-    </ion-card>
+<ion-content fullscreen>
+  <!-- Hero Section -->
+  <section class="relative bg-gradient-to-r from-blue-100 via-blue-200 to-blue-300 dark:from-primary dark:to-blue-600">
+    <div class="max-w-7xl mx-auto px-4 py-16 text-center">
+      <h1 *ngIf="currentUser" class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-[#13359A] dark:text-white drop-shadow">
+        {{ 'HOME.GREETING' | translate }} {{currentUser.name}}
+      </h1>
+      <p class="mt-6 text-xl max-w-3xl mx-auto text-zinc-700 dark:text-white/90">
+        {{ 'HOME.SUBTITLE' | translate }}
+      </p>
+    </div>
 
-    <ion-card class="home-card" routerLink="/bookings">
-      <ion-card-header>
-        <ion-card-title>{{'HOME.BOOKINGS' | translate}}</ion-card-title>
-      </ion-card-header>
-      <ion-card-content>
-        {{'HOME.BOOKINGS_DESC' | translate}}
-      </ion-card-content>
-    </ion-card>
-  </div>
-  <div class="bg-black p-20">
-    <br>
-    <!-- ✈️ PENDING -->
-    <div class="mx-auto mb-6 max-w-xl rounded-2xl bg-white p-4 shadow-md">
-      <div class="mb-4 border-b pb-2 text-center font-semibold text-gray-600">Wednesday, 19 March 2025</div>
-      <div class="flex items-center justify-between px-4">
-        <div class="text-center">
-          <div class="text-sm text-gray-600">- Sevilla -</div>
-          <div class="text-2xl font-bold">SVQ</div>
-          <div class="mt-1 text-sm text-gray-500">06:45h</div>
-        </div>
-        <div class="flex-grid flex items-center justify-center text-gray-500">
-          <div class="my-1 w-16 border-t border-gray-300"></div>
-          <div class="text-xl">✈️</div>
-          <div class="my-1 w-16 border-t border-gray-300"></div>
-        </div>
-        <div class="text-center">
-          <div class="text-sm text-gray-600">- Barcelona -</div>
-          <div class="text-2xl font-bold">BCN</div>
-          <div class="mt-1 text-sm text-gray-500">08:25h</div>
-        </div>
-      </div>
-      <div class="mt-4 flex items-center justify-between px-2">
-        <div class="text-lg font-semibold text-blue-700">45€</div>
-        <button class="rounded-md bg-red-500 px-3 py-1 text-sm text-white hover:bg-red-600">Cancelar</button>
-        <div class="text-xs text-yellow-600 italic">Pendiente</div>
-      </div>
+    <!-- Decorative Wave -->
+    <div class="absolute bottom-0 left-0 right-0">
+      <svg viewBox="0 0 1440 120" class="text-white dark:fill-[#121212] fill-current">
+        <path d="M0,96L80,80C160,64,320,32,480,21.3C640,11,800,21,960,37.3C1120,53,1280,75,1360,85.3L1440,96L1440,120L0,120Z"></path>
+      </svg>
     </div>
-  
-    <!-- ✈️ CONFIRMED -->
-    <div class="mx-auto mb-6 max-w-xl rounded-2xl bg-blue-50 p-4 shadow-md">
-      <div class="mb-4 border-b pb-2 text-center font-semibold text-gray-600">Monday, 24 March 2025</div>
-      <div class="flex items-center justify-between px-4">
-        <div class="text-center">
-          <div class="text-sm text-gray-600">- Madrid -</div>
-          <div class="text-2xl font-bold">MAD</div>
-          <div class="mt-1 text-sm text-gray-500">12:00h</div>
-        </div>
-        <div class="flex-grid flex items-center justify-center text-gray-500">
-          <div class="my-1 w-16 border-t border-gray-300"></div>
-          <div class="text-xl">✈️</div>
-          <div class="my-1 w-16 border-t border-gray-300"></div>
-        </div>
-        <div class="text-center">
-          <div class="text-sm text-gray-600">- Palma -</div>
-          <div class="text-2xl font-bold">PMI</div>
-          <div class="mt-1 text-sm text-gray-500">13:30h</div>
-        </div>
-      </div>
-      <div class="mt-4 flex items-center justify-between px-2">
-        <div class="text-lg font-semibold text-blue-700">62€</div>
-        <div class="text-xs text-green-600 italic">Confirmado</div>
-      </div>
+  </section>
+
+
+  <!-- Main Section -->
+  <section class="max-w-7xl mx-auto px-4 py-12 sm:px-6 lg:px-8">
+    <!-- Loading Spinner -->
+    <div *ngIf="loading" class="flex justify-center items-center min-h-[300px]">
+      <ion-spinner name="crescent" color="primary"></ion-spinner>
     </div>
-  
-    <!-- ✈️ CANCELLED + VUELO PASADO -->
-    <div class="mx-auto mb-6 max-w-xl rounded-2xl bg-gray-100 p-4 opacity-50 shadow-inner">
-      <div class="mb-4 border-b pb-2 text-center font-semibold text-gray-500">Monday, 10 March 2025</div>
-      <div class="flex items-center justify-between px-4">
-        <div class="text-center">
-          <div class="text-sm text-gray-500">- Málaga -</div>
-          <div class="text-2xl font-bold text-gray-600">AGP</div>
-          <div class="mt-1 text-sm text-gray-400">09:00h</div>
-        </div>
-        <div class="flex-grid flex items-center justify-center text-gray-400">
-          <div class="my-1 w-16 border-t border-gray-300"></div>
-          <div class="text-xl">✈️</div>
-          <div class="my-1 w-16 border-t border-gray-300"></div>
-        </div>
-        <div class="text-center">
-          <div class="text-sm text-gray-500">- Bilbao -</div>
-          <div class="text-2xl font-bold text-gray-600">BIO</div>
-          <div class="mt-1 text-sm text-gray-400">10:40h</div>
-        </div>
-      </div>
-      <div class="mt-4 flex items-center justify-between px-2">
-        <div class="text-lg font-semibold text-gray-500">33€</div>
-        <div class="text-xs text-gray-500 italic">Cancelado · Vuelo finalizado</div>
-      </div>
+
+    <!-- Admin Cards -->
+    <div
+      *ngIf="!loading && currentUser?.role === 'admin'"
+      class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3"
+    >
+      <ion-card
+        routerLink="/flights"
+        class="hover:scale-[1.03] transition-transform shadow-xl dark:bg-zinc-900 dark:text-white"
+      >
+        <ion-card-header>
+          <div class="flex items-center space-x-2">
+            <ion-icon name="airplane" class="text-3xl text-blue-500"></ion-icon>
+            <ion-card-title class="font-semibold text-lg">{{
+              'HOME.ADMIN.FLIGHTS.TITLE' | translate
+            }}</ion-card-title>
+          </div>
+        </ion-card-header>
+        <ion-card-content>
+          <p class="text-sm text-gray-600 dark:text-gray-300">
+            {{ 'HOME.ADMIN.FLIGHTS.DESCRIPTION' | translate }}
+          </p>
+        </ion-card-content>
+      </ion-card>
+
+      <ion-card
+        routerLink="/users"
+        class="hover:scale-[1.03] transition-transform shadow-xl dark:bg-zinc-900 dark:text-white"
+      >
+        <ion-card-header>
+          <div class="flex items-center space-x-2">
+            <ion-icon name="people" class="text-3xl text-green-500"></ion-icon>
+            <ion-card-title class="font-semibold text-lg">{{
+              'HOME.ADMIN.USERS.TITLE' | translate
+            }}</ion-card-title>
+          </div>
+        </ion-card-header>
+        <ion-card-content>
+          <p class="text-sm text-gray-600 dark:text-gray-300">
+            {{ 'HOME.ADMIN.USERS.DESCRIPTION' | translate }}
+          </p>
+        </ion-card-content>
+      </ion-card>
+
+      <ion-card
+        class="opacity-60 pointer-events-none shadow-md dark:bg-zinc-900 dark:text-white"
+      >
+        <ion-card-header>
+          <div class="flex items-center space-x-2">
+            <ion-icon name="bar-chart" class="text-3xl text-purple-500"></ion-icon>
+            <ion-card-title class="font-semibold text-lg">{{
+              'HOME.ADMIN.ANALYTICS.TITLE' | translate
+            }}</ion-card-title>
+          </div>
+        </ion-card-header>
+        <ion-card-content>
+          <p class="text-sm text-gray-600 dark:text-gray-300">
+            {{ 'HOME.ADMIN.ANALYTICS.DESCRIPTION' | translate }}
+          </p>
+        </ion-card-content>
+      </ion-card>
     </div>
-    <br>
-  </div>
+
+    <!-- User Cards -->
+    <div
+      *ngIf="!loading && currentUser?.role === 'user'"
+      class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3"
+    >
+      <ion-card
+        routerLink="/book"
+        class="hover:scale-[1.03] transition-transform shadow-xl dark:bg-zinc-900 dark:text-white"
+      >
+        <ion-card-header>
+          <div class="flex items-center space-x-2">
+            <ion-icon name="airplane" class="text-3xl text-blue-500"></ion-icon>
+            <ion-card-title class="font-semibold text-lg">{{
+              'HOME.USER.BOOK.TITLE' | translate
+            }}</ion-card-title>
+          </div>
+        </ion-card-header>
+        <ion-card-content>
+          <p class="text-sm text-gray-600 dark:text-gray-300">
+            {{ 'HOME.USER.BOOK.DESCRIPTION' | translate }}
+          </p>
+        </ion-card-content>
+      </ion-card>
+
+      <ion-card
+        routerLink="/bookings"
+        class="hover:scale-[1.03] transition-transform shadow-xl dark:bg-zinc-900 dark:text-white"
+      >
+        <ion-card-header>
+          <div class="flex items-center space-x-2">
+            <ion-icon name="calendar" class="text-3xl text-yellow-500"></ion-icon>
+            <ion-card-title class="font-semibold text-lg">{{
+              'HOME.USER.BOOKINGS.TITLE' | translate
+            }}</ion-card-title>
+          </div>
+        </ion-card-header>
+        <ion-card-content>
+          <p class="text-sm text-gray-600 dark:text-gray-300">
+            {{ 'HOME.USER.BOOKINGS.DESCRIPTION' | translate }}
+          </p>
+        </ion-card-content>
+      </ion-card>
+
+      <ion-card
+        routerLink="/profile"
+        class="hover:scale-[1.03] transition-transform shadow-xl dark:bg-zinc-900 dark:text-white"
+      >
+        <ion-card-header>
+          <div class="flex items-center space-x-2">
+            <ion-icon name="person" class="text-3xl text-pink-500"></ion-icon>
+            <ion-card-title class="font-semibold text-lg">{{
+              'HOME.USER.PROFILE.TITLE' | translate
+            }}</ion-card-title>
+          </div>
+        </ion-card-header>
+        <ion-card-content>
+          <p class="text-sm text-gray-600 dark:text-gray-300">
+            {{ 'HOME.USER.PROFILE.DESCRIPTION' | translate }}
+          </p>
+        </ion-card-content>
+      </ion-card>
+    </div>
+  </section>
 </ion-content>

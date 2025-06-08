@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
-import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { PreloadAllModules, RouterModule, Routes, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { authGuard } from './core/guards/auth.guard';
 import { guestGuard } from './core/guards/guest.guard';
+import { roleGuard } from './core/guards/role.guard';
 
 const routes: Routes = [
   {
@@ -36,12 +37,12 @@ const routes: Routes = [
   },
   {
     path: 'flights',
-    canActivate: [authGuard],
+    canActivate: [authGuard, (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) => roleGuard(['admin'])(route, state)],
     loadChildren: () => import('./pages/flights/flights.module').then( m => m.FlightsPageModule)
   },
   {
     path: 'bookings',
-    canActivate: [authGuard],
+    canActivate: [authGuard, (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) => roleGuard(['user'])(route, state)],
     loadChildren: () => import('./pages/bookings/bookings.module').then( m => m.BookingsPageModule)
   },
   {
@@ -51,11 +52,27 @@ const routes: Routes = [
   },
   {
     path: 'book',
-    canActivate: [authGuard],
+    canActivate: [authGuard, (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) => roleGuard(['user'])(route, state)],
     loadChildren: () => import('./pages/book/book.module').then( m => m.BookPageModule)
+  },
+  {
+    path: 'users',
+    canActivate: [authGuard, (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) => roleGuard(['admin'])(route, state)],
+    loadChildren: () => import('./pages/users/users.module').then( m => m.UsersPageModule)
+  },
+  {
+    path: 'access-denied',
+    canActivate: [authGuard],
+    loadComponent: () => import('./pages/access-denied/access-denied.page').then(m => m.AccessDeniedPage)
+  },
+  {
+    path: '404',
+    loadComponent: () => import('./pages/not-found/not-found.page').then(m => m.NotFoundPage)
+  },
+  {
+    path: '**',
+    redirectTo: '404'
   }
-
-
 ];
 
 @NgModule({

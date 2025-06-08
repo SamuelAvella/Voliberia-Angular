@@ -68,6 +68,7 @@ export interface UserAppAttributes {
     createdAt?: string
     updatedAt?: string
     publishedAt?: string
+    role: 'admin' | 'user'
     bookings:BookingRaw | number | null
     user:UserRaw | number | null,
     picture:MediaRaw | number | null
@@ -83,12 +84,12 @@ export interface Meta {}
     setAdd(data: UserApp):UserAppData {
         return {
             data:{
-                name:data.name,
-                surname:data.surname,
-                //idDocument:data.idDocument,
-                bookings:data.bookingsId?Number(data.bookingsId):null,
-                user:data.userId?Number(data.userId):null,
-                picture:data.picture?Number(data.picture):null
+                name: data.name,
+                surname: data.surname,
+                role: data.role || 'user',
+                bookings: data.bookingsId ? Number(data.bookingsId) : null,
+                user: data.userId ? Number(data.userId) : null,
+                picture: data.picture ? Number(data.picture) : null
             }
         };
     }
@@ -100,8 +101,8 @@ export interface Meta {}
                 case 'name': mappedData.name = data[key];
                 break;
                 case 'surname': mappedData.surname = data[key];
-                //break;
-                //case 'idDocument': mappedData.idDocument = data[key];
+                break;
+                case 'role': mappedData.role = data[key];
                 break;
                 case 'bookingsId': mappedData.bookings = data[key] ? Number(data[key]) : null;
                 break;
@@ -132,7 +133,7 @@ export interface Meta {}
             id: id.toString(),
             name: attributes.name,
             surname: attributes.surname,
-            //idDocument: attributes.idDocument,
+            role: attributes.role || 'user',
             bookingsId: typeof attributes.bookings === 'object' ? attributes.bookings?.data?.id.toString() : undefined,
             userId: typeof attributes.user === 'object' ? attributes.user?.data?.id.toString() : undefined,
             picture: typeof attributes.picture === 'object' ? {

@@ -8,7 +8,9 @@
       "SAVE": "Erro ao salvar os dados"
     },
     "SUCCESS": {
-      "SAVE": "Alterações salvas com sucesso"
+      "SAVE": "Alterações salvas com sucesso",
+      "GO_BACK": "Voltar",
+      "GO_HOME": "Ir para Início"
     }
   },
 
@@ -72,7 +74,6 @@
     },
     "CURRENT-LANGUAGE": "PT",
     "CURRENT-LANGUAGE-LONG": "Português"
-
   },
 
   "HOME": {
@@ -80,7 +81,38 @@
     "FLIGHTS": "VOOS",
     "FLIGHTS_DESC": "Consulte, edite e crie voos",
     "BOOKINGS": "RESERVAS",
-    "BOOKINGS_DESC": "Revise, administre e adicione reservas de voo"
+    "BOOKINGS_DESC": "Revise, administre e adicione reservas de voo",
+    "WELCOME": "Bem-vindo ao Voliberia",
+    "GREETING": "Bem-vindo",
+    "SUBTITLE": "Sua plataforma de gestão de voos e reservas",
+    "ADMIN": {
+      "FLIGHTS": {
+        "TITLE": "Gestão de Voos",
+        "DESCRIPTION": "Gerencie os voos disponíveis, horários e rotas"
+      },
+      "USERS": {
+        "TITLE": "Gestão de Usuários",
+        "DESCRIPTION": "Gerencie os usuários e seus papéis na plataforma"
+      },
+      "ANALYTICS": {
+        "TITLE": "Análises",
+        "DESCRIPTION": "Visualize estatísticas e métricas importantes"
+      }
+    },
+    "USER": {
+      "BOOK": {
+        "TITLE": "Reservar Voo",
+        "DESCRIPTION": "Explore e reserve seu próximo voo"
+      },
+      "BOOKINGS": {
+        "TITLE": "Minhas Reservas",
+        "DESCRIPTION": "Gerencie suas reservas atuais e anteriores"
+      },
+      "PROFILE": {
+        "TITLE": "Meu Perfil",
+        "DESCRIPTION": "Atualize suas informações pessoais e preferências"
+      }
+    }
   },
 
   "FLIGHT": {
@@ -201,5 +233,42 @@
 
   "HEADER": {
     "TITLE": "Descubra cada canto da Ibéria"
+  },
+
+  "ACCESS_DENIED": {
+    "TITLE": "Acesso Negado",
+    "MESSAGE": "Você não tem permissão para acessar esta página. Por favor, contate seu administrador se acredita que isso é um erro."
+  },
+
+  "NOT_FOUND": {
+    "TITLE": "Página Não Encontrada",
+    "MESSAGE": "A página que você procura não existe ou foi movida."
+  },
+
+  "USERS": {
+    "TITLE": "Gestão de Usuários",
+    "SUBTITLE": "Visualize e gerencie papéis de usuários na plataforma",
+    "SEARCH_PLACEHOLDER": "Pesquisar por nome ou ID...",
+    "ROLE": "Papel",
+    "ROLES": {
+      "USER": "Usuário",
+      "ADMIN": "Administrador"
+    },
+    "SECTIONS": {
+      "ADMINS": "Administradores",
+      "USERS": "Usuários"
+    },
+    "NO_USERS": "Nenhum usuário encontrado",
+    "NO_ADMINS": "Nenhum administrador",
+    "NO_REGULAR_USERS": "Nenhum usuário regular"
+  },
+
+  "MODALS": {
+    "CONFIRM_ROLE": {
+      "TITLE": "Confirmar mudança de papel",
+      "MESSAGE": "Tem certeza de que deseja mudar o papel deste usuário?",
+      "FROM": "De",
+      "TO": "Para"
+    }
   }
 }

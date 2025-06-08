@@ -9,7 +9,9 @@
     },
     "SUCCESS": {
       "SAVE": "Changes saved successfully"
-    }
+    },
+    "GO_BACK": "Go Back",
+    "GO_HOME": "Go to Home"
   },
 
   "REGISTER": {
@@ -57,21 +59,22 @@
   "MENU": {
     "MENU": "Menu",
     "TITLE": "Voliberia",
-    "GREETING": "Hi",
+    "GREETING": "Welcome,",
     "DESCRIPTION": "Flight Management",
     "LANGUAGE": "Language",
     "LOGOUT": "Logout",
     "FOOTER": "Voliberia. All rights reserved.",
     "PAGES": {
-      "ABOUT": "About",
-      "BOOK": "Book",
-      "BOOKINGS": "My trips",
-      "FLIGHTS": "Flights",
       "HOME": "Home",
+      "BOOK": "Book a Flight",
+      "FLIGHTS": "Manage Flights",
+      "BOOKINGS": "My Bookings",
+      "USERS": "Manage Users",
+      "ABOUT": "About",
       "PROFILE": "Profile"
     },
     "CURRENT-LANGUAGE": "EN",
-    "CURRENT-LANGUAGE-LONG": "English"
+    "CURRENT-LANGUAGE-LONG": "Language: English"
   },
 
   "HOME": {
@@ -79,7 +82,38 @@
     "FLIGHTS": "FLIGHTS",
     "FLIGHTS_DESC": "Consult, edit and manages the flights",
     "BOOKINGS": "BOOKINGS",
-    "BOOKINGS_DESC": "Review and manage flight reservations"
+    "BOOKINGS_DESC": "Review and manage flight reservations",
+    "WELCOME": "Welcome to Voliberia",
+    "GREETING": "Welcome",
+    "SUBTITLE": "Your flight and booking management platform",
+    "ADMIN": {
+      "FLIGHTS": {
+        "TITLE": "Flight Management",
+        "DESCRIPTION": "Manage available flights, schedules, and routes"
+      },
+      "USERS": {
+        "TITLE": "User Management",
+        "DESCRIPTION": "Manage users and their platform roles"
+      },
+      "ANALYTICS": {
+        "TITLE": "Analytics",
+        "DESCRIPTION": "View important statistics and metrics"
+      }
+    },
+    "USER": {
+      "BOOK": {
+        "TITLE": "Book Flight",
+        "DESCRIPTION": "Explore and book your next flight"
+      },
+      "BOOKINGS": {
+        "TITLE": "My Bookings",
+        "DESCRIPTION": "Manage your current and past bookings"
+      },
+      "PROFILE": {
+        "TITLE": "My Profile",
+        "DESCRIPTION": "Update your personal information and preferences"
+      }
+    }
   },
 
   "FLIGHT":{
@@ -129,7 +163,7 @@
     "CANCEL" : "Cancel",
     "DELETE" : "Delete",
     "HERO_TITLE": "All your trips",
-    "HERO_TEXT": "Manage them that aren’t confirmed"
+    "HERO_TEXT": "Manage them that aren't confirmed"
 
   },
 
@@ -201,5 +235,42 @@
 
   "HEADER": {
     "TITLE": "Discover every corner of Iberia"
+  },
+
+  "ACCESS_DENIED": {
+    "TITLE": "Access Denied",
+    "MESSAGE": "You do not have permission to access this page. Please contact your administrator if you believe this is a mistake."
+  },
+
+  "NOT_FOUND": {
+    "TITLE": "Page Not Found",
+    "MESSAGE": "The page you are looking for does not exist or has been moved."
+  },
+
+  "USERS": {
+    "TITLE": "User Management",
+    "SUBTITLE": "View and manage user roles across the platform",
+    "SEARCH_PLACEHOLDER": "Search by name or ID...",
+    "ROLE": "Role",
+    "ROLES": {
+      "USER": "User",
+      "ADMIN": "Administrator"
+    },
+    "SECTIONS": {
+      "ADMINS": "Administrators",
+      "USERS": "Regular Users"
+    },
+    "NO_USERS": "No users found",
+    "NO_ADMINS": "No administrators found",
+    "NO_REGULAR_USERS": "No regular users found"
+  },
+
+  "MODALS": {
+    "CONFIRM_ROLE": {
+      "TITLE": "Confirm Role Change",
+      "MESSAGE": "Are you sure you want to change this user's role?",
+      "FROM": "From",
+      "TO": "To"
+    }
   }
 }

@@ -3,4 +3,5 @@ export interface FirebaseUserApp{
     surname:string,
     user?:string,
     picture?: string,
+    role: 'admin' | 'user'
 }

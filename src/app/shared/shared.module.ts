@@ -23,12 +23,14 @@ import { TogglePasswordPipe } from "./pipes/toggle-password.pipe";
 import { BookingStatusDirective } from "./directives/booking-status.directive";
 import { BookingStateStylePipe } from "./pipes/booking-state-style.pipe";
 import { FooterComponent } from "./components/footer/footer.component";
+import { ConfirmRoleModalComponent } from "./components/confirm-role-modal/confirm-role-modal.component";
 
 @NgModule({
     declarations:[
         BookingModalComponent,
         BookingStateStylePipe,
         BookingStatusDirective,
+        ConfirmRoleModalComponent,
         FlightModalComponent,
         FlightSelectableComponent,
         FooterComponent,
@@ -49,6 +51,7 @@ import { FooterComponent } from "./components/footer/footer.component";
         BookingModalComponent,
         BookingStateStylePipe,
         BookingStatusDirective,
+        ConfirmRoleModalComponent,
         FlightModalComponent,
         FooterComponent,
         LanguageSelectorComponent,
