@@ -202,9 +202,19 @@
         <ion-button
           class="h-[40px] flex items-center justify-center text-sm font-medium rounded-md"
           color="tertiary"
-          (click)="resetFilters()"
+          (click)="createBooking()"
+          [disabled]="!selectedOrigin || !selectedDestination || !selectedDate"
           expand="block">
-          Book
+          {{ 'BOOK.BOOK_NOW' | translate }}
+        </ion-button>
+
+        <!-- Botón de prueba -->
+        <ion-button
+          class="mt-2 h-[40px] flex items-center justify-center text-sm font-medium rounded-md"
+          color="warning"
+          (click)="testCreateBooking()"
+          expand="block">
+          Test Booking
         </ion-button>
       </div>
     </div>

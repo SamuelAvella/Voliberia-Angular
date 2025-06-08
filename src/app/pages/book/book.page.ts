@@ -1,6 +1,6 @@
 import { Component, ElementRef, HostListener, Inject, OnInit, ViewChild } from "@angular/core";
 import { TranslateService } from "@ngx-translate/core";
-import { BehaviorSubject, Observable } from "rxjs";
+import { BehaviorSubject, Observable, firstValueFrom } from "rxjs";
 import { Flight } from "src/app/core/models/flight.model";
 import { Paginated } from "src/app/core/models/paginated.model";
 import { FlightsService } from "src/app/core/services/impl/flights.service";
@@ -9,6 +9,10 @@ import { FLIGHTS_COLLECTION_SUBSCRIPTION_TOKEN } from "src/app/core/repositories
 import { DatetimeChangeEventDetail } from "@ionic/angular";
 import { IonDatetimeCustomEvent } from "@ionic/core";
 import { CalendarEvent } from "angular-calendar";
+import { BookingsService } from "src/app/core/services/impl/bookings.service";
+import { BaseAuthenticationService } from "src/app/core/services/impl/base-authentication.service";
+import { UsersAppService } from "src/app/core/services/impl/usersApp.service";
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-book',
@@ -76,6 +80,10 @@ throw new Error('Method not implemented.');
   constructor(
     private flightsSvc: FlightsService,
     private translateService: TranslateService,
+    private bookingsSvc: BookingsService,
+    private authService: BaseAuthenticationService,
+    private usersAppService: UsersAppService,
+    private router: Router,
     @Inject(FLIGHTS_COLLECTION_SUBSCRIPTION_TOKEN)
     private flightsSubscription: ICollectionSubscription<Flight>
   ) {
@@ -359,5 +367,113 @@ clearDateSelection(event: Event): void {
 
 }
 
+async createBooking(): Promise<void> {
+  try {
+    // Verificar que se haya seleccionado un vuelo
+    if (!this.selectedDate) {
+      console.error('No date selected');
+      return;
+    }
+
+    const selectedDateFormatted = this.selectedDate.split('T')[0];
+    console.log('Buscando vuelo con:', {
+      origin: this.selectedOrigin,
+      destination: this.selectedDestination,
+      date: selectedDateFormatted
+    });
+
+    const selectedFlight = this.allFlights.find(
+      f => f.origin === this.selectedOrigin && 
+          f.destination === this.selectedDestination && 
+          f.departureDate.split('T')[0] === selectedDateFormatted
+    );
+
+    if (!selectedFlight) {
+      console.error('No flight selected');
+      return;
+    }
+
+    console.log('Vuelo encontrado:', selectedFlight);
+
+    // Obtener el usuario actual
+    const user = await this.authService.getCurrentUser();
+    if (!user) {
+      console.error('No user logged in');
+      return;
+    }
+
+    console.log('Usuario autenticado:', user);
+
+    // Obtener el userApp asociado
+    const userApp = await firstValueFrom(this.usersAppService.getByUserId(user.id));
+    if (!userApp) {
+      console.error('UserApp not found');
+      return;
+    }
+
+    console.log('UserApp encontrado:', userApp);
+
+    // Extraer solo el ID del vuelo sin el prefijo "flights/"
+    const flightId = selectedFlight.id.includes('/') ? 
+      selectedFlight.id.split('/').pop() : 
+      selectedFlight.id;
+
+    if (!flightId) {
+      console.error('ID de vuelo inválido');
+      return;
+    }
+
+    if (!userApp.id) {
+      console.error('ID de usuario inválido');
+      return;
+    }
+
+    // Crear la reserva con los datos necesarios
+    const booking = {
+      id: '',
+      bookingState: false,
+      flightId: flightId,
+      userAppId: userApp.id
+    };
+
+    console.log('Intentando crear reserva con:', booking);
+
+    // Guardar la reserva y esperar a que se complete
+    const createdBooking = await firstValueFrom(this.bookingsSvc.add(booking));
+    console.log('Reserva creada:', createdBooking);
+
+    // Verificar que la reserva se creó correctamente
+    if (!createdBooking.userAppId || !createdBooking.flightId) {
+      console.error('La reserva se creó pero faltan datos:', createdBooking);
+      throw new Error('La reserva se creó incorrectamente');
+    }
+    
+    alert('Reserva realizada con éxito');
+    this.router.navigate(['/bookings']);
+  } catch (error) {
+    console.error('Error creating booking:', error);
+    alert('Error al crear la reserva');
+  }
+}
+
+async testCreateBooking(): Promise<void> {
+  try {
+    const testBooking = {
+      id: '',
+      bookingState: false,
+      flightId: 'wx3iC3sUdkL37Ty2Eea7', // usa el ID de un vuelo que exista
+      userAppId: 'W0J7IFVRTSiCOlx45TGx' // usa tu ID de usuario
+    };
+
+    console.log('Test - Intentando crear reserva con:', testBooking);
+    console.log('Test - Estructura que se enviará a Firebase:', this.bookingsSvc.add(testBooking));
+    
+    const createdBooking = await firstValueFrom(this.bookingsSvc.add(testBooking));
+    console.log('Test - Reserva creada:', createdBooking);
+    console.log('Test - Documento en Firebase:', await firstValueFrom(this.bookingsSvc.getById(createdBooking.id)));
+  } catch (error) {
+    console.error('Error en test:', error);
+  }
+}
 
 }

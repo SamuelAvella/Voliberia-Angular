@@ -58,6 +58,11 @@
           {{'PROFILE.BUTTONS.UPDATE' | translate}}
         </ion-button>
       </div>
+
+      <ion-button *ngIf="isAdmin" expand="full" color="secondary" (click)="exportAllData()">
+        Exportar datos CSV
+      </ion-button>
+
     </form>
   </div>
 </ion-content>

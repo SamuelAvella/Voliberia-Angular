@@ -22,8 +22,8 @@ export class BookingsMappingFirebaseService implements IBaseMapping<Booking>{
         return {
             id: data.id,
             bookingState: data.bookingState, 
-            flightId: data.flight?.id, 
-            userAppId: data.user_app?.id || '', 
+            flightId: data.flight?.id || data.flight?.path?.split('/').pop() || '', 
+            userAppId: data.user_app?.id || data.user_app?.path?.split('/').pop() || '', 
         }
     }
 
@@ -49,26 +49,36 @@ export class BookingsMappingFirebaseService implements IBaseMapping<Booking>{
     }
 
     setAdd(data: Booking): FirebaseBooking {
-
-        let dataMapping:FirebaseBooking = {
-            bookingState: data.bookingState,
-            flight: doc(this.db, 'flights', data.flightId), // Must exist
+        const result: any = {
+            bookingState: data.bookingState
         };
-        if(dataMapping.user_app){
-            dataMapping.user_app = doc(this.db, 'group', data.userAppId|| '')
+
+        if (data.flightId) {
+            result.flight = doc(this.db, 'flights', data.flightId);
         }
 
-        return dataMapping;
+        if (data.userAppId) {
+            result.user_app = doc(this.db, 'user_app', data.userAppId);
+        }
+
+        return result;
     }
     
     setUpdate(data: Partial<Booking>): FirebaseBooking {
         const result: any = {};
 
-        if (data.bookingState) result.bookingState = data.bookingState;
-        if (data.flightId) result.flight = data.flightId;
-        if (data.userAppId) result.user_app = data.userAppId;
+        if (data.bookingState !== undefined) {
+            result.bookingState = data.bookingState;
+        }
+
+        if (data.flightId) {
+            result.flight = doc(this.db, 'flights', data.flightId);
+        }
+
+        if (data.userAppId) {
+            result.user_app = doc(this.db, 'user_app', data.userAppId);
+        }
 
         return result;
     }
-    
 }
