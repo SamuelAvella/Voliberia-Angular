@@ -1,9 +1,18 @@
 import { Model } from "./base.model";
 
-export type BookingState = 'pending' | 'confirm' | 'cancelled'
+/**
+ * Estado posible de una reserva.
+ */
+export type BookingState = 'pending' | 'confirm' | 'cancelled';
 
-export interface Booking extends Model{
-    bookingState: BookingState,
-    userAppId?: string,
-    flightId: string,
+/**
+ * Modelo de reserva (Booking).
+ */
+export interface Booking extends Model {
+  /** Estado actual de la reserva */
+  bookingState: BookingState;
+  /** ID del usuario que ha realizado la reserva */
+  userAppId?: string;
+  /** ID del vuelo reservado */
+  flightId: string;
 }

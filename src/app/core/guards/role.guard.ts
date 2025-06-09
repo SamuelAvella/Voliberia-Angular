@@ -1,9 +1,20 @@
+/**
+ * @file role.guard.ts
+ * @description Protección de rutas según el rol del usuario.
+ */
+
 import { inject } from '@angular/core';
 import { CanActivateFn, Router } from '@angular/router';
 import { BaseAuthenticationService } from '../services/impl/base-authentication.service';
 import { UsersAppService } from '../services/impl/usersApp.service';
 import { lastValueFrom } from 'rxjs';
 
+/**
+ * Guard que permite el acceso solo a usuarios con roles específicos.
+ *
+ * @param allowedRoles - Lista de roles autorizados para acceder a la ruta.
+ * @returns Función `CanActivateFn` que valida si el usuario tiene uno de los roles permitidos.
+ */
 export const roleGuard = (allowedRoles: string[]): CanActivateFn => {
   return async () => {
     const router = inject(Router);
@@ -30,4 +41,4 @@ export const roleGuard = (allowedRoles: string[]): CanActivateFn => {
       return false;
     }
   };
-}; 
+};
