@@ -163,7 +163,9 @@
     "CANCEL" : "Cancel",
     "DELETE" : "Delete",
     "HERO_TITLE": "All your trips",
-    "HERO_TEXT": "Manage them that aren't confirmed"
+    "HERO_TEXT": "Manage them that aren't confirmed",
+    "CANCEL_TITLE": "Cancel booking",
+    "CANCEL_CONFIRM": "Are you sure you want to cancel this booking?"
 
   },
 
@@ -176,7 +178,8 @@
     "HERO_TITLE": "Come flight with us",
     "HERO_TEXT": "Discover the iberian peninsule!",
     "HERO_BUTTON": "Show me",
-    "DATE": "Departure"
+    "DATE": "Departure",
+    "BOOK_NOW": "Book"
   },
 
   "FLIGHT_SELECTABLE": {

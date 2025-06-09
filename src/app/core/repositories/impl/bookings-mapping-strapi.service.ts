@@ -58,24 +58,33 @@ export interface BookingData {
 }
 
 export interface BookingAttributes {
-    bookingState: boolean
+    bookingState: BookingState
     createdAt?: string
     updatedAt?: string
-    userApp: UserAppRaw | number 
-    flight: FlightRaw | number 
+    userApp: UserAppRaw | number
+    flight: FlightRaw | number
 }
 
+export type BookingState = 'pending' | 'confirm' | 'cancelled';
+
 interface Meta{}
+
+const sanitizeBookingState = (state: any): BookingState => {
+  if (typeof state !== 'string') return 'cancelled';
+  return (['pending', 'confirm', 'cancelled'].includes(state) ? state : 'cancelled') as BookingState;
+};
+
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class BookingMappingStrapi implements IBaseMapping<Booking> {
-    
+
     setAdd(data: Booking) : BookingData{
         return {
             data:{
-                bookingState:data.bookingState,
+                bookingState: sanitizeBookingState(data.bookingState),
                 userApp:data.userAppId?Number(data.userAppId): 0,
                 flight:data.flightId?Number(data.flightId): 0,
             }
@@ -84,10 +93,10 @@ export class BookingMappingStrapi implements IBaseMapping<Booking> {
 
     setUpdate(data: Partial<Booking>) {
         const mappedData: Partial<BookingAttributes> = {};
-        
+
         Object.keys(data).forEach(key => {
             switch(key){
-                case 'bookingState' : mappedData.bookingState = data[key];
+                case 'bookingState' : mappedData.bookingState = sanitizeBookingState(data[key]);
                 break;
                 case 'userAppId' : mappedData.userApp = data[key] ? Number(data[key]) : undefined;
                 break;
@@ -104,7 +113,8 @@ export class BookingMappingStrapi implements IBaseMapping<Booking> {
 
     getPaginated(page: number, pageSize: number, pages: number, data: Data[]): Paginated<Booking> {
         const validData = data.filter(d => d && d.id && d.attributes);
-    
+
+
         return {
             page: page,
             pageSize: pageSize,
@@ -112,19 +122,20 @@ export class BookingMappingStrapi implements IBaseMapping<Booking> {
             data: validData.map<Booking>((d: Data | BookingRaw) => this.getOne(d)),
         };
     }
-    
+
 
     getOne(data: Data | BookingRaw): Booking {
         const isBookingRaw = (data: Data | BookingRaw): data is BookingRaw => 'meta' in data;
-    
+
+
         // Validate structure base
         if (!data) {
             throw new Error('Booking data is undefined or null.');
         }
-    
+
         const attributes = isBookingRaw(data) ? data.data?.attributes : data.attributes;
         const id = isBookingRaw(data) ? data.data?.id : data.id;
-    
+
         // Validate id and attributes exits
         if (!id) {
             console.log("El id de booking no lo pilla")
@@ -132,10 +143,13 @@ export class BookingMappingStrapi implements IBaseMapping<Booking> {
         if (!attributes) {
             console.log("Los atributos de booking no los pilla")
         }
-    
+
+        const state = sanitizeBookingState(attributes.bookingState)
+
+
         return {
             id: id.toString(),
-            bookingState: attributes.bookingState || false,
+            bookingState: state || 'cancelled',
             userAppId: typeof attributes.userApp === 'object' && attributes.userApp?.data
                 ? attributes.userApp.data.id.toString()
                 : attributes.userApp
@@ -148,7 +162,7 @@ export class BookingMappingStrapi implements IBaseMapping<Booking> {
                 : '',
         };
     }
-    
+
     getAdded(data: BookingRaw): Booking {
         return this.getOne(data.data);
     }
@@ -159,7 +173,7 @@ export class BookingMappingStrapi implements IBaseMapping<Booking> {
         return this.getOne(data.data);
     }
 
-        
 
-  
+
+
 }

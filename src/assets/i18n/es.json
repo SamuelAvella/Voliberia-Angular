@@ -166,7 +166,9 @@
     "CANCEL": "Cancelar",
     "DELETE": "Eliminar",
     "HERO_TITLE": "Todos tus viajes",
-    "HERO_TEXT": "Cancela aquellos que no estan confirmados"
+    "HERO_TEXT": "Cancela aquellos que no estan confirmados",
+    "CANCEL_TITLE": "¿Quieres cancelar la reserva?",
+    "CANCEL_CONFIRM": "¿Estás seguro de que deseas cancelar esta reserva?"
   },
 
 
@@ -179,7 +181,8 @@
     "HERO_TITLE": "Ven a volar con nosotros",
     "HERO_TEXT": "¡Descubre la península ibérica!",
     "HERO_BUTTON": "Muestrame",
-    "DATE": "Salida"
+    "DATE": "Salida",
+    "BOOK_NOW": "Reservar"
   },
 
 

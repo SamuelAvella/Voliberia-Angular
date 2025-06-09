@@ -17,7 +17,7 @@ import { UsersAppService } from './core/services/impl/usersApp.service';
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent implements OnInit {
- 
+
   // All pages with role restrictions
   public appPages = [
     { key: 'MENU.PAGES.HOME', url: '/home', icon: 'home-outline', title: '', position: 'left', roles: ['admin', 'user'] },
@@ -47,14 +47,14 @@ export class AppComponent implements OnInit {
     return this.appPages.filter(p => this.userApp && p.roles.includes(this.userApp.role));
   }
 
-  hiddenHeaderRoutes: string[] = ['/login', '/register', '/splash', '/register?returnUrl=%2Fhome', '/login?returnUrl=%2Fhome'];
+  hiddenHeaderRoutes: string[] = ['/login', '/register', '/splash', '/register?returnUrl=%2Fhome', '/login?returnUrl=%2Fhome', '/access-denied', '/404'];
 
   get shouldHideHeader(): boolean {
     const current = this.router.url;
     return this.hiddenHeaderRoutes.includes(current);
   }
 
-  currentLang: string = 'es'; 
+  currentLang: string = 'es';
   currentYear: number = new Date().getFullYear();
   userApp?: UserApp | null;
 
@@ -109,7 +109,7 @@ export class AppComponent implements OnInit {
 
       if (user) {
         this.userApp = await lastValueFrom(this.usersAppSvc.getByUserId(user.id));
-        
+
         // Redirect if user tries to access unauthorized page
         const currentUrl = this.router.url;
         const currentPage = this.appPages.find(p => p.url === currentUrl);

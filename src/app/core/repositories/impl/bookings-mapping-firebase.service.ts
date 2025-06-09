@@ -1,11 +1,15 @@
 import { Inject, Injectable } from "@angular/core";
 import { IBaseMapping } from "../interfaces/base-mapping.interface";
-import { Booking } from "../../models/booking.model";
+import { Booking, BookingState } from "../../models/booking.model";
 import { Paginated } from "../../models/paginated.model";
 import { doc, Firestore, getFirestore } from "firebase/firestore";
 import { FIREBASE_CONFIG_TOKEN } from "../repository.token";
 import { initializeApp } from "firebase/app";
 import { FirebaseBooking } from "../../models/firebase/firebase-booking.model";
+
+const sanitizeBookingState = (state: any): BookingState => {
+  return ['pending', 'confirm', 'cancelled'].includes(state) ? state : 'cancelled';
+};
 
 @Injectable({
     providedIn: 'root'
@@ -21,7 +25,7 @@ export class BookingsMappingFirebaseService implements IBaseMapping<Booking>{
     getOne(data: {id: string} & FirebaseBooking): Booking {
         return {
             id: data.id,
-            bookingState: data.bookingState,
+            bookingState: sanitizeBookingState(data.bookingState),
             flightId: data.flight?.id || data.flight?.path?.split('/').pop() || '',
             userAppId: data.user_app?.id || data.user_app?.path?.split('/').pop() || '',
         }
@@ -52,7 +56,7 @@ export class BookingsMappingFirebaseService implements IBaseMapping<Booking>{
       console.log('[setAdd - Firebase] Recibo:', data);
 
       const result: any = {
-        bookingState: data.bookingState
+        bookingState: sanitizeBookingState(data.bookingState)
       };
 
       if (data.flightId) {
@@ -76,7 +80,7 @@ export class BookingsMappingFirebaseService implements IBaseMapping<Booking>{
         const result: any = {};
 
         if (data.bookingState !== undefined) {
-            result.bookingState = data.bookingState;
+            result.bookingState = sanitizeBookingState(data.bookingState);
         }
 
         if (data.flightId) {

@@ -4,11 +4,6 @@
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
     <ion-title class="header-title">{{'BOOKING.TITLE' | translate}}</ion-title>
-    <ion-buttons slot="end">
-      <ion-button (click)="addBooking()">
-        <ion-icon slot="icon-only" name="add-outline"></ion-icon>
-      </ion-button>
-    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -46,29 +41,76 @@
     <div class="mt-4 h-[1px] w-full bg-black rounded-full"></div>
   </div>
 
-  <ion-grid>
+  <ion-grid >
     <ion-row>
       <ion-col size="12" size-md="6" *ngFor="let booking of bookings$ | async">
-        <div class="booking-card">
-          <h2>
-            {{ booking.bookingState ? ('BOOKING.ACTIVE' | translate) : ('BOOKING.INACTIVE' | translate) }}
-            <span [appBookingState]="booking.bookingState"></span>
-          </h2>
-          <h3>{{'BOOKING.FLIGHT' | translate}}: {{ flightsMap[booking.flightId].origin }} - {{ flightsMap[booking.flightId].destination }}</h3>
-          <h3>{{'BOOKING.DATE' | translate}}: {{ flightsMap[booking.flightId].departureDate | localizedDate: currentLocale }} - {{ flightsMap[booking.flightId].arrivalDate | localizedDate: currentLocale }}</h3>
-          <h3>{{'BOOKING.PRICE' | translate}}: {{ flightsMap[booking.flightId].seatPrice | localizedCurrency: currentLocale }}</h3>
-          <div class="booking-card-buttons">
-            <ion-button class="edit-button" (click)="editBooking(booking)">
-              <ion-icon name="create-outline"></ion-icon> {{'BOOKING.EDIT_TITLE' | translate}}
-            </ion-button>
-            <ion-button class="delete-button" color="danger" (click)="deleteBooking(booking)">
-              <ion-icon name="trash-outline"></ion-icon> {{'BOOKING.DELETE' | translate}}
-            </ion-button>
+        <ion-card
+          class="mx-auto mb-6 max-w-xl rounded-2xl p-4 shadow-md transition-all"
+          [ngClass]="[
+            booking.bookingState | bookingStateStyle,
+            booking.bookingState | bookingStateStyle:'opacity'
+          ]"
+        >
+          <div class="mb-4 border-b pb-2 text-center font-semibold text-gray-600">
+            {{ flightsMap[booking.flightId]?.departureDate | date: 'fullDate' }}
           </div>
-        </div>
+
+          <div class="flex items-center justify-between px-4">
+            <div class="text-center">
+              <div class="text-sm text-gray-600">
+                - {{ flightsMap[booking.flightId]?.origin?.slice(0, -6) }} -
+              </div>
+              <div class="text-2xl font-bold">
+                {{ flightsMap[booking.flightId]?.origin?.slice(-4, -1) }}
+              </div>
+              <div class="mt-1 text-sm text-gray-500">
+                {{ flightsMap[booking.flightId]?.departureDate | date: 'HH:mm' }}h
+              </div>
+            </div>
+
+            <div class="flex items-center justify-center text-gray-500">
+              <div class="my-1 w-16 border-t border-gray-300"></div>
+              <div class="text-xl">✈️</div>
+              <div class="my-1 w-16 border-t border-gray-300"></div>
+            </div>
+
+            <div class="text-center">
+              <div class="text-sm text-gray-600">
+                - {{ flightsMap[booking.flightId]?.destination?.slice(0, -6) }} -
+              </div>
+              <div class="text-2xl font-bold">
+                {{ flightsMap[booking.flightId]?.destination?.slice(-4, -1) }}
+              </div>
+              <div class="mt-1 text-sm text-gray-500">
+                {{ flightsMap[booking.flightId]?.arrivalDate | date: 'HH:mm' }}h
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-4 flex items-center justify-between px-2">
+            <div class="text-lg font-semibold text-blue-700">
+              {{ flightsMap[booking.flightId]?.seatPrice }}€
+            </div>
+
+            <ion-button
+              *ngIf="booking.bookingState === 'pending' && now Date(flightsMap[booking.flightId]?.departureDate) > now"
+              size="small"
+              color="danger"
+              (click)="cancelBooking(booking)"
+            >
+              Cancelar
+            </ion-button>
+
+            <div class="text-xs italic" [ngClass]="booking.bookingState | bookingStateStyle:'text'">
+              {{ booking.bookingState | bookingStateStyle:'label' }}
+              <span *ngIf="booking.bookingState === 'cancelled'">· Vuelo finalizado</span>
+            </div>
+          </div>
+        </ion-card>
       </ion-col>
     </ion-row>
   </ion-grid>
+
 
 
 </ion-content>

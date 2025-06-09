@@ -22,7 +22,7 @@ import { FlightsService } from 'src/app/core/services/impl/flights.service';
 import { BookingsService } from 'src/app/core/services/impl/bookings.service';
 import { BaseAuthenticationService } from 'src/app/core/services/impl/base-authentication.service';
 import { UsersAppService } from 'src/app/core/services/impl/usersApp.service';
-import { Booking } from 'src/app/core/models/booking.model';
+import { Booking, BookingState } from 'src/app/core/models/booking.model';
 
 @Component({
   selector: 'app-book',
@@ -354,7 +354,7 @@ export class BookPage implements OnInit {
 
     const booking: Booking = {
       id: '',
-      bookingState: false,
+      bookingState: 'pending',
       flightId: selectedFlight.id,
       userAppId: userApp.id
     };
@@ -375,19 +375,4 @@ export class BookPage implements OnInit {
 }
 
 
-  // 🧪 Crear reserva dummy
-  async testCreateBooking(): Promise<void> {
-    const testBooking = {
-      id: '',
-      bookingState: false,
-      flightId: 'wx3iC3sUdkL37Ty2Eea7',
-      userAppId: 'W0J7IFVRTSiCOlx45TGx',
-    };
-    try {
-      const created = await firstValueFrom(this.bookingsSvc.add(testBooking));
-      console.log('Test - Reserva creada:', created);
-    } catch (err) {
-      console.error('Error en test:', err);
-    }
-  }
 }

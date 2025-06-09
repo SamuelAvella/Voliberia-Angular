@@ -24,6 +24,7 @@ import { BookingStatusDirective } from "./directives/booking-status.directive";
 import { BookingStateStylePipe } from "./pipes/booking-state-style.pipe";
 import { FooterComponent } from "./components/footer/footer.component";
 import { ConfirmRoleModalComponent } from "./components/confirm-role-modal/confirm-role-modal.component";
+import { ConfirmCancelModalComponent } from "./components/confirm-cancel-modal/confirm-cancel-modal.component";
 
 @NgModule({
     declarations:[
@@ -40,6 +41,7 @@ import { ConfirmRoleModalComponent } from "./components/confirm-role-modal/confi
         PictureOptionsComponent,
         PictureSelectableComponent,
         TogglePasswordPipe,
+        ConfirmCancelModalComponent,
     ],
     imports:[
         CommonModule,
@@ -60,6 +62,7 @@ import { ConfirmRoleModalComponent } from "./components/confirm-role-modal/confi
         PictureSelectableComponent,
         TogglePasswordPipe,
         TranslateModule,
+        ConfirmCancelModalComponent,
     ]
 })
 export class SharedModule{}

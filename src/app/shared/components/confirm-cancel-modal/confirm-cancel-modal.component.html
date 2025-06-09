@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-toolbar color="danger">
+    <ion-title>{{ 'BOOKING.CANCEL_TITLE' | translate }}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="dismiss(false)">
+        <ion-icon name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="space-y-6 text-center">
+    <ion-icon name="alert-circle" class="text-6xl text-red-600"></ion-icon>
+    <h2 class="text-xl font-bold text-red-600">{{ 'BOOKING.CANCEL_CONFIRM' | translate }}</h2>
+
+    <div class="bg-gray-100 rounded-lg p-4 text-sm text-gray-800">
+      <p><strong>{{ 'BOOKING.FLIGHT' | translate }}:</strong> {{ flight.origin }} → {{ flight.destination }}</p>
+      <p><strong>{{ 'BOOKING.DATE' | translate }}:</strong> {{ flight.departureDate | date: 'mediumDate' }}</p>
+    </div>
+
+    <div class="flex justify-end gap-4 mt-6">
+      <ion-button fill="outline" (click)="dismiss(false)">
+        {{ 'COMMON.CANCEL' | translate }}
+      </ion-button>
+      <ion-button color="danger" (click)="dismiss(true)">
+        {{ 'COMMON.CONFIRM' | translate }}
+      </ion-button>
+    </div>
+  </div>
+</ion-content>
