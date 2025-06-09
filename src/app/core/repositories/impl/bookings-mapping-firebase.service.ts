@@ -13,7 +13,7 @@ import { FirebaseBooking } from "../../models/firebase/firebase-booking.model";
 export class BookingsMappingFirebaseService implements IBaseMapping<Booking>{
 
     private db: Firestore;
-    
+
     constructor(@Inject(FIREBASE_CONFIG_TOKEN) protected firebaseConfig: any){
         this.db = getFirestore(initializeApp(firebaseConfig))
     }
@@ -21,9 +21,9 @@ export class BookingsMappingFirebaseService implements IBaseMapping<Booking>{
     getOne(data: {id: string} & FirebaseBooking): Booking {
         return {
             id: data.id,
-            bookingState: data.bookingState, 
-            flightId: data.flight?.id || data.flight?.path?.split('/').pop() || '', 
-            userAppId: data.user_app?.id || data.user_app?.path?.split('/').pop() || '', 
+            bookingState: data.bookingState,
+            flightId: data.flight?.id || data.flight?.path?.split('/').pop() || '',
+            userAppId: data.user_app?.id || data.user_app?.path?.split('/').pop() || '',
         }
     }
 
@@ -49,21 +49,29 @@ export class BookingsMappingFirebaseService implements IBaseMapping<Booking>{
     }
 
     setAdd(data: Booking): FirebaseBooking {
-        const result: any = {
-            bookingState: data.bookingState
-        };
+      console.log('[setAdd - Firebase] Recibo:', data);
 
-        if (data.flightId) {
-            result.flight = doc(this.db, 'flights', data.flightId);
-        }
+      const result: any = {
+        bookingState: data.bookingState
+      };
 
-        if (data.userAppId) {
-            result.user_app = doc(this.db, 'user_app', data.userAppId);
-        }
+      if (data.flightId) {
+        result.flight = doc(this.db, 'flights', data.flightId);
+        console.log('[setAdd - Firebase] Referencia flight creada:', result.flight.path);
+      } else {
+        console.warn('[setAdd - Firebase] ❌ flightId no proporcionado');
+      }
 
-        return result;
+      if (data.userAppId) {
+        result.user_app = doc(this.db, 'user-apps', data.userAppId);
+        console.log('[setAdd - Firebase] Referencia user_app creada:', result.user_app.path);
+      } else {
+        console.warn('[setAdd - Firebase] ❌ userAppId no proporcionado');
+      }
+
+      return result;
     }
-    
+
     setUpdate(data: Partial<Booking>): FirebaseBooking {
         const result: any = {};
 

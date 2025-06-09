@@ -17,13 +17,13 @@ export class BaseRepositoryHttpService<T extends Model> implements IBaseReposito
     constructor(
         protected http: HttpClient,
         @Inject(AUTH_TOKEN) protected auth: IAuthentication,
-        @Inject(API_URL_TOKEN) protected apiUrl: string, 
-        @Inject(RESOURCE_NAME_TOKEN) protected resource:string, 
+        @Inject(API_URL_TOKEN) protected apiUrl: string,
+        @Inject(RESOURCE_NAME_TOKEN) protected resource:string,
         @Inject(REPOSITORY_MAPPING_TOKEN) protected mapping:IBaseMapping<T>
     ) {
         this.apiUrl = apiUrl;
     }
-    
+
     getAll(page: number, pageSize: number, filters: SearchParams): Observable<T[] | Paginated<T>> {
         return this.http.get<T[]>(`${this.apiUrl}/${this.resource}`).pipe(
             map((res: any) => {
