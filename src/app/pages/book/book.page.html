@@ -7,217 +7,251 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true" class="bg-cover bg-center font-inter dark:bg-stone-800 font-inter">
+<ion-content [fullscreen]="true" class="bg-no-repeat bg-center bg-contain bg-[length:600px] font-inter dark:bg-stone-800 backdrop-blur-md" style="background-image: url('../../../assets/img/logo.png')">
+  
+  <div class="absolute inset-0 z-0 backdrop-blur-md bg-black/10 dark:bg-black/20 pointer-events-none"></div>
 
-  <div class="md:px-14 md:pt-6">
-    <ion-grid
+  <div class="relative z-10">
+    
+    <div class="md:px-14 md:pt-6">
+      <ion-grid
       class="w-full md:max-w-7xl md:rounded-sm bg-cover bg-center bg-no-repeat"
       style="background-image: url('../../../assets/img/book-hero.png');"
-    >
+      >
       <div class="flex flex-col md:h-55 md:flex-row">
         <!-- En móvil: caja centrada con márgenes -->
         <!-- En escritorio: caja a la izquierda tocando bordes internos -->
         <div
-          class="bg-white/40
-                m-4 md:m-0
-                md:w-1/2
-                md:h-full
-                rounded-sm
-                flex flex-col justify-center
-                items-center md:items-start
-                text-center md:text-left
-                p-6 md:p-12
-                shadow-lg"
+        class="bg-white/40
+        m-4 md:m-0
+        md:w-1/2
+        md:h-full
+        rounded-sm
+        flex flex-col justify-center
+        items-center md:items-start
+        text-center md:text-left
+        p-6 md:p-12
+        shadow-lg"
         >
-          <h2 class="text-3xl font-istokWeb font-bold text-black">{{ 'BOOK.HERO_TITLE' | translate}}</h2>
-          <p class="font-inter text-black mt-2">{{ 'BOOK.HERO_TEXT' | translate}}</p>
-          <ion-button
-            color="tertiary"
-            expand="block"
-            class="w-full md:w-[200px] text-white hover:color:tertiary-shade font-semibold py-2 rounded-lg transition-all"
-          >
-            {{ 'BOOK.HERO_BUTTON' | translate }}
-          </ion-button>
-        </div>
-      </div>
-    </ion-grid>
+        <h2 class="text-3xl font-istokWeb font-bold text-black">{{ 'BOOK.HERO_TITLE' | translate}}</h2>
+        <p class="font-inter text-black mt-2">{{ 'BOOK.HERO_TEXT' | translate}}</p>
+        <ion-button
+        color="tertiary"
+        expand="block"
+        class="w-full md:w-[200px] text-white hover:color:tertiary-shade font-semibold py-2 rounded-lg transition-all"
+        >
+        {{ 'BOOK.HERO_BUTTON' | translate }}
+      </ion-button>
+    </div>
   </div>
+  </ion-grid>
+    </div>
 
-  <div class="w-full flex justify-center px-6">
-    <div class="mt-4 h-[1px] w-full bg-black dark:bg-zinc-400 rounded-full"></div>
-  </div>
-
-
-
-
-  <!-- CONTENEDOR ORIGIN + DESTINATION RESPONSIVE -->
-  <div class="w-full md:px-[150px] px-4 mt-4">
-
-    <div class="bg-black/60 p-4 rounded-md">
-      <div class="flex flex-col md:flex-row md:gap-4 ">
-      <!-- ORIGIN -->
-      <div class="relative w-full md:w-1/3 mb-4 md:mb-0" #originWrapper>
-        <!-- Campo cerrado -->
-        <div
-          *ngIf="!toggleOriginSelector"
-          class="h-[40px] border border-gray-300 rounded-md px-3 bg-white text-sm text-black cursor-pointer hover:shadow-sm flex justify-between items-center"
-          (click)="openOriginSelector($event)">
-
-          <div class="flex items-center gap-2">
-            <ion-icon name="airplane-outline" class="text-gray-400 rotate-[-45deg]"></ion-icon>
-            <span>{{ selectedOrigin || ('BOOK.ORIGIN' | translate) }}</span>
-          </div>
-          <button
-            *ngIf="selectedOrigin"
-            (click)="clearOriginSelection($event)"
-            class="text-gray-400 hover:text-gray-700 text-base">
-            <ion-icon name="close-outline"></ion-icon>
-          </button>
-        </div>
-
-        <!-- Campo abierto + lista -->
-        <div class="w-full relative">
-          <input
-            #originInput
-            *ngIf="toggleOriginSelector"
-            [(ngModel)]="searchOrigin"
-            class="h-[40px] w-full px-3 border border-gray-300 rounded-md text-sm text-black focus:outline-none shadow-md"
-            type="text"
-            [placeholder]="'BOOK.SEARCH_ORIGIN' | translate" />
+    <div class="w-full flex justify-center px-6">
+      <div class="mt-4 h-[1px] w-full bg-black dark:bg-zinc-400 rounded-full"></div>
+    </div>
 
 
-          <ul
-            *ngIf="toggleOriginSelector"
-            class="absolute top-full left-0 right-0 z-50 mt-1 bg-white/90 backdrop-blur-sm border border-gray-300 rounded-md shadow-xl max-h-48 overflow-y-auto">
-            <li
-              *ngFor="let origin of filteredOriginsSearch"
-              (click)="selectOrigin(origin)"
-              class="px-4 py-2 hover:bg-gray-100 cursor-pointer text-sm text-black">
-              {{ origin }}
-            </li>
-          </ul>
-        </div>
-      </div>
-
-      <!-- DESTINATION -->
-      <div class="relative w-full md:w-1/3 mb-4 md:mb-0" #destinationWrapper>
-        <!-- Campo cerrado -->
-        <div
-          *ngIf="!toggleDestinationSelector"
-          class="h-[40px] border border-gray-300 rounded-md px-3 bg-white text-sm text-black cursor-pointer hover:shadow-sm flex justify-between items-center"
-          (click)="openDestinationSelector($event)">
-          <div class="flex items-center gap-2">
-            <ion-icon name="airplane-outline" class="text-gray-400 rotate-[35deg] "></ion-icon>
-            <span>{{ selectedDestination || ('BOOK.DESTINATION' | translate) }}</span>
-          </div>
-          <button
-            *ngIf="selectedDestination"
-            (click)="clearDestinationSelection($event)"
-            class="text-gray-400 hover:text-gray-700 text-base">
-            <ion-icon name="close-outline"></ion-icon>
-          </button>
-        </div>
-
-        <!-- Campo abierto + lista -->
-        <div class="w-full relative">
-          <input
-            #destinationInput
-            *ngIf="toggleDestinationSelector"
-            [(ngModel)]="searchDestination"
-            (input)="filterDestinationsSearch()"
-            type="text"
-            class="h-[40px] w-full px-3 border border-gray-300 rounded-md text-sm text-black focus:outline-none shadow-md"
-            [placeholder]="'BOOK.SEARCH_DESTINATION' | translate" />
-
-          <ul
-            *ngIf="toggleDestinationSelector"
-            class="absolute top-full left-0 right-0 z-50 mt-1 bg-white/90 backdrop-blur-sm border border-gray-300 rounded-md shadow-xl max-h-48 overflow-y-auto">
-            <li
-              *ngFor="let destination of filteredDestinationsSearch"
-              (click)="selectDestination(destination)"
-              class="px-4 py-2 hover:bg-gray-100 cursor-pointer text-sm text-black">
-              {{ destination }}
-            </li>
-          </ul>
-        </div>
 
 
-      </div>
+    <!-- CONTENEDOR ORIGIN + DESTINATION RESPONSIVE -->
+    <div class="w-full md:px-[150px] px-4 mt-4">
 
-      <!-- Fecha de vuelo -->
-      <div class="relative w-full md:w-1/3 mb-4 md:mb-0" #dateWrapper>
+      <div class="bg-black/60 p-4 rounded-md">
+        <div class="flex flex-col md:flex-row md:gap-4 ">
+        <!-- ORIGIN -->
+        <div class="relative w-full md:w-1/3 mb-4 md:mb-0" #originWrapper>
+          <!-- Campo cerrado -->
+          <div
+            *ngIf="!toggleOriginSelector"
+            class="h-[40px] border border-gray-300 rounded-md px-3 bg-white text-sm text-black cursor-pointer hover:shadow-sm flex justify-between items-center"
+            (click)="openOriginSelector($event)">
 
-        <!-- Campo cerrado -->
-        <div
-          class="h-[40px] border rounded-md px-3 text-sm flex justify-between items-center transition cursor-pointer"
-          [ngClass]="{
-            'bg-white text-black border-gray-300 hover:shadow-sm': selectedOrigin && selectedDestination,
-            'bg-gray-200 text-gray-400 border-gray-200 cursor-not-allowed': !selectedOrigin || !selectedDestination
-          }"
-          (click)="selectedOrigin && selectedDestination && openDateSelector($event)">
-
-          <div class="flex items-center justify-between w-full">
             <div class="flex items-center gap-2">
-              <ion-icon name="calendar-outline" class="text-gray-400"></ion-icon>
-              <ng-container *ngIf="selectedOrigin && selectedDestination; else disabledText">
-                <span *ngIf="selectedDate; else defaultText">
-                  {{ selectedDate | date: 'longDate' }}
-                </span>
-                <ng-template #defaultText>
-                  {{ 'BOOK.DATE' | translate }}
-                </ng-template>
-              </ng-container>
-
-              <ng-template #disabledText>
-                <span class="opacity-80">{{ 'BOOK.DATE' | translate}}</span>
-              </ng-template>
+              <ion-icon name="airplane-outline" class="text-gray-400 rotate-[-45deg]"></ion-icon>
+              <span>{{ selectedOrigin || ('BOOK.ORIGIN' | translate) }}</span>
             </div>
-
             <button
-              *ngIf="selectedDate"
-              (click)="clearDateSelection($event)"
+              *ngIf="selectedOrigin"
+              (click)="clearOriginSelection($event)"
               class="text-gray-400 hover:text-gray-700 text-base">
               <ion-icon name="close-outline"></ion-icon>
             </button>
           </div>
+
+          <!-- Campo abierto + lista -->
+          <div class="w-full relative">
+            <input
+              #originInput
+              *ngIf="toggleOriginSelector"
+              [(ngModel)]="searchOrigin"
+              (input)="filterOriginsSearch()"
+              class="h-[40px] w-full px-3 border border-gray-300 rounded-md text-sm text-black focus:outline-none shadow-md"
+              type="text"
+              [placeholder]="'BOOK.SEARCH_ORIGIN' | translate" />
+
+
+            <ul
+              *ngIf="toggleOriginSelector"
+              class="absolute top-full left-0 right-0 z-50 mt-1 bg-white/90 backdrop-blur-sm border border-gray-300 rounded-md shadow-xl max-h-48 overflow-y-auto">
+              <li
+                *ngFor="let origin of filteredOriginsSearch"
+                (click)="selectOrigin(origin)"
+                class="px-4 py-2 hover:bg-gray-100 cursor-pointer text-sm text-black">
+                {{ origin }}
+              </li>
+            </ul>
+          </div>
         </div>
 
-        <!-- Popover calendario -->
-        <div *ngIf="toggleDateSelector" class="absolute z-50 w-full mt-2 animate-fade-in">
-          <ion-datetime
-            [value]="selectedDate ?? undefined"
-            [isDateEnabled]="isFlightDate"
-            presentation="date"
-            (ionChange)="onDateSelected($event)"
-            class="w-full bg-white border border-gray-300 rounded-md shadow-md p-2">
-          </ion-datetime>
+        <!-- DESTINATION -->
+        <div class="relative w-full md:w-1/3 mb-4 md:mb-0" #destinationWrapper>
+          <!-- Campo cerrado -->
+          <div
+            *ngIf="!toggleDestinationSelector"
+            class="h-[40px] border border-gray-300 rounded-md px-3 bg-white text-sm text-black cursor-pointer hover:shadow-sm flex justify-between items-center"
+            (click)="openDestinationSelector($event)">
+            <div class="flex items-center gap-2">
+              <ion-icon name="airplane-outline" class="text-gray-400 rotate-[35deg] "></ion-icon>
+              <span>{{ selectedDestination || ('BOOK.DESTINATION' | translate) }}</span>
+            </div>
+            <button
+              *ngIf="selectedDestination"
+              (click)="clearDestinationSelection($event)"
+              class="text-gray-400 hover:text-gray-700 text-base">
+              <ion-icon name="close-outline"></ion-icon>
+            </button>
+          </div>
+
+          <!-- Campo abierto + lista -->
+          <div class="w-full relative">
+            <input
+              #destinationInput
+              *ngIf="toggleDestinationSelector"
+              [(ngModel)]="searchDestination"
+              (input)="filterDestinationsSearch()"
+              type="text"
+              class="h-[40px] w-full px-3 border border-gray-300 rounded-md text-sm text-black focus:outline-none shadow-md"
+              [placeholder]="'BOOK.SEARCH_DESTINATION' | translate" />
+
+            <ul
+              *ngIf="toggleDestinationSelector"
+              class="absolute top-full left-0 right-0 z-50 mt-1 bg-white/90 backdrop-blur-sm border border-gray-300 rounded-md shadow-xl max-h-48 overflow-y-auto">
+              <li
+                *ngFor="let destination of filteredDestinationsSearch"
+                (click)="selectDestination(destination)"
+                class="px-4 py-2 hover:bg-gray-100 cursor-pointer text-sm text-black">
+                {{ destination }}
+              </li>
+            </ul>
+          </div>
+
+
         </div>
-      </div>
 
+        <!-- Fecha de vuelo -->
+        <div class="relative w-full md:w-1/3 mb-4 md:mb-0" #dateWrapper>
 
+          <!-- Campo cerrado -->
+          <div
+            class="h-[40px] border rounded-md px-3 text-sm flex justify-between items-center transition cursor-pointer"
+            [ngClass]="{
+              'bg-white text-black border-gray-300 hover:shadow-sm': selectedOrigin && selectedDestination,
+              'bg-gray-200 text-gray-400 border-gray-200 cursor-not-allowed': !selectedOrigin || !selectedDestination
+            }"
+            (click)="selectedOrigin && selectedDestination && openDateSelector($event)">
 
-      </div>
+            <div class="flex items-center justify-between w-full">
+              <div class="flex items-center gap-2">
+                <ion-icon name="calendar-outline" class="text-gray-400"></ion-icon>
+                <ng-container *ngIf="selectedOrigin && selectedDestination; else disabledText">
+                  <span *ngIf="selectedDate && selectedTime; else defaultText">
+  {{ (selectedDate + 'T' + selectedTime) | date: 'longDate' }}, {{ selectedTime }}h
+</span>
+                  <ng-template #defaultText>
+                    {{ 'BOOK.DATE' | translate }}
+                  </ng-template>
+                </ng-container>
 
-      <div class="w-full md:px-[150px] px-4 mt-2">
-        <ion-button
-          class="h-[40px] flex items-center justify-center text-sm font-medium rounded-md"
-          color="tertiary"
-          (click)="createBooking()"
-          [disabled]="!selectedOrigin || !selectedDestination || !selectedDate"
-          expand="block">
-          {{ 'BOOK.BOOK_NOW' | translate }}
-        </ion-button>
+                <ng-template #disabledText>
+                  <span class="opacity-80">{{ 'BOOK.DATE' | translate}}</span>
+                </ng-template>
+              </div>
 
+              <button
+                *ngIf="selectedDate"
+                (click)="clearDateSelection($event)"
+                class="text-gray-400 hover:text-gray-700 text-base">
+                <ion-icon name="close-outline"></ion-icon>
+              </button>
+            </div>
+          </div>
+
+          <!-- Popover calendario -->
+          <div *ngIf="toggleDateSelector" class="absolute z-50 w-full animate-fade-in">
+  <div class="bg-white border border-gray-300 rounded-md shadow-md p-2 space-y-2 relative">
+
+    <ion-datetime
+      [value]="selectedDate ?? undefined"
+      [isDateEnabled]="isFlightDate"
+      size="cover"
+      presentation="date"
+      (ionChange)="onDateSelected($event)"
+      class="z-0"
+    ></ion-datetime>
+
+    <!-- Truco: insertamos un div con margen negativo para ocupar el espacio "fantasma" -->
+    <div
+      class="-mt-5 relative z-10 px-2"
+      *ngIf="selectedDate && flightsByDate.get(selectedDate)"
+    >
+      <div class="grid grid-cols-4 sm:grid-cols-3 gap-2">
+        <button
+          *ngFor="let hour of flightsByDate.get(selectedDate)"
+          (click)="selectTime(hour)"
+          class="px-3 py-2 rounded border text-sm font-medium transition-all"
+          [class.bg-blue-600]="selectedTime === hour"
+          [class.text-white]="selectedTime === hour"
+          [class.bg-white]="selectedTime !== hour"
+          [class.text-black]="selectedTime !== hour"
+        >
+          {{ hour }}
+        </button>
       </div>
     </div>
+
   </div>
-
-  <div class="w-full flex justify-center px-6">
-    <div class="mt-4 h-[1px] w-full bg-black rounded-full"></div>
-  </div>
+</div>
 
 
-  <div class="w-full px-4 md:px-[150px] mt-6">
+
+          
+        </div>
+
+
+
+        </div>
+
+        <div class="w-full md:px-[150px] px-4 mt-2">
+          <ion-button
+            class="h-[40px] flex items-center justify-center text-sm font-medium rounded-md"
+            color="tertiary"
+            (click)="createBooking()"
+            [disabled]="!selectedOrigin || !selectedDestination || !selectedDate || !selectedTime"
+            expand="block">
+            {{ 'BOOK.BOOK_NOW' | translate }}
+          </ion-button>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="w-full flex justify-center px-6">
+      <div class="mt-4 h-[1px] w-full bg-black rounded-full"></div>
+    </div>
+
+
+    <div class="w-full px-4 md:px-[150px] mt-6">
     <swiper-container
       [slidesPerView]="1.2"
       [spaceBetween]="10"
@@ -243,7 +277,9 @@
       </swiper-slide>
     </swiper-container>
   </div>
-
+  
   <app-footer></app-footer>
+  </div>
+
 </ion-content>
 

@@ -161,6 +161,9 @@ export class BookingsPage implements OnInit {
     this.flightsSvc.getAll(1, 1000).subscribe({
       next: (response: Paginated<Flight>) => {
         response.data.forEach(flight => this.flightsMap[flight.id] = flight);
+        this._flights.next(response.data);
+        this.prepareFlightDates();
+
       },
       error: err => console.error('Error loading all flights:', err),
     });
@@ -206,4 +209,46 @@ export class BookingsPage implements OnInit {
 
     await alert.present();
   }
+
+  // Al final de BookingsPage
+
+selectedDate: string | null = null;
+selectedTime: string | null = null;
+
+flightsByDate: Map<string, string[]> = new Map();
+
+prepareFlightDates(): void {
+  this.flightsByDate.clear();
+
+  const allFlights = Object.values(this.flightsMap);
+
+  allFlights.forEach(flight => {
+    const [date, time] = flight.departureDate.split('T');
+    if (!this.flightsByDate.has(date)) {
+      this.flightsByDate.set(date, []);
+    }
+    this.flightsByDate.get(date)!.push(time.slice(0, 5)); // HH:mm
+  });
+
+  console.log('🧭 Fechas de vuelos agrupadas:', this.flightsByDate);
+}
+
+isFlightDate = (dateIsoString: string): boolean => {
+  const dateOnly = dateIsoString.split('T')[0];
+  return this.flightsByDate.has(dateOnly);
+};
+
+onDateSelected(event: CustomEvent): void {
+  const isoDate = event.detail.value as string;
+  this.selectedDate = isoDate.split('T')[0];
+  this.selectedTime = null;
+  console.log('📅 Día seleccionado:', this.selectedDate);
+}
+
+selectTime(time: string): void {
+  this.selectedTime = time;
+  const fullDateTime = `${this.selectedDate}T${time}:00`;
+  console.log('✅ Fecha completa seleccionada:', fullDateTime);
+}
+
 }

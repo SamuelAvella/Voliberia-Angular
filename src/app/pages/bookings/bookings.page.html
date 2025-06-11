@@ -132,35 +132,30 @@
 
 
 
-            <ion-row class="mt-4 px-4 md:px-6">
-              <ion-col size="12">
-                <div class="flex flex-row flex-wrap items-center justify-between w-full gap-y-2">
+                <div class="mt-4 flex items-center justify-between px-2">
                   <!-- Precio a la izquierda -->
-                  <div class="text-lg font-semibold text-blue-700 w-full sm:w-auto text-left sm:text-start">
+                  <div class="text-lg font-semibold text-blue-700">
                     {{ flightsMap[booking.flightId]?.seatPrice }}€
                   </div>
 
                   <!-- Botón cancelar en el centro -->
-                  <div class="w-full sm:w-auto text-center">
                     <ng-container *ngIf="booking.bookingState === 'pending' && now Date(flightsMap[booking.flightId]?.departureDate) > now">
                       <ion-button
                         size="small"
                         color="danger"
                         (click)="cancelBooking(booking)"
+                        class="px-3 py-1"
                       >
                         Cancelar
                       </ion-button>
                     </ng-container>
-                  </div>
 
                   <!-- Estado a la derecha -->
-                  <div class="text-xs italic w-full sm:w-auto text-right sm:text-end" [ngClass]="booking.bookingState | bookingStateStyle:'text'">
+                  <div class="text-xs italic" [ngClass]="booking.bookingState | bookingStateStyle:'text'">
                     {{ booking.bookingState | bookingStateStyle:'label' }}
                     <span *ngIf="booking.bookingState === 'cancelled'">· Vuelo finalizado</span>
                   </div>
                 </div>
-              </ion-col>
-            </ion-row>
 
           </ion-card>
         </ion-col>
