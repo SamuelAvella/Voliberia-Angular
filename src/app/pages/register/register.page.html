@@ -107,7 +107,8 @@
             </ion-button>
           </div>
           <p *ngIf="password?.invalid && (password?.dirty || password?.touched)" class="text-red-500 text-sm mt-1">
-            {{ 'REGISTER.ERRORS.PASSWORD_REQUIRED' | translate }}
+            <span *ngIf="password?.errors?.['required']">{{ 'REGISTER.ERRORS.PASSWORD_REQUIRED' | translate }}</span>
+            <span *ngIf="password?.errors?.['passwordStrength']">{{'REGISTER.ERRORS.PASSWORD_WEAK' | translate}}</span>
           </p>
         </div>
 
@@ -138,6 +139,7 @@
           <p *ngIf="registerForm.errors?.['passwordsMismatch']" class="text-red-500 text-sm mt-1">
             {{ 'REGISTER.ERRORS.PASSWORDS_MISMATCH' | translate }}
           </p>
+
         </div>
       </div>
 

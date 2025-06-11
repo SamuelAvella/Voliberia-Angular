@@ -51,7 +51,7 @@ export class AppComponent implements OnInit {
 
   get shouldHideHeader(): boolean {
     const current = this.router.url;
-    return this.hiddenHeaderRoutes.includes(current);
+    return this.hiddenHeaderRoutes.some(route => current.startsWith(route));
   }
 
   currentLang: string = 'es';
@@ -66,9 +66,10 @@ export class AppComponent implements OnInit {
     private router: Router,
     private popoverCtrl: PopoverController
   ) {
-    this.loadTranslations();
-    this.translate.onLangChange.subscribe(() => this.loadTranslations());
-    this.currentLang = this.translate.currentLang || this.translate.getDefaultLang();
+    const lang = this.translationService.getStoredLanguage();
+  this.translationService.changeLanguage(lang);
+  this.currentLang = lang;
+  this.translate.onLangChange.subscribe(() => this.loadTranslations());
   }
 
   private loadTranslations() {
@@ -105,18 +106,20 @@ export class AppComponent implements OnInit {
 
   async ngOnInit() {
     try {
-      const user = await this.authSvc.getCurrentUser();
-
+      this.authSvc.user$.subscribe(async (user) => {
       if (user) {
         this.userApp = await lastValueFrom(this.usersAppSvc.getByUserId(user.id));
 
-        // Redirect if user tries to access unauthorized page
+        // Redirect if it's a non permiss page
         const currentUrl = this.router.url;
         const currentPage = this.appPages.find(p => p.url === currentUrl);
-        if (currentPage && this.userApp && !currentPage.roles.includes(this.userApp.role)) {
+        if (currentPage && !currentPage.roles.includes(this.userApp!.role)) {
           this.router.navigate(['/home']);
         }
+      } else {
+        this.userApp = undefined;
       }
+    });
     } catch (error) {
       console.error('Error fetching user:', error);
     }

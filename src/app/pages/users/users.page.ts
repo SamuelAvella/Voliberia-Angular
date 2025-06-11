@@ -56,11 +56,11 @@ export class UsersPage implements OnInit {
   }
 
   filterUsers() {
-    let filtered = this.users;
-    
+    let filtered = [...this.users];
+
     if (this.searchTerm.trim()) {
       const searchTerm = this.searchTerm.toLowerCase();
-      filtered = this.users.filter(user => 
+      filtered = this.users.filter(user =>
         user.name.toLowerCase().includes(searchTerm) ||
         user.surname.toLowerCase().includes(searchTerm) ||
         user.id.toLowerCase().includes(searchTerm)
@@ -92,11 +92,11 @@ export class UsersPage implements OnInit {
     const { data: confirmed } = await modal.onDidDismiss();
 
     if (confirmed) {
-      this.usersService.update(user.id, { ...user, role: newRole }).subscribe({
+      this.usersService.update(user.id, { role: newRole }).subscribe({
         next: (updatedUser) => {
           const index = this.users.findIndex(u => u.id === user.id);
           if (index !== -1) {
-            this.users[index] = updatedUser;
+            this.users[index] = { ...this.users[index], role: newRole };
             this.filterUsers();
           }
         },

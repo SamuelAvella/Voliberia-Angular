@@ -11,7 +11,11 @@
       "SAVE": "Changes saved successfully"
     },
     "GO_BACK": "Go Back",
-    "GO_HOME": "Go to Home"
+    "GO_HOME": "Go to Home",
+    "CONFIRM": "Confirm",
+    "CANCEL": "Cancel",
+    "NO": "No",
+    "YES": "Yes"
   },
 
   "REGISTER": {
@@ -265,7 +269,8 @@
     },
     "NO_USERS": "No users found",
     "NO_ADMINS": "No administrators found",
-    "NO_REGULAR_USERS": "No regular users found"
+    "NO_REGULAR_USERS": "No regular users found",
+    "CANT_CHANGE_OWN_ROLE": "Cannot change your own rol"
   },
 
   "MODALS": {
@@ -275,5 +280,17 @@
       "FROM": "From",
       "TO": "To"
     }
+  },
+
+  "404": {
+    "TITLE": "Page not found",
+    "TEXT": "They page you are searching for, does not exists",
+    "BACK": "Go back"
+  },
+
+  "DENIED": {
+    "TITLE": "Access Denied",
+    "TEXT": "You don't have the permission to access this page",
+    "HOME": "Go home"
   }
 }

@@ -8,7 +8,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true" class="bg-cover bg-center font-inter bg-white">
+<ion-content [fullscreen]="true" class="bg-no-repeat bg-center bg-contain font-inter dark:bg-stone-800 bg-[length:400px_auto]" style="background-image: url('../../../assets/img/logo.png')">
 
   <div class="md:px-14 md:pt-6">
     <ion-grid
@@ -38,44 +38,49 @@
   </div>
 
   <div class="w-full flex justify-center px-6">
-    <div class="mt-4 h-[1px] w-full bg-black rounded-full"></div>
+    <div class="mt-4 h-[1px] w-full bg-black dark:bg-zinc-400 rounded-full"></div>
   </div>
 
-  <ion-grid class="mx-8">
+  <div class="w-full md:px-[70px] px-4 mt-4">
+
+  <ion-grid class="bg-black/20 dark:bg-white/10 p-4 rounded-md">
     <ion-row>
-      <ion-col size="12" size-md="6" *ngFor="let flight of flights$ | async">
-        <ion-card class="mx-auto mb-6 max-w-xl rounded-2xl bg-blue-50 p-4 shadow-md">
-          <div class="mb-4 border-b pb-2 text-center font-semibold text-gray-600">
+      <ion-col size="12" size-md="6" class="px-3 mb-6" *ngFor="let flight of flights$ | async">
+        <ion-card class="mx-auto max-w-xl rounded-2xl bg-blue-50 dark:bg-[#1e4179] text-black dark:text-white p-4 shadow-md">
+
+          <div class="mb-4 border-b pb-2 text-center font-semibold text-gray-600 dark:text-gray-300">
             {{ flight.departureDate | localizedDate: currentLocale }}
           </div>
 
           <div class="flex items-center justify-between px-4">
             <div class="text-center">
-              <div class="text-sm text-gray-600">- {{ flight.origin.slice(0, -6) }} -</div>
-              <div class="text-2xl font-bold text-black">{{ flight.origin.slice(-6) }}</div>
-              <div class="mt-1 text-sm text-gray-500">{{ flight.departureDate | date: 'shortTime' }}</div>
+              <div class="text-sm text-gray-600 dark:text-gray-400">- {{ flight.origin.slice(0, -6) }} -</div>
+              <div class="text-2xl font-bold text-black dark:text-white">{{ flight.origin.slice(-6) }}</div>
+              <div class="mt-1 text-sm text-gray-500 dark:text-gray-400">{{ flight.departureDate | date: 'shortTime' }}</div>
             </div>
-            <div class="flex items-center justify-center text-gray-500">
-              <div class="my-1 w-10 border-t border-gray-300"></div>
+
+            <div class="flex items-center justify-center text-gray-500 dark:text-gray-400">
+              <div class="my-1 w-10 border-t border-gray-300 dark:border-gray-500"></div>
               <div class="mx-1 text-xl">✈️</div>
-              <div class="my-1 w-10 border-t border-gray-300"></div>
+              <div class="my-1 w-10 border-t border-gray-300 dark:border-gray-500"></div>
             </div>
+
             <div class="text-center">
-              <div class="text-sm text-gray-600">- {{ flight.destination.slice(0, -6) }} -</div>
-              <div class="text-2xl font-bold text-black">{{ flight.destination.slice(-6) }}</div>
-              <div class="mt-1 text-sm text-gray-500">{{ flight.arrivalDate | date: 'shortTime' }}</div>
+              <div class="text-sm text-gray-600 dark:text-gray-400">- {{ flight.destination.slice(0, -6) }} -</div>
+              <div class="text-2xl font-bold text-black dark:text-white">{{ flight.destination.slice(-6) }}</div>
+              <div class="mt-1 text-sm text-gray-500 dark:text-gray-400">{{ flight.arrivalDate | date: 'shortTime' }}</div>
             </div>
           </div>
 
           <div class="mt-4 flex items-center justify-between px-2">
-            <div class="text-lg font-semibold text-blue-700">
+            <div class="text-lg font-semibold text-blue-700 dark:text-blue-400">
               {{ flight.seatPrice | localizedCurrency: currentLocale }}
             </div>
             <div class="flex gap-2">
               <ion-button
                 size="small"
                 fill="clear"
-                class="text-blue-700 font-semibold"
+                class="text-blue-700 dark:text-blue-400 font-semibold"
                 (click)="onEditFlight(flight)">
                 <ion-icon name="create-outline" slot="start"></ion-icon>
                 {{ 'FLIGHT.EDIT_TITLE' | translate }}
@@ -90,10 +95,13 @@
               </ion-button>
             </div>
           </div>
+
         </ion-card>
       </ion-col>
     </ion-row>
   </ion-grid>
+
+    </div>
 
   <!-- Botón flotante "Crear" abajo a la derecha -->
   <div class="fixed bottom-6 right-6 z-50 w-full px-4 md:px-0 md:w-auto">

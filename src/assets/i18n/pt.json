@@ -11,7 +11,9 @@
       "SAVE": "Alterações salvas com sucesso",
       "GO_BACK": "Voltar",
       "GO_HOME": "Ir para Início"
-    }
+    },
+    "CONFIRM": "Confirm",
+    "CANCEL": "Cancel"
   },
 
   "REGISTER": {
@@ -270,5 +272,17 @@
       "FROM": "De",
       "TO": "Para"
     }
+  },
+
+  "404": {
+    "TITLE": "Página não encontrada",
+    "TEXT": "A página que você está procurando não existe.",
+    "BACK": "Voltar"
+  },
+  "DENIED": {
+    "TITLE": "Acesso negado",
+    "TEXT": "Você não tem permissão para acessar esta página.",
+    "HOME": "Ir para o início"
   }
+
 }

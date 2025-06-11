@@ -6,20 +6,18 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class TranslationService {
   private readonly LANG_KEY = 'selectedLanguage';
-  private defaultLang = 'es';
+  private readonly defaultLang = 'es';
 
   constructor(private translate: TranslateService) {
-    translate.addLangs(['es', 'en']);
-    translate.setDefaultLang('es');
-    
-    const browserLang = translate.getBrowserLang();
-    translate.use(browserLang?.match(/es|en/) ? browserLang : 'es');
+    const savedLang = this.getStoredLanguage();
 
-    const storedLang = this.getStoredLanguage();
-    this.changeLanguage(storedLang);
+    translate.addLangs(['es', 'en', 'pt']);
+    translate.setDefaultLang(this.defaultLang);
+    translate.use(savedLang);
   }
 
   changeLanguage(lang: string) {
+    this.storeLanguage(lang);
     this.translate.use(lang);
   }
 
@@ -34,5 +32,4 @@ export class TranslationService {
   storeLanguage(lang: string): void {
     localStorage.setItem(this.LANG_KEY, lang);
   }
-
 }

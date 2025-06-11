@@ -33,9 +33,19 @@
         <ion-item *ngFor="let user of filteredAdmins" class="mb-4">
           <div class="flex items-center justify-between w-full py-2">
             <div class="flex items-center gap-4">
-              <ion-avatar style="width: 48px; height: 48px;">
-                <img [src]="user.picture?.url || 'assets/img/default-avatar.png'" [alt]="user.name" style="object-fit: cover;">
+              <ion-avatar class="w-12 h-12 overflow-hidden rounded-full bg-gray-200 flex items-center justify-center">
+                <ng-container *ngIf="user.picture?.url; else defaultIcon">
+                  <img
+                    [src]="user.picture?.url"
+                    [alt]="user.name"
+                    class="w-full h-full object-cover rounded-full"
+                  />
+                </ng-container>
+                <ng-template #defaultIcon>
+                  <ion-icon name="person-circle" class="text-3xl text-gray-400"></ion-icon>
+                </ng-template>
               </ion-avatar>
+
               <div>
                 <h2 class="font-semibold">{{user.name}} {{user.surname}}</h2>
                 <p class="text-sm text-gray-600">ID: {{user.id}}</p>
@@ -46,7 +56,6 @@
                 [value]="user.role"
                 (ionChange)="updateUserRole(user, $event)"
                 [interface]="'popover'"
-                [label]="'USERS.ROLE' | translate"
                 [disabled]="isCurrentUser(user)">
                 <ion-select-option value="user">{{ 'USERS.ROLES.USER' | translate }}</ion-select-option>
                 <ion-select-option value="admin">{{ 'USERS.ROLES.ADMIN' | translate }}</ion-select-option>
@@ -72,9 +81,19 @@
         <ion-item *ngFor="let user of filteredUsers" class="mb-4">
           <div class="flex items-center justify-between w-full py-2">
             <div class="flex items-center gap-4">
-              <ion-avatar style="width: 48px; height: 48px;">
-                <img [src]="user.picture?.url || 'assets/img/default-avatar.png'" [alt]="user.name" style="object-fit: cover;">
-              </ion-avatar>
+              <ion-avatar class="w-12 h-12 overflow-hidden rounded-full bg-gray-200 flex items-center justify-center">
+              <ng-container *ngIf="user.picture?.url; else defaultIcon">
+                <img
+                  [src]="user.picture?.url"
+                  [alt]="user.name"
+                  class="w-full h-full object-cover rounded-full"
+                />
+              </ng-container>
+              <ng-template #defaultIcon>
+                <ion-icon name="person-circle" class="text-3xl text-gray-400"></ion-icon>
+              </ng-template>
+            </ion-avatar>
+
               <div>
                 <h2 class="font-semibold">{{user.name}} {{user.surname}}</h2>
                 <p class="text-sm text-gray-600">ID: {{user.id}}</p>
@@ -85,7 +104,6 @@
                 [value]="user.role"
                 (ionChange)="updateUserRole(user, $event)"
                 [interface]="'popover'"
-                [label]="'USERS.ROLE' | translate"
                 [disabled]="isCurrentUser(user)">
                 <ion-select-option value="user">{{ 'USERS.ROLES.USER' | translate }}</ion-select-option>
                 <ion-select-option value="admin">{{ 'USERS.ROLES.ADMIN' | translate }}</ion-select-option>

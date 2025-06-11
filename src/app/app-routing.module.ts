@@ -63,11 +63,11 @@ const routes: Routes = [
   {
     path: 'access-denied',
     canActivate: [authGuard],
-    loadComponent: () => import('./pages/access-denied/access-denied.page').then(m => m.AccessDeniedPage)
+    loadChildren: () => import('./pages/access-denied/access-denied.module').then(m => m.AccessDeniedPageModule)
   },
   {
     path: '404',
-    loadComponent: () => import('./pages/not-found/not-found.page').then(m => m.NotFoundPage)
+    loadChildren: () => import('./pages/not-found/not-found.module').then(m => m.NotFoundPageModule)
   },
   {
     path: '**',

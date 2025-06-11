@@ -11,7 +11,11 @@
       "SAVE": "Cambios guardados correctamente",
       "GO_BACK": "Volver",
       "GO_HOME": "Ir a Inicio"
-    }
+    },
+    "CONFIRM": "Confirm",
+    "CANCEL": "Cancel",
+    "NO": "No",
+    "YES": "Sí"
   },
 
 
@@ -32,7 +36,7 @@
         "EMAIL_REQUIRED": "Debe introducir un correo electrónico",
         "EMAIL_INVALID": "Debe introducir un correo electrónico válido",
         "PASSWORD_REQUIRED": "Debe introducir una contraseña",
-        "PASSWORD_WEAK": "Al menos 10 caracteres, una mayúscula, un número y un carácter especial.",
+        "PASSWORD_WEAK": "Mín. 10 letras, 1 mayúscula, 1 número y 1 símbolo.",
         "PASSWORDS_MISMATCH": "Las contraseñas no coinciden",
         "EMAIL_IN_USE": "Este correo ya está en uso. Intenta con otro.",
         "GENERAL_ERROR": "Ocurrió un error. Inténtelo de nuevo más tarde."
@@ -238,7 +242,23 @@
       "CONTACT": "Contacto",
       "CONTACT_TEXT": "Puedes contactarme en:",
       "LINKEDIN": "LinkedIn"
-    }
+    },
+    "TITLE": "Sobre mí ",
+    "HELLO": "Hola, soy Samuel Avella Pérez",
+    "INTRO": "Tengo 18 años y estudio Desarrollo de Aplicaciones Multiplataforma (DAM) en el CPIFP Alan Turing, en Málaga.",
+    "FORMATION": "Me apasiona el desarrollo web y móvil. Trabajo con Angular, Ionic, Firebase y Kotlin, y siempre busco aprender más.",
+    "MOTIVATION": "Soy una persona proactiva y resolutiva, me encanta crear soluciones útiles y afrontar nuevos retos.",
+    "EMAIL_PERSONAL": "soleraromerodavid@gmail.com (Personal)",
+    "EMAIL_EDU": "dsolrom2312@g.educaand.es (Educativo)",
+    "PROJECT_TITLE": "🚀 Proyecto destacado: Voliberia",
+    "PROJECT_DESC": "Voliberia es mi TFG: una plataforma responsive web y móvil para reservas de vuelos en la Península Ibérica, usando Firebase, Angular y arquitectura escalable.",
+    "REPO": "Repositorio",
+    "TECH_TITLE": "⚙ Tecnologías que manejo",
+    "TECH_ANGULAR": "Angular – Framework SPA para apps modulares y dinámicas.",
+    "TECH_IONIC": "Ionic – Librería UI para apps híbridas web/móvil.",
+    "TECH_FIREBASE": "Firebase – Base de datos en tiempo real, auth y almacenamiento.",
+    "TECH_STRAPI": "Strapi – CMS sin cabeza y backend REST.",
+    "TECH_KOTLIN": "Kotlin – Lenguaje moderno para desarrollo Android nativo."
   },
 
   "HEADER": {
@@ -270,7 +290,8 @@
     },
     "NO_USERS": "No se encontraron usuarios",
     "NO_ADMINS": "No hay administradores",
-    "NO_REGULAR_USERS": "No hay usuarios regulares"
+    "NO_REGULAR_USERS": "No hay usuarios regulares",
+    "CANT_CHANGE_OWN_ROLE": "No puedes cambiar tu propio rol"
   },
 
   "MODALS": {
@@ -280,7 +301,19 @@
       "FROM": "De",
       "TO": "A"
     }
+  },
+
+  "404": {
+    "TITLE": "Página no encontrada",
+    "TEXT": "La página que buscas no existe.",
+    "BACK": "Volver"
+  },
+  "DENIED": {
+    "TITLE": "Acceso denegado",
+    "TEXT": "No tienes permiso para acceder a esta página.",
+    "HOME": "Ir al inicio"
   }
+
 
 
 }

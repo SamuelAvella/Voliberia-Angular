@@ -82,13 +82,21 @@ export class FlightsPage implements OnInit {
     this.flightsSvc.getAll(this.page, this.pageSize).subscribe({
       next: (response: Paginated<Flight>) => {
         response.data.forEach(flight => this.loadedIds.add(flight.id));
-        // const existingIds = this._flights.value.map((flight) => flight.id);
-        // const newFlights = response.data.filter((flight) => !existingIds.includes(flight.id));
-        
-        // const sortedFlights = [...this._flights.value, ...newFlights]
-        //   .sort((a, b) => a.origin.localeCompare(b.origin)); 
+        const updatedFlights = [...this._flights.value];
 
-        this._flights.next([...this._flights.value, ...response.data]);
+        response.data.forEach(flight => {
+          const index = updatedFlights.findIndex(f => f.id === flight.id);
+          if (index >= 0) {
+            updatedFlights[index] = flight;
+          } else {
+            updatedFlights.push(flight);
+          }
+        });
+
+        // Sort descendent date
+        updatedFlights.sort((a, b) => new Date(b.departureDate).getTime() - new Date(a.departureDate).getTime());
+
+        this._flights.next(updatedFlights);
         this.page++;
         notify?.complete();
       },
@@ -98,13 +106,13 @@ export class FlightsPage implements OnInit {
       },
     });
   }
-  
+
 
   async onAddFlight() {
     const modal = await this.modalCtrl.create({
       component: FlightModalComponent,
     });
-  
+
     modal.onDidDismiss().then((result) => {
       if (result.data) {
         this.flightsSvc.add(result.data).subscribe(() => {
@@ -113,16 +121,16 @@ export class FlightsPage implements OnInit {
         });
       }
     });
-  
+
     await modal.present();
   }
-  
+
   async onEditFlight(flight: Flight) {
     const modal = await this.modalCtrl.create({
       component: FlightModalComponent,
       componentProps: { flight },
     });
-  
+
     modal.onDidDismiss().then((result) => {
       if (result.data) {
         this.flightsSvc.update(flight.id, result.data).subscribe(() => {
@@ -131,10 +139,10 @@ export class FlightsPage implements OnInit {
         });
       }
     });
-  
+
     await modal.present();
   }
-  
+
   async onDeleteFlight(flight: Flight) {
     const alert = await this.alertCtrl.create({
       header: 'Confirm Deletion',
@@ -164,17 +172,19 @@ export class FlightsPage implements OnInit {
 
     await alert.present();
   }
-  
-  
-  
+
+
+
 
   refreshFlights(): void {
-    console.log('Llamando a refreshFlights');
-    this.page = 1; // Reinicia la paginación
-    this._flights.next([]); // Limpia la lista actual
-    this.getMoreFlights(); // Carga vuelos desde la primera página
-  }
-  
+  console.log('Llamando a refreshFlights');
+  this.page = 1;
+  this._flights.next([]);      // Limpia la lista actual
+  this.loadedIds.clear();      // Limpia los IDs para evitar duplicados
+  this.getMoreFlights();       // Carga desde cero
+}
+
+
 
   onIonInfinite(ev: any) {
     this.getMoreFlights(ev.target);

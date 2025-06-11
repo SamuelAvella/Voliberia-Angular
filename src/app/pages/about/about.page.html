@@ -1,56 +1,77 @@
 <ion-header [translucent]="true">
   <ion-toolbar color="primary">
-    <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
-    </ion-buttons>
-    <ion-title class="header-title">{{'ABOUT.TITLE' | translate}}</ion-title>
+    <ion-title class="text-center text-lg font-bold">{{ 'ABOUT.TITLE' | translate }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true" class="bg-gray-50 font-inter">
-  <div class="max-w-3xl mx-auto px-4 py-8 space-y-6">
+<ion-content [fullscreen]="true" class="font-inter">
+  <div class="max-w-6xl mx-auto px-6 py-10 space-y-16">
 
-    <!-- Card: About the app -->
-    <ion-card class="rounded-xl shadow-md">
-      <ion-card-header class="bg-primary/90 rounded-t-xl text-white px-6 py-4">
-        <ion-card-title class="text-xl font-semibold">
-          {{ 'ABOUT.APP_INFO.TITLE' | translate }}
-        </ion-card-title>
-      </ion-card-header>
-      <ion-card-content class="space-y-2 px-6 py-4 text-gray-700">
-        <p><strong>{{ 'ABOUT.APP_INFO.NAME' | translate }}:</strong> Samuel Avella Pérez</p>
-        <p><strong>{{ 'ABOUT.APP_INFO.CREATION_DATE' | translate }}:</strong> 11/12/2024</p>
-        <p>
-          <strong>{{ 'ABOUT.APP_INFO.DESCRIPTION' | translate }}:</strong>
-          {{ 'ABOUT.APP_INFO.DESCRIPTION_TEXT' | translate }}
-        </p>
-      </ion-card-content>
-    </ion-card>
+    <!-- Presentación -->
+    <div class="flex flex-col-reverse md:flex-row items-center gap-10">
+      <div class="md:w-2/3 space-y-4 text-sm">
+        <h1 class="text-3xl font-bold text-primary">{{ 'ABOUT.HELLO' | translate }}</h1>
+        <p>{{ 'ABOUT.INTRO' | translate }}</p>
+        <p>{{ 'ABOUT.FORMATION' | translate }}</p>
+        <p>{{ 'ABOUT.MOTIVATION' | translate }}</p>
 
-    <!-- Card: Additional Information -->
-    <ion-card class="rounded-xl shadow-md">
-      <ion-card-header class="bg-secondary/90 rounded-t-xl text-white px-6 py-4">
-        <ion-card-title class="text-xl font-semibold">
-          {{ 'ABOUT.ADDITIONAL_INFO.TITLE' | translate }}
-        </ion-card-title>
-      </ion-card-header>
-      <ion-card-content class="space-y-2 px-6 py-4 text-gray-700">
-        <p>{{ 'ABOUT.ADDITIONAL_INFO.INTRODUCTION' | translate }}</p>
-        <p><strong>{{ 'ABOUT.ADDITIONAL_INFO.CONTACT' | translate }}:</strong></p>
-        <p class="flex items-center gap-2">
-          {{ 'ABOUT.ADDITIONAL_INFO.CONTACT_TEXT' | translate }}
-          <a
-            href="https://linkedin.com/in/samuelavella"
-            target="_blank"
-            rel="noopener"
-            class="inline-flex items-center gap-1 text-blue-600 hover:text-blue-800 transition"
-          >
-            <ion-icon name="logo-linkedin" class="text-xl"></ion-icon>
-            {{ 'ABOUT.ADDITIONAL_INFO.LINKEDIN' | translate }}
+        <div class="space-y-1 text-xs mt-4">
+          <p>📧 {{ 'ABOUT.EMAIL_PERSONAL' | translate }}</p>
+          <p>📧 {{ 'ABOUT.EMAIL_EDU' | translate }}</p>
+        </div>
+
+        <div class="flex gap-4 mt-4">
+          <a href="https://github.com/SamuelAvella" class="text-green-400 hover:underline flex items-center gap-1">
+            <ion-icon name="logo-github"></ion-icon> GitHub
           </a>
+          <a href="https://linkedin.com" class="text-green-400 hover:underline flex items-center gap-1">
+            <ion-icon name="logo-linkedin"></ion-icon> LinkedIn
+          </a>
+        </div>
+      </div>
+      <div class="md:w-1/3 flex justify-center">
+        <img src="assets/img/mi-foto.png" class="rounded-full h-40 w-40 border-4 border-primary object-cover shadow-md" alt="Mi foto">
+      </div>
+    </div>
+
+    <!-- Proyecto Destacado -->
+    <div class="bg-zinc-800 p-6 rounded-2xl shadow-md">
+      <h2 class="text-2xl font-bold text-secondary mb-2">{{ 'ABOUT.PROJECT_TITLE' | translate }}</h2>
+      <p class="text-sm">{{ 'ABOUT.PROJECT_DESC' | translate }}</p>
+
+      <div class="mt-4 text-sm">
+        <p>📂 <strong>{{ 'ABOUT.REPO' | translate }}:</strong>
+          <a href="https://github.com/SamuelAvella/Voliberia_TFG" class="text-blue-400 hover:underline">Voliberia_TFG</a>
         </p>
-      </ion-card-content>
-    </ion-card>
+      </div>
+    </div>
+
+    <!-- Tecnologías -->
+    <div>
+      <h2 class="text-2xl font-bold text-center text-indigo-400 mb-6">{{ 'ABOUT.TECH_TITLE' | translate }}</h2>
+      <div class="grid md:grid-cols-3 gap-6 text-sm text-zinc-300">
+        <div class="bg-zinc-800 p-4 rounded-xl border border-zinc-700 shadow-sm">
+          <h3 class="font-semibold text-white mb-2">Angular</h3>
+          <p>{{ 'ABOUT.TECH_ANGULAR' | translate }}</p>
+        </div>
+        <div class="bg-zinc-800 p-4 rounded-xl border border-zinc-700 shadow-sm">
+          <h3 class="font-semibold text-white mb-2">Ionic</h3>
+          <p>{{ 'ABOUT.TECH_IONIC' | translate }}</p>
+        </div>
+        <div class="bg-zinc-800 p-4 rounded-xl border border-zinc-700 shadow-sm">
+          <h3 class="font-semibold text-white mb-2">Firebase</h3>
+          <p>{{ 'ABOUT.TECH_FIREBASE' | translate }}</p>
+        </div>
+        <div class="bg-zinc-800 p-4 rounded-xl border border-zinc-700 shadow-sm">
+          <h3 class="font-semibold text-white mb-2">Strapi</h3>
+          <p>{{ 'ABOUT.TECH_STRAPI' | translate }}</p>
+        </div>
+        <div class="bg-zinc-800 p-4 rounded-xl border border-zinc-700 shadow-sm">
+          <h3 class="font-semibold text-white mb-2">Kotlin</h3>
+          <p>{{ 'ABOUT.TECH_KOTLIN' | translate }}</p>
+        </div>
+      </div>
+    </div>
 
   </div>
 </ion-content>
