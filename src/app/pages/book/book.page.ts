@@ -1,3 +1,4 @@
+import { ModalController } from '@ionic/angular';
 /**
  * BookPage
  * Componente principal para gestionar reservas de vuelos.
@@ -26,6 +27,8 @@ import { BookingsService } from 'src/app/core/services/impl/bookings.service';
 import { BaseAuthenticationService } from 'src/app/core/services/impl/base-authentication.service';
 import { UsersAppService } from 'src/app/core/services/impl/usersApp.service';
 import { Booking } from 'src/app/core/models/booking.model';
+import { ConfirmBookModalComponent } from "src/app/shared/components/confirm-book-modal/confirm-book-modal.component";
+
 
 @Component({
   selector: 'app-book',
@@ -88,7 +91,8 @@ export class BookPage implements OnInit {
     private usersAppService: UsersAppService,
     private router: Router,
     @Inject(FLIGHTS_COLLECTION_SUBSCRIPTION_TOKEN)
-    private flightsSubscription: ICollectionSubscription<Flight>
+    private flightsSubscription: ICollectionSubscription<Flight>,
+    private modalController: ModalController
   ) {
     this.currentLocale = this.translateService.currentLang || 'en-US';
     this.translateService.onLangChange.subscribe(
@@ -181,6 +185,7 @@ export class BookPage implements OnInit {
    */
   openOriginSelector(event: Event): void {
     event.stopPropagation();
+    this.stepSelectHour = false;
     this.toggleOriginSelector = true;
     this.toggleDestinationSelector = false;
     this.toggleDateSelector = false;
@@ -196,6 +201,7 @@ export class BookPage implements OnInit {
    */
   openDestinationSelector(event: Event): void {
     event.stopPropagation();
+    this.stepSelectHour = false;
     this.toggleDestinationSelector = true;
     this.toggleOriginSelector = false;
     this.toggleDateSelector = false;
@@ -204,11 +210,11 @@ export class BookPage implements OnInit {
     setTimeout(() => this.destinationInput?.nativeElement.focus(), 0);
   }
 
-  
+
   /**
    * Abre el selector de fecha
    *
-   * @param {Event} event 
+   * @param {Event} event
    */
   openDateSelector(event: Event): void {
     event.stopPropagation();
@@ -240,7 +246,7 @@ export class BookPage implements OnInit {
   /**
    * Selecciona un origen
    *
-   * @param {string} origin 
+   * @param {string} origin
    */
   selectOrigin(origin: string): void {
     this.selectedOrigin = origin;
@@ -266,6 +272,8 @@ export class BookPage implements OnInit {
    */
   clearOriginSelection(event: Event): void {
     event.stopPropagation();
+    this.stepSelectHour = false;
+    this.toggleDateSelector = false;
     this.selectedOrigin = null;
     this.searchOrigin = '';
     this.filteredOriginsSearch = [...this.filteredOrigins];
@@ -278,21 +286,24 @@ export class BookPage implements OnInit {
    */
   clearDestinationSelection(event: Event): void {
     event.stopPropagation();
+    this.stepSelectHour = false;
+    this.toggleDateSelector = false;
     this.selectedDestination = null;
     this.searchDestination = '';
     this.filteredDestinationsSearch = [...this.filteredDestinations];
     this.filterOrigins();
   }
 
-  
+
   /**
    * Borra la seleccion de la fecha
    *
-   * @param {Event} event 
+   * @param {Event} event
    * @returns {void}
    */
   clearDateSelection(event: Event): void {
     event.stopPropagation();
+    this.stepSelectHour = false;
     this.selectedDate = null;
     this.toggleDateSelector = false;
   }
@@ -386,7 +397,7 @@ export class BookPage implements OnInit {
     this.updateAvailableDates();
   }
 
-  
+
   /**
    * Detecta clics fuera de los selectores
    * @param event Evento de clic
@@ -402,7 +413,7 @@ export class BookPage implements OnInit {
       this.toggleDateSelector = false;
   }
 
-  
+
   /**
    * Crea una reserva de vuelo
    * @async
@@ -450,10 +461,78 @@ export class BookPage implements OnInit {
 
       const created = await firstValueFrom(this.bookingsSvc.add(booking));
       alert('Reserva realizada con éxito');
-      this.router.navigate(['/bookings']);
+      const fakeEvent = new Event('click');
+      this.clearOriginSelection(fakeEvent);
+      this.clearDestinationSelection(fakeEvent);
+      this.clearDateSelection(fakeEvent);
+      this.router.navigate(['/bookings'], {
+        state: { reload: true }
+      });
+
     } catch (error) {
       console.error('[createBooking] ❌ Error:', error);
       alert('Error al crear la reserva');
     }
   }
+
+  async confirmBookingAlert() {
+  const flightDateTime = `${this.selectedDate}, ${this.selectedTime}h`;
+
+  const selectedFlight = this.allFlights.find(
+    f =>
+      f.origin === this.selectedOrigin &&
+      f.destination === this.selectedDestination &&
+      f.departureDate === `${this.selectedDate}T${this.selectedTime}:00`
+  );
+
+  if (!selectedFlight) {
+    console.error('❌ Vuelo no encontrado para mostrar alerta');
+    return;
+  }
+
+  const price = selectedFlight.seatPrice ?? 'Desconocido';
+
+  // Formatea las fechas
+  const departure = new Date(selectedFlight.departureDate).toLocaleString('es-ES', {
+
+  });
+
+  const arrival = new Date(selectedFlight.arrivalDate).toLocaleString('es-ES', {
+
+  });
+
+  const modal = await this.modalController.create({
+    component: ConfirmBookModalComponent,
+    cssClass: 'custom-tailwind-modal', // clase para hacer el fondo transparente
+    showBackdrop: true,
+    backdropDismiss: true,
+    componentProps: {
+      origin: selectedFlight.origin,
+      destination: selectedFlight.destination,
+      departure,
+      arrival,
+      price: selectedFlight.seatPrice ?? 'Desconocido'
+    }
+  });
+
+  await modal.present();
+
+  const { data } = await modal.onDidDismiss();
+  if (data === true) {
+    this.createBooking();
+  }
+}
+
+
+
+  scrollToCarousel() {
+    const el = document.getElementById('carousel-title');
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }
+
+  stepSelectHour = false;
+
+
 }

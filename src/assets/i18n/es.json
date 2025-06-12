@@ -12,8 +12,8 @@
       "GO_BACK": "Volver",
       "GO_HOME": "Ir a Inicio"
     },
-    "CONFIRM": "Confirm",
-    "CANCEL": "Cancel",
+    "CONFIRM": "Confirmar",
+    "CANCEL": "Cancelar",
     "NO": "No",
     "YES": "Sí"
   },
@@ -177,8 +177,13 @@
 
 
   "BOOK": {
+    "TITLE": "Reserva tu viaje ahora",
+    "SWIPER": "Destinos mas populares",
     "ORIGIN": "Origen",
     "DESTINATION": "Destino",
+    "DEPARTURE": "Salida",
+    "ARRIVAL": "Llegada",
+    "PRICE": "Precio",
     "SEARCH_ORIGIN": "Buscar origen...",
     "SEARCH_DESTINATION": "Buscar destino...",
     "CLEAR_FILTERS": "Limpiar filtros",
@@ -186,7 +191,8 @@
     "HERO_TEXT": "¡Descubre la península ibérica!",
     "HERO_BUTTON": "Muestrame",
     "DATE": "Salida",
-    "BOOK_NOW": "Reservar"
+    "BOOK_NOW": "Reservar",
+    "BOOKING": "Detalles"
   },
 
 
@@ -228,37 +234,22 @@
   },
 
   "ABOUT": {
-    "TITLE": "Acerca de",
-    "APP_INFO": {
-      "TITLE": "Acerca de esta app",
-      "NAME": "Nombre",
-      "CREATION_DATE": "Fecha de creación",
-      "DESCRIPTION": "Descripción",
-      "DESCRIPTION_TEXT": "Esta app fue creada para gestionar vuelos y reservas para la aerolínea Voliberia."
-    },
-    "ADDITIONAL_INFO": {
-      "TITLE": "Información adicional",
-      "INTRODUCTION": "Mi nombre es Samuel Avella Pérez, soy estudiante de Desarrollo de Aplicaciones Multiplataforma. Creé esta aplicación motivado por mi pasión por viajar y con el objetivo de facilitar la gestión de vuelos y reservas para la aerolínea Voliberia.",
-      "CONTACT": "Contacto",
-      "CONTACT_TEXT": "Puedes contactarme en:",
-      "LINKEDIN": "LinkedIn"
-    },
     "TITLE": "Sobre mí ",
     "HELLO": "Hola, soy Samuel Avella Pérez",
-    "INTRO": "Tengo 18 años y estudio Desarrollo de Aplicaciones Multiplataforma (DAM) en el CPIFP Alan Turing, en Málaga.",
-    "FORMATION": "Me apasiona el desarrollo web y móvil. Trabajo con Angular, Ionic, Firebase y Kotlin, y siempre busco aprender más.",
-    "MOTIVATION": "Soy una persona proactiva y resolutiva, me encanta crear soluciones útiles y afrontar nuevos retos.",
-    "EMAIL_PERSONAL": "soleraromerodavid@gmail.com (Personal)",
-    "EMAIL_EDU": "dsolrom2312@g.educaand.es (Educativo)",
-    "PROJECT_TITLE": "🚀 Proyecto destacado: Voliberia",
-    "PROJECT_DESC": "Voliberia es mi TFG: una plataforma responsive web y móvil para reservas de vuelos en la Península Ibérica, usando Firebase, Angular y arquitectura escalable.",
+    "INTRO": "Esta aplicación ha sido desarrollada como proyecto final de grado, durante mis estudios de desarrollador multiplataforma en el centro CPIFP Alan Turing, en Málaga",
+    "FORMATION": "Decidí como temática una aerolinea, por que me apasiona el viaje, y así poner a prueba mis conocimientos técnicos apredidos durante el curso",
+    "MOTIVATION": "Hablando de mi, me veo como una persona con ganas de aprender y aplicar lo aprendido, para así ser capaz de desenvolverme en diferentes situaciones.",
+    "EMAIL_PERSONAL": "samu.av.jm18@gmail.com",
+    "PROJECT_TITLE": "Trabajo final de grado",
+    "PROJECT_DESC": "En este repositorio tendreis todo lo relacionado con mi TFG, es un repositorio que engloba todos los demás de las distintas asignaturas, en el se encuentra una presentación general. Gracias por interactuar con mi aplicación web",
     "REPO": "Repositorio",
-    "TECH_TITLE": "⚙ Tecnologías que manejo",
+    "TECH_TITLE": "⚙ Tecnologías utilizadas",
     "TECH_ANGULAR": "Angular – Framework SPA para apps modulares y dinámicas.",
     "TECH_IONIC": "Ionic – Librería UI para apps híbridas web/móvil.",
     "TECH_FIREBASE": "Firebase – Base de datos en tiempo real, auth y almacenamiento.",
     "TECH_STRAPI": "Strapi – CMS sin cabeza y backend REST.",
-    "TECH_KOTLIN": "Kotlin – Lenguaje moderno para desarrollo Android nativo."
+    "TECH_TAILWIND": "Tailwind – Lenguaje moderno para desarrollo Android nativo.",
+    "TECH_GITHUB": "Github – Lenguaje moderno para desarrollo Android nativo."
   },
 
   "HEADER": {

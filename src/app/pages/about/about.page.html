@@ -4,72 +4,168 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true" class="font-inter">
+<ion-content [fullscreen]="true" class="bg-cover bg-center font-inter" style="background-image: url('../../../assets/img/fondoVoliberia.png');">
   <div class="max-w-6xl mx-auto px-6 py-10 space-y-16">
 
     <!-- Presentación -->
-    <div class="flex flex-col-reverse md:flex-row items-center gap-10">
+    <div class=" bg-white/50 p-6 rounded-2xl shadow-md flex flex-col-reverse md:flex-row items-center gap-10 dark:bg-black/70">
       <div class="md:w-2/3 space-y-4 text-sm">
         <h1 class="text-3xl font-bold text-primary">{{ 'ABOUT.HELLO' | translate }}</h1>
         <p>{{ 'ABOUT.INTRO' | translate }}</p>
         <p>{{ 'ABOUT.FORMATION' | translate }}</p>
         <p>{{ 'ABOUT.MOTIVATION' | translate }}</p>
 
-        <div class="space-y-1 text-xs mt-4">
-          <p>📧 {{ 'ABOUT.EMAIL_PERSONAL' | translate }}</p>
-          <p>📧 {{ 'ABOUT.EMAIL_EDU' | translate }}</p>
+        <!-- Contacto -->
+        <div class="flex items-center gap-3 mt-6 text-xs md:text-sm text-black dark:text-gray-300 hover:text-blue-300 transition">
+          <ion-icon name="mail-outline" class="text-xl text-blue-600"></ion-icon>
+          <a href="mailto:samu.av.jm18@gmail.com" target="_blank">{{ 'ABOUT.EMAIL_PERSONAL' | translate }}</a>
         </div>
 
-        <div class="flex gap-4 mt-4">
-          <a href="https://github.com/SamuelAvella" class="text-green-400 hover:underline flex items-center gap-1">
-            <ion-icon name="logo-github"></ion-icon> GitHub
+        <!-- Redes sociales -->
+        <div class="flex items-center gap-6 mt-4 text-sm">
+          <a href="https://github.com/SamuelAvella"
+            target="_blank"
+            class="flex items-center gap-2 text-blue-600 hover:text-blue-300 transition">
+            <ion-icon name="logo-github" class="text-xl"></ion-icon>
+            <span class="font-medium">GitHub</span>
           </a>
-          <a href="https://linkedin.com" class="text-green-400 hover:underline flex items-center gap-1">
-            <ion-icon name="logo-linkedin"></ion-icon> LinkedIn
+          <a href="https://linkedin.com"
+            target="_blank"
+            class="flex items-center gap-2 text-blue-600 hover:text-blue-300 transition">
+            <ion-icon name="logo-linkedin" class="text-xl"></ion-icon>
+            <span class="font-medium">LinkedIn</span>
           </a>
         </div>
       </div>
+
       <div class="md:w-1/3 flex justify-center">
         <img src="assets/img/mi-foto.png" class="rounded-full h-40 w-40 border-4 border-primary object-cover shadow-md" alt="Mi foto">
       </div>
     </div>
 
-    <!-- Proyecto Destacado -->
-    <div class="bg-zinc-800 p-6 rounded-2xl shadow-md">
-      <h2 class="text-2xl font-bold text-secondary mb-2">{{ 'ABOUT.PROJECT_TITLE' | translate }}</h2>
-      <p class="text-sm">{{ 'ABOUT.PROJECT_DESC' | translate }}</p>
 
-      <div class="mt-4 text-sm">
-        <p>📂 <strong>{{ 'ABOUT.REPO' | translate }}:</strong>
-          <a href="https://github.com/SamuelAvella/Voliberia_TFG" class="text-blue-400 hover:underline">Voliberia_TFG</a>
-        </p>
-      </div>
-    </div>
 
     <!-- Tecnologías -->
     <div>
-      <h2 class="text-2xl font-bold text-center text-indigo-400 mb-6">{{ 'ABOUT.TECH_TITLE' | translate }}</h2>
-      <div class="grid md:grid-cols-3 gap-6 text-sm text-zinc-300">
-        <div class="bg-zinc-800 p-4 rounded-xl border border-zinc-700 shadow-sm">
-          <h3 class="font-semibold text-white mb-2">Angular</h3>
-          <p>{{ 'ABOUT.TECH_ANGULAR' | translate }}</p>
-        </div>
-        <div class="bg-zinc-800 p-4 rounded-xl border border-zinc-700 shadow-sm">
-          <h3 class="font-semibold text-white mb-2">Ionic</h3>
-          <p>{{ 'ABOUT.TECH_IONIC' | translate }}</p>
-        </div>
-        <div class="bg-zinc-800 p-4 rounded-xl border border-zinc-700 shadow-sm">
-          <h3 class="font-semibold text-white mb-2">Firebase</h3>
-          <p>{{ 'ABOUT.TECH_FIREBASE' | translate }}</p>
-        </div>
-        <div class="bg-zinc-800 p-4 rounded-xl border border-zinc-700 shadow-sm">
-          <h3 class="font-semibold text-white mb-2">Strapi</h3>
-          <p>{{ 'ABOUT.TECH_STRAPI' | translate }}</p>
-        </div>
-        <div class="bg-zinc-800 p-4 rounded-xl border border-zinc-700 shadow-sm">
-          <h3 class="font-semibold text-white mb-2">Kotlin</h3>
-          <p>{{ 'ABOUT.TECH_KOTLIN' | translate }}</p>
-        </div>
+      <h2 class="text-2xl font-bold text-center text-[var(--ion-color-secondary)] mb-6">
+        {{ 'ABOUT.TECH_TITLE' | translate }}
+      </h2>
+
+      <div class="grid md:grid-cols-2 gap-6 text-sm text-zinc-300">
+
+        <!-- Angular -->
+        <a href="https://angular.dev/overview" target="_blank" rel="noopener noreferrer"
+          class="transition-transform transform hover:scale-105 hover:shadow-lg duration-300 rounded-xl block">
+          <div class="flex items-center gap-4 bg-white dark:bg-stone-800 text-black dark:text-white p-4 rounded-xl border border-zinc-200 dark:border-zinc-600 shadow-sm cursor-pointer">
+            <div class="flex-shrink-0">
+              <img src="assets/img/techs/angular.png" alt="Angular" class="w-12 h-12">
+            </div>
+            <div class="space-y-1">
+              <h3 class="text-base font-semibold">Angular</h3>
+              <p class="text-sm text-gray-600 dark:text-gray-300">
+                {{ 'ABOUT.TECH_ANGULAR' | translate }}
+              </p>
+            </div>
+          </div>
+        </a>
+
+        <!-- Ionic -->
+        <a href="https://ionicframework.com/docs" target="_blank" rel="noopener noreferrer"
+          class="transition-transform transform hover:scale-105 hover:shadow-lg duration-300 rounded-xl block">
+          <div class="flex items-center gap-4 bg-white dark:bg-stone-800 text-black dark:text-white p-4 rounded-xl border border-zinc-200 dark:border-zinc-600 shadow-sm cursor-pointer">
+            <div class="flex-shrink-0">
+              <img src="assets/img/techs/ionic.png" alt="Ionic" class="w-12 h-12">
+            </div>
+            <div class="space-y-1">
+              <h3 class="text-base font-semibold">Ionic</h3>
+              <p class="text-sm text-gray-600 dark:text-gray-300">
+                {{ 'ABOUT.TECH_IONIC' | translate }}
+              </p>
+            </div>
+          </div>
+        </a>
+
+        <!-- Firebase -->
+        <a href="https://firebase.google.com/docs" target="_blank" rel="noopener noreferrer"
+          class="transition-transform transform hover:scale-105 hover:shadow-lg duration-300 rounded-xl block">
+          <div class="flex items-center gap-4 bg-white dark:bg-stone-800 text-black dark:text-white p-4 rounded-xl border border-zinc-200 dark:border-zinc-600 shadow-sm cursor-pointer">
+            <div class="flex-shrink-0">
+              <img src="assets/img/techs/firebase.png" alt="Firebase" class="w-12 h-12">
+            </div>
+            <div class="space-y-1">
+              <h3 class="text-base font-semibold">Firebase</h3>
+              <p class="text-sm text-gray-600 dark:text-gray-300">
+                {{ 'ABOUT.TECH_FIREBASE' | translate }}
+              </p>
+            </div>
+          </div>
+        </a>
+
+        <!-- Strapi -->
+        <a href="https://docs.strapi.io" target="_blank" rel="noopener noreferrer"
+          class="transition-transform transform hover:scale-105 hover:shadow-lg duration-300 rounded-xl block">
+          <div class="flex items-center gap-4 bg-white dark:bg-stone-800 text-black dark:text-white p-4 rounded-xl border border-zinc-200 dark:border-zinc-600 shadow-sm cursor-pointer">
+            <div class="flex-shrink-0">
+              <img src="assets/img/techs/strapi.png" alt="Strapi" class="w-12 h-12">
+            </div>
+            <div class="space-y-1">
+              <h3 class="text-base font-semibold">Strapi</h3>
+              <p class="text-sm text-gray-600 dark:text-gray-300">
+                {{ 'ABOUT.TECH_STRAPI' | translate }}
+              </p>
+            </div>
+          </div>
+        </a>
+
+        <!-- Tailwind -->
+        <a href="https://tailwindcss.com/docs" target="_blank" rel="noopener noreferrer"
+          class="transition-transform transform hover:scale-105 hover:shadow-lg duration-300 rounded-xl block">
+          <div class="flex items-center gap-4 bg-white dark:bg-stone-800 text-black dark:text-white p-4 rounded-xl border border-zinc-200 dark:border-zinc-600 shadow-sm cursor-pointer">
+            <div class="flex-shrink-0">
+              <img src="assets/img/techs/tailwind.png" alt="Tailwind" class="w-12 h-12">
+            </div>
+            <div class="space-y-1">
+              <h3 class="text-base font-semibold">Tailwind</h3>
+              <p class="text-sm text-gray-600 dark:text-gray-300">
+                {{ 'ABOUT.TECH_TAILWIND' | translate }}
+              </p>
+            </div>
+          </div>
+        </a>
+
+        <!-- GitHub -->
+        <a href="https://docs.github.com" target="_blank" rel="noopener noreferrer"
+          class="transition-transform transform hover:scale-105 hover:shadow-lg duration-300 rounded-xl block">
+          <div class="flex items-center gap-4 bg-white dark:bg-stone-800 text-black dark:text-white p-4 rounded-xl border border-zinc-200 dark:border-zinc-600 shadow-sm cursor-pointer">
+            <div class="flex-shrink-0">
+              <img src="assets/img/techs/github.png" alt="GitHub" class="w-12 h-12">
+            </div>
+            <div class="space-y-1">
+              <h3 class="text-base font-semibold">GitHub</h3>
+              <p class="text-sm text-gray-600 dark:text-gray-300">
+                {{ 'ABOUT.TECH_GITHUB' | translate }}
+              </p>
+            </div>
+          </div>
+        </a>
+
+      </div>
+    </div>
+
+
+
+    <!-- Proyecto Destacado -->
+    <div class="bg-white/50 text-black dark:bg-black/70 dark:text-white p-6 rounded-2xl shadow-md ">
+      <h2 class="text-2xl text-center font-bold mb-2">{{ 'ABOUT.PROJECT_TITLE' | translate }}</h2>
+      <p class="text-sm">
+        {{ 'ABOUT.PROJECT_DESC' | translate }}
+        📂 <strong>{{ 'ABOUT.REPO' | translate }}: </strong>
+          <a href="https://github.com/SamuelAvella/Voliberia_TFG" class="text-blue-400 hover:underline">Voliberia_TFG</a>
+      </p>
+
+      <div class="mt-4 text-sm">
+        <p>
+        </p>
       </div>
     </div>
 

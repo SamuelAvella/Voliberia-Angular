@@ -9,7 +9,7 @@
 
 <ion-content>
   <div class="profile-container">
-    <h2 class="profile-title">{{'PROFILE.PERSONAL_INFO' | translate}}</h2>
+    <h2 class="profile-title text-[var(--ion-color-secondary)]">{{'PROFILE.PERSONAL_INFO' | translate}}</h2>
     <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
       <ion-grid>
         <ion-row class="profile-row">
@@ -57,11 +57,14 @@
         <ion-button expand="full" type="submit" class="update-button" [disabled]="!formGroup.valid || !formGroup.dirty">
           {{'PROFILE.BUTTONS.UPDATE' | translate}}
         </ion-button>
-      </div>
 
-      <ion-button *ngIf="isAdmin" expand="full" color="secondary" (click)="exportAllData()">
-        Exportar datos CSV
-      </ion-button>
+        <ng-container>
+
+          <ion-button *ngIf="isAdmin" expand="full" color="secondary" class="update-button" (click)="exportAllData()">
+            Exportar datos CSV
+          </ion-button>
+        </ng-container>
+      </div>
 
     </form>
   </div>

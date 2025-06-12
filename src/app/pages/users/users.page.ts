@@ -81,11 +81,13 @@ export class UsersPage implements OnInit {
 
     const modal = await this.modalCtrl.create({
       component: ConfirmRoleModalComponent,
+      cssClass: 'custom-tailwind-modal', // clase para hacer el fondo transparente
+      showBackdrop: true,
+      backdropDismiss: true,
       componentProps: {
         user,
         newRole
       },
-      cssClass: 'small-modal'
     });
 
     await modal.present();

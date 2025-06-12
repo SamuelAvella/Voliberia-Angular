@@ -174,8 +174,13 @@
   },
 
   "BOOK": {
+    "TITLE": "Book your trip now",
+    "SWIPER": "Most popular destination",
     "ORIGIN": "Origin",
     "DESTINATION": "Destination",
+    "DEPARTURE": "Departure",
+    "ARRIVAL": "Arrival",
+    "PRICE": "Price",
     "SEARCH_ORIGIN": "Search origin...",
     "SEARCH_DESTINATION": "Search destination...",
     "CLEAR_FILTERS": "Clear filters",
@@ -183,7 +188,8 @@
     "HERO_TEXT": "Discover the iberian peninsule!",
     "HERO_BUTTON": "Show me",
     "DATE": "Departure",
-    "BOOK_NOW": "Book"
+    "BOOK_NOW": "Book",
+    "BOOKING": "Details"
   },
 
   "FLIGHT_SELECTABLE": {

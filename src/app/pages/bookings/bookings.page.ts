@@ -59,6 +59,20 @@ export class BookingsPage implements OnInit {
     });
   }
 
+  ionViewWillEnter(): void {
+    const navigation = window.history.state;
+
+    if (navigation?.reload) {
+      console.log('Recargando reservas por navegación desde BookPage');
+
+      this.page = 1;
+      this._bookings.next([]);
+      this.loadedIds.clear();
+      this.loadAllFlights();
+      this.loadBookings();
+    }
+  }
+
   ngOnInit(): void {
     this.loadAllFlights();
     this.loadBookings();
