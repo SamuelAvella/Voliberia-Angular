@@ -36,72 +36,72 @@
       </div>
 
       <!-- DEPARTURE -->
-<div class="relative z-[9999]" #departureWrapper>
-  <label class="text-sm font-medium text-gray-700">{{ 'FLIGHT.DEPARTURE' | translate }}</label>
-  <div
-    class="h-[40px] mt-1 border rounded-md px-3 text-sm flex justify-between items-center cursor-pointer bg-white text-black border-gray-300 hover:shadow-sm"
-    (click)="openDateSelector('departure', $event)">
-    <div class="flex items-center gap-2">
-      <ion-icon name="calendar-outline" class="text-gray-400"></ion-icon>
-      <span *ngIf="departureDate && departureTime; else depPlaceholder">
-        {{ departureDate | date: 'mediumDate' }} - {{ departureTime }}
-      </span>
-      <ng-template #depPlaceholder>
-        {{ 'FLIGHT.DEPARTURE' | translate }}
-      </ng-template>
-    </div>
-    <ion-icon *ngIf="departureDate" name="close-outline" (click)="clearDate('departure'); $event.stopPropagation()" class="text-gray-400 hover:text-gray-700 cursor-pointer"></ion-icon>
-  </div>
+      <div class="relative z-[9999]" #departureWrapper>
+        <label class="text-sm font-medium text-gray-700">{{ 'FLIGHT.DEPARTURE' | translate }}</label>
+        <div
+          class="h-[40px] mt-1 border rounded-md px-3 text-sm flex justify-between items-center cursor-pointer bg-white text-black border-gray-300 hover:shadow-sm"
+          (click)="openDateSelector('departure', $event)">
+          <div class="flex items-center gap-2">
+            <ion-icon name="calendar-outline" class="text-gray-400"></ion-icon>
+            <span *ngIf="departureDate && departureTime; else depPlaceholder">
+              {{ departureDate | date: 'mediumDate' }} - {{ departureTime }}
+            </span>
+            <ng-template #depPlaceholder>
+              {{ 'FLIGHT.DEPARTURE' | translate }}
+            </ng-template>
+          </div>
+          <ion-icon *ngIf="departureDate" name="close-outline" (click)="clearDate('departure'); $event.stopPropagation()" class="text-gray-400 hover:text-gray-700 cursor-pointer"></ion-icon>
+        </div>
 
-  <div *ngIf="toggleDateSelector === 'departure'" class="absolute z-[9999] mt-2 w-full bg-white border border-gray-300 rounded-md shadow-md p-2" (click)="$event.stopPropagation()">
-    <ion-datetime
-      presentation="date"
-      [min]="minDepartureDate"
-      (ionChange)="onDatePartSelected($event, 'departure', $event)">
-    </ion-datetime>
-  </div>
+        <div *ngIf="toggleDateSelector === 'departure'" class="absolute z-[9999] mt-2 w-full bg-white border border-gray-300 rounded-md shadow-md p-2" (click)="$event.stopPropagation()">
+          <ion-datetime
+            presentation="date"
+            [min]="minDepartureDate"
+            (ionChange)="onDatePartSelected($event, 'departure', $event)">
+          </ion-datetime>
+        </div>
 
-  <div *ngIf="toggleTimeSelector === 'departure'" class="absolute z-[9999] mt-2 w-full bg-white border border-gray-300 rounded-md shadow-md p-2" (click)="$event.stopPropagation()">
-    <ion-datetime
-      presentation="time"
-      (ionChange)="onTimePartSelected($event, 'departure')">
-    </ion-datetime>
-  </div>
-</div>
+        <div *ngIf="toggleTimeSelector === 'departure'" class="absolute z-[9999] mt-2 w-full bg-white border border-gray-300 rounded-md shadow-md p-2" (click)="$event.stopPropagation()">
+          <ion-datetime
+            presentation="time"
+            (ionChange)="onTimePartSelected($event, 'departure')">
+          </ion-datetime>
+        </div>
+      </div>
 
-<!-- ARRIVAL -->
-<div class="relative z-[9999]" #arrivalWrapper>
-  <label class="text-sm font-medium text-gray-700">{{ 'FLIGHT.ARRIVAL' | translate }}</label>
-  <div
-    class="h-[40px] mt-1 border rounded-md px-3 text-sm flex justify-between items-center cursor-pointer bg-white text-black border-gray-300 hover:shadow-sm"
-    (click)="openDateSelector('arrival', $event)">
-    <div class="flex items-center gap-2">
-      <ion-icon name="calendar-outline" class="text-gray-400"></ion-icon>
-      <span *ngIf="arrivalDate && arrivalTime; else arrPlaceholder">
-        {{ arrivalDate | date: 'mediumDate' }} - {{ arrivalTime }}
-      </span>
-      <ng-template #arrPlaceholder>
-        {{ 'FLIGHT.ARRIVAL' | translate }}
-      </ng-template>
-    </div>
-    <ion-icon *ngIf="arrivalDate" name="close-outline" (click)="clearDate('arrival'); $event.stopPropagation()" class="text-gray-400 hover:text-gray-700 cursor-pointer"></ion-icon>
-  </div>
+        <!-- ARRIVAL -->
+        <div class="relative z-[9999]" #arrivalWrapper>
+          <label class="text-sm font-medium text-gray-700">{{ 'FLIGHT.ARRIVAL' | translate }}</label>
+          <div
+            class="h-[40px] mt-1 border rounded-md px-3 text-sm flex justify-between items-center cursor-pointer bg-white text-black border-gray-300 hover:shadow-sm"
+            (click)="openDateSelector('arrival', $event)">
+            <div class="flex items-center gap-2">
+              <ion-icon name="calendar-outline" class="text-gray-400"></ion-icon>
+              <span *ngIf="arrivalDate && arrivalTime; else arrPlaceholder">
+                {{ arrivalDate | date: 'mediumDate' }} - {{ arrivalTime }}
+              </span>
+              <ng-template #arrPlaceholder>
+                {{ 'FLIGHT.ARRIVAL' | translate }}
+              </ng-template>
+            </div>
+            <ion-icon *ngIf="arrivalDate" name="close-outline" (click)="clearDate('arrival'); $event.stopPropagation()" class="text-gray-400 hover:text-gray-700 cursor-pointer"></ion-icon>
+          </div>
 
-  <div *ngIf="toggleDateSelector === 'arrival'" class="absolute z-[9999] mt-2 w-full bg-white border border-gray-300 rounded-md shadow-md p-2" (click)="$event.stopPropagation()">
-    <ion-datetime
-      presentation="date"
-      [min]="minDepartureDate"
-      (ionChange)="onDatePartSelected($event, 'arrival', $event)">
-    </ion-datetime>
-  </div>
+          <div *ngIf="toggleDateSelector === 'arrival'" class="absolute z-[9999] mt-2 w-full bg-white border border-gray-300 rounded-md shadow-md p-2" (click)="$event.stopPropagation()">
+            <ion-datetime
+              presentation="date"
+              [min]="minDepartureDate"
+              (ionChange)="onDatePartSelected($event, 'arrival', $event)">
+            </ion-datetime>
+          </div>
 
-  <div *ngIf="toggleTimeSelector === 'arrival'" class="absolute z-[9999] mt-2 w-full bg-white border border-gray-300 rounded-md shadow-md p-2" (click)="$event.stopPropagation()">
-    <ion-datetime
-      presentation="time"
-      (ionChange)="onTimePartSelected($event, 'arrival')">
-    </ion-datetime>
-  </div>
-</div>
+          <div *ngIf="toggleTimeSelector === 'arrival'" class="absolute z-[9999] mt-2 w-full bg-white border border-gray-300 rounded-md shadow-md p-2" (click)="$event.stopPropagation()">
+            <ion-datetime
+              presentation="time"
+              (ionChange)="onTimePartSelected($event, 'arrival')">
+            </ion-datetime>
+          </div>
+        </div>
 
       <!-- PRICE -->
       <div>
@@ -113,6 +113,22 @@
           class="h-[40px] w-full mt-1 px-3 border border-gray-300 rounded-md text-sm text-black bg-white focus:outline-none shadow-sm">
         </ion-input>
       </div>
+
+      <div>
+  <label class="text-sm font-semibold text-gray-700">{{ 'FLIGHT.ORIGIN' | translate }}</label>
+  <div class="relative mt-1">
+    <ion-icon name="airplane-outline"
+      class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 text-lg z-10"></ion-icon>
+
+    <ion-input
+      style="--padding-start: 40px;"
+      formControlName="origin"
+      placeholder="{{ 'FLIGHT.ORIGIN_INSERT' | translate }}"
+      class="h-[40px] w-full px-3 py-2 border border-gray-300 rounded-md text-sm text-black bg-white focus:border-blue-500 focus:outline-none shadow-sm">
+    </ion-input>
+  </div>
+</div>
+
 
       <!-- SUBMIT -->
       <div>

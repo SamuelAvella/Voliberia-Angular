@@ -10,6 +10,8 @@ import { arrivalDateValidator } from "../../validators/date.validators";
   styleUrls: ['./flight-modal.component.scss'],
 })
 export class FlightModalComponent implements OnInit {
+
+  
   @Input() flight?: Flight;
 
   @ViewChild('departureWrapper') departureWrapper!: ElementRef;
