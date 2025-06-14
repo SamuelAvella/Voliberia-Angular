@@ -15,119 +15,128 @@
   <div class="w-full max-w-xl mx-auto px-6 py-4">
     <form [formGroup]="formGroup" (ngSubmit)="onSubmit()" class="space-y-4">
 
-      <!-- ORIGIN -->
+      
       <div>
         <label class="text-sm font-semibold text-gray-700">{{ 'FLIGHT.ORIGIN' | translate }}</label>
-        <ion-input
+        <div class="relative mt-1">
+          <ion-icon name="airplane-outline"
+          class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 text-lg z-10 rotate-[-45deg]"></ion-icon>
+          
+          <ion-input
+          style="--padding-start: 40px;"
           formControlName="origin"
           placeholder="{{ 'FLIGHT.ORIGIN_INSERT' | translate }}"
-          class="h-[40px] w-full mt-1 px-3 border border-gray-300 rounded-md text-sm text-black bg-white focus:outline-none shadow-sm">
+          class="h-[40px] w-full px-3 py-2 border border-gray-300 rounded-md text-sm text-black bg-white focus:border-blue-500 focus:outline-none shadow-sm">
         </ion-input>
       </div>
-
-      <!-- DESTINATION -->
+      </div>
+      
       <div>
         <label class="text-sm font-semibold text-gray-700">{{ 'FLIGHT.DESTINATION' | translate }}</label>
-        <ion-input
-          formControlName="destination"
-          placeholder="{{ 'FLIGHT.DESTINATION_INSERT' | translate }}"
-          class="h-[40px] w-full mt-1 px-3 border border-gray-300 rounded-md text-sm text-black bg-white focus:outline-none shadow-sm">
-        </ion-input>
+        <div class="relative mt-1">
+          <ion-icon name="airplane-outline"
+          class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 text-lg z-10  rotate-[45deg]"></ion-icon>
+          
+          <ion-input
+            style="--padding-start: 40px;"
+            formControlName="destination"
+            placeholder="{{ 'FLIGHT.DESTINATION_INSERT' | translate }}"
+            class="h-[40px] w-full px-3 py-2 border border-gray-300 rounded-md text-sm text-black bg-white focus:border-blue-500 focus:outline-none shadow-sm">
+          </ion-input>
+        </div>
       </div>
+      
+      <!--Departure-->
+      <div class="w-full">
+        <label class="text-sm font-semibold text-gray-700">{{ 'FLIGHT.DEPARTURE' | translate }}</label>
 
-      <!-- DEPARTURE -->
-      <div class="relative z-[9999]" #departureWrapper>
-        <label class="text-sm font-medium text-gray-700">{{ 'FLIGHT.DEPARTURE' | translate }}</label>
         <div
-          class="h-[40px] mt-1 border rounded-md px-3 text-sm flex justify-between items-center cursor-pointer bg-white text-black border-gray-300 hover:shadow-sm"
-          (click)="openDateSelector('departure', $event)">
+          class="h-[45px] border border-gray-300 rounded-md mt-1 px-3 bg-white text-sm text-black cursor-pointer hover:shadow-sm flex justify-between items-center"
+          (click)="toggleDepartureDateSelector = !toggleDepartureDateSelector; toggleArrivalDateSelector = false">
+
           <div class="flex items-center gap-2">
             <ion-icon name="calendar-outline" class="text-gray-400"></ion-icon>
-            <span *ngIf="departureDate && departureTime; else depPlaceholder">
-              {{ departureDate | date: 'mediumDate' }} - {{ departureTime }}
+            <span *ngIf="formGroup.get('departureDate')?.value as dt">
+              {{ dt | date: 'fullDate' }}, {{ dt | date: 'shortTime' }}
             </span>
-            <ng-template #depPlaceholder>
-              {{ 'FLIGHT.DEPARTURE' | translate }}
-            </ng-template>
+            <ng-container *ngIf="!formGroup.get('departureDate')?.value">
+              Seleccionar fecha y hora
+            </ng-container>
           </div>
-          <ion-icon *ngIf="departureDate" name="close-outline" (click)="clearDate('departure'); $event.stopPropagation()" class="text-gray-400 hover:text-gray-700 cursor-pointer"></ion-icon>
+
         </div>
 
-        <div *ngIf="toggleDateSelector === 'departure'" class="absolute z-[9999] mt-2 w-full bg-white border border-gray-300 rounded-md shadow-md p-2" (click)="$event.stopPropagation()">
+        <!-- Popover con ion-datetime -->
+        <div *ngIf="toggleDepartureDateSelector" class="absolute md:w-[90%] z-99 w-full mt-2">
           <ion-datetime
-            presentation="date"
+            [size]="isMobile ? 'fixed' : 'cover'"
+            presentation="date-time"
+            [showDefaultButtons]="true"
             [min]="minDepartureDate"
-            (ionChange)="onDatePartSelected($event, 'departure', $event)">
-          </ion-datetime>
-        </div>
-
-        <div *ngIf="toggleTimeSelector === 'departure'" class="absolute z-[9999] mt-2 w-full bg-white border border-gray-300 rounded-md shadow-md p-2" (click)="$event.stopPropagation()">
-          <ion-datetime
-            presentation="time"
-            (ionChange)="onTimePartSelected($event, 'departure')">
-          </ion-datetime>
+            minuteValues="0,5,10,15,20,25,30,35,40,45,50,55"
+            (ionCancel)="toggleDepartureDateSelector = false"
+            [value]="formGroup.get('departureDate')?.value"
+            (ionChange)="formGroup.get('departureDate')?.setValue($event.detail.value); toggleDepartureDateSelector = false"
+            class="w-full bg-white dark:bg-[#3b3b3b] rounded-md shadow-md p-2"
+          ></ion-datetime>
         </div>
       </div>
 
-        <!-- ARRIVAL -->
-        <div class="relative z-[9999]" #arrivalWrapper>
-          <label class="text-sm font-medium text-gray-700">{{ 'FLIGHT.ARRIVAL' | translate }}</label>
-          <div
-            class="h-[40px] mt-1 border rounded-md px-3 text-sm flex justify-between items-center cursor-pointer bg-white text-black border-gray-300 hover:shadow-sm"
-            (click)="openDateSelector('arrival', $event)">
-            <div class="flex items-center gap-2">
-              <ion-icon name="calendar-outline" class="text-gray-400"></ion-icon>
-              <span *ngIf="arrivalDate && arrivalTime; else arrPlaceholder">
-                {{ arrivalDate | date: 'mediumDate' }} - {{ arrivalTime }}
-              </span>
-              <ng-template #arrPlaceholder>
-                {{ 'FLIGHT.ARRIVAL' | translate }}
-              </ng-template>
-            </div>
-            <ion-icon *ngIf="arrivalDate" name="close-outline" (click)="clearDate('arrival'); $event.stopPropagation()" class="text-gray-400 hover:text-gray-700 cursor-pointer"></ion-icon>
+      <!-- Arrival-->
+      <div class="w-full">
+        <label class="text-sm font-semibold text-gray-700">{{ 'FLIGHT.ARRIVAL' | translate }}</label>
+        <div
+          class="h-[45px] border border-gray-300 rounded-md mt-1 px-3 bg-white text-sm text-black cursor-pointer hover:shadow-sm flex justify-between items-center"
+          (click)="toggleArrivalDateSelector = !toggleArrivalDateSelector; toggleDepartureDateSelector = false">
+
+          <div class="flex items-center gap-2">
+            <ion-icon name="calendar-outline" class="text-gray-400"></ion-icon>
+            <span *ngIf="formGroup.get('arrivalDate')?.value as dt">
+              {{ dt | date: 'fullDate' }}, {{ dt | date: 'shortTime' }}
+            </span>
+            <ng-container *ngIf="!formGroup.get('arrivalDate')?.value">
+              Seleccionar fecha y hora
+            </ng-container>
           </div>
 
-          <div *ngIf="toggleDateSelector === 'arrival'" class="absolute z-[9999] mt-2 w-full bg-white border border-gray-300 rounded-md shadow-md p-2" (click)="$event.stopPropagation()">
-            <ion-datetime
-              presentation="date"
-              [min]="minDepartureDate"
-              (ionChange)="onDatePartSelected($event, 'arrival', $event)">
-            </ion-datetime>
-          </div>
-
-          <div *ngIf="toggleTimeSelector === 'arrival'" class="absolute z-[9999] mt-2 w-full bg-white border border-gray-300 rounded-md shadow-md p-2" (click)="$event.stopPropagation()">
-            <ion-datetime
-              presentation="time"
-              (ionChange)="onTimePartSelected($event, 'arrival')">
-            </ion-datetime>
-          </div>
         </div>
 
-      <!-- PRICE -->
+        <div *ngIf="formGroup.errors?.['arrivalTooSoon']" class="text-red-500 text-sm mt-1">
+          La llegada debe ser al menos 30 minutos después de la salida.
+        </div>
+
+        <!-- Popover con ion-datetime -->
+        <div *ngIf="toggleArrivalDateSelector" class="absolute z-99 md:w-[90%] mt-2">
+          <ion-datetime
+            [size]="isMobile ? 'fixed' : 'cover'"
+            presentation="date-time"
+            [showDefaultButtons]="true"
+            [min]="minArrivalDate"
+            minuteValues="0,5,10,15,20,25,30,35,40,45,50,55"
+            (ionCancel)="toggleArrivalDateSelector = false"
+            [value]="formGroup.get('arrivalDate')?.value"
+            (ionChange)="formGroup.get('arrivalDate')?.setValue($event.detail.value); toggleArrivalDateSelector = false"
+            class="w-full bg-white dark:bg-[#3b3b3b] rounded-md shadow-md p-2"
+          ></ion-datetime>
+        </div>
+      </div>
+
       <div>
         <label class="text-sm font-semibold text-gray-700">{{ 'FLIGHT.PRICE' | translate }}</label>
-        <ion-input
-          type="number"
-          formControlName="seatPrice"
-          placeholder="Enter Seat Price"
-          class="h-[40px] w-full mt-1 px-3 border border-gray-300 rounded-md text-sm text-black bg-white focus:outline-none shadow-sm">
-        </ion-input>
+        <div class="relative mt-1">
+          <ion-icon name="cash-outline"
+            class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 text-lg z-10"></ion-icon>
+          <ion-input
+            style="--padding-start: 40px;"
+            type="number"
+            formControlName="seatPrice"
+            placeholder="{{ 'FLIGHT.SEATPRICE_INSERT' | translate}}"
+            class="h-[40px] w-full px-3 py-2 border border-gray-300 rounded-md text-sm text-black bg-white focus:border-blue-500 focus:outline-none shadow-sm">
+          </ion-input>
+        </div>
       </div>
 
-      <div>
-  <label class="text-sm font-semibold text-gray-700">{{ 'FLIGHT.ORIGIN' | translate }}</label>
-  <div class="relative mt-1">
-    <ion-icon name="airplane-outline"
-      class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 text-lg z-10"></ion-icon>
-
-    <ion-input
-      style="--padding-start: 40px;"
-      formControlName="origin"
-      placeholder="{{ 'FLIGHT.ORIGIN_INSERT' | translate }}"
-      class="h-[40px] w-full px-3 py-2 border border-gray-300 rounded-md text-sm text-black bg-white focus:border-blue-500 focus:outline-none shadow-sm">
-    </ion-input>
-  </div>
-</div>
+      
 
 
       <!-- SUBMIT -->
