@@ -18,7 +18,7 @@ export class BaseService<T extends Model> implements IBaseService<T> {
   getAll(): Observable<T[]>;
   getAll(page: number, pageSize: number): Observable<Paginated<T>>;
   getAll(page: number, pageSize: number, filters: SearchParams): Observable<Paginated<T>>;
-  getAll(page?: number, pageSize?: number, filters?: SearchParams): Observable<T[] | Paginated<T>> {    
+  getAll(page?: number, pageSize?: number, filters?: SearchParams): Observable<T[] | Paginated<T>> {
     if (page === undefined || pageSize === undefined)
         return this.repository.getAll(1, 25, {});
     else
@@ -33,7 +33,7 @@ export class BaseService<T extends Model> implements IBaseService<T> {
     return this.repository.add(entity);
   }
 
-  update(id: string, entity: T): Observable<T> {
+  update(id: string, entity: Partial <T>) : Observable<T> {
     return this.repository.update(id, entity);
   }
 

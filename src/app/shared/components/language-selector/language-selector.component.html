@@ -1,10 +1,21 @@
-<ion-list>
-  <ion-item button (click)="selectLanguage('es')" lines="none">
-    <ion-icon name="flag-outline" slot="start"></ion-icon>
-    <ion-label>Español</ion-label>
-  </ion-item>
-  <ion-item button (click)="selectLanguage('en')" lines="none">
-    <ion-icon name="flag-outline" slot="start"></ion-icon>
-    <ion-label>English</ion-label>
-  </ion-item>
-</ion-list>
+<ion-content class="py-2 px-0">
+  <div class="bg-white dark:bg-stone-900 rounded-xl shadow-lg p-2 w-full space-y-1 text-sm">
+    <ion-list class="space-y-1">
+      <ion-item button (click)="selectLanguage('es')" lines="none" class="hover:bg-gray-100 transition-all rounded">
+        <ion-label class="flex gap-2 items-center">
+          <span class="bg-red-600 text-white px-2 py-0.5 rounded text-xs">ES</span> Español
+        </ion-label>
+      </ion-item>
+      <ion-item button (click)="selectLanguage('en')" lines="none" class="hover:bg-gray-100 transition-all rounded">
+        <ion-label class="flex gap-2 items-center">
+          <span class="bg-blue-600 text-white px-2 py-0.5 rounded text-xs">EN</span> English
+        </ion-label>
+      </ion-item>
+      <ion-item button (click)="selectLanguage('pt')" lines="none" class="hover:bg-gray-100 transition-all rounded">
+        <ion-label class="flex gap-2 items-center">
+          <span class="bg-green-600 text-white px-2 py-0.5 rounded text-xs">PT</span> Português
+        </ion-label>
+      </ion-item>
+    </ion-list>
+  </div>
+</ion-content>

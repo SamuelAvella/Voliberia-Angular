@@ -1,30 +1,174 @@
 <ion-header [translucent]="true">
-  <ion-toolbar color="primary">
+  <ion-toolbar class="bg-white dark:bg-zinc-900 shadow-md">
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title style="color: white;">{{'HOME.TITLE' | translate}}</ion-title>
+    <ion-title class="text-zinc-800 dark:text-white font-bold text-lg">
+      {{ 'HOME.TITLE' | translate }}
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <div class="card-grid">
-    <ion-card class="home-card" routerLink="/flights">
-      <ion-card-header>
-        <ion-card-title>{{'HOME.FLIGHTS' | translate}}</ion-card-title>
-      </ion-card-header>
-      <ion-card-content>
-        {{'HOME.FLIGHTS_DESC' | translate}}
-      </ion-card-content>
-    </ion-card>
+<ion-content fullscreen class="font-inter ">
+  <!-- Hero Section -->
+  <section class="bg-gradient-to-r
+                from-blue-100 via-blue-200 to-blue-300
+                dark:from-[#284fbf] dark:via-[#1e40af] dark:to-[#1e293b]">
 
-    <ion-card class="home-card" routerLink="/bookings">
-      <ion-card-header>
-        <ion-card-title>{{'HOME.BOOKINGS' | translate}}</ion-card-title>
-      </ion-card-header>
-      <ion-card-content>
-        {{'HOME.BOOKINGS_DESC' | translate}}
-      </ion-card-content>
-    </ion-card>
-  </div>
+
+    <div class="px-4 pt-8 text-center">
+      <h1 *ngIf="currentUser" class="mb-4 text-4xl md:text-5xl font-bold tracking-tight text-zinc-800 dark:text-white drop-shadow text-center break-words">
+        {{ 'HOME.GREETING' | translate }} {{ currentUser.name }}
+      </h1>
+
+      <p class="mt-6 text-xl max-w-3xl mx-auto text-zinc-700 dark:text-white/90">
+        {{ 'HOME.SUBTITLE' | translate }}
+      </p>
+    </div>
+
+    <!-- Decorative Wave -->
+     <div class="w-full">
+      <svg class="relative -mb-2 block h-40 w-full" viewBox="0 0 1440 320" preserveAspectRatio="none">
+        <path class="fill-white dark:fill-[#121212]" d="M0,224L120,186.7C240,149,480,75,720,64C960,53,1200,107,1320,133.3L1440,160L1440,320L1320,320C1200,320,960,320,720,320C480,320,240,320,120,320L0,320Z"></path>
+      </svg>
+    </div>
+  </section>
+
+
+  <!-- Main Section -->
+  <section class="max-w-7xl mx-auto px-4 py-4 sm:px-6 lg:px-8">
+    <!-- Loading Spinner -->
+    <div *ngIf="loading" class="flex justify-center items-center min-h-[300px]">
+      <ion-spinner name="crescent" color="primary"></ion-spinner>
+    </div>
+
+    <!-- Admin Cards -->
+    <div
+      *ngIf="!loading && currentUser?.role === 'admin'"
+      class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3"
+    >
+      <ion-card
+        routerLink="/flights"
+        class="hover:scale-[1.03] transition-transform shadow-xl bg-zinc-100 dark:bg-zinc-800 dark:text-white"
+      >
+        <ion-card-header>
+          <div class="flex items-center space-x-2">
+            <ion-icon name="airplane" class="text-3xl text-blue-500"></ion-icon>
+            <ion-card-title class="font-semibold text-lg">{{
+              'HOME.ADMIN.FLIGHTS.TITLE' | translate
+            }}</ion-card-title>
+          </div>
+        </ion-card-header>
+        <ion-card-content>
+          <p class="text-sm text-gray-600 dark:text-gray-300">
+            {{ 'HOME.ADMIN.FLIGHTS.DESCRIPTION' | translate }}
+          </p>
+        </ion-card-content>
+      </ion-card>
+
+      <ion-card
+        routerLink="/users"
+        class="hover:scale-[1.03] transition-transform shadow-xl bg-zinc-100 dark:bg-zinc-800 dark:text-white"
+      >
+        <ion-card-header>
+          <div class="flex items-center space-x-2">
+            <ion-icon name="people" class="text-3xl text-green-500"></ion-icon>
+            <ion-card-title class="font-semibold text-lg">{{
+              'HOME.ADMIN.USERS.TITLE' | translate
+            }}</ion-card-title>
+          </div>
+        </ion-card-header>
+        <ion-card-content>
+          <p class="text-sm text-gray-600 dark:text-gray-300">
+            {{ 'HOME.ADMIN.USERS.DESCRIPTION' | translate }}
+          </p>
+        </ion-card-content>
+      </ion-card>
+
+      <ion-card
+        class="opacity-60 pointer-events-none shadow-md bg-zinc-100 dark:bg-zinc-800 dark:text-white"
+      >
+        <ion-card-header>
+          <div class="flex items-center space-x-2">
+            <ion-icon name="bar-chart" class="text-3xl text-purple-500"></ion-icon>
+            <ion-card-title class="font-semibold text-lg">{{
+              'HOME.ADMIN.ANALYTICS.TITLE' | translate
+            }}</ion-card-title>
+          </div>
+        </ion-card-header>
+        <ion-card-content>
+          <p class="text-sm text-gray-600 dark:text-gray-300">
+            {{ 'HOME.ADMIN.ANALYTICS.DESCRIPTION' | translate }}
+          </p>
+        </ion-card-content>
+      </ion-card>
+    </div>
+
+    <!-- User Cards -->
+    <div
+      *ngIf="!loading && currentUser?.role === 'user'"
+      class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3"
+    >
+      <ion-card
+        routerLink="/book"
+        class="hover:scale-[1.03] transition-transform shadow-xl bg-zinc-100 dark:bg-zinc-800 dark:text-white"
+      >
+        <ion-card-header>
+          <div class="flex items-center space-x-2">
+            <ion-icon name="airplane" class="text-3xl text-blue-500"></ion-icon>
+            <ion-card-title class="font-semibold text-lg">{{
+              'HOME.USER.BOOK.TITLE' | translate
+            }}</ion-card-title>
+          </div>
+        </ion-card-header>
+        <ion-card-content>
+          <p class="text-sm text-gray-600 dark:text-gray-300">
+            {{ 'HOME.USER.BOOK.DESCRIPTION' | translate }}
+          </p>
+        </ion-card-content>
+      </ion-card>
+
+      <ion-card
+        routerLink="/bookings"
+        class="hover:scale-[1.03] transition-transform shadow-xl bg-zinc-100 dark:bg-zinc-800 dark:text-white"
+      >
+        <ion-card-header>
+          <div class="flex items-center space-x-2">
+            <ion-icon name="calendar" class="text-3xl text-yellow-500"></ion-icon>
+            <ion-card-title class="font-semibold text-lg">{{
+              'HOME.USER.BOOKINGS.TITLE' | translate
+            }}</ion-card-title>
+          </div>
+        </ion-card-header>
+        <ion-card-content>
+          <p class="text-sm text-gray-600 dark:text-gray-300">
+            {{ 'HOME.USER.BOOKINGS.DESCRIPTION' | translate }}
+          </p>
+        </ion-card-content>
+      </ion-card>
+
+      <ion-card
+        routerLink="/profile"
+        class="hover:scale-[1.03] transition-transform shadow-xl bg-zinc-100 dark:bg-zinc-800 dark:text-white"
+      >
+        <ion-card-header>
+          <div class="flex items-center space-x-2">
+            <ion-icon name="person" class="text-3xl text-pink-500"></ion-icon>
+            <ion-card-title class="font-semibold text-lg">{{
+              'HOME.USER.PROFILE.TITLE' | translate
+            }}</ion-card-title>
+          </div>
+        </ion-card-header>
+        <ion-card-content>
+          <p class="text-sm text-gray-600 dark:text-gray-300">
+            {{ 'HOME.USER.PROFILE.DESCRIPTION' | translate }}
+          </p>
+        </ion-card-content>
+      </ion-card>
+    </div>
+  </section>
+
+
 </ion-content>
+
+  <app-footer></app-footer>

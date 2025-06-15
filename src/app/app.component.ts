@@ -7,7 +7,7 @@ import { BaseAuthenticationService } from './core/services/impl/base-authenticat
 import { LanguageSelectorComponent } from './shared/components/language-selector/language-selector.component';
 import { TranslateService } from '@ngx-translate/core';
 import { TranslationService } from './core/services/translation.service';
-import { UserApp } from './core/models/userApp.model';
+import { UserApp, UserRole } from './core/models/userApp.model';
 import { lastValueFrom } from 'rxjs';
 import { UsersAppService } from './core/services/impl/usersApp.service';
 
@@ -17,14 +17,44 @@ import { UsersAppService } from './core/services/impl/usersApp.service';
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent implements OnInit {
+
+  // All pages with role restrictions
   public appPages = [
-    { key: 'MENU.PAGES.HOME', url: '/home', icon: 'home', title: '' },
-    { key: 'MENU.PAGES.FLIGHTS', url: '/flights', icon: 'airplane', title: '' },
-    { key: 'MENU.PAGES.BOOKINGS', url: '/bookings', icon: 'book', title: '' },
-    { key: 'MENU.PAGES.PROFILE', url: '/profile', icon: 'person', title: '' },
-    { key: 'MENU.PAGES.ABOUT', url: '/about', icon: 'newspaper', title: ''}
+    { key: 'MENU.PAGES.HOME', url: '/home', icon: 'home-outline', title: '', position: 'left', roles: ['admin', 'user'] },
+    { key: 'MENU.PAGES.BOOK', url: '/book', icon: 'book-outline', title: '', position: 'left', roles: ['user'] },
+    { key: 'MENU.PAGES.FLIGHTS', url: '/flights', icon: 'airplane-outline', title: '', position: 'left', roles: ['admin'] },
+    { key: 'MENU.PAGES.BOOKINGS', url: '/bookings', icon: 'file-tray-full-outline', title: '', position: 'left', roles: ['user'] },
+    { key: 'MENU.PAGES.USERS', url: '/users', icon: 'people-outline', title: '', position: 'left', roles: ['admin'] },
+    { key: 'MENU.PAGES.ABOUT', url: '/about', icon: 'information-circle-outline', title: '', position: 'left', roles: ['admin', 'user'] },
+    { key: 'MENU.PAGES.PROFILE', url: '/profile', icon: 'person-circle-outline', title: '', position: 'right', roles: ['admin', 'user'] },
   ];
 
+  // Filtered for the header based on role and position
+  get leftPages() {
+    return this.appPages
+      .filter(p => p.position === 'left')
+      .filter(p => this.userApp && p.roles.includes(this.userApp.role));
+  }
+
+  get rightPages() {
+    return this.appPages
+      .filter(p => p.position === 'right')
+      .filter(p => this.userApp && p.roles.includes(this.userApp.role));
+  }
+
+  // Get all pages available for current user role
+  get availablePages() {
+    return this.appPages.filter(p => this.userApp && p.roles.includes(this.userApp.role));
+  }
+
+  hiddenHeaderRoutes: string[] = ['/login', '/register', '/splash', '/register?returnUrl=%2Fhome', '/login?returnUrl=%2Fhome', '/access-denied', '/404'];
+
+  get shouldHideHeader(): boolean {
+    const current = this.router.url;
+    return this.hiddenHeaderRoutes.some(route => current.startsWith(route));
+  }
+
+  currentLang: string = 'es';
   currentYear: number = new Date().getFullYear();
   userApp?: UserApp | null;
 
@@ -36,8 +66,10 @@ export class AppComponent implements OnInit {
     private router: Router,
     private popoverCtrl: PopoverController
   ) {
-    this.loadTranslations();
-    this.translate.onLangChange.subscribe(() => this.loadTranslations());
+    const lang = this.translationService.getStoredLanguage();
+  this.translationService.changeLanguage(lang);
+  this.currentLang = lang;
+  this.translate.onLangChange.subscribe(() => this.loadTranslations());
   }
 
   private loadTranslations() {
@@ -57,7 +89,7 @@ export class AppComponent implements OnInit {
     const { data } = await popover.onDidDismiss();
     if (data?.language) {
       this.translationService.changeLanguage(data.language);
-      this.loadTranslations(); // Load updated translations
+      this.loadTranslations();
 
       const menu = document.querySelector('ion-menu');
       if (menu) {
@@ -72,17 +104,22 @@ export class AppComponent implements OnInit {
     });
   }
 
-  
   async ngOnInit() {
     try {
-      // Get authenticated user from authService
-      const user = await this.authSvc.getCurrentUser();
-
+      this.authSvc.user$.subscribe(async (user) => {
       if (user) {
         this.userApp = await lastValueFrom(this.usersAppSvc.getByUserId(user.id));
-        console.log("El userApp",this.userApp);
-        
+
+        // Redirect if it's a non permiss page
+        const currentUrl = this.router.url;
+        const currentPage = this.appPages.find(p => p.url === currentUrl);
+        if (currentPage && !currentPage.roles.includes(this.userApp!.role)) {
+          this.router.navigate(['/home']);
+        }
+      } else {
+        this.userApp = undefined;
       }
+    });
     } catch (error) {
       console.error('Error fetching user:', error);
     }

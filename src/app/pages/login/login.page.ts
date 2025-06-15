@@ -29,7 +29,7 @@ export class LoginPage {
   togglePasswordVisibility(): void {
     this.passwordVisible = !this.passwordVisible;
   }
-  
+
   onSubmit() {
     if (this.loginForm.valid) {
       this.authSvc.signIn(this.loginForm.value).subscribe({
@@ -46,7 +46,7 @@ export class LoginPage {
           }
         }
       });
-      
+
     } else {
       console.log('Formulario no válido');
     }

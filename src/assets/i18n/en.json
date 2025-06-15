@@ -9,7 +9,13 @@
     },
     "SUCCESS": {
       "SAVE": "Changes saved successfully"
-    }
+    },
+    "GO_BACK": "Go Back",
+    "GO_HOME": "Go to Home",
+    "CONFIRM": "Confirm",
+    "CANCEL": "Cancel",
+    "NO": "No",
+    "YES": "Yes"
   },
 
   "REGISTER": {
@@ -53,22 +59,26 @@
     "NO_ACCOUNT": "Don't have an account?",
     "REGISTER": "Register"
   },
-  
+
   "MENU": {
     "MENU": "Menu",
     "TITLE": "Voliberia",
-    "GREETING": "Hi",
+    "GREETING": "Welcome,",
     "DESCRIPTION": "Flight Management",
     "LANGUAGE": "Language",
     "LOGOUT": "Logout",
     "FOOTER": "Voliberia. All rights reserved.",
     "PAGES": {
       "HOME": "Home",
-      "FLIGHTS": "Flights",
-      "BOOKINGS": "Bookings",
-      "PROFILE": "Profile",
-      "ABOUT": "About"
-    }
+      "BOOK": "Book a Flight",
+      "FLIGHTS": "Manage Flights",
+      "BOOKINGS": "My Bookings",
+      "USERS": "Manage Users",
+      "ABOUT": "About",
+      "PROFILE": "Profile"
+    },
+    "CURRENT-LANGUAGE": "EN",
+    "CURRENT-LANGUAGE-LONG": "Language: English"
   },
 
   "HOME": {
@@ -76,7 +86,38 @@
     "FLIGHTS": "FLIGHTS",
     "FLIGHTS_DESC": "Consult, edit and manages the flights",
     "BOOKINGS": "BOOKINGS",
-    "BOOKINGS_DESC": "Review and manage flight reservations"
+    "BOOKINGS_DESC": "Review and manage flight reservations",
+    "WELCOME": "Welcome to Voliberia",
+    "GREETING": "Welcome",
+    "SUBTITLE": "Your flight and booking management platform",
+    "ADMIN": {
+      "FLIGHTS": {
+        "TITLE": "Flight Management",
+        "DESCRIPTION": "Manage available flights, schedules, and routes"
+      },
+      "USERS": {
+        "TITLE": "User Management",
+        "DESCRIPTION": "Manage users and their platform roles"
+      },
+      "ANALYTICS": {
+        "TITLE": "Analytics",
+        "DESCRIPTION": "View important statistics and metrics"
+      }
+    },
+    "USER": {
+      "BOOK": {
+        "TITLE": "Book Flight",
+        "DESCRIPTION": "Explore and book your next flight"
+      },
+      "BOOKINGS": {
+        "TITLE": "My Bookings",
+        "DESCRIPTION": "Manage your current and past bookings"
+      },
+      "PROFILE": {
+        "TITLE": "My Profile",
+        "DESCRIPTION": "Update your personal information and preferences"
+      }
+    }
   },
 
   "FLIGHT":{
@@ -90,7 +131,7 @@
     "DEPARTURE": "Select departure date",
     "DEPARTURE_ERROR": "The departure date must be later than today",
     "ARRIVAL_TITLE": "Arrival",
-    "ARRIVAL": "Select arrival date", 
+    "ARRIVAL": "Select arrival date",
     "ARRIVAL_ERROR_DATE": "Arrival date must be later thand the departure one",
     "ARRIVAL_ERROR_MINUTES": "Must arrive at least 40 minutes later",
     "PRICE": "Price",
@@ -102,7 +143,20 @@
     "CONFIRM_DELETION": "Confirm deletion",
     "DELETION_TEXT": "Are you sure you want to delete this flight and all its bookings?",
     "CANCEL" : "Cancel",
-    "DELETE" : "Delete"
+    "DELETE" : "Delete",
+    "HERO_TITLE": "Hi admin, take a look!",
+    "HERO_TEXT": "Create, edit and delete flights",
+    "SUCCESS": {
+      "CREATE": "Vuelo creado correctamente.",
+      "EDIT": "Vuelo editado correctamente.",
+      "DELETE": "Vuelo eliminado correctamente."
+    },
+    "DELETE_CONFIRM": {
+      "TITLE": "Confirmar eliminación",
+      "MESSAGE": "¿Estás seguro de que quieres eliminar este vuelo?",
+      "CANCEL": "Cancelar",
+      "DELETE": "Eliminar"
+    }
   },
 
   "BOOKING": {
@@ -122,8 +176,33 @@
     "CONFIRM_DELETION": "Confirm deletion",
     "DELETION_TEXT": "Are you sure you want to delete this bookings",
     "CANCEL" : "Cancel",
-    "DELETE" : "Delete"
-    
+    "DELETE" : "Delete",
+    "HERO_TITLE": "All your trips",
+    "HERO_TEXT": "Manage them that aren't confirmed",
+    "CANCEL_TITLE": "Cancel booking",
+    "CANCEL_CONFIRM": "Are you sure you want to cancel this booking?"
+
+  },
+
+  "BOOK": {
+    "TITLE": "Book your trip now",
+    "SWIPER": "Most popular destination",
+    "ORIGIN": "Origin",
+    "DESTINATION": "Destination",
+    "DEPARTURE": "Departure",
+    "ARRIVAL": "Arrival",
+    "PRICE": "Price",
+    "SEARCH_ORIGIN": "Search origin...",
+    "SEARCH_DESTINATION": "Search destination...",
+    "CLEAR_FILTERS": "Clear filters",
+    "HERO_TITLE": "Come flight with us",
+    "HERO_TEXT": "Discover the iberian peninsule!",
+    "HERO_BUTTON": "Show me",
+    "DATE": "Departure",
+    "BOOK_NOW": "Book",
+    "BOOKING": "Details",
+    "SUCCESS": "Booking successfully completed"
+
   },
 
   "FLIGHT_SELECTABLE": {
@@ -151,7 +230,8 @@
     },
     "BUTTONS": {
       "UPDATE": "Update"
-    }
+    },
+    "CSV": "Export CSV data"
   },
 
   "PICTURE":{
@@ -178,5 +258,59 @@
       "CONTACT_TEXT": "You can contact me at:",
       "LINKEDIN": "LinkedIn"
     }
+  },
+
+  "HEADER": {
+    "TITLE": "Discover every corner of Iberia"
+  },
+
+  "ACCESS_DENIED": {
+    "TITLE": "Access Denied",
+    "MESSAGE": "You do not have permission to access this page. Please contact your administrator if you believe this is a mistake."
+  },
+
+  "NOT_FOUND": {
+    "TITLE": "Page Not Found",
+    "MESSAGE": "The page you are looking for does not exist or has been moved."
+  },
+
+  "USERS": {
+    "TITLE": "User Management",
+    "SUBTITLE": "View and manage user roles across the platform",
+    "SEARCH_PLACEHOLDER": "Search by name or ID...",
+    "ROLE": "Role",
+    "ROLES": {
+      "USER": "User",
+      "ADMIN": "Administrator"
+    },
+    "SECTIONS": {
+      "ADMINS": "Administrators",
+      "USERS": "Regular Users"
+    },
+    "NO_USERS": "No users found",
+    "NO_ADMINS": "No administrators found",
+    "NO_REGULAR_USERS": "No regular users found",
+    "CANT_CHANGE_OWN_ROLE": "Cannot change your own rol"
+  },
+
+  "MODALS": {
+    "CONFIRM_ROLE": {
+      "TITLE": "Confirm Role Change",
+      "MESSAGE": "Are you sure you want to change this user's role?",
+      "FROM": "From",
+      "TO": "To"
+    }
+  },
+
+  "404": {
+    "TITLE": "Page not found",
+    "TEXT": "They page you are searching for, does not exists",
+    "BACK": "Go back"
+  },
+
+  "DENIED": {
+    "TITLE": "Access Denied",
+    "TEXT": "You don't have the permission to access this page",
+    "HOME": "Go home"
   }
 }

@@ -8,6 +8,19 @@ import { BaseAuthenticationService } from "src/app/core/services/impl/base-authe
 import { BaseMediaService } from "src/app/core/services/impl/base-media.service";
 import { UsersAppService } from "src/app/core/services/impl/usersApp.service";
 
+import { saveAs } from 'file-saver'
+import { FlightsService } from 'src/app/core/services/impl/flights.service';
+import { BookingsService } from 'src/app/core/services/impl/bookings.service';
+import { Flight } from "src/app/core/models/flight.model";
+import { Booking } from "src/app/core/models/booking.model";
+
+export interface PagedResult<T> {
+  data: T[];
+  page: number;
+  pageSize: number;
+  pages: number;
+}
+
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.page.html',
@@ -16,6 +29,10 @@ import { UsersAppService } from "src/app/core/services/impl/usersApp.service";
 export class ProfilePage implements OnInit {
   formGroup: FormGroup;
   userApp?: UserApp | null;
+  isAdmin: boolean = false;
+
+  
+
 
   constructor(
     private formBuilder: FormBuilder,
@@ -24,7 +41,9 @@ export class ProfilePage implements OnInit {
     private mediaSvc: BaseMediaService,
     private loadingController: LoadingController,
     private toastController: ToastController,
-    private translateSvc: TranslateService
+    private translateSvc: TranslateService,
+    private flightsSvc: FlightsService,
+    private bookingsSvc: BookingsService
   ) {
     this.formGroup = this.formBuilder.group({
       name: ['', [Validators.required]],
@@ -58,6 +77,8 @@ export class ProfilePage implements OnInit {
           };
           this.formGroup.patchValue(updatedUserApp);
         }
+
+        this.isAdmin = this.userApp?.role === 'admin';
       }
     } catch (error) {
       console.error(error);
@@ -70,6 +91,8 @@ export class ProfilePage implements OnInit {
     } finally {
       await loading.dismiss();
     }
+
+    
   }
 
   async onSubmit() {
@@ -135,4 +158,61 @@ export class ProfilePage implements OnInit {
     });
     await toast.present();
   }
+
+  async exportAllData() {
+  const loading = await this.loadingController.create({ message: 'Exportando datos...' });
+  await loading.present();
+
+  try {
+    const flightsPaged: any = await lastValueFrom(this.flightsSvc.getAll());
+    const bookingsPaged: any = await lastValueFrom(this.bookingsSvc.getAll());
+    const usersPaged: any = await lastValueFrom(this.usersAppSvc.getAll());
+
+    console.log('✈️ Flights:', flightsPaged);
+    console.log('📘 Bookings:', bookingsPaged);
+    console.log('👤 Users:', usersPaged);
+
+    this.exportToCsv('flights.csv', flightsPaged?.data ?? []);
+    this.exportToCsv('bookings.csv', bookingsPaged?.data ?? []);
+    this.exportToCsv('users.csv', usersPaged?.data ?? []);
+ 
+
+
+    const toast = await this.toastController.create({
+      message: 'Datos exportados correctamente.',
+      duration: 3000,
+      position: 'bottom',
+    });
+    await toast.present();
+  } catch (error) {
+    console.error('Error exportando datos:', error);
+    const toast = await this.toastController.create({
+      message: 'Error al exportar datos.',
+      duration: 3000,
+      position: 'bottom',
+    });
+    await toast.present();
+  } finally {
+    await loading.dismiss();
+  }
+}
+
+
+private exportToCsv(filename: string, data: any[]): void {
+  if (!data || data.length === 0){
+    console.warn(`No hay datos para exportar: ${filename}`);
+    return;
+  };
+
+  const keys = Object.keys(data[0] ?? {});
+  const csvRows = [
+    keys.join(','),
+    ...data.map(item => keys.map(k => `"${(item[k] ?? '').toString().replace(/"/g, '""')}"`).join(','))
+  ];
+
+  const blob = new Blob([csvRows.join('\r\n')], { type: 'text/csv;charset=utf-8;' });
+  saveAs(blob, filename);
+}
+
+
 }

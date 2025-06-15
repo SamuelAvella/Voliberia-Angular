@@ -1,0 +1,136 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title class="header-title">Book </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content class="ion-padding dark:bg-[#23242b]">
+  <div class="max-w-6xl mx-auto">
+    <!-- Header -->
+    <div class="mb-8">
+      <h1 class="text-3xl font-bold mb-2">{{ 'USERS.TITLE' | translate }}</h1>
+      <p class="text-gray-600">{{ 'USERS.SUBTITLE' | translate }}</p>
+    </div>
+
+    <!-- Search -->
+    <div class="mb-6">
+      <ion-searchbar
+        [placeholder]="'USERS.SEARCH_PLACEHOLDER' | translate"
+        [(ngModel)]="searchTerm"
+        (ionInput)="filterUsers()"
+        class="mb-4">
+      </ion-searchbar>
+    </div>
+
+    <!-- Admins -->
+    <div class="mb-8">
+      <h2 class="text-xl font-semibold mb-4 text-primary">{{ 'USERS.SECTIONS.ADMINS' | translate }}</h2>
+      <ion-list>
+        <ion-item *ngFor="let user of filteredAdmins" class="mb-4">
+          <div class="flex items-center justify-between w-full py-2">
+            <div class="flex items-center gap-4">
+              <ion-avatar class="w-12 h-12 overflow-hidden rounded-full bg-gray-200 flex items-center justify-center">
+                <ng-container *ngIf="user.picture?.url; else defaultIcon">
+                  <img
+                    [src]="user.picture?.url"
+                    [alt]="user.name"
+                    class="w-full h-full object-cover rounded-full"
+                  />
+                </ng-container>
+                <ng-template #defaultIcon>
+                  <ion-icon name="person-circle" class="text-3xl text-gray-400"></ion-icon>
+                </ng-template>
+              </ion-avatar>
+
+              <div>
+                <h2 class="font-semibold">{{user.name}} {{user.surname}}</h2>
+                <p class="text-sm text-gray-600">ID: {{user.id}}</p>
+              </div>
+            </div>
+            <div class="flex items-center gap-4">
+              <ion-select
+                [value]="user.role"
+                (ionChange)="updateUserRole(user, $event)"
+                [interface]="'popover'"
+                [disabled]="isCurrentUser(user)">
+                <ion-select-option value="user">{{ 'USERS.ROLES.USER' | translate }}</ion-select-option>
+                <ion-select-option value="admin">{{ 'USERS.ROLES.ADMIN' | translate }}</ion-select-option>
+              </ion-select>
+              <ion-text color="medium" *ngIf="isCurrentUser(user)" class="text-sm">
+                {{ 'USERS.CANT_CHANGE_OWN_ROLE' | translate }}
+              </ion-text>
+            </div>
+          </div>
+        </ion-item>
+        <ion-item *ngIf="!loading && (!filteredAdmins || filteredAdmins.length === 0)" lines="none">
+          <div class="text-center w-full py-4 text-gray-500">
+            {{ 'USERS.NO_ADMINS' | translate }}
+          </div>
+        </ion-item>
+      </ion-list>
+    </div>
+
+    <!-- Regular Users -->
+    <div>
+      <h2 class="text-xl font-semibold mb-4 text-primary">{{ 'USERS.SECTIONS.USERS' | translate }}</h2>
+      <ion-list>
+        <ion-item *ngFor="let user of filteredUsers" class="mb-4">
+          <div class="flex items-center justify-between w-full py-2">
+            <div class="flex items-center gap-4">
+              <ion-avatar class="w-12 h-12 overflow-hidden rounded-full bg-gray-200 flex items-center justify-center">
+              <ng-container *ngIf="user.picture?.url; else defaultIcon">
+                <img
+                  [src]="user.picture?.url"
+                  [alt]="user.name"
+                  class="w-full h-full object-cover rounded-full"
+                />
+              </ng-container>
+              <ng-template #defaultIcon>
+                <ion-icon name="person-circle" class="text-3xl text-gray-400"></ion-icon>
+              </ng-template>
+            </ion-avatar>
+
+              <div>
+                <h2 class="font-semibold">{{user.name}} {{user.surname}}</h2>
+                <p class="text-sm text-gray-600">ID: {{user.id}}</p>
+              </div>
+            </div>
+            <div class="flex items-center gap-4">
+              <ion-select
+                [value]="user.role"
+                (ionChange)="updateUserRole(user, $event)"
+                [interface]="'popover'"
+                [disabled]="isCurrentUser(user)">
+                <ion-select-option value="user">{{ 'USERS.ROLES.USER' | translate }}</ion-select-option>
+                <ion-select-option value="admin">{{ 'USERS.ROLES.ADMIN' | translate }}</ion-select-option>
+              </ion-select>
+              <ion-text color="medium" *ngIf="isCurrentUser(user)" class="text-sm">
+                {{ 'USERS.CANT_CHANGE_OWN_ROLE' | translate }}
+              </ion-text>
+            </div>
+          </div>
+        </ion-item>
+        <ion-item *ngIf="!loading && (!filteredUsers || filteredUsers.length === 0)" lines="none">
+          <div class="text-center w-full py-4 text-gray-500">
+            {{ 'USERS.NO_REGULAR_USERS' | translate }}
+          </div>
+        </ion-item>
+      </ion-list>
+    </div>
+
+    <!-- Loading Spinner -->
+    <div *ngIf="loading" class="flex justify-center py-8">
+      <ion-spinner></ion-spinner>
+    </div>
+
+    <!-- No Users -->
+    <div *ngIf="!loading && (!users || users.length === 0)" class="text-center py-8">
+      <ion-icon name="people" class="text-6xl text-gray-400 mb-4"></ion-icon>
+      <p class="text-gray-600">{{ 'USERS.NO_USERS' | translate }}</p>
+    </div>
+  </div>
+</ion-content>

@@ -1,9 +1,17 @@
 import { Model } from "./base.model";
 
-export interface Flight extends Model{
-    origin:string,
-    destination:string,
-    departureDate:string,
-    arrivalDate:string,
-    seatPrice:number,
+/**
+ * Modelo de vuelo (Flight).
+ */
+export interface Flight extends Model {
+  /** Ciudad de origen del vuelo */
+  origin: string;
+  /** Ciudad de destino del vuelo */
+  destination: string;
+  /** Fecha y hora de salida */
+  departureDate: string;
+  /** Fecha y hora de llegada */
+  arrivalDate: string;
+  /** Precio del asiento */
+  seatPrice: number;
 }

@@ -7,9 +7,9 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content class="dark:bg-[#23242b]">
   <div class="profile-container">
-    <h2 class="profile-title">{{'PROFILE.PERSONAL_INFO' | translate}}</h2>
+    <h2 class="profile-title text-[var(--ion-color-secondary)]">{{'PROFILE.PERSONAL_INFO' | translate}}</h2>
     <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
       <ion-grid>
         <ion-row class="profile-row">
@@ -25,7 +25,7 @@
           <!-- Text inputs at the rights side -->
           <ion-col size="12" size-md="6">
             <ion-list>
-              <ion-item class="input-item">
+              <ion-item class="input-item dark:text-black">
                 <ion-label position="stacked">{{'PROFILE.FIELDS.NAME' | translate}}</ion-label>
                 <ion-input type="text" formControlName="name"></ion-input>
               </ion-item>
@@ -33,7 +33,7 @@
                 <p *ngIf="name.errors?.['required']">{{'PROFILE.ERRORS.NAME_REQUIRED' | translate}}</p>
               </ion-text>
 
-              <ion-item class="input-item">
+              <ion-item class="input-item dark:text-black">
                 <ion-label position="stacked">{{'PROFILE.FIELDS.SURNAME' | translate}}</ion-label>
                 <ion-input type="text" formControlName="surname"></ion-input>
               </ion-item>
@@ -41,7 +41,7 @@
                 <p *ngIf="surname.errors?.['required']">{{'PROFILE.ERRORS.SURNAME_REQUIRED' | translate}}</p>
               </ion-text>
 
-              <ion-item class="input-item" (click)="showEmailWarning()">
+              <ion-item class="input-item dark:text-black" (click)="showEmailWarning()">
                 <ion-label position="stacked">{{'PROFILE.FIELDS.EMAIL' | translate}}</ion-label>
                 <ion-input type="email" formControlName="email"></ion-input>
               </ion-item>
@@ -57,7 +57,15 @@
         <ion-button expand="full" type="submit" class="update-button" [disabled]="!formGroup.valid || !formGroup.dirty">
           {{'PROFILE.BUTTONS.UPDATE' | translate}}
         </ion-button>
+
+        <ng-container>
+
+          <ion-button *ngIf="isAdmin" expand="full" color="secondary" class="update-button" (click)="exportAllData()">
+            Exportar datos CSV
+          </ion-button>
+        </ng-container>
       </div>
+
     </form>
   </div>
 </ion-content>

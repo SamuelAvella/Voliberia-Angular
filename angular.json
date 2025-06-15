@@ -36,24 +36,31 @@
                 "output": "./"
               }
             ],
-            "styles": ["src/global.scss", "src/theme/variables.scss"],
+            "styles": [
+              "src/global.scss",
+              "src/theme/variables.scss",
+              "./node_modules/@syncfusion/ej2-material-theme/styles/material.css"
+            ],
             "scripts": [],
-            "allowedCommonJsDependencies": ["lottie-web"]
+            "allowedCommonJsDependencies": [
+              "lottie-web"
+            ]
           },
           "configurations": {
             "production": {
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "2mb",
-                  "maximumError": "5mb"
+                  "maximumWarning": "6mb",
+                  "maximumError": "7mb"
                 },
                 {
                   "type": "anyComponentStyle",
                   "maximumWarning": "2kb",
                   "maximumError": "4kb"
                 }
-              ],
+              ]
+              ,
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",
@@ -117,7 +124,11 @@
                 "output": "./svg"
               }
             ],
-            "styles": ["src/global.scss", "src/theme/variables.scss"],
+            "styles": [
+              "src/global.scss",
+              "src/theme/variables.scss",
+              "./node_modules/@syncfusion/ej2-material-theme/styles/material.css"
+            ],
             "scripts": []
           },
           "configurations": {

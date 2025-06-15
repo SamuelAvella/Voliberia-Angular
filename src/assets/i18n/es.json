@@ -8,11 +8,17 @@
       "SAVE": "Error guardando datos"
     },
     "SUCCESS": {
-      "SAVE": "Cambios guardados correctamente"
-    }
+      "SAVE": "Cambios guardados correctamente",
+      "GO_BACK": "Volver",
+      "GO_HOME": "Ir a Inicio"
+    },
+    "CONFIRM": "Confirmar",
+    "CANCEL": "Cancelar",
+    "NO": "No",
+    "YES": "Sí"
   },
 
-  
+
     "REGISTER": {
       "TITLE": "Crear una cuenta",
       "HAVE_ACCOUNT": "¿Tienes una cuenta?",
@@ -30,14 +36,14 @@
         "EMAIL_REQUIRED": "Debe introducir un correo electrónico",
         "EMAIL_INVALID": "Debe introducir un correo electrónico válido",
         "PASSWORD_REQUIRED": "Debe introducir una contraseña",
-        "PASSWORD_WEAK": "Al menos 10 caracteres, una mayúscula, un número y un carácter especial.",
+        "PASSWORD_WEAK": "Mín. 10 letras, 1 mayúscula, 1 número y 1 símbolo.",
         "PASSWORDS_MISMATCH": "Las contraseñas no coinciden",
         "EMAIL_IN_USE": "Este correo ya está en uso. Intenta con otro.",
         "GENERAL_ERROR": "Ocurrió un error. Inténtelo de nuevo más tarde."
       },
       "SUBMIT": "Crear cuenta"
     },
-  
+
     "LOGIN": {
       "TITLE": "Inicia sesión en Voliberia",
       "EMAIL": "Correo electrónico",
@@ -54,22 +60,28 @@
       "NO_ACCOUNT": "¿No tienes cuenta?",
       "REGISTER": "Regístrate"
     },
-  
+
   "MENU": {
     "MENU": "Menú",
     "TITLE": "Voliberia",
-    "GREETING": "Hola",
+    "GREETING": "Bienvenido,",
     "DESCRIPTION": "Gestión de vuelos",
     "LANGUAGE": "Idioma",
     "LOGOUT": "Cerrar sesión",
     "FOOTER": "Voliberia. Todos los derechos reservados.",
     "PAGES": {
       "HOME": "Inicio",
-      "FLIGHTS": "Vuelos",
-      "BOOKINGS": "Reservas",
-      "PROFILE": "Perfil",
-      "ABOUT": "Sobre creador"
-    }
+      "BOOK": "Reservar Vuelo",
+      "FLIGHTS": "Gestionar Vuelos",
+      "BOOKINGS": "Mis Reservas",
+      "USERS": "Gestionar Usuarios",
+      "ABOUT": "Acerca de",
+      "PROFILE": "Perfil"
+    },
+   "CURRENT-LANGUAGE": "ES",
+    "CURRENT-LANGUAGE-LONG": "Idioma: Español"
+
+
   },
 
   "HOME": {
@@ -77,7 +89,38 @@
     "FLIGHTS": "VUELOS",
     "FLIGHTS_DESC": "Consulta, edita y crea los vuelos",
     "BOOKINGS": "RESERVAS",
-    "BOOKINGS_DESC": "Revisa, administra y añade reserva de vuelos"
+    "BOOKINGS_DESC": "Revisa, administra y añade reserva de vuelos",
+    "WELCOME": "Bienvenido a Voliberia",
+    "GREETING": "Bienvenido",
+    "SUBTITLE": "Tu plataforma de gestión de vuelos y reservas",
+    "ADMIN": {
+      "FLIGHTS": {
+        "TITLE": "Gestión de Vuelos",
+        "DESCRIPTION": "Administra los vuelos disponibles, horarios y rutas"
+      },
+      "USERS": {
+        "TITLE": "Gestión de Usuarios",
+        "DESCRIPTION": "Administra los usuarios y sus roles en la plataforma"
+      },
+      "ANALYTICS": {
+        "TITLE": "Análisis",
+        "DESCRIPTION": "Visualiza estadísticas y métricas importantes"
+      }
+    },
+    "USER": {
+      "BOOK": {
+        "TITLE": "Reservar Vuelo",
+        "DESCRIPTION": "Explora y reserva tu próximo vuelo"
+      },
+      "BOOKINGS": {
+        "TITLE": "Mis Reservas",
+        "DESCRIPTION": "Gestiona tus reservas actuales y pasadas"
+      },
+      "PROFILE": {
+        "TITLE": "Mi Perfil",
+        "DESCRIPTION": "Actualiza tu información personal y preferencias"
+      }
+    }
   },
 
   "FLIGHT":{
@@ -91,7 +134,7 @@
     "DEPARTURE": "Elige la fecha de salida",
     "DEPARTURE_ERROR": "La fecha de salida debe ser posterior a hoy",
     "ARRIVAL_TITLE": "Llegada",
-    "ARRIVAL": "Elige la fecha de llegada", 
+    "ARRIVAL": "Elige la fecha de llegada",
     "ARRIVAL_ERROR_DATE": "La fecha de llegada debe ser posterior a la de salida",
     "ARRIVAL_ERROR_MINUTES": "Debe llegar mínimo 40 minutos más tarde",
     "PRICE": "Precio",
@@ -103,7 +146,21 @@
     "CONFIRM_DELETION": "Confirmar eliminarción",
     "DELETION_TEXT": "¿Estas seguro que deseas eliminar este vuelo y sus reservas?",
     "CANCEL" : "Cancelar",
-    "DELETE" : "Eliminar"
+    "DELETE" : "Eliminar",
+    "HERO_TITLE": "Hola admin, ¡echa un vistazo!",
+    "HERO_TEXT": "Crea, edita y elimina vuelos",
+    "SUCCESS": {
+      "CREATE": "Flight created successfully.",
+      "EDIT": "Flight updated successfully.",
+      "DELETE": "Flight deleted successfully."
+    },
+    "DELETE_CONFIRM": {
+      "TITLE": "Confirm Deletion",
+      "MESSAGE": "Are you sure you want to delete this flight?",
+      "CANCEL": "Cancel",
+      "DELETE": "Delete"
+}
+
   },
 
   "BOOKING": {
@@ -123,8 +180,34 @@
     "CONFIRM_DELETION": "Confirmar eliminación",
     "DELETION_TEXT": "¿Estás seguro de que deseas eliminar esta reserva?",
     "CANCEL": "Cancelar",
-    "DELETE": "Eliminar"
+    "DELETE": "Eliminar",
+    "HERO_TITLE": "Todos tus viajes",
+    "HERO_TEXT": "Cancela aquellos que no estan confirmados",
+    "CANCEL_TITLE": "¿Quieres cancelar la reserva?",
+    "CANCEL_CONFIRM": "¿Estás seguro de que deseas cancelar esta reserva?"
   },
+
+
+  "BOOK": {
+    "TITLE": "Reserva tu viaje ahora",
+    "SWIPER": "Destinos mas populares",
+    "ORIGIN": "Origen",
+    "DESTINATION": "Destino",
+    "DEPARTURE": "Salida",
+    "ARRIVAL": "Llegada",
+    "PRICE": "Precio",
+    "SEARCH_ORIGIN": "Buscar origen...",
+    "SEARCH_DESTINATION": "Buscar destino...",
+    "CLEAR_FILTERS": "Limpiar filtros",
+    "HERO_TITLE": "Ven a volar con nosotros",
+    "HERO_TEXT": "¡Descubre la península ibérica!",
+    "HERO_BUTTON": "Muestrame",
+    "DATE": "Salida",
+    "BOOK_NOW": "Reservar",
+    "BOOKING": "Detalles",
+    "SUCCESS": "Reserva realizada con éxito"
+  },
+
 
   "FLIGHT_SELECTABLE": {
     "SELECT_FLIGHT": "Seleccione un vuelo",
@@ -151,8 +234,9 @@
     },
     "BUTTONS": {
       "UPDATE": "Actualizar"
-    }
-    
+    },
+    "CSV": "Exportar datos CSV"
+
   },
 
   "PICTURE":{
@@ -164,22 +248,77 @@
   },
 
   "ABOUT": {
-    "TITLE": "Acerca de",
-    "APP_INFO": {
-      "TITLE": "Acerca de esta app",
-      "NAME": "Nombre",
-      "CREATION_DATE": "Fecha de creación",
-      "DESCRIPTION": "Descripción",
-      "DESCRIPTION_TEXT": "Esta app fue creada para gestionar vuelos y reservas para la aerolínea Voliberia."
+    "TITLE": "Sobre mí ",
+    "HELLO": "Hola, soy Samuel Avella Pérez",
+    "INTRO": "Esta aplicación ha sido desarrollada como proyecto final de grado, durante mis estudios de desarrollador multiplataforma en el centro CPIFP Alan Turing, en Málaga",
+    "FORMATION": "Decidí como temática una aerolinea, por que me apasiona el viaje, y así poner a prueba mis conocimientos técnicos apredidos durante el curso",
+    "MOTIVATION": "Hablando de mi, me veo como una persona con ganas de aprender y aplicar lo aprendido, para así ser capaz de desenvolverme en diferentes situaciones.",
+    "EMAIL_PERSONAL": "samu.av.jm18@gmail.com",
+    "PROJECT_TITLE": "Trabajo final de grado",
+    "PROJECT_DESC": "En este repositorio tendreis todo lo relacionado con mi TFG, es un repositorio que engloba todos los demás de las distintas asignaturas, en el se encuentra una presentación general. Gracias por interactuar con mi aplicación web",
+    "REPO": "Repositorio",
+    "TECH_TITLE": "⚙ Tecnologías utilizadas",
+    "TECH_ANGULAR": "Angular – Framework SPA para apps modulares y dinámicas.",
+    "TECH_IONIC": "Ionic – Librería UI para apps híbridas web/móvil.",
+    "TECH_FIREBASE": "Firebase – Base de datos en tiempo real, auth y almacenamiento.",
+    "TECH_STRAPI": "Strapi – CMS sin cabeza y backend REST.",
+    "TECH_TAILWIND": "Tailwind – Lenguaje moderno para desarrollo Android nativo.",
+    "TECH_GITHUB": "Github – Lenguaje moderno para desarrollo Android nativo."
+  },
+
+  "HEADER": {
+    "TITLE": "Descubre cada rincón ibérico"
+  },
+
+  "ACCESS_DENIED": {
+    "TITLE": "Acceso Denegado",
+    "MESSAGE": "No tienes permiso para acceder a esta página. Por favor, contacta con tu administrador si crees que esto es un error."
+  },
+
+  "NOT_FOUND": {
+    "TITLE": "Página No Encontrada",
+    "MESSAGE": "La página que estás buscando no existe o ha sido movida."
+  },
+
+  "USERS": {
+    "TITLE": "Gestión de Usuarios",
+    "SUBTITLE": "Ver y gestionar roles de usuarios en la plataforma",
+    "SEARCH_PLACEHOLDER": "Buscar por nombre o ID...",
+    "ROLE": "Rol",
+    "ROLES": {
+      "USER": "Usuario",
+      "ADMIN": "Administrador"
     },
-    "ADDITIONAL_INFO": {
-      "TITLE": "Información adicional",
-      "INTRODUCTION": "Mi nombre es Samuel Avella Pérez, soy estudiante de Desarrollo de Aplicaciones Multiplataforma. Creé esta aplicación motivado por mi pasión por viajar y con el objetivo de facilitar la gestión de vuelos y reservas para la aerolínea Voliberia.",
-      "CONTACT": "Contacto",
-      "CONTACT_TEXT": "Puedes contactarme en:",
-      "LINKEDIN": "LinkedIn"
+    "SECTIONS": {
+      "ADMINS": "Administradores",
+      "USERS": "Usuarios"
+    },
+    "NO_USERS": "No se encontraron usuarios",
+    "NO_ADMINS": "No hay administradores",
+    "NO_REGULAR_USERS": "No hay usuarios regulares",
+    "CANT_CHANGE_OWN_ROLE": "No puedes cambiar tu propio rol"
+  },
+
+  "MODALS": {
+    "CONFIRM_ROLE": {
+      "TITLE": "Confirmar cambio de rol",
+      "MESSAGE": "¿Estás seguro de que deseas cambiar el rol de este usuario?",
+      "FROM": "De",
+      "TO": "A"
     }
+  },
+
+  "404": {
+    "TITLE": "Página no encontrada",
+    "TEXT": "La página que buscas no existe.",
+    "BACK": "Volver"
+  },
+  "DENIED": {
+    "TITLE": "Acceso denegado",
+    "TEXT": "No tienes permiso para acceder a esta página.",
+    "HOME": "Ir al inicio"
   }
-  
+
+
 
 }

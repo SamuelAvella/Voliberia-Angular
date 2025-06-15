@@ -12,4 +12,6 @@ export class LanguageSelectorComponent {
   selectLanguage(language: string) {
     this.popoverCtrl.dismiss({ language });
   }
+
+
 }

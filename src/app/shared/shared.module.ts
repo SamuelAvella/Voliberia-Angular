@@ -21,19 +21,29 @@ import { TogglePasswordPipe } from "./pipes/toggle-password.pipe";
 
 //Directives
 import { BookingStatusDirective } from "./directives/booking-status.directive";
+import { BookingStateStylePipe } from "./pipes/booking-state-style.pipe";
+import { FooterComponent } from "./components/footer/footer.component";
+import { ConfirmRoleModalComponent } from "./components/confirm-role-modal/confirm-role-modal.component";
+import { ConfirmCancelModalComponent } from "./components/confirm-cancel-modal/confirm-cancel-modal.component";
+import { ConfirmBookModalComponent } from "./components/confirm-book-modal/confirm-book-modal.component";
 
 @NgModule({
     declarations:[
         BookingModalComponent,
+        BookingStateStylePipe,
         BookingStatusDirective,
+        ConfirmRoleModalComponent,
         FlightModalComponent,
         FlightSelectableComponent,
+        FooterComponent,
         LanguageSelectorComponent,
         LocalizedCurrencyPipe,
         LocalizedDatePipe,
         PictureOptionsComponent,
         PictureSelectableComponent,
         TogglePasswordPipe,
+        ConfirmCancelModalComponent,
+        ConfirmBookModalComponent,
     ],
     imports:[
         CommonModule,
@@ -43,14 +53,19 @@ import { BookingStatusDirective } from "./directives/booking-status.directive";
     ],
     exports:[
         BookingModalComponent,
+        BookingStateStylePipe,
         BookingStatusDirective,
+        ConfirmRoleModalComponent,
         FlightModalComponent,
+        FooterComponent,
         LanguageSelectorComponent,
         LocalizedCurrencyPipe,
         LocalizedDatePipe,
         PictureSelectableComponent,
         TogglePasswordPipe,
-        TranslateModule
+        TranslateModule,
+        ConfirmCancelModalComponent,
+        ConfirmBookModalComponent,
     ]
 })
 export class SharedModule{}

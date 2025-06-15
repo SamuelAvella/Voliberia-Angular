@@ -17,7 +17,8 @@
             "request": "launch",
             "name": "Launch Chrome against localhost",
             "url": "http://localhost:8100",
-            "webRoot": "${workspaceFolder}"
+            "webRoot": "${workspaceFolder}",
+            "preLaunchTask": "ionic serve"
         }
     ]
 }

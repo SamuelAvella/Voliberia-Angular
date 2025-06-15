@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA  } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
 import { FormsModule } from '@angular/forms';
@@ -26,7 +26,8 @@ import { StrapiAuthenticationService } from './core/services/impl/strapi-authent
 
 //Factory
 import { AuthenticationServiceFactory, AuthMappingFactory, BookingsMappingFactory, BookingsRepositoryFactory, FlightsRepositoryFactory, FlightsMappingFactory, MediaServiceFactory, UsersAppMappingFactory, UsersAppRepositoryFactory } from './core/repositories/repository.factory';
-
+import { FlightsCollectionSubscriptionFactory, BookingsCollectionSubscriptionFactory } from './core/repositories/repository.factory';
+import { CalendarModule, DatePickerModule, TimePickerModule, DateRangePickerModule, DateTimePickerModule } from '@syncfusion/ej2-angular-calendars';
 // Factory function para el loader de traducción
 export function createTranslateLoader(http: HttpClient){
   return new TranslateHttpLoader(http, './assets/i18n/', '.json')
@@ -37,11 +38,11 @@ export function createTranslateLoader(http: HttpClient){
     AppComponent
   ],
   imports: [
-    BrowserModule, 
-    IonicModule.forRoot(), 
+    BrowserModule,
+    IonicModule.forRoot(),
     AppRoutingModule,
     HttpClientModule,
-    FormsModule, 
+    FormsModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -50,9 +51,10 @@ export function createTranslateLoader(http: HttpClient){
       }
     }),
     SharedModule,
+    CalendarModule, DatePickerModule, TimePickerModule, DateRangePickerModule, DateTimePickerModule,
   ],
   providers: [
-    { provide: RouteReuseStrategy, 
+    { provide: RouteReuseStrategy,
       useClass: IonicRouteStrategy
     },
     provideLottieOptions({
@@ -70,7 +72,7 @@ export function createTranslateLoader(http: HttpClient){
     { provide: AUTH_SIGN_UP_API_URL_TOKEN, useValue: `${environment.apiUrl}/api/auth/local/register` },
     { provide: AUTH_ME_API_URL_TOKEN, useValue: `${environment.apiUrl}/api/users/me` },
     { provide: UPLOAD_API_URL_TOKEN, useValue: `${environment.apiUrl}/api/upload` },
-    { provide: FIREBASE_CONFIG_TOKEN, useValue: 
+    { provide: FIREBASE_CONFIG_TOKEN, useValue:
       {
         apiKey: "AIzaSyAH7qPi9Hh7yUJXUuL0-RAKBQRZWbdcswQ",
         authDomain: "voliberia-c2248.firebaseapp.com",
@@ -81,7 +83,7 @@ export function createTranslateLoader(http: HttpClient){
         measurementId: "G-HFMKX3HBVS"
       }
     },
-    
+
     UsersAppMappingFactory,
     BookingsMappingFactory,
     FlightsMappingFactory,
@@ -90,7 +92,7 @@ export function createTranslateLoader(http: HttpClient){
     BookingsRepositoryFactory,
     FlightsRepositoryFactory,
     // Register other repositories as it is necesary
-    
+
     // App services
     {
       provide: 'UsersAppService',
@@ -108,14 +110,17 @@ export function createTranslateLoader(http: HttpClient){
       provide: STRAPI_AUTH_TOKEN,
       useClass: StrapiAuthenticationService // Or the exact service this interface implements
     },
-    
+
     AuthenticationServiceFactory,
     MediaServiceFactory,
+    FlightsCollectionSubscriptionFactory,
+    BookingsCollectionSubscriptionFactory
 
     // ... other providers],
   ],
   bootstrap: [
     AppComponent
   ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule {}
