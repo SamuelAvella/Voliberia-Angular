@@ -1,3 +1,7 @@
+/**
+ * Servicio de autenticación con Firebase.
+ * Implementa inicio de sesión, registro, cierre de sesión y observación del estado del usuario.
+ */
 import { Inject, Injectable } from '@angular/core';
 import { filter, map, Observable, of, tap, firstValueFrom, from } from 'rxjs';
 import { BaseAuthenticationService } from './base-authentication.service';
@@ -42,11 +46,21 @@ export class FirebaseAuthenticationService extends BaseAuthenticationService {
     });
   }
 
+  /**
+   * Espera a que el servicio esté listo y devuelve el usuario actual.
+   * @returns Promesa con el usuario autenticado o undefined
+   */
   async getCurrentUser(): Promise<any> {
     await firstValueFrom(this._ready.pipe(filter(ready => ready === true)));
     return firstValueFrom(this._user);
   }
 
+
+  /**
+   * Inicia sesión con email y contraseña.
+   * @param authPayload Datos del formulario de login
+   * @returns Observable con el usuario autenticado
+   */
   signIn(authPayload: any): Observable<User> {
     const { email, password } = this.authMapping.signInPayload(authPayload);
     
@@ -57,6 +71,11 @@ export class FirebaseAuthenticationService extends BaseAuthenticationService {
     );
   }
 
+  /**
+   * Registra un nuevo usuario en Firebase.
+   * @param signUpPayload Datos del formulario de registro
+   * @returns Observable con el usuario registrado
+   */
   signUp(signUpPayload: any): Observable<User> {
     const { email, password } = this.authMapping.signUpPayload(signUpPayload);
     
@@ -67,6 +86,10 @@ export class FirebaseAuthenticationService extends BaseAuthenticationService {
     );
   }
 
+  /**
+   * Cierra sesión en Firebase.
+   * @returns Observable vacío cuando termina
+   */
   signOut(): Observable<any> {
     return from(firebaseSignOut(this.auth)).pipe(
       tap(() => {
@@ -76,6 +99,10 @@ export class FirebaseAuthenticationService extends BaseAuthenticationService {
     );
   }
 
+  /**
+   * Devuelve el usuario actual de Firebase si está autenticado.
+   * @returns Observable con el usuario de Firebase
+   */
   me(): Observable<any> {
     return of(this.auth.currentUser).pipe(
       map(user => {
@@ -87,6 +114,10 @@ export class FirebaseAuthenticationService extends BaseAuthenticationService {
     );
   }
 
+  /**
+   * Devuelve el token JWT del usuario actual.
+   * @returns Token como string o null
+   */
   getToken(): string | null {
     return this._token;
   }

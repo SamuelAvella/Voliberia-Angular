@@ -1,3 +1,7 @@
+/**
+ * Página de inicio de sesión de usuarios.
+ * Contiene el formulario de login, validación y redirección al iniciar sesión.
+ */
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -9,16 +13,20 @@ import { BaseAuthenticationService } from 'src/app/core/services/impl/base-authe
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage {
+  /** Formulario reactivo de login */
   loginForm: FormGroup;
-  passwordVisible: boolean = false;
-  errorMessage: string | null = null;
 
+  /** Controla la visibilidad del campo de contraseña */
+  passwordVisible: boolean = false;
+
+  /** Mensaje de error a mostrar si falla el login */
+  errorMessage: string | null = null;
 
   constructor(
     private fb: FormBuilder,
     private router: Router,
-    private route:ActivatedRoute,
-    private authSvc:BaseAuthenticationService
+    private route: ActivatedRoute,
+    private authSvc: BaseAuthenticationService
   ) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
@@ -26,19 +34,22 @@ export class LoginPage {
     });
   }
 
+  /** Alterna la visibilidad del campo de contraseña */
   togglePasswordVisibility(): void {
     this.passwordVisible = !this.passwordVisible;
   }
 
+  /**
+   * Envía el formulario de login y redirige al usuario si es exitoso.
+   */
   onSubmit() {
     if (this.loginForm.valid) {
       this.authSvc.signIn(this.loginForm.value).subscribe({
-        next: resp=>{
+        next: resp => {
           const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/home';
-          this.router.navigateByUrl(returnUrl); // Redirige a la página solicitada
+          this.router.navigateByUrl(returnUrl);
         },
-        error: err=>{
-          console.log(err);
+        error: err => {
           if (err.status === 400 && err.error?.error?.message) {
             this.errorMessage = "Credential invalids";
           } else {
@@ -46,27 +57,31 @@ export class LoginPage {
           }
         }
       });
-
     } else {
       console.log('Formulario no válido');
     }
   }
 
-  onRegister(){
+  /**
+   * Redirige a la página de registro.
+   */
+  onRegister() {
     this.loginForm.reset();
     const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/home';
-    this.router.navigate(['/register'], {queryParams:{ returnUrl:returnUrl}, replaceUrl:true});
+    this.router.navigate(['/register'], { queryParams: { returnUrl }, replaceUrl: true });
   }
 
-  onForgotPassword(){
+  /** Placeholder para la funcionalidad de "forgot password" */
+  onForgotPassword() {}
 
-  }
-
-  get email(){
+  /** Getter del campo email */
+  get email() {
     return this.loginForm.controls['email'];
   }
 
-  get password(){
+  /** Getter del campo password */
+  get password() {
     return this.loginForm.controls['password'];
   }
 }
+

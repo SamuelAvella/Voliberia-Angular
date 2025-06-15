@@ -1,9 +1,9 @@
-import { ModalController, ToastController } from '@ionic/angular';
 /**
  * BookPage
  * Componente principal para gestionar reservas de vuelos.
  * Permite seleccionar origen, destino, fecha y hora de vuelo, y realizar la reserva.
- */
+*/
+import { ModalController, ToastController } from '@ionic/angular';
 
 import {
   Component,

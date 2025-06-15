@@ -1,0 +1,602 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Voliberia-Angular documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">Voliberia-Angular documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  AboutPage</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#styleData" class="nav-link"
+                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/pages/about/about.page.ts</code>
+</p>
+
+
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                <code>OnInit</code>
+    </p>
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-about</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./about.page.scss</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./about.page.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#ngOnInit" >ngOnInit</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor()</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="8" class="link-to-prism">src/app/pages/about/about.page.ts:8</a></div>
+                            </td>
+                        </tr>
+
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <span ><b>ngOnInit</b></span>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="12"
+                                    class="link-to-prism">src/app/pages/about/about.page.ts:12</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit } from &#x27;@angular/core&#x27;;
+
+@Component({
+  selector: &#x27;app-about&#x27;,
+  templateUrl: &#x27;./about.page.html&#x27;,
+  styleUrls: [&#x27;./about.page.scss&#x27;],
+})
+export class AboutPage implements OnInit {
+
+  constructor() { }
+
+  ngOnInit() {
+  }
+
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;ion-header [translucent]&#x3D;&quot;true&quot;&gt;
+  &lt;ion-toolbar color&#x3D;&quot;primary&quot;&gt;
+    &lt;ion-title class&#x3D;&quot;text-center text-lg font-bold&quot;&gt;{{ &#x27;ABOUT.TITLE&#x27; | translate }}&lt;/ion-title&gt;
+  &lt;/ion-toolbar&gt;
+&lt;/ion-header&gt;
+
+&lt;ion-content [fullscreen]&#x3D;&quot;true&quot; class&#x3D;&quot;bg-cover bg-center font-inter&quot; style&#x3D;&quot;background-image: url(&#x27;../../../assets/img/fondoVoliberia.png&#x27;);&quot;&gt;
+  &lt;div class&#x3D;&quot;max-w-6xl mx-auto px-6 py-10 space-y-16&quot;&gt;
+
+    &lt;!-- Presentación --&gt;
+    &lt;div class&#x3D;&quot; bg-white/50 p-6 rounded-2xl shadow-md flex flex-col-reverse md:flex-row items-center gap-10 dark:bg-black/70&quot;&gt;
+      &lt;div class&#x3D;&quot;md:w-2/3 space-y-4 text-sm&quot;&gt;
+        &lt;h1 class&#x3D;&quot;text-3xl font-bold text-primary&quot;&gt;{{ &#x27;ABOUT.HELLO&#x27; | translate }}&lt;/h1&gt;
+        &lt;p&gt;{{ &#x27;ABOUT.INTRO&#x27; | translate }}&lt;/p&gt;
+        &lt;p&gt;{{ &#x27;ABOUT.FORMATION&#x27; | translate }}&lt;/p&gt;
+        &lt;p&gt;{{ &#x27;ABOUT.MOTIVATION&#x27; | translate }}&lt;/p&gt;
+
+        &lt;!-- Contacto --&gt;
+        &lt;div class&#x3D;&quot;flex items-center gap-3 mt-6 text-xs md:text-sm text-black dark:text-gray-300 hover:text-blue-300 transition&quot;&gt;
+          &lt;ion-icon name&#x3D;&quot;mail-outline&quot; class&#x3D;&quot;text-xl text-blue-600&quot;&gt;&lt;/ion-icon&gt;
+          &lt;a href&#x3D;&quot;mailto:samu.av.jm18@gmail.com&quot; target&#x3D;&quot;_blank&quot;&gt;{{ &#x27;ABOUT.EMAIL_PERSONAL&#x27; | translate }}&lt;/a&gt;
+        &lt;/div&gt;
+
+        &lt;!-- Redes sociales --&gt;
+        &lt;div class&#x3D;&quot;flex items-center gap-6 mt-4 text-sm&quot;&gt;
+          &lt;a href&#x3D;&quot;https://github.com/SamuelAvella&quot;
+            target&#x3D;&quot;_blank&quot;
+            class&#x3D;&quot;flex items-center gap-2 text-blue-600 hover:text-blue-300 transition&quot;&gt;
+            &lt;ion-icon name&#x3D;&quot;logo-github&quot; class&#x3D;&quot;text-xl&quot;&gt;&lt;/ion-icon&gt;
+            &lt;span class&#x3D;&quot;font-medium&quot;&gt;GitHub&lt;/span&gt;
+          &lt;/a&gt;
+          &lt;a href&#x3D;&quot;https://linkedin.com&quot;
+            target&#x3D;&quot;_blank&quot;
+            class&#x3D;&quot;flex items-center gap-2 text-blue-600 hover:text-blue-300 transition&quot;&gt;
+            &lt;ion-icon name&#x3D;&quot;logo-linkedin&quot; class&#x3D;&quot;text-xl&quot;&gt;&lt;/ion-icon&gt;
+            &lt;span class&#x3D;&quot;font-medium&quot;&gt;LinkedIn&lt;/span&gt;
+          &lt;/a&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+
+      &lt;div class&#x3D;&quot;md:w-1/3 flex justify-center&quot;&gt;
+        &lt;img src&#x3D;&quot;assets/img/mi-foto.png&quot; class&#x3D;&quot;rounded-full h-40 w-40 border-4 border-primary object-cover shadow-md&quot; alt&#x3D;&quot;Mi foto&quot;&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+
+
+    &lt;!-- Tecnologías --&gt;
+    &lt;div&gt;
+      &lt;h2 class&#x3D;&quot;text-2xl font-bold text-center text-[var(--ion-color-secondary)] mb-6&quot;&gt;
+        {{ &#x27;ABOUT.TECH_TITLE&#x27; | translate }}
+      &lt;/h2&gt;
+
+      &lt;div class&#x3D;&quot;grid md:grid-cols-2 gap-6 text-sm text-zinc-300&quot;&gt;
+
+        &lt;!-- Angular --&gt;
+        &lt;a href&#x3D;&quot;https://angular.dev/overview&quot; target&#x3D;&quot;_blank&quot; rel&#x3D;&quot;noopener noreferrer&quot;
+          class&#x3D;&quot;transition-transform transform hover:scale-105 hover:shadow-lg duration-300 rounded-xl block&quot;&gt;
+          &lt;div class&#x3D;&quot;flex items-center gap-4 bg-white dark:bg-stone-800 text-black dark:text-white p-4 rounded-xl border border-zinc-200 dark:border-zinc-600 shadow-sm cursor-pointer&quot;&gt;
+            &lt;div class&#x3D;&quot;flex-shrink-0&quot;&gt;
+              &lt;img src&#x3D;&quot;assets/img/techs/angular.png&quot; alt&#x3D;&quot;Angular&quot; class&#x3D;&quot;w-12 h-12&quot;&gt;
+            &lt;/div&gt;
+            &lt;div class&#x3D;&quot;space-y-1&quot;&gt;
+              &lt;h3 class&#x3D;&quot;text-base font-semibold&quot;&gt;Angular&lt;/h3&gt;
+              &lt;p class&#x3D;&quot;text-sm text-gray-600 dark:text-gray-300&quot;&gt;
+                {{ &#x27;ABOUT.TECH_ANGULAR&#x27; | translate }}
+              &lt;/p&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/a&gt;
+
+        &lt;!-- Ionic --&gt;
+        &lt;a href&#x3D;&quot;https://ionicframework.com/docs&quot; target&#x3D;&quot;_blank&quot; rel&#x3D;&quot;noopener noreferrer&quot;
+          class&#x3D;&quot;transition-transform transform hover:scale-105 hover:shadow-lg duration-300 rounded-xl block&quot;&gt;
+          &lt;div class&#x3D;&quot;flex items-center gap-4 bg-white dark:bg-stone-800 text-black dark:text-white p-4 rounded-xl border border-zinc-200 dark:border-zinc-600 shadow-sm cursor-pointer&quot;&gt;
+            &lt;div class&#x3D;&quot;flex-shrink-0&quot;&gt;
+              &lt;img src&#x3D;&quot;assets/img/techs/ionic.png&quot; alt&#x3D;&quot;Ionic&quot; class&#x3D;&quot;w-12 h-12&quot;&gt;
+            &lt;/div&gt;
+            &lt;div class&#x3D;&quot;space-y-1&quot;&gt;
+              &lt;h3 class&#x3D;&quot;text-base font-semibold&quot;&gt;Ionic&lt;/h3&gt;
+              &lt;p class&#x3D;&quot;text-sm text-gray-600 dark:text-gray-300&quot;&gt;
+                {{ &#x27;ABOUT.TECH_IONIC&#x27; | translate }}
+              &lt;/p&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/a&gt;
+
+        &lt;!-- Firebase --&gt;
+        &lt;a href&#x3D;&quot;https://firebase.google.com/docs&quot; target&#x3D;&quot;_blank&quot; rel&#x3D;&quot;noopener noreferrer&quot;
+          class&#x3D;&quot;transition-transform transform hover:scale-105 hover:shadow-lg duration-300 rounded-xl block&quot;&gt;
+          &lt;div class&#x3D;&quot;flex items-center gap-4 bg-white dark:bg-stone-800 text-black dark:text-white p-4 rounded-xl border border-zinc-200 dark:border-zinc-600 shadow-sm cursor-pointer&quot;&gt;
+            &lt;div class&#x3D;&quot;flex-shrink-0&quot;&gt;
+              &lt;img src&#x3D;&quot;assets/img/techs/firebase.png&quot; alt&#x3D;&quot;Firebase&quot; class&#x3D;&quot;w-12 h-12&quot;&gt;
+            &lt;/div&gt;
+            &lt;div class&#x3D;&quot;space-y-1&quot;&gt;
+              &lt;h3 class&#x3D;&quot;text-base font-semibold&quot;&gt;Firebase&lt;/h3&gt;
+              &lt;p class&#x3D;&quot;text-sm text-gray-600 dark:text-gray-300&quot;&gt;
+                {{ &#x27;ABOUT.TECH_FIREBASE&#x27; | translate }}
+              &lt;/p&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/a&gt;
+
+        &lt;!-- Strapi --&gt;
+        &lt;a href&#x3D;&quot;https://docs.strapi.io&quot; target&#x3D;&quot;_blank&quot; rel&#x3D;&quot;noopener noreferrer&quot;
+          class&#x3D;&quot;transition-transform transform hover:scale-105 hover:shadow-lg duration-300 rounded-xl block&quot;&gt;
+          &lt;div class&#x3D;&quot;flex items-center gap-4 bg-white dark:bg-stone-800 text-black dark:text-white p-4 rounded-xl border border-zinc-200 dark:border-zinc-600 shadow-sm cursor-pointer&quot;&gt;
+            &lt;div class&#x3D;&quot;flex-shrink-0&quot;&gt;
+              &lt;img src&#x3D;&quot;assets/img/techs/strapi.png&quot; alt&#x3D;&quot;Strapi&quot; class&#x3D;&quot;w-12 h-12&quot;&gt;
+            &lt;/div&gt;
+            &lt;div class&#x3D;&quot;space-y-1&quot;&gt;
+              &lt;h3 class&#x3D;&quot;text-base font-semibold&quot;&gt;Strapi&lt;/h3&gt;
+              &lt;p class&#x3D;&quot;text-sm text-gray-600 dark:text-gray-300&quot;&gt;
+                {{ &#x27;ABOUT.TECH_STRAPI&#x27; | translate }}
+              &lt;/p&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/a&gt;
+
+        &lt;!-- Tailwind --&gt;
+        &lt;a href&#x3D;&quot;https://tailwindcss.com/docs&quot; target&#x3D;&quot;_blank&quot; rel&#x3D;&quot;noopener noreferrer&quot;
+          class&#x3D;&quot;transition-transform transform hover:scale-105 hover:shadow-lg duration-300 rounded-xl block&quot;&gt;
+          &lt;div class&#x3D;&quot;flex items-center gap-4 bg-white dark:bg-stone-800 text-black dark:text-white p-4 rounded-xl border border-zinc-200 dark:border-zinc-600 shadow-sm cursor-pointer&quot;&gt;
+            &lt;div class&#x3D;&quot;flex-shrink-0&quot;&gt;
+              &lt;img src&#x3D;&quot;assets/img/techs/tailwind.png&quot; alt&#x3D;&quot;Tailwind&quot; class&#x3D;&quot;w-12 h-12&quot;&gt;
+            &lt;/div&gt;
+            &lt;div class&#x3D;&quot;space-y-1&quot;&gt;
+              &lt;h3 class&#x3D;&quot;text-base font-semibold&quot;&gt;Tailwind&lt;/h3&gt;
+              &lt;p class&#x3D;&quot;text-sm text-gray-600 dark:text-gray-300&quot;&gt;
+                {{ &#x27;ABOUT.TECH_TAILWIND&#x27; | translate }}
+              &lt;/p&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/a&gt;
+
+        &lt;!-- GitHub --&gt;
+        &lt;a href&#x3D;&quot;https://docs.github.com&quot; target&#x3D;&quot;_blank&quot; rel&#x3D;&quot;noopener noreferrer&quot;
+          class&#x3D;&quot;transition-transform transform hover:scale-105 hover:shadow-lg duration-300 rounded-xl block&quot;&gt;
+          &lt;div class&#x3D;&quot;flex items-center gap-4 bg-white dark:bg-stone-800 text-black dark:text-white p-4 rounded-xl border border-zinc-200 dark:border-zinc-600 shadow-sm cursor-pointer&quot;&gt;
+            &lt;div class&#x3D;&quot;flex-shrink-0&quot;&gt;
+              &lt;img src&#x3D;&quot;assets/img/techs/github.png&quot; alt&#x3D;&quot;GitHub&quot; class&#x3D;&quot;w-12 h-12&quot;&gt;
+            &lt;/div&gt;
+            &lt;div class&#x3D;&quot;space-y-1&quot;&gt;
+              &lt;h3 class&#x3D;&quot;text-base font-semibold&quot;&gt;GitHub&lt;/h3&gt;
+              &lt;p class&#x3D;&quot;text-sm text-gray-600 dark:text-gray-300&quot;&gt;
+                {{ &#x27;ABOUT.TECH_GITHUB&#x27; | translate }}
+              &lt;/p&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/a&gt;
+
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+
+
+    &lt;!-- Proyecto Destacado --&gt;
+    &lt;div class&#x3D;&quot;bg-white/50 text-black dark:bg-black/70 dark:text-white p-6 rounded-2xl shadow-md &quot;&gt;
+      &lt;h2 class&#x3D;&quot;text-2xl text-center font-bold mb-2&quot;&gt;{{ &#x27;ABOUT.PROJECT_TITLE&#x27; | translate }}&lt;/h2&gt;
+      &lt;p class&#x3D;&quot;text-sm&quot;&gt;
+        {{ &#x27;ABOUT.PROJECT_DESC&#x27; | translate }}
+        📂 &lt;strong&gt;{{ &#x27;ABOUT.REPO&#x27; | translate }}: &lt;/strong&gt;
+          &lt;a href&#x3D;&quot;https://github.com/SamuelAvella/Voliberia_TFG&quot; class&#x3D;&quot;text-blue-400 hover:underline&quot;&gt;Voliberia_TFG&lt;/a&gt;
+      &lt;/p&gt;
+
+      &lt;div class&#x3D;&quot;mt-4 text-sm&quot;&gt;
+        &lt;p&gt;
+        &lt;/p&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+  &lt;/div&gt;
+&lt;/ion-content&gt;
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="styleData">
+                <p class="comment">
+                    <code>./about.page.scss</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss"></code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><ion-header [translucent]="true">  <ion-toolbar color="primary">    <ion-title class="text-center text-lg font-bold">{{ \'ABOUT.TITLE\' | translate }}</ion-title>  </ion-toolbar></ion-header><ion-content [fullscreen]="true" class="bg-cover bg-center font-inter" style="background-image: url(\'../../../assets/img/fondoVoliberia.png\');">  <div class="max-w-6xl mx-auto px-6 py-10 space-y-16">    <!-- Presentación -->    <div class=" bg-white/50 p-6 rounded-2xl shadow-md flex flex-col-reverse md:flex-row items-center gap-10 dark:bg-black/70">      <div class="md:w-2/3 space-y-4 text-sm">        <h1 class="text-3xl font-bold text-primary">{{ \'ABOUT.HELLO\' | translate }}</h1>        <p>{{ \'ABOUT.INTRO\' | translate }}</p>        <p>{{ \'ABOUT.FORMATION\' | translate }}</p>        <p>{{ \'ABOUT.MOTIVATION\' | translate }}</p>        <!-- Contacto -->        <div class="flex items-center gap-3 mt-6 text-xs md:text-sm text-black dark:text-gray-300 hover:text-blue-300 transition">          <ion-icon name="mail-outline" class="text-xl text-blue-600"></ion-icon>          <a href="mailto:samu.av.jm18@gmail.com" target="_blank">{{ \'ABOUT.EMAIL_PERSONAL\' | translate }}</a>        </div>        <!-- Redes sociales -->        <div class="flex items-center gap-6 mt-4 text-sm">          <a href="https://github.com/SamuelAvella"            target="_blank"            class="flex items-center gap-2 text-blue-600 hover:text-blue-300 transition">            <ion-icon name="logo-github" class="text-xl"></ion-icon>            <span class="font-medium">GitHub</span>          </a>          <a href="https://linkedin.com"            target="_blank"            class="flex items-center gap-2 text-blue-600 hover:text-blue-300 transition">            <ion-icon name="logo-linkedin" class="text-xl"></ion-icon>            <span class="font-medium">LinkedIn</span>          </a>        </div>      </div>      <div class="md:w-1/3 flex justify-center">        <img src="assets/img/mi-foto.png" class="rounded-full h-40 w-40 border-4 border-primary object-cover shadow-md" alt="Mi foto">      </div>    </div>    <!-- Tecnologías -->    <div>      <h2 class="text-2xl font-bold text-center text-[var(--ion-color-secondary)] mb-6">        {{ \'ABOUT.TECH_TITLE\' | translate }}      </h2>      <div class="grid md:grid-cols-2 gap-6 text-sm text-zinc-300">        <!-- Angular -->        <a href="https://angular.dev/overview" target="_blank" rel="noopener noreferrer"          class="transition-transform transform hover:scale-105 hover:shadow-lg duration-300 rounded-xl block">          <div class="flex items-center gap-4 bg-white dark:bg-stone-800 text-black dark:text-white p-4 rounded-xl border border-zinc-200 dark:border-zinc-600 shadow-sm cursor-pointer">            <div class="flex-shrink-0">              <img src="assets/img/techs/angular.png" alt="Angular" class="w-12 h-12">            </div>            <div class="space-y-1">              <h3 class="text-base font-semibold">Angular</h3>              <p class="text-sm text-gray-600 dark:text-gray-300">                {{ \'ABOUT.TECH_ANGULAR\' | translate }}              </p>            </div>          </div>        </a>        <!-- Ionic -->        <a href="https://ionicframework.com/docs" target="_blank" rel="noopener noreferrer"          class="transition-transform transform hover:scale-105 hover:shadow-lg duration-300 rounded-xl block">          <div class="flex items-center gap-4 bg-white dark:bg-stone-800 text-black dark:text-white p-4 rounded-xl border border-zinc-200 dark:border-zinc-600 shadow-sm cursor-pointer">            <div class="flex-shrink-0">              <img src="assets/img/techs/ionic.png" alt="Ionic" class="w-12 h-12">            </div>            <div class="space-y-1">              <h3 class="text-base font-semibold">Ionic</h3>              <p class="text-sm text-gray-600 dark:text-gray-300">                {{ \'ABOUT.TECH_IONIC\' | translate }}              </p>            </div>          </div>        </a>        <!-- Firebase -->        <a href="https://firebase.google.com/docs" target="_blank" rel="noopener noreferrer"          class="transition-transform transform hover:scale-105 hover:shadow-lg duration-300 rounded-xl block">          <div class="flex items-center gap-4 bg-white dark:bg-stone-800 text-black dark:text-white p-4 rounded-xl border border-zinc-200 dark:border-zinc-600 shadow-sm cursor-pointer">            <div class="flex-shrink-0">              <img src="assets/img/techs/firebase.png" alt="Firebase" class="w-12 h-12">            </div>            <div class="space-y-1">              <h3 class="text-base font-semibold">Firebase</h3>              <p class="text-sm text-gray-600 dark:text-gray-300">                {{ \'ABOUT.TECH_FIREBASE\' | translate }}              </p>            </div>          </div>        </a>        <!-- Strapi -->        <a href="https://docs.strapi.io" target="_blank" rel="noopener noreferrer"          class="transition-transform transform hover:scale-105 hover:shadow-lg duration-300 rounded-xl block">          <div class="flex items-center gap-4 bg-white dark:bg-stone-800 text-black dark:text-white p-4 rounded-xl border border-zinc-200 dark:border-zinc-600 shadow-sm cursor-pointer">            <div class="flex-shrink-0">              <img src="assets/img/techs/strapi.png" alt="Strapi" class="w-12 h-12">            </div>            <div class="space-y-1">              <h3 class="text-base font-semibold">Strapi</h3>              <p class="text-sm text-gray-600 dark:text-gray-300">                {{ \'ABOUT.TECH_STRAPI\' | translate }}              </p>            </div>          </div>        </a>        <!-- Tailwind -->        <a href="https://tailwindcss.com/docs" target="_blank" rel="noopener noreferrer"          class="transition-transform transform hover:scale-105 hover:shadow-lg duration-300 rounded-xl block">          <div class="flex items-center gap-4 bg-white dark:bg-stone-800 text-black dark:text-white p-4 rounded-xl border border-zinc-200 dark:border-zinc-600 shadow-sm cursor-pointer">            <div class="flex-shrink-0">              <img src="assets/img/techs/tailwind.png" alt="Tailwind" class="w-12 h-12">            </div>            <div class="space-y-1">              <h3 class="text-base font-semibold">Tailwind</h3>              <p class="text-sm text-gray-600 dark:text-gray-300">                {{ \'ABOUT.TECH_TAILWIND\' | translate }}              </p>            </div>          </div>        </a>        <!-- GitHub -->        <a href="https://docs.github.com" target="_blank" rel="noopener noreferrer"          class="transition-transform transform hover:scale-105 hover:shadow-lg duration-300 rounded-xl block">          <div class="flex items-center gap-4 bg-white dark:bg-stone-800 text-black dark:text-white p-4 rounded-xl border border-zinc-200 dark:border-zinc-600 shadow-sm cursor-pointer">            <div class="flex-shrink-0">              <img src="assets/img/techs/github.png" alt="GitHub" class="w-12 h-12">            </div>            <div class="space-y-1">              <h3 class="text-base font-semibold">GitHub</h3>              <p class="text-sm text-gray-600 dark:text-gray-300">                {{ \'ABOUT.TECH_GITHUB\' | translate }}              </p>            </div>          </div>        </a>      </div>    </div>    <!-- Proyecto Destacado -->    <div class="bg-white/50 text-black dark:bg-black/70 dark:text-white p-6 rounded-2xl shadow-md ">      <h2 class="text-2xl text-center font-bold mb-2">{{ \'ABOUT.PROJECT_TITLE\' | translate }}</h2>      <p class="text-sm">        {{ \'ABOUT.PROJECT_DESC\' | translate }}        📂 <strong>{{ \'ABOUT.REPO\' | translate }}: </strong>          <a href="https://github.com/SamuelAvella/Voliberia_TFG" class="text-blue-400 hover:underline">Voliberia_TFG</a>      </p>      <div class="mt-4 text-sm">        <p>        </p>      </div>    </div>  </div></ion-content></div>'
+    var COMPONENTS = [{'name': 'AboutPage', 'selector': 'app-about'},{'name': 'AccessDeniedPage', 'selector': 'app-access-denied'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'BookingModalComponent', 'selector': 'app-booking-modal'},{'name': 'BookingsPage', 'selector': 'app-bookings'},{'name': 'BookPage', 'selector': 'app-book'},{'name': 'ConfirmBookModalComponent', 'selector': 'app-confirm-book-modal'},{'name': 'ConfirmCancelModalComponent', 'selector': 'app-confirm-cancel-modal'},{'name': 'ConfirmRoleModalComponent', 'selector': 'app-confirm-role-modal'},{'name': 'FlightModalComponent', 'selector': 'app-flight-modal'},{'name': 'FlightSelectableComponent', 'selector': 'app-flight-selectable'},{'name': 'FlightsPage', 'selector': 'app-flights'},{'name': 'FooterComponent', 'selector': 'app-footer'},{'name': 'HomePage', 'selector': 'app-home'},{'name': 'LanguageSelectorComponent', 'selector': 'app-language-selector'},{'name': 'LoginPage', 'selector': 'app-login'},{'name': 'NotFoundPage', 'selector': 'app-not-found'},{'name': 'PictureOptionsComponent', 'selector': ''},{'name': 'PictureSelectableComponent', 'selector': 'app-picture-selectable'},{'name': 'ProfilePage', 'selector': 'app-profile'},{'name': 'RegisterPage', 'selector': 'app-register'},{'name': 'SplashPage', 'selector': 'app-splash'},{'name': 'UsersPage', 'selector': 'app-users'}];
+    var DIRECTIVES = [{'name': 'BookingStatusDirective', 'selector': '[appBookingState]'}];
+    var ACTUAL_COMPONENT = {'name': 'AboutPage'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'AboutPage.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

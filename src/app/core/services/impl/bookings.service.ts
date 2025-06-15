@@ -1,3 +1,6 @@
+/**
+ * Servicio que gestiona las reservas de vuelos.
+ */
 import { Inject, Injectable } from "@angular/core";
 import { BaseService } from "./base-service.service";
 import { BOOKINGS_REPOSITORY_TOKEN } from "../../repositories/repository.token";
@@ -16,6 +19,10 @@ export class BookingsService extends BaseService<Booking> implements IBookingsSe
     super(bookingsRepository);
   }
 
+  /**
+   * Elimina todas las reservas asociadas a un vuelo específico.
+   * @param flightId ID del vuelo
+   */
   deleteBookingsByFlightId(flightId: string): Observable<void> {
     return this.bookingsRepository.deleteBookingsByFlightId(flightId);
   }

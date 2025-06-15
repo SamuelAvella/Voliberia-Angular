@@ -1,0 +1,4202 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Voliberia-Angular documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">Voliberia-Angular documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  BookPage</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#styleData" class="nav-link"
+                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/pages/book/book.page.ts</code>
+</p>
+
+
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                <code>OnInit</code>
+    </p>
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-book</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./book.page.scss</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./book.page.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_flights" >_flights</a>
+                            </li>
+                            <li>
+                                <a href="#allFlights" >allFlights</a>
+                            </li>
+                            <li>
+                                <a href="#currentLocale" >currentLocale</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#dateWrapper" >dateWrapper</a>
+                            </li>
+                            <li>
+                                <a href="#destinationImages" >destinationImages</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#destinationInput" >destinationInput</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#destinationWrapper" >destinationWrapper</a>
+                            </li>
+                            <li>
+                                <a href="#disabledDates" >disabledDates</a>
+                            </li>
+                            <li>
+                                <a href="#filteredDestinations" >filteredDestinations</a>
+                            </li>
+                            <li>
+                                <a href="#filteredDestinationsSearch" >filteredDestinationsSearch</a>
+                            </li>
+                            <li>
+                                <a href="#filteredOrigins" >filteredOrigins</a>
+                            </li>
+                            <li>
+                                <a href="#filteredOriginsSearch" >filteredOriginsSearch</a>
+                            </li>
+                            <li>
+                                <a href="#flights$" >flights$</a>
+                            </li>
+                            <li>
+                                <a href="#flightsByDate" >flightsByDate</a>
+                            </li>
+                            <li>
+                                <a href="#isFlightDate" >isFlightDate</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#loadedIds" >loadedIds</a>
+                            </li>
+                            <li>
+                                <a href="#maxSelectableDate" >maxSelectableDate</a>
+                            </li>
+                            <li>
+                                <a href="#minSelectableDate" >minSelectableDate</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#originInput" >originInput</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#originWrapper" >originWrapper</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#page" >page</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#pageSize" >pageSize</a>
+                            </li>
+                            <li>
+                                <a href="#searchDestination" >searchDestination</a>
+                            </li>
+                            <li>
+                                <a href="#searchOrigin" >searchOrigin</a>
+                            </li>
+                            <li>
+                                <a href="#selectedDate" >selectedDate</a>
+                            </li>
+                            <li>
+                                <a href="#selectedDestination" >selectedDestination</a>
+                            </li>
+                            <li>
+                                <a href="#selectedOrigin" >selectedOrigin</a>
+                            </li>
+                            <li>
+                                <a href="#selectedTime" >selectedTime</a>
+                            </li>
+                            <li>
+                                <a href="#stepSelectHour" >stepSelectHour</a>
+                            </li>
+                            <li>
+                                <a href="#toggleDateSelector" >toggleDateSelector</a>
+                            </li>
+                            <li>
+                                <a href="#toggleDestinationSelector" >toggleDestinationSelector</a>
+                            </li>
+                            <li>
+                                <a href="#toggleOriginSelector" >toggleOriginSelector</a>
+                            </li>
+                            <li>
+                                <a href="#uniqueDestinations" >uniqueDestinations</a>
+                            </li>
+                            <li>
+                                <a href="#uniqueOrigins" >uniqueOrigins</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#clearDateSelection" >clearDateSelection</a>
+                            </li>
+                            <li>
+                                <a href="#clearDestinationSelection" >clearDestinationSelection</a>
+                            </li>
+                            <li>
+                                <a href="#clearOriginSelection" >clearOriginSelection</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#confirmBookingAlert" >confirmBookingAlert</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#createBooking" >createBooking</a>
+                            </li>
+                            <li>
+                                <a href="#filterDestinations" >filterDestinations</a>
+                            </li>
+                            <li>
+                                <a href="#filterDestinationsSearch" >filterDestinationsSearch</a>
+                            </li>
+                            <li>
+                                <a href="#filterOrigins" >filterOrigins</a>
+                            </li>
+                            <li>
+                                <a href="#filterOriginsSearch" >filterOriginsSearch</a>
+                            </li>
+                            <li>
+                                <a href="#getAllFlights" >getAllFlights</a>
+                            </li>
+                            <li>
+                                <a href="#getDisabledDatesInRange" >getDisabledDatesInRange</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit" >ngOnInit</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#onClickOutside" >onClickOutside</a>
+                            </li>
+                            <li>
+                                <a href="#onDateSelected" >onDateSelected</a>
+                            </li>
+                            <li>
+                                <a href="#openDateSelector" >openDateSelector</a>
+                            </li>
+                            <li>
+                                <a href="#openDestinationSelector" >openDestinationSelector</a>
+                            </li>
+                            <li>
+                                <a href="#openOriginSelector" >openOriginSelector</a>
+                            </li>
+                            <li>
+                                <a href="#resetFilters" >resetFilters</a>
+                            </li>
+                            <li>
+                                <a href="#scrollToCarousel" >scrollToCarousel</a>
+                            </li>
+                            <li>
+                                <a href="#selectDestination" >selectDestination</a>
+                            </li>
+                            <li>
+                                <a href="#selectDestinationFromImage" >selectDestinationFromImage</a>
+                            </li>
+                            <li>
+                                <a href="#selectOrigin" >selectOrigin</a>
+                            </li>
+                            <li>
+                                <a href="#selectTime" >selectTime</a>
+                            </li>
+                            <li>
+                                <a href="#updateAvailableDates" >updateAvailableDates</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>HostListeners</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#document:click" >document:click</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(flightsSvc: <a href="../injectables/FlightsService.html" target="_self">FlightsService</a>, toastController: ToastController, translateService: TranslateService, bookingsSvc: <a href="../injectables/BookingsService.html" target="_self">BookingsService</a>, authService: <a href="../injectables/BaseAuthenticationService.html" target="_self">BaseAuthenticationService</a>, usersAppService: <a href="../injectables/UsersAppService.html" target="_self">UsersAppService</a>, router: Router, flightsSubscription: ICollectionSubscription<Flight>, modalController: ModalController)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="84" class="link-to-prism">src/app/pages/book/book.page.ts:84</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>flightsSvc</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/FlightsService.html" target="_self" >FlightsService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>toastController</td>
+                                                  
+                                                        <td>
+                                                                    <code>ToastController</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>translateService</td>
+                                                  
+                                                        <td>
+                                                                    <code>TranslateService</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>bookingsSvc</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/BookingsService.html" target="_self" >BookingsService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>authService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/BaseAuthenticationService.html" target="_self" >BaseAuthenticationService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>usersAppService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/UsersAppService.html" target="_self" >UsersAppService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>router</td>
+                                                  
+                                                        <td>
+                                                                    <code>Router</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>flightsSubscription</td>
+                                                  
+                                                        <td>
+                                                                    <code>ICollectionSubscription&lt;Flight&gt;</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>modalController</td>
+                                                  
+                                                        <td>
+                                                                    <code>ModalController</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+    <section data-compodoc="block-methods">
+    <h3>HostListeners</h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="document:click"></a>
+                    <span class="name">
+                        <span ><b>document:click</b></span>
+                        <a href="#document:click"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <i>Arguments : </i><code>'$event' </code>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>document:click(event: MouseEvent)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="407"
+                                    class="link-to-prism">src/app/pages/book/book.page.ts:407</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Detecta clics fuera de los selectores</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>event</td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>Evento de clic</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="clearDateSelection"></a>
+                    <span class="name">
+                        <span ><b>clearDateSelection</b></span>
+                        <a href="#clearDateSelection"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>clearDateSelection(event: Event)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="305"
+                                    class="link-to-prism">src/app/pages/book/book.page.ts:305</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Borra la seleccion de la fecha</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>event</td>
+                                            <td>
+                                                        <code>Event</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="clearDestinationSelection"></a>
+                    <span class="name">
+                        <span ><b>clearDestinationSelection</b></span>
+                        <a href="#clearDestinationSelection"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>clearDestinationSelection(event: Event)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="288"
+                                    class="link-to-prism">src/app/pages/book/book.page.ts:288</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Borra la selección de destino</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>event</td>
+                                            <td>
+                                                        <code>Event</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="clearOriginSelection"></a>
+                    <span class="name">
+                        <span ><b>clearOriginSelection</b></span>
+                        <a href="#clearOriginSelection"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>clearOriginSelection(event: Event)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="274"
+                                    class="link-to-prism">src/app/pages/book/book.page.ts:274</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Borra la selección de origen</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>event</td>
+                                            <td>
+                                                        <code>Event</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="confirmBookingAlert"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>confirmBookingAlert</b></span>
+                        <a href="#confirmBookingAlert"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>confirmBookingAlert()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="491"
+                                    class="link-to-prism">src/app/pages/book/book.page.ts:491</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="createBooking"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>createBooking</b></span>
+                        <a href="#createBooking"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>createBooking()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="423"
+                                    class="link-to-prism">src/app/pages/book/book.page.ts:423</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Crea una reserva de vuelo</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="filterDestinations"></a>
+                    <span class="name">
+                        <span ><b>filterDestinations</b></span>
+                        <a href="#filterDestinations"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>filterDestinations()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="160"
+                                    class="link-to-prism">src/app/pages/book/book.page.ts:160</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Filtra los orígenes según el destino seleccionado.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="filterDestinationsSearch"></a>
+                    <span class="name">
+                        <span ><b>filterDestinationsSearch</b></span>
+                        <a href="#filterDestinationsSearch"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>filterDestinationsSearch()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="240"
+                                    class="link-to-prism">src/app/pages/book/book.page.ts:240</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Filtra los destinos según el input</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="filterOrigins"></a>
+                    <span class="name">
+                        <span ><b>filterOrigins</b></span>
+                        <a href="#filterOrigins"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>filterOrigins()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="145"
+                                    class="link-to-prism">src/app/pages/book/book.page.ts:145</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Filtra los orígenes según el origen seleccionado.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="filterOriginsSearch"></a>
+                    <span class="name">
+                        <span ><b>filterOriginsSearch</b></span>
+                        <a href="#filterOriginsSearch"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>filterOriginsSearch()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="231"
+                                    class="link-to-prism">src/app/pages/book/book.page.ts:231</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Filtra los orígenes según el input</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getAllFlights"></a>
+                    <span class="name">
+                        <span ><b>getAllFlights</b></span>
+                        <a href="#getAllFlights"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getAllFlights(notify: HTMLIonInfiniteScrollElement | null)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="126"
+                                    class="link-to-prism">src/app/pages/book/book.page.ts:126</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Carga todos los vuelos disponibles paginados.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Default value</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>notify</td>
+                                            <td>
+                                                        <code>HTMLIonInfiniteScrollElement | null</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+                                            <td>
+                                                    <code>null</code>
+                                            </td>
+
+                                            <td>
+                                                    <ul>
+<li>Elemento opcional para notificar fin de scroll.</li>
+</ul>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getDisabledDatesInRange"></a>
+                    <span class="name">
+                        <span ><b>getDisabledDatesInRange</b></span>
+                        <a href="#getDisabledDatesInRange"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getDisabledDatesInRange(min: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, max: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, allowed: string[])</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="379"
+                                    class="link-to-prism">src/app/pages/book/book.page.ts:379</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Obtiene fechas deshabilitadas</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>min</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>Fecha mínima</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>max</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>Fecha máxima</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>allowed</td>
+                                            <td>
+                                                        <code>string[]</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>Fechas válidas</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>string[]</code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Fechas deshabilitadas</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <span ><b>ngOnInit</b></span>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="108"
+                                    class="link-to-prism">src/app/pages/book/book.page.ts:108</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Inicializa la carga de vuelos y los orígenes/destinos disponibles.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onClickOutside"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>onClickOutside</b></span>
+                        <a href="#onClickOutside"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>onClickOutside(event: MouseEvent)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@HostListener(&#x27;document:click&#x27;, [&#x27;$event&#x27;])<br /></code>
+                </td>
+            </tr>
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="407"
+                                    class="link-to-prism">src/app/pages/book/book.page.ts:407</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Detecta clics fuera de los selectores</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>event</td>
+                                            <td>
+                                                        <code>MouseEvent</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>Evento de clic</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onDateSelected"></a>
+                    <span class="name">
+                        <span ><b>onDateSelected</b></span>
+                        <a href="#onDateSelected"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onDateSelected(event: CustomEvent)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="316"
+                                    class="link-to-prism">src/app/pages/book/book.page.ts:316</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Maneja selección de fecha</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>event</td>
+                                            <td>
+                                                        <code>CustomEvent</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>Evento de selección</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="openDateSelector"></a>
+                    <span class="name">
+                        <span ><b>openDateSelector</b></span>
+                        <a href="#openDateSelector"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>openDateSelector(event: Event)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="220"
+                                    class="link-to-prism">src/app/pages/book/book.page.ts:220</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Abre el selector de fecha</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>event</td>
+                                            <td>
+                                                        <code>Event</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="openDestinationSelector"></a>
+                    <span class="name">
+                        <span ><b>openDestinationSelector</b></span>
+                        <a href="#openDestinationSelector"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>openDestinationSelector(event: Event)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="203"
+                                    class="link-to-prism">src/app/pages/book/book.page.ts:203</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Abre el selector de destino.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>event</td>
+                                            <td>
+                                                        <code>Event</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <ul>
+<li>Evento de clic.</li>
+</ul>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="openOriginSelector"></a>
+                    <span class="name">
+                        <span ><b>openOriginSelector</b></span>
+                        <a href="#openOriginSelector"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>openOriginSelector(event: Event)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="187"
+                                    class="link-to-prism">src/app/pages/book/book.page.ts:187</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Abre el selector de origen.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>event</td>
+                                            <td>
+                                                        <code>Event</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <ul>
+<li>Evento de clic.</li>
+</ul>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="resetFilters"></a>
+                    <span class="name">
+                        <span ><b>resetFilters</b></span>
+                        <a href="#resetFilters"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>resetFilters()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="175"
+                                    class="link-to-prism">src/app/pages/book/book.page.ts:175</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Reinicia los filtros de búsqueda.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="scrollToCarousel"></a>
+                    <span class="name">
+                        <span ><b>scrollToCarousel</b></span>
+                        <a href="#scrollToCarousel"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>scrollToCarousel()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="549"
+                                    class="link-to-prism">src/app/pages/book/book.page.ts:549</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="selectDestination"></a>
+                    <span class="name">
+                        <span ><b>selectDestination</b></span>
+                        <a href="#selectDestination"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>selectDestination(destination: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="263"
+                                    class="link-to-prism">src/app/pages/book/book.page.ts:263</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Selecciona un destino</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>destination</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="selectDestinationFromImage"></a>
+                    <span class="name">
+                        <span ><b>selectDestinationFromImage</b></span>
+                        <a href="#selectDestinationFromImage"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>selectDestinationFromImage(destinationName: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="395"
+                                    class="link-to-prism">src/app/pages/book/book.page.ts:395</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Selecciona destino desde imagen destacada</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>destinationName</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>Nombre del destino</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="selectOrigin"></a>
+                    <span class="name">
+                        <span ><b>selectOrigin</b></span>
+                        <a href="#selectOrigin"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>selectOrigin(origin: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="252"
+                                    class="link-to-prism">src/app/pages/book/book.page.ts:252</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Selecciona un origen</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>origin</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="selectTime"></a>
+                    <span class="name">
+                        <span ><b>selectTime</b></span>
+                        <a href="#selectTime"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>selectTime(time: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="326"
+                                    class="link-to-prism">src/app/pages/book/book.page.ts:326</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Selecciona hora y cierra selector</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>time</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>Hora seleccionada</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="updateAvailableDates"></a>
+                    <span class="name">
+                        <span ><b>updateAvailableDates</b></span>
+                        <a href="#updateAvailableDates"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>updateAvailableDates()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="346"
+                                    class="link-to-prism">src/app/pages/book/book.page.ts:346</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Actualiza las fechas disponibles</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_flights"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>_flights</b></span>
+                        <a href="#_flights"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new BehaviorSubject&lt;Flight[]&gt;([])</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/app/pages/book/book.page.ts:39</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="allFlights"></a>
+                    <span class="name">
+                        <span ><b>allFlights</b></span>
+                        <a href="#allFlights"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/Flight.html" target="_self" >Flight[]</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/app/pages/book/book.page.ts:44</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="currentLocale"></a>
+                    <span class="name">
+                        <span ><b>currentLocale</b></span>
+                        <a href="#currentLocale"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/app/pages/book/book.page.ts:46</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="dateWrapper"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>dateWrapper</b></span>
+                        <a href="#dateWrapper"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>ElementRef</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ViewChild(&#x27;dateWrapper&#x27;)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="75" class="link-to-prism">src/app/pages/book/book.page.ts:75</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="destinationImages"></a>
+                    <span class="name">
+                        <span ><b>destinationImages</b></span>
+                        <a href="#destinationImages"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[
+    { name: &#x27;Barcelona (BCN)&#x27;, image: &#x27;assets/img/destinations/barcelona.jpg&#x27; },
+    { name: &#x27;Lisboa (LIS)&#x27;, image: &#x27;assets/img/destinations/lisboa.jpg&#x27; },
+    { name: &#x27;Madrid (MAD)&#x27;, image: &#x27;assets/img/destinations/madrid.jpg&#x27; },
+    { name: &#x27;Malaga (AGP)&#x27;, image: &#x27;assets/img/destinations/malaga.jpg&#x27; },
+    { name: &#x27;Palma (PMI)&#x27;, image: &#x27;assets/img/destinations/palma.jpg&#x27; },
+    { name: &#x27;Porto (POR)&#x27;, image: &#x27;assets/img/destinations/porto.jpg&#x27; },
+  ]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="77" class="link-to-prism">src/app/pages/book/book.page.ts:77</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="destinationInput"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>destinationInput</b></span>
+                        <a href="#destinationInput"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>ElementRef&lt;HTMLInputElement&gt;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ViewChild(&#x27;destinationInput&#x27;)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="74" class="link-to-prism">src/app/pages/book/book.page.ts:74</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="destinationWrapper"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>destinationWrapper</b></span>
+                        <a href="#destinationWrapper"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>ElementRef</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ViewChild(&#x27;destinationWrapper&#x27;)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="73" class="link-to-prism">src/app/pages/book/book.page.ts:73</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="disabledDates"></a>
+                    <span class="name">
+                        <span ><b>disabledDates</b></span>
+                        <a href="#disabledDates"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>string[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="68" class="link-to-prism">src/app/pages/book/book.page.ts:68</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="filteredDestinations"></a>
+                    <span class="name">
+                        <span ><b>filteredDestinations</b></span>
+                        <a href="#filteredDestinations"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>string[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="56" class="link-to-prism">src/app/pages/book/book.page.ts:56</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="filteredDestinationsSearch"></a>
+                    <span class="name">
+                        <span ><b>filteredDestinationsSearch</b></span>
+                        <a href="#filteredDestinationsSearch"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>string[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="58" class="link-to-prism">src/app/pages/book/book.page.ts:58</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="filteredOrigins"></a>
+                    <span class="name">
+                        <span ><b>filteredOrigins</b></span>
+                        <a href="#filteredOrigins"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>string[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/app/pages/book/book.page.ts:55</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="filteredOriginsSearch"></a>
+                    <span class="name">
+                        <span ><b>filteredOriginsSearch</b></span>
+                        <a href="#filteredOriginsSearch"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>string[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="57" class="link-to-prism">src/app/pages/book/book.page.ts:57</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="flights$"></a>
+                    <span class="name">
+                        <span ><b>flights$</b></span>
+                        <a href="#flights$"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/Flight.html" target="_self" >Observable&lt;Flight[]&gt;</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>this._flights.asObservable()</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/app/pages/book/book.page.ts:40</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="flightsByDate"></a>
+                    <span class="name">
+                        <span ><b>flightsByDate</b></span>
+                        <a href="#flightsByDate"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Map&lt;string | string[]&gt;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new Map()</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="69" class="link-to-prism">src/app/pages/book/book.page.ts:69</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isFlightDate"></a>
+                    <span class="name">
+                        <span ><b>isFlightDate</b></span>
+                        <a href="#isFlightDate"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>() &#x3D;&gt; {...}</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="338" class="link-to-prism">src/app/pages/book/book.page.ts:338</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Determina si una fecha tiene vuelos</p>
+</div>
+                </td>
+            </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description">
+                                <b>Parameters :</b>
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                            <tr>
+                                                    <td>dateIsoString</td>
+                                                    <td>
+                                                            <code><p>Fecha en ISO string</p>
+</code>
+                                                    </td>
+                                            </tr>
+                                    </tbody>
+                                </table>
+                        </div>
+                    </td>
+                </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="loadedIds"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>loadedIds</b></span>
+                        <a href="#loadedIds"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Set&lt;string&gt;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new Set()</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/app/pages/book/book.page.ts:41</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="maxSelectableDate"></a>
+                    <span class="name">
+                        <span ><b>maxSelectableDate</b></span>
+                        <a href="#maxSelectableDate"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="67" class="link-to-prism">src/app/pages/book/book.page.ts:67</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="minSelectableDate"></a>
+                    <span class="name">
+                        <span ><b>minSelectableDate</b></span>
+                        <a href="#minSelectableDate"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="66" class="link-to-prism">src/app/pages/book/book.page.ts:66</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="originInput"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>originInput</b></span>
+                        <a href="#originInput"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>ElementRef&lt;HTMLInputElement&gt;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ViewChild(&#x27;originInput&#x27;)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="72" class="link-to-prism">src/app/pages/book/book.page.ts:72</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="originWrapper"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>originWrapper</b></span>
+                        <a href="#originWrapper"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>ElementRef</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ViewChild(&#x27;originWrapper&#x27;)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="71" class="link-to-prism">src/app/pages/book/book.page.ts:71</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="page"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>page</b></span>
+                        <a href="#page"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>1</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/app/pages/book/book.page.ts:42</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="pageSize"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>pageSize</b></span>
+                        <a href="#pageSize"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>25</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/app/pages/book/book.page.ts:43</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="searchDestination"></a>
+                    <span class="name">
+                        <span ><b>searchDestination</b></span>
+                        <a href="#searchDestination"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="60" class="link-to-prism">src/app/pages/book/book.page.ts:60</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="searchOrigin"></a>
+                    <span class="name">
+                        <span ><b>searchOrigin</b></span>
+                        <a href="#searchOrigin"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="59" class="link-to-prism">src/app/pages/book/book.page.ts:59</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="selectedDate"></a>
+                    <span class="name">
+                        <span ><b>selectedDate</b></span>
+                        <a href="#selectedDate"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>string | null</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/app/pages/book/book.page.ts:50</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="selectedDestination"></a>
+                    <span class="name">
+                        <span ><b>selectedDestination</b></span>
+                        <a href="#selectedDestination"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>string | null</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">src/app/pages/book/book.page.ts:49</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="selectedOrigin"></a>
+                    <span class="name">
+                        <span ><b>selectedOrigin</b></span>
+                        <a href="#selectedOrigin"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>string | null</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/app/pages/book/book.page.ts:48</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="selectedTime"></a>
+                    <span class="name">
+                        <span ><b>selectedTime</b></span>
+                        <a href="#selectedTime"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>string | null</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="51" class="link-to-prism">src/app/pages/book/book.page.ts:51</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="stepSelectHour"></a>
+                    <span class="name">
+                        <span ><b>stepSelectHour</b></span>
+                        <a href="#stepSelectHour"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="556" class="link-to-prism">src/app/pages/book/book.page.ts:556</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="toggleDateSelector"></a>
+                    <span class="name">
+                        <span ><b>toggleDateSelector</b></span>
+                        <a href="#toggleDateSelector"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="64" class="link-to-prism">src/app/pages/book/book.page.ts:64</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="toggleDestinationSelector"></a>
+                    <span class="name">
+                        <span ><b>toggleDestinationSelector</b></span>
+                        <a href="#toggleDestinationSelector"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="63" class="link-to-prism">src/app/pages/book/book.page.ts:63</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="toggleOriginSelector"></a>
+                    <span class="name">
+                        <span ><b>toggleOriginSelector</b></span>
+                        <a href="#toggleOriginSelector"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="62" class="link-to-prism">src/app/pages/book/book.page.ts:62</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="uniqueDestinations"></a>
+                    <span class="name">
+                        <span ><b>uniqueDestinations</b></span>
+                        <a href="#uniqueDestinations"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>string[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="54" class="link-to-prism">src/app/pages/book/book.page.ts:54</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="uniqueOrigins"></a>
+                    <span class="name">
+                        <span ><b>uniqueOrigins</b></span>
+                        <a href="#uniqueOrigins"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>string[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">src/app/pages/book/book.page.ts:53</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ModalController, ToastController } from &#x27;@ionic/angular&#x27;;
+
+import {
+  Component,
+  ElementRef,
+  HostListener,
+  Inject,
+  OnInit,
+  ViewChild,
+} from &#x27;@angular/core&#x27;;
+import { TranslateService } from &#x27;@ngx-translate/core&#x27;;
+import { BehaviorSubject, Observable, firstValueFrom } from &#x27;rxjs&#x27;;
+import { Router } from &#x27;@angular/router&#x27;;
+
+import { Flight } from &#x27;src/app/core/models/flight.model&#x27;;
+import { Paginated } from &#x27;src/app/core/models/paginated.model&#x27;;
+import { CalendarEvent } from &#x27;angular-calendar&#x27;;
+import { FLIGHTS_COLLECTION_SUBSCRIPTION_TOKEN } from &#x27;src/app/core/repositories/repository.token&#x27;;
+import { ICollectionSubscription } from &#x27;src/app/core/services/interfaces/collection-subscription.interface&#x27;;
+import { FlightsService } from &#x27;src/app/core/services/impl/flights.service&#x27;;
+import { BookingsService } from &#x27;src/app/core/services/impl/bookings.service&#x27;;
+import { BaseAuthenticationService } from &#x27;src/app/core/services/impl/base-authentication.service&#x27;;
+import { UsersAppService } from &#x27;src/app/core/services/impl/usersApp.service&#x27;;
+import { Booking } from &#x27;src/app/core/models/booking.model&#x27;;
+import { ConfirmBookModalComponent } from &quot;src/app/shared/components/confirm-book-modal/confirm-book-modal.component&quot;;
+
+
+@Component({
+  selector: &#x27;app-book&#x27;,
+  templateUrl: &#x27;./book.page.html&#x27;,
+  styleUrls: [&#x27;./book.page.scss&#x27;],
+})
+export class BookPage implements OnInit {
+  private _flights &#x3D; new BehaviorSubject&lt;Flight[]&gt;([]);
+  flights$: Observable&lt;Flight[]&gt; &#x3D; this._flights.asObservable();
+  private loadedIds: Set&lt;string&gt; &#x3D; new Set();
+  private page &#x3D; 1;
+  private pageSize &#x3D; 25;
+  allFlights: Flight[] &#x3D; [];
+
+  currentLocale: string;
+
+  selectedOrigin: string | null &#x3D; null;
+  selectedDestination: string | null &#x3D; null;
+  selectedDate: string | null &#x3D; null;
+  selectedTime: string | null &#x3D; null;
+
+  uniqueOrigins: string[] &#x3D; [];
+  uniqueDestinations: string[] &#x3D; [];
+  filteredOrigins: string[] &#x3D; [];
+  filteredDestinations: string[] &#x3D; [];
+  filteredOriginsSearch: string[] &#x3D; [];
+  filteredDestinationsSearch: string[] &#x3D; [];
+  searchOrigin &#x3D; &#x27;&#x27;;
+  searchDestination &#x3D; &#x27;&#x27;;
+
+  toggleOriginSelector &#x3D; false;
+  toggleDestinationSelector &#x3D; false;
+  toggleDateSelector &#x3D; false;
+
+  minSelectableDate &#x3D; &#x27;&#x27;;
+  maxSelectableDate &#x3D; &#x27;&#x27;;
+  disabledDates: string[] &#x3D; [];
+  flightsByDate: Map&lt;string, string[]&gt; &#x3D; new Map();
+
+  @ViewChild(&#x27;originWrapper&#x27;) originWrapper!: ElementRef;
+  @ViewChild(&#x27;originInput&#x27;) originInput!: ElementRef&lt;HTMLInputElement&gt;;
+  @ViewChild(&#x27;destinationWrapper&#x27;) destinationWrapper!: ElementRef;
+  @ViewChild(&#x27;destinationInput&#x27;) destinationInput!: ElementRef&lt;HTMLInputElement&gt;;
+  @ViewChild(&#x27;dateWrapper&#x27;) dateWrapper!: ElementRef;
+
+  destinationImages &#x3D; [
+    { name: &#x27;Barcelona (BCN)&#x27;, image: &#x27;assets/img/destinations/barcelona.jpg&#x27; },
+    { name: &#x27;Lisboa (LIS)&#x27;, image: &#x27;assets/img/destinations/lisboa.jpg&#x27; },
+    { name: &#x27;Madrid (MAD)&#x27;, image: &#x27;assets/img/destinations/madrid.jpg&#x27; },
+    { name: &#x27;Malaga (AGP)&#x27;, image: &#x27;assets/img/destinations/malaga.jpg&#x27; },
+    { name: &#x27;Palma (PMI)&#x27;, image: &#x27;assets/img/destinations/palma.jpg&#x27; },
+    { name: &#x27;Porto (POR)&#x27;, image: &#x27;assets/img/destinations/porto.jpg&#x27; },
+  ];
+
+  constructor(
+    private flightsSvc: FlightsService,
+    private toastController: ToastController,
+    private translateService: TranslateService,
+    private bookingsSvc: BookingsService,
+    private authService: BaseAuthenticationService,
+    private usersAppService: UsersAppService,
+    private router: Router,
+    @Inject(FLIGHTS_COLLECTION_SUBSCRIPTION_TOKEN)
+    private flightsSubscription: ICollectionSubscription&lt;Flight&gt;,
+    private modalController: ModalController
+  ) {
+    this.currentLocale &#x3D; this.translateService.currentLang || &#x27;en-US&#x27;;
+    this.translateService.onLangChange.subscribe(
+      (event) &#x3D;&gt; (this.currentLocale &#x3D; event.lang)
+    );
+  }
+
+  /**
+   * Inicializa la carga de vuelos y los orígenes/destinos disponibles.
+   * @returns {void}
+   */
+  ngOnInit(): void {
+    this.getAllFlights();
+    this.flights$.subscribe((flights) &#x3D;&gt; {
+      this.allFlights &#x3D; flights;
+      this.uniqueOrigins &#x3D; [...new Set(flights.map((f) &#x3D;&gt; f.origin))].sort();
+      this.uniqueDestinations &#x3D; [...new Set(flights.map((f) &#x3D;&gt; f.destination))].sort();
+      this.filteredOrigins &#x3D; [...this.uniqueOrigins];
+      this.filteredDestinations &#x3D; [...this.uniqueDestinations];
+      this.filteredOriginsSearch &#x3D; [...this.filteredOrigins];
+      this.filteredDestinationsSearch &#x3D; [...this.filteredDestinations];
+    });
+  }
+
+  /**
+   * Carga todos los vuelos disponibles paginados.
+   * @param {HTMLIonInfiniteScrollElement | null} notify - Elemento opcional para notificar fin de scroll.
+   * @returns {void}
+   */
+  getAllFlights(notify: HTMLIonInfiniteScrollElement | null &#x3D; null): void {
+    this.flightsSvc.getAll(this.page, this.pageSize).subscribe({
+      next: (response: Paginated&lt;Flight&gt;) &#x3D;&gt; {
+        response.data.forEach((f) &#x3D;&gt; this.loadedIds.add(f.id));
+        this._flights.next([...this._flights.value, ...response.data]);
+        this.page++;
+        notify?.complete();
+      },
+      error: (err) &#x3D;&gt; {
+        console.error(&#x27;Error cargando vuelos:&#x27;, err);
+        notify?.complete();
+      },
+    });
+  }
+
+  /**
+   * Filtra los orígenes según el origen seleccionado.
+   * @returns {void}
+   */
+  filterOrigins(): void {
+    this.filteredOrigins &#x3D; this.selectedDestination
+      ? [...new Set(this.allFlights.filter(f &#x3D;&gt; f.destination &#x3D;&#x3D;&#x3D; this.selectedDestination).map(f &#x3D;&gt; f.origin))].sort()
+      : [...this.uniqueOrigins];
+
+    if (this.selectedOrigin &amp;&amp; !this.filteredOrigins.includes(this.selectedOrigin)) {
+      this.selectedOrigin &#x3D; null;
+      this.filterDestinations();
+    }
+  }
+
+  /**
+   * Filtra los orígenes según el destino seleccionado.
+   * @returns {void}
+   */
+  filterDestinations(): void {
+    this.filteredDestinations &#x3D; this.selectedOrigin
+      ? [...new Set(this.allFlights.filter(f &#x3D;&gt; f.origin &#x3D;&#x3D;&#x3D; this.selectedOrigin).map(f &#x3D;&gt; f.destination))].sort()
+      : [...this.uniqueDestinations];
+
+    if (this.selectedDestination &amp;&amp; !this.filteredDestinations.includes(this.selectedDestination)) {
+      this.selectedDestination &#x3D; null;
+      this.filterOrigins();
+    }
+  }
+
+  /**
+   * Reinicia los filtros de búsqueda.
+   * @returns {void}
+   */
+  resetFilters(): void {
+    this.selectedOrigin &#x3D; null;
+    this.selectedDestination &#x3D; null;
+    this.filteredOrigins &#x3D; [...this.uniqueOrigins];
+    this.filteredDestinations &#x3D; [...this.uniqueDestinations];
+  }
+
+  /**
+   * Abre el selector de origen.
+   * @param {Event} event - Evento de clic.
+   * @returns {void}
+   */
+  openOriginSelector(event: Event): void {
+    event.stopPropagation();
+    this.stepSelectHour &#x3D; false;
+    this.toggleOriginSelector &#x3D; true;
+    this.toggleDestinationSelector &#x3D; false;
+    this.toggleDateSelector &#x3D; false;
+    this.searchOrigin &#x3D; &#x27;&#x27;;
+    this.filteredOriginsSearch &#x3D; [...this.filteredOrigins];
+    setTimeout(() &#x3D;&gt; this.originInput?.nativeElement.focus(), 0);
+  }
+
+  /**
+   * Abre el selector de destino.
+   * @param {Event} event - Evento de clic.
+   * @returns {void}
+   */
+  openDestinationSelector(event: Event): void {
+    event.stopPropagation();
+    this.stepSelectHour &#x3D; false;
+    this.toggleDestinationSelector &#x3D; true;
+    this.toggleOriginSelector &#x3D; false;
+    this.toggleDateSelector &#x3D; false;
+    this.searchDestination &#x3D; &#x27;&#x27;;
+    this.filteredDestinationsSearch &#x3D; [...this.filteredDestinations];
+    setTimeout(() &#x3D;&gt; this.destinationInput?.nativeElement.focus(), 0);
+  }
+
+
+  /**
+   * Abre el selector de fecha
+   *
+   * @param {Event} event
+   */
+  openDateSelector(event: Event): void {
+    event.stopPropagation();
+    this.toggleDateSelector &#x3D; true;
+    this.toggleOriginSelector &#x3D; false;
+    this.toggleDestinationSelector &#x3D; false;
+  }
+
+  /**
+   * Filtra los orígenes según el input
+   * @returns {void}
+   */
+  filterOriginsSearch(): void {
+    const term &#x3D; this.searchOrigin.toLowerCase();
+    this.filteredOriginsSearch &#x3D; this.filteredOrigins.filter((o) &#x3D;&gt; o.toLowerCase().includes(term));
+  }
+
+  /**
+   * Filtra los destinos según el input
+   * @returns {void}
+  */
+  filterDestinationsSearch(): void {
+    const term &#x3D; this.searchDestination.toLowerCase();
+    this.filteredDestinationsSearch &#x3D; this.filteredDestinations.filter((d) &#x3D;&gt;
+      d.toLowerCase().includes(term)
+    );
+  }
+
+  /**
+   * Selecciona un origen
+   *
+   * @param {string} origin
+   */
+  selectOrigin(origin: string): void {
+    this.selectedOrigin &#x3D; origin;
+    this.toggleOriginSelector &#x3D; false;
+    this.filterDestinations();
+    this.updateAvailableDates();
+  }
+
+  /**
+   * Selecciona un destino
+   * @param {string} destination
+   */
+  selectDestination(destination: string): void {
+    this.selectedDestination &#x3D; destination;
+    this.toggleDestinationSelector &#x3D; false;
+    this.filterOrigins();
+    this.updateAvailableDates();
+  }
+
+  /**
+   * Borra la selección de origen
+   * @returns {void}
+   */
+  clearOriginSelection(event: Event): void {
+    event.stopPropagation();
+    this.stepSelectHour &#x3D; false;
+    this.toggleDateSelector &#x3D; false;
+    this.selectedOrigin &#x3D; null;
+    this.searchOrigin &#x3D; &#x27;&#x27;;
+    this.filteredOriginsSearch &#x3D; [...this.filteredOrigins];
+    this.filterDestinations();
+  }
+
+  /**
+   * Borra la selección de destino
+   * @returns {void}
+   */
+  clearDestinationSelection(event: Event): void {
+    event.stopPropagation();
+    this.stepSelectHour &#x3D; false;
+    this.toggleDateSelector &#x3D; false;
+    this.selectedDestination &#x3D; null;
+    this.searchDestination &#x3D; &#x27;&#x27;;
+    this.filteredDestinationsSearch &#x3D; [...this.filteredDestinations];
+    this.filterOrigins();
+  }
+
+
+  /**
+   * Borra la seleccion de la fecha
+   *
+   * @param {Event} event
+   * @returns {void}
+   */
+  clearDateSelection(event: Event): void {
+    event.stopPropagation();
+    this.stepSelectHour &#x3D; false;
+    this.selectedDate &#x3D; null;
+    this.toggleDateSelector &#x3D; false;
+  }
+
+  /**
+   * Maneja selección de fecha
+   * @param event Evento de selección
+   */
+  onDateSelected(event: CustomEvent): void {
+    this.selectedDate &#x3D; event.detail.value.split(&#x27;T&#x27;)[0];
+    this.selectedTime &#x3D; null;
+    console.log(&#x27;📅 Día seleccionado:&#x27;, this.selectedDate);
+  }
+
+  /**
+   * Selecciona hora y cierra selector
+   * @param time Hora seleccionada
+   */
+  selectTime(time: string): void {
+    this.selectedTime &#x3D; time;
+    const datetime &#x3D; &#x60;${this.selectedDate}T${this.selectedTime}:00&#x60;;
+    console.log(&#x27;✅ Fecha y hora seleccionada:&#x27;, datetime);
+    this.toggleDateSelector &#x3D; false;
+  }
+
+  /**
+   * Determina si una fecha tiene vuelos
+   * @param dateIsoString Fecha en ISO string
+   * @returns {boolean} Verdadero si hay vuelos
+   */
+  isFlightDate &#x3D; (dateIsoString: string): boolean &#x3D;&gt; {
+    const dateOnly &#x3D; dateIsoString.split(&#x27;T&#x27;)[0];
+    return this.flightsByDate.has(dateOnly);
+  };
+
+  /**
+   * Actualiza las fechas disponibles
+   */
+  updateAvailableDates(): void {
+    if (!this.selectedOrigin || !this.selectedDestination) return;
+
+    const matching &#x3D; this.allFlights.filter(
+      f &#x3D;&gt; f.origin &#x3D;&#x3D;&#x3D; this.selectedOrigin &amp;&amp; f.destination &#x3D;&#x3D;&#x3D; this.selectedDestination
+    );
+
+    this.flightsByDate.clear();
+
+    for (const flight of matching) {
+      const [date, time] &#x3D; flight.departureDate.split(&#x27;T&#x27;);
+      if (!this.flightsByDate.has(date)) {
+        this.flightsByDate.set(date, []);
+      }
+      this.flightsByDate.get(date)!.push(time.slice(0, 5));
+    }
+
+    const keys &#x3D; [...this.flightsByDate.keys()];
+    this.minSelectableDate &#x3D; keys[0] ?? &#x27;&#x27;;
+    this.maxSelectableDate &#x3D; keys.slice(-1)[0] ?? &#x27;&#x27;;
+    this.disabledDates &#x3D; this.getDisabledDatesInRange(this.minSelectableDate, this.maxSelectableDate, keys);
+
+    this.selectedDate &#x3D; null;
+    this.selectedTime &#x3D; null;
+  }
+
+  /**
+   * Obtiene fechas deshabilitadas
+   * @param min Fecha mínima
+   * @param max Fecha máxima
+   * @param allowed Fechas válidas
+   * @returns {string[]} Fechas deshabilitadas
+   */
+  getDisabledDatesInRange(min: string, max: string, allowed: string[]): string[] {
+    const disabled: string[] &#x3D; [];
+    const current &#x3D; new Date(min);
+    const end &#x3D; new Date(max);
+    while (current &lt;&#x3D; end) {
+      const iso &#x3D; current.toISOString().split(&#x27;T&#x27;)[0];
+      if (!allowed.includes(iso)) disabled.push(iso);
+      current.setDate(current.getDate() + 1);
+    }
+    return disabled;
+  }
+
+  /**
+   * Selecciona destino desde imagen destacada
+   * @param destinationName Nombre del destino
+   */
+  selectDestinationFromImage(destinationName: string): void {
+    this.selectedDestination &#x3D; destinationName;
+    this.filterOrigins();
+    this.updateAvailableDates();
+  }
+
+
+  /**
+   * Detecta clics fuera de los selectores
+   * @param event Evento de clic
+   */
+  @HostListener(&#x27;document:click&#x27;, [&#x27;$event&#x27;])
+  onClickOutside(event: MouseEvent): void {
+    const path &#x3D; event.composedPath();
+    if (this.toggleOriginSelector &amp;&amp; !path.includes(this.originWrapper.nativeElement))
+      this.toggleOriginSelector &#x3D; false;
+    if (this.toggleDestinationSelector &amp;&amp; !path.includes(this.destinationWrapper.nativeElement))
+      this.toggleDestinationSelector &#x3D; false;
+    if (this.toggleDateSelector &amp;&amp; !path.includes(this.dateWrapper.nativeElement))
+      this.toggleDateSelector &#x3D; false;
+  }
+
+
+  /**
+   * Crea una reserva de vuelo
+   * @async
+   * @returns {Promise&lt;void&gt;}
+   */
+  async createBooking(): Promise&lt;void&gt; {
+    try {
+      if (!this.selectedDate || !this.selectedTime) {
+        console.error(&#x27;[createBooking] ❌ Falta fecha u hora seleccionada&#x27;);
+        return;
+      }
+
+      const selectedDateTime &#x3D; &#x60;${this.selectedDate}T${this.selectedTime}:00&#x60;;
+
+      const selectedFlight &#x3D; this.allFlights.find(
+        f &#x3D;&gt;
+          f.origin &#x3D;&#x3D;&#x3D; this.selectedOrigin &amp;&amp;
+          f.destination &#x3D;&#x3D;&#x3D; this.selectedDestination &amp;&amp;
+          f.departureDate &#x3D;&#x3D;&#x3D; selectedDateTime
+      );
+
+      if (!selectedFlight) {
+        console.error(&#x27;[createBooking] ❌ No se encontró vuelo con esa fecha y hora:&#x27;, selectedDateTime);
+        return;
+      }
+
+      const user &#x3D; await this.authService.getCurrentUser();
+      if (!user) {
+        console.error(&#x27;[createBooking] ❌ Usuario no logueado&#x27;);
+        return;
+      }
+
+      const userApp &#x3D; await firstValueFrom(this.usersAppService.getByUserId(user.id));
+      if (!userApp) {
+        console.error(&#x27;[createBooking] ❌ No se encontró userApp&#x27;);
+        return;
+      }
+
+      const booking: Booking &#x3D; {
+        id: &#x27;&#x27;,
+        bookingState: &#x27;pending&#x27;,
+        flightId: selectedFlight.id,
+        userAppId: userApp.id,
+      };
+
+      const created &#x3D; await firstValueFrom(this.bookingsSvc.add(booking));
+      const fakeEvent &#x3D; new Event(&#x27;click&#x27;);
+      this.clearOriginSelection(fakeEvent);
+      this.clearDestinationSelection(fakeEvent);
+      this.clearDateSelection(fakeEvent);
+      const toastSuccess &#x3D; await this.toastController.create({
+        message: await this.translateService.get(&#x27;BOOK.SUCCESS&#x27;).toPromise(),      
+        duration: 3000,
+        position: &#x27;bottom&#x27;,
+        color: &#x27;success&#x27;,
+      });
+      await toastSuccess.present();
+      this.router.navigate([&#x27;/bookings&#x27;], {
+        state: { reload: true }
+      });
+
+    } catch (error) {
+      const toastSuccess &#x3D; await this.toastController.create({
+        message: await this.translateService.instant(&#x27;COMMON.ERROR.SAVE&#x27;), // por ejemplo: &quot;Error al guardar&quot;
+        duration: 3000,
+        position: &#x27;bottom&#x27;,
+        color: &#x27;danger&#x27;,
+      });
+      await toastSuccess.present();
+      console.error(&#x27;[createBooking] ❌ Error:&#x27;, error);
+    }
+  }
+
+  async confirmBookingAlert() {
+    const flightDateTime &#x3D; &#x60;${this.selectedDate}, ${this.selectedTime}h&#x60;;
+
+    const selectedFlight &#x3D; this.allFlights.find(
+      f &#x3D;&gt;
+        f.origin &#x3D;&#x3D;&#x3D; this.selectedOrigin &amp;&amp;
+        f.destination &#x3D;&#x3D;&#x3D; this.selectedDestination &amp;&amp;
+        f.departureDate &#x3D;&#x3D;&#x3D; &#x60;${this.selectedDate}T${this.selectedTime}:00&#x60;
+    );
+
+    if (!selectedFlight) {
+      const toastSuccess &#x3D; await this.toastController.create({
+        message: await this.translateService.instant(&#x27;COMMON.ERROR.SAVE&#x27;), // por ejemplo: &quot;Error al guardar&quot;
+        duration: 3000,
+        position: &#x27;bottom&#x27;,
+        color: &#x27;danger&#x27;,
+      });
+      await toastSuccess.present();
+      return;
+    }
+
+    const price &#x3D; selectedFlight.seatPrice ?? &#x27;Desconocido&#x27;;
+
+    // Formatea las fechas
+    const departure &#x3D; new Date(selectedFlight.departureDate).toLocaleString(&#x27;es-ES&#x27;, {
+
+    });
+
+    const arrival &#x3D; new Date(selectedFlight.arrivalDate).toLocaleString(&#x27;es-ES&#x27;, {
+
+    });
+
+    const modal &#x3D; await this.modalController.create({
+      component: ConfirmBookModalComponent,
+      cssClass: &#x27;custom-tailwind-modal&#x27;, // clase para hacer el fondo transparente
+      showBackdrop: true,
+      backdropDismiss: true,
+      componentProps: {
+        origin: selectedFlight.origin,
+        destination: selectedFlight.destination,
+        departure,
+        arrival,
+        price: selectedFlight.seatPrice ?? &#x27;Desconocido&#x27;
+      }
+    });
+
+    await modal.present();
+
+
+    const { data } &#x3D; await modal.onDidDismiss();
+    if (data &#x3D;&#x3D;&#x3D; true) {
+      
+      this.createBooking();
+    }
+  }
+
+
+
+  scrollToCarousel() {
+    const el &#x3D; document.getElementById(&#x27;carousel-title&#x27;);
+    if (el) {
+      el.scrollIntoView({ behavior: &#x27;smooth&#x27;, block: &#x27;start&#x27; });
+    }
+  }
+
+  stepSelectHour &#x3D; false;
+
+
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;ion-header [translucent]&#x3D;&quot;true&quot;&gt;
+  &lt;ion-toolbar color&#x3D;&quot;primary&quot;&gt;
+    &lt;ion-buttons slot&#x3D;&quot;start&quot;&gt;
+      &lt;ion-menu-button&gt;&lt;/ion-menu-button&gt;
+    &lt;/ion-buttons&gt;
+    &lt;ion-title class&#x3D;&quot;header-title&quot;&gt;Book &lt;/ion-title&gt;
+  &lt;/ion-toolbar&gt;
+&lt;/ion-header&gt;
+
+&lt;ion-content [fullscreen]&#x3D;&quot;true&quot; class&#x3D;&quot;bg-no-repeat bg-center bg-contain bg-[length:550px] font-inter dark:bg-[#23242b] backdrop-blur-md&quot;&gt;
+
+  &lt;div class&#x3D;&quot;absolute inset-0 z-0  pointer-events-none&quot;&gt;&lt;/div&gt;
+
+  &lt;div class&#x3D;&quot;relative z-10&quot;&gt;
+
+    &lt;div class&#x3D;&quot;md:px-14 md:pt-6&quot;&gt;
+      &lt;ion-grid
+      class&#x3D;&quot;w-full md:max-w-7xl md:rounded-sm bg-cover bg-center bg-no-repeat&quot;
+      style&#x3D;&quot;background-image: url(&#x27;../../../assets/img/book-hero.png&#x27;);&quot;
+      &gt;
+        &lt;div class&#x3D;&quot;flex flex-col md:h-55 md:flex-row&quot;&gt;
+          &lt;!-- En móvil: caja centrada con márgenes --&gt;
+          &lt;!-- En escritorio: caja a la izquierda tocando bordes internos --&gt;
+          &lt;div
+            class&#x3D;&quot;bg-white/40
+            m-4 md:m-0
+            md:w-1/2
+            md:h-full
+            rounded-sm
+            flex flex-col justify-center
+            items-center md:items-start
+            text-center md:text-left
+            p-6 md:p-12
+            shadow-lg&quot;
+            &gt;
+            &lt;h2 class&#x3D;&quot;text-3xl font-istokWeb font-bold text-black&quot;&gt;{{ &#x27;BOOK.HERO_TITLE&#x27; | translate}}&lt;/h2&gt;
+            &lt;p class&#x3D;&quot;font-inter text-black mt-2&quot;&gt;{{ &#x27;BOOK.HERO_TEXT&#x27; | translate}}&lt;/p&gt;
+            &lt;ion-button
+              (click)&#x3D;&quot;scrollToCarousel()&quot;
+              color&#x3D;&quot;tertiary&quot;
+              expand&#x3D;&quot;block&quot;
+              class&#x3D;&quot;w-full md:w-[200px] text-white hover:color:tertiary-shade font-semibold py-2 rounded-lg transition-all&quot;
+              &gt;
+              {{ &#x27;BOOK.HERO_BUTTON&#x27; | translate }}
+            &lt;/ion-button&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/ion-grid&gt;
+    &lt;/div&gt;
+
+    &lt;div class&#x3D;&quot;w-full flex justify-center px-6&quot;&gt;
+      &lt;div class&#x3D;&quot;mt-4 h-[1.5px] w-full bg-black dark:bg-zinc-400 rounded-full&quot;&gt;&lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;!-- TITULO RESERVAR --&gt;
+    &lt;div class&#x3D;&quot;px-4 pt-8 text-center&quot;&gt;
+      &lt;h2 class&#x3D;&quot;text-3xl md:text-4xl font-istokWeb font-bold tracking-tight drop-shadow whitespace-normal break-words leading-tight text-wrap max-w-3xl mx-auto text-[var(--ion-color-secondary)]&quot;&gt;
+        {{ &#x27;BOOK.TITLE&#x27; | translate }}
+      &lt;/h2&gt;
+    &lt;/div&gt;
+
+
+    &lt;!-- CONTENEDOR ORIGIN + DESTINATION RESPONSIVE --&gt;
+    &lt;div class&#x3D;&quot;w-full md:px-[150px] px-4 mt-4&quot; id&#x3D;&quot;book-formulary&quot;&gt;
+
+      &lt;div class&#x3D;&quot;bg-black/60 p-4 rounded-md&quot;&gt;
+        &lt;div class&#x3D;&quot;flex flex-col md:flex-row md:gap-4 &quot;&gt;
+          &lt;!-- ORIGIN --&gt;
+          &lt;div class&#x3D;&quot;relative w-full md:w-1/3 mb-4 md:mb-0&quot; #originWrapper&gt;
+            &lt;!-- Campo cerrado --&gt;
+            &lt;div
+              *ngIf&#x3D;&quot;!toggleOriginSelector&quot;
+              class&#x3D;&quot;h-[40px] border border-gray-300 rounded-md px-3 bg-white text-sm text-black cursor-pointer hover:shadow-sm flex justify-between items-center&quot;
+              (click)&#x3D;&quot;openOriginSelector($event)&quot;&gt;
+
+              &lt;div class&#x3D;&quot;flex items-center gap-2&quot;&gt;
+                &lt;ion-icon name&#x3D;&quot;airplane-outline&quot; class&#x3D;&quot;text-gray-400 rotate-[-45deg]&quot;&gt;&lt;/ion-icon&gt;
+                &lt;span&gt;{{ selectedOrigin || (&#x27;BOOK.ORIGIN&#x27; | translate) }}&lt;/span&gt;
+              &lt;/div&gt;
+              &lt;button
+                *ngIf&#x3D;&quot;selectedOrigin&quot;
+                (click)&#x3D;&quot;clearOriginSelection($event)&quot;
+                class&#x3D;&quot;text-gray-400 hover:text-gray-700 text-base&quot;&gt;
+                &lt;ion-icon name&#x3D;&quot;close-outline&quot;&gt;&lt;/ion-icon&gt;
+              &lt;/button&gt;
+            &lt;/div&gt;
+
+            &lt;!-- Campo abierto + lista --&gt;
+            &lt;div class&#x3D;&quot;w-full relative&quot;&gt;
+              &lt;input
+                #originInput
+                *ngIf&#x3D;&quot;toggleOriginSelector&quot;
+                [(ngModel)]&#x3D;&quot;searchOrigin&quot;
+                (input)&#x3D;&quot;filterOriginsSearch()&quot;
+                class&#x3D;&quot;h-[40px] w-full px-3 border border-gray-300 rounded-md text-sm text-black focus:outline-none shadow-md dark:text-gray-400&quot;
+                type&#x3D;&quot;text&quot;
+                [placeholder]&#x3D;&quot;&#x27;BOOK.SEARCH_ORIGIN&#x27; | translate&quot; /&gt;
+
+
+              &lt;ul
+                *ngIf&#x3D;&quot;toggleOriginSelector&quot;
+                class&#x3D;&quot;absolute top-full left-0 right-0 z-50 mt-1 bg-white/90 backdrop-blur-sm border border-gray-300 rounded-md shadow-xl max-h-48 overflow-y-auto&quot;&gt;
+                &lt;li
+                  *ngFor&#x3D;&quot;let origin of filteredOriginsSearch&quot;
+                  (click)&#x3D;&quot;selectOrigin(origin)&quot;
+                  class&#x3D;&quot;px-4 py-2 hover:bg-gray-100 cursor-pointer text-sm text-black&quot;&gt;
+                  {{ origin }}
+                &lt;/li&gt;
+              &lt;/ul&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+
+          &lt;!-- DESTINATION --&gt;
+          &lt;div class&#x3D;&quot;relative w-full md:w-1/3 mb-4 md:mb-0&quot; #destinationWrapper&gt;
+            &lt;!-- Campo cerrado --&gt;
+            &lt;div
+              *ngIf&#x3D;&quot;!toggleDestinationSelector&quot;
+              class&#x3D;&quot;h-[40px] border border-gray-300 rounded-md px-3 bg-white text-sm text-black cursor-pointer hover:shadow-sm flex justify-between items-center&quot;
+              (click)&#x3D;&quot;openDestinationSelector($event)&quot;&gt;
+              &lt;div class&#x3D;&quot;flex items-center gap-2&quot;&gt;
+                &lt;ion-icon name&#x3D;&quot;airplane-outline&quot; class&#x3D;&quot;text-gray-400 rotate-[35deg] &quot;&gt;&lt;/ion-icon&gt;
+                &lt;span&gt;{{ selectedDestination || (&#x27;BOOK.DESTINATION&#x27; | translate) }}&lt;/span&gt;
+              &lt;/div&gt;
+              &lt;button
+                *ngIf&#x3D;&quot;selectedDestination&quot;
+                (click)&#x3D;&quot;clearDestinationSelection($event)&quot;
+                class&#x3D;&quot;text-gray-400 hover:text-gray-700 text-base&quot;&gt;
+                &lt;ion-icon name&#x3D;&quot;close-outline&quot;&gt;&lt;/ion-icon&gt;
+              &lt;/button&gt;
+            &lt;/div&gt;
+
+            &lt;!-- Campo abierto + lista --&gt;
+            &lt;div class&#x3D;&quot;w-full relative&quot;&gt;
+              &lt;input
+                #destinationInput
+                *ngIf&#x3D;&quot;toggleDestinationSelector&quot;
+                [(ngModel)]&#x3D;&quot;searchDestination&quot;
+                (input)&#x3D;&quot;filterDestinationsSearch()&quot;
+                type&#x3D;&quot;text&quot;
+                class&#x3D;&quot;h-[40px] w-full px-3 border border-gray-300 rounded-md text-sm text-black focus:outline-none shadow-md dark:text-gray-400&quot;
+                [placeholder]&#x3D;&quot;&#x27;BOOK.SEARCH_DESTINATION&#x27; | translate&quot; /&gt;
+
+              &lt;ul
+                *ngIf&#x3D;&quot;toggleDestinationSelector&quot;
+                class&#x3D;&quot;absolute top-full left-0 right-0 z-50 mt-1 bg-white/90 backdrop-blur-sm border border-gray-300 rounded-md shadow-xl max-h-48 overflow-y-auto&quot;&gt;
+                &lt;li
+                  *ngFor&#x3D;&quot;let destination of filteredDestinationsSearch&quot;
+                  (click)&#x3D;&quot;selectDestination(destination)&quot;
+                  class&#x3D;&quot;px-4 py-2 hover:bg-gray-100 cursor-pointer text-sm text-black&quot;&gt;
+                  {{ destination }}
+                &lt;/li&gt;
+              &lt;/ul&gt;
+            &lt;/div&gt;
+
+
+          &lt;/div&gt;
+
+          &lt;!-- Fecha de vuelo --&gt;
+          &lt;div class&#x3D;&quot;relative w-full md:w-1/3 mb-4 md:mb-0&quot; #dateWrapper&gt;
+
+            &lt;!-- Campo cerrado --&gt;
+            &lt;div
+              class&#x3D;&quot;h-[40px] border rounded-md px-3 text-sm flex justify-between items-center transition cursor-pointer&quot;
+              [ngClass]&#x3D;&quot;{
+                &#x27;bg-white text-black border-gray-300 hover:shadow-sm&#x27;: selectedOrigin &amp;&amp; selectedDestination,
+                &#x27;bg-gray-200 text-gray-400 border-gray-200 cursor-not-allowed&#x27;: !selectedOrigin || !selectedDestination
+              }&quot;
+              (click)&#x3D;&quot;selectedOrigin &amp;&amp; selectedDestination &amp;&amp; openDateSelector($event)&quot;&gt;
+
+              &lt;div class&#x3D;&quot;flex items-center justify-between w-full&quot;&gt;
+                &lt;div class&#x3D;&quot;flex items-center gap-2&quot;&gt;
+                  &lt;ion-icon name&#x3D;&quot;calendar-outline&quot; class&#x3D;&quot;text-gray-400&quot;&gt;&lt;/ion-icon&gt;
+                  &lt;ng-container *ngIf&#x3D;&quot;selectedOrigin &amp;&amp; selectedDestination; else disabledText&quot;&gt;
+                    &lt;span *ngIf&#x3D;&quot;selectedDate &amp;&amp; selectedTime; else defaultText&quot;&gt;
+                    {{ (selectedDate + &#x27;T&#x27; + selectedTime) | date: &#x27;longDate&#x27; }}, {{ selectedTime }}h
+                  &lt;/span&gt;
+                    &lt;ng-template #defaultText&gt;
+                      {{ &#x27;BOOK.DATE&#x27; | translate }}
+                    &lt;/ng-template&gt;
+                  &lt;/ng-container&gt;
+
+                  &lt;ng-template #disabledText&gt;
+                    &lt;span class&#x3D;&quot;opacity-80&quot;&gt;{{ &#x27;BOOK.DATE&#x27; | translate}}&lt;/span&gt;
+                  &lt;/ng-template&gt;
+                &lt;/div&gt;
+
+                &lt;button
+                  *ngIf&#x3D;&quot;selectedDate&quot;
+                  (click)&#x3D;&quot;clearDateSelection($event)&quot;
+                  class&#x3D;&quot;text-gray-400 hover:text-gray-700 text-base&quot;&gt;
+                  &lt;ion-icon name&#x3D;&quot;close-outline&quot;&gt;&lt;/ion-icon&gt;
+                &lt;/button&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+
+            &lt;!-- Popover calendario --&gt;
+            &lt;div *ngIf&#x3D;&quot;toggleDateSelector&quot; class&#x3D;&quot;absolute z-50 w-full animate-fade-in&quot;&gt;
+              &lt;div class&#x3D;&quot;bg-white dark:bg-[#3b3b3b] rounded-md shadow-md p-2 relative&quot;&gt;
+
+                &lt;!-- Paso 1: Fecha --&gt;
+                &lt;ng-container *ngIf&#x3D;&quot;!stepSelectHour &amp;&amp; toggleDateSelector&quot;&gt;
+                  &lt;ion-datetime
+                    [value]&#x3D;&quot;selectedDate ?? undefined&quot;
+                    [isDateEnabled]&#x3D;&quot;isFlightDate&quot;
+                    size&#x3D;&quot;cover&quot;
+                    presentation&#x3D;&quot;date&quot;
+                    (ionChange)&#x3D;&quot;onDateSelected($event); stepSelectHour &#x3D; true&quot;
+                    class&#x3D;&quot;z-0&quot;
+                  &gt;&lt;/ion-datetime&gt;
+                &lt;/ng-container&gt;
+
+                &lt;!-- Paso 2: Selección de hora --&gt;
+                &lt;ng-container *ngIf&#x3D;&quot;stepSelectHour &amp;&amp; selectedDate &amp;&amp; flightsByDate.get(selectedDate)&quot;&gt;
+                  &lt;div class&#x3D;&quot;p-2 space-y-2 dark:bg-[#3b3b3b]&quot;&gt;
+
+                    &lt;div class&#x3D;&quot;flex justify-between items-center mb-2&quot;&gt;
+                      &lt;h3 class&#x3D;&quot;text-sm text-gray-700 dark:text-white&quot;&gt;
+                        &lt;button (click)&#x3D;&quot;stepSelectHour &#x3D; false&quot; class&#x3D;&quot;text-sm text-blue-600 hover:underline&quot;&gt;
+                          ←
+                        &lt;/button&gt;
+                        {{ selectedDate | date: &#x27;fullDate&#x27; }}
+                      &lt;/h3&gt;
+                    &lt;/div&gt;
+
+                    &lt;div class&#x3D;&quot;grid grid-cols-4 sm:grid-cols-3 gap-2&quot;&gt;
+                      &lt;button
+                        *ngFor&#x3D;&quot;let hour of flightsByDate.get(selectedDate)&quot;
+                        (click)&#x3D;&quot;selectTime(hour)&quot;
+                        class&#x3D;&quot;px-2 py-2 rounded border text-sm font-medium transition-all hover:bg-blue-600 hover:text-white&quot;
+                        [class.bg-blue-600]&#x3D;&quot;selectedTime &#x3D;&#x3D;&#x3D; hour&quot;
+                        [class.text-white]&#x3D;&quot;selectedTime &#x3D;&#x3D;&#x3D; hour&quot;
+                        [class.bg-white]&#x3D;&quot;selectedTime !&#x3D;&#x3D; hour&quot;
+                        [class.text-black]&#x3D;&quot;selectedTime !&#x3D;&#x3D; hour&quot;
+                      &gt;
+                        {{ hour }}
+                      &lt;/button&gt;
+                    &lt;/div&gt;
+
+                  &lt;/div&gt;
+                &lt;/ng-container&gt;
+
+              &lt;/div&gt;
+            &lt;/div&gt;
+
+
+          &lt;/div&gt;
+
+        &lt;/div&gt;
+
+        &lt;div class&#x3D;&quot;w-full md:px-[150px] px-4 mt-2&quot;&gt;
+
+          &lt;ion-button
+            class&#x3D;&quot;h-[40px] flex items-center justify-center text-sm font-medium rounded-md&quot;
+            color&#x3D;&quot;tertiary&quot;
+            (click)&#x3D;&quot;confirmBookingAlert()&quot;
+            [disabled]&#x3D;&quot;!selectedOrigin || !selectedDestination || !selectedDate || !selectedTime&quot;
+            expand&#x3D;&quot;block&quot;&gt;
+            {{ &#x27;BOOK.BOOK_NOW&#x27; | translate }}
+          &lt;/ion-button&gt;
+
+
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;div class&#x3D;&quot;w-full flex justify-center px-6&quot;&gt;
+      &lt;div class&#x3D;&quot;mt-4 h-[1.5px] w-full bg-black dark:bg-zinc-400 rounded-full&quot;&gt;&lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;!-- TITULO SWIPER --&gt;
+    &lt;div class&#x3D;&quot;px-4 pt-8 text-center&quot; id&#x3D;&quot;carousel-title&quot;&gt;
+      &lt;h2 class&#x3D;&quot;text-3xl md:text-4xl font-istokWeb font-bold tracking-tight drop-shadow whitespace-normal break-words leading-tight text-wrap max-w-3xl mx-auto text-[var(--ion-color-secondary)]&quot;&gt;
+        {{ &#x27;BOOK.SWIPER&#x27; | translate }}
+      &lt;/h2&gt;
+    &lt;/div&gt;
+
+    &lt;div class&#x3D;&quot;flex justify-center w-full px-4 mt-4&quot;&gt;
+      &lt;swiper-container
+        navigation&#x3D;&quot;true&quot;
+        pagination&#x3D;&quot;true&quot;
+        [spaceBetween]&#x3D;&quot;20&quot;
+        [breakpoints]&#x3D;&quot;{
+          &#x27;640&#x27;: { &#x27;slidesPerView&#x27;: 1 },
+          &#x27;768&#x27;: { &#x27;slidesPerView&#x27;: 1.5 },
+          &#x27;1024&#x27;: { &#x27;slidesPerView&#x27;: 1 }
+        }&quot;
+        class&#x3D;&quot;w-full max-w-5xl h-[200px] md:h-[400px]&quot;
+      &gt;
+        &lt;swiper-slide
+          lazy&#x3D;&quot;true&quot;
+          *ngFor&#x3D;&quot;let destination of destinationImages&quot;
+          (click)&#x3D;&quot;selectDestinationFromImage(destination.name)&quot;
+          class&#x3D;&quot;relative cursor-pointer transition-transform transform hover:scale-105 rounded-md overflow-hidden shadow-lg&quot;
+        &gt;
+          &lt;img
+            [src]&#x3D;&quot;destination.image&quot;
+            [alt]&#x3D;&quot;destination.name&quot;
+            loading&#x3D;&quot;lazy&quot;
+            class&#x3D;&quot;w-full h-full object-cover&quot;
+          /&gt;
+          &lt;div class&#x3D;&quot;absolute inset-0 bg-black/40 flex items-center justify-center&quot;&gt;
+            &lt;span class&#x3D;&quot;text-white font-semibold text-lg&quot;&gt;{{ destination.name }}&lt;/span&gt;
+          &lt;/div&gt;
+        &lt;/swiper-slide&gt;
+      &lt;/swiper-container&gt;
+    &lt;/div&gt;
+
+
+
+    &lt;app-footer&gt;&lt;/app-footer&gt;
+  &lt;/div&gt;
+
+&lt;/ion-content&gt;
+
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="styleData">
+                <p class="comment">
+                    <code>./book.page.scss</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss"></code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><ion-header [translucent]="true">  <ion-toolbar color="primary">    <ion-buttons slot="start">      <ion-menu-button></ion-menu-button>    </ion-buttons>    <ion-title class="header-title">Book </ion-title>  </ion-toolbar></ion-header><ion-content [fullscreen]="true" class="bg-no-repeat bg-center bg-contain bg-[length:550px] font-inter dark:bg-[#23242b] backdrop-blur-md">  <div class="absolute inset-0 z-0  pointer-events-none"></div>  <div class="relative z-10">    <div class="md:px-14 md:pt-6">      <ion-grid      class="w-full md:max-w-7xl md:rounded-sm bg-cover bg-center bg-no-repeat"      style="background-image: url(\'../../../assets/img/book-hero.png\');"      >        <div class="flex flex-col md:h-55 md:flex-row">          <!-- En móvil: caja centrada con márgenes -->          <!-- En escritorio: caja a la izquierda tocando bordes internos -->          <div            class="bg-white/40            m-4 md:m-0            md:w-1/2            md:h-full            rounded-sm            flex flex-col justify-center            items-center md:items-start            text-center md:text-left            p-6 md:p-12            shadow-lg"            >            <h2 class="text-3xl font-istokWeb font-bold text-black">{{ \'BOOK.HERO_TITLE\' | translate}}</h2>            <p class="font-inter text-black mt-2">{{ \'BOOK.HERO_TEXT\' | translate}}</p>            <ion-button              (click)="scrollToCarousel()"              color="tertiary"              expand="block"              class="w-full md:w-[200px] text-white hover:color:tertiary-shade font-semibold py-2 rounded-lg transition-all"              >              {{ \'BOOK.HERO_BUTTON\' | translate }}            </ion-button>          </div>        </div>      </ion-grid>    </div>    <div class="w-full flex justify-center px-6">      <div class="mt-4 h-[1.5px] w-full bg-black dark:bg-zinc-400 rounded-full"></div>    </div>    <!-- TITULO RESERVAR -->    <div class="px-4 pt-8 text-center">      <h2 class="text-3xl md:text-4xl font-istokWeb font-bold tracking-tight drop-shadow whitespace-normal break-words leading-tight text-wrap max-w-3xl mx-auto text-[var(--ion-color-secondary)]">        {{ \'BOOK.TITLE\' | translate }}      </h2>    </div>    <!-- CONTENEDOR ORIGIN + DESTINATION RESPONSIVE -->    <div class="w-full md:px-[150px] px-4 mt-4" id="book-formulary">      <div class="bg-black/60 p-4 rounded-md">        <div class="flex flex-col md:flex-row md:gap-4 ">          <!-- ORIGIN -->          <div class="relative w-full md:w-1/3 mb-4 md:mb-0" #originWrapper>            <!-- Campo cerrado -->            <div              *ngIf="!toggleOriginSelector"              class="h-[40px] border border-gray-300 rounded-md px-3 bg-white text-sm text-black cursor-pointer hover:shadow-sm flex justify-between items-center"              (click)="openOriginSelector($event)">              <div class="flex items-center gap-2">                <ion-icon name="airplane-outline" class="text-gray-400 rotate-[-45deg]"></ion-icon>                <span>{{ selectedOrigin || (\'BOOK.ORIGIN\' | translate) }}</span>              </div>              <button                *ngIf="selectedOrigin"                (click)="clearOriginSelection($event)"                class="text-gray-400 hover:text-gray-700 text-base">                <ion-icon name="close-outline"></ion-icon>              </button>            </div>            <!-- Campo abierto + lista -->            <div class="w-full relative">              <input                #originInput                *ngIf="toggleOriginSelector"                [(ngModel)]="searchOrigin"                (input)="filterOriginsSearch()"                class="h-[40px] w-full px-3 border border-gray-300 rounded-md text-sm text-black focus:outline-none shadow-md dark:text-gray-400"                type="text"                [placeholder]="\'BOOK.SEARCH_ORIGIN\' | translate" />              <ul                *ngIf="toggleOriginSelector"                class="absolute top-full left-0 right-0 z-50 mt-1 bg-white/90 backdrop-blur-sm border border-gray-300 rounded-md shadow-xl max-h-48 overflow-y-auto">                <li                  *ngFor="let origin of filteredOriginsSearch"                  (click)="selectOrigin(origin)"                  class="px-4 py-2 hover:bg-gray-100 cursor-pointer text-sm text-black">                  {{ origin }}                </li>              </ul>            </div>          </div>          <!-- DESTINATION -->          <div class="relative w-full md:w-1/3 mb-4 md:mb-0" #destinationWrapper>            <!-- Campo cerrado -->            <div              *ngIf="!toggleDestinationSelector"              class="h-[40px] border border-gray-300 rounded-md px-3 bg-white text-sm text-black cursor-pointer hover:shadow-sm flex justify-between items-center"              (click)="openDestinationSelector($event)">              <div class="flex items-center gap-2">                <ion-icon name="airplane-outline" class="text-gray-400 rotate-[35deg] "></ion-icon>                <span>{{ selectedDestination || (\'BOOK.DESTINATION\' | translate) }}</span>              </div>              <button                *ngIf="selectedDestination"                (click)="clearDestinationSelection($event)"                class="text-gray-400 hover:text-gray-700 text-base">                <ion-icon name="close-outline"></ion-icon>              </button>            </div>            <!-- Campo abierto + lista -->            <div class="w-full relative">              <input                #destinationInput                *ngIf="toggleDestinationSelector"                [(ngModel)]="searchDestination"                (input)="filterDestinationsSearch()"                type="text"                class="h-[40px] w-full px-3 border border-gray-300 rounded-md text-sm text-black focus:outline-none shadow-md dark:text-gray-400"                [placeholder]="\'BOOK.SEARCH_DESTINATION\' | translate" />              <ul                *ngIf="toggleDestinationSelector"                class="absolute top-full left-0 right-0 z-50 mt-1 bg-white/90 backdrop-blur-sm border border-gray-300 rounded-md shadow-xl max-h-48 overflow-y-auto">                <li                  *ngFor="let destination of filteredDestinationsSearch"                  (click)="selectDestination(destination)"                  class="px-4 py-2 hover:bg-gray-100 cursor-pointer text-sm text-black">                  {{ destination }}                </li>              </ul>            </div>          </div>          <!-- Fecha de vuelo -->          <div class="relative w-full md:w-1/3 mb-4 md:mb-0" #dateWrapper>            <!-- Campo cerrado -->            <div              class="h-[40px] border rounded-md px-3 text-sm flex justify-between items-center transition cursor-pointer"              [ngClass]="{                \'bg-white text-black border-gray-300 hover:shadow-sm\': selectedOrigin && selectedDestination,                \'bg-gray-200 text-gray-400 border-gray-200 cursor-not-allowed\': !selectedOrigin || !selectedDestination              }"              (click)="selectedOrigin && selectedDestination && openDateSelector($event)">              <div class="flex items-center justify-between w-full">                <div class="flex items-center gap-2">                  <ion-icon name="calendar-outline" class="text-gray-400"></ion-icon>                  <ng-container *ngIf="selectedOrigin && selectedDestination; else disabledText">                    <span *ngIf="selectedDate && selectedTime; else defaultText">                    {{ (selectedDate + \'T\' + selectedTime) | date: \'longDate\' }}, {{ selectedTime }}h                  </span>                    <ng-template #defaultText>                      {{ \'BOOK.DATE\' | translate }}                    </ng-template>                  </ng-container>                  <ng-template #disabledText>                    <span class="opacity-80">{{ \'BOOK.DATE\' | translate}}</span>                  </ng-template>                </div>                <button                  *ngIf="selectedDate"                  (click)="clearDateSelection($event)"                  class="text-gray-400 hover:text-gray-700 text-base">                  <ion-icon name="close-outline"></ion-icon>                </button>              </div>            </div>            <!-- Popover calendario -->            <div *ngIf="toggleDateSelector" class="absolute z-50 w-full animate-fade-in">              <div class="bg-white dark:bg-[#3b3b3b] rounded-md shadow-md p-2 relative">                <!-- Paso 1: Fecha -->                <ng-container *ngIf="!stepSelectHour && toggleDateSelector">                  <ion-datetime                    [value]="selectedDate ?? undefined"                    [isDateEnabled]="isFlightDate"                    size="cover"                    presentation="date"                    (ionChange)="onDateSelected($event); stepSelectHour = true"                    class="z-0"                  ></ion-datetime>                </ng-container>                <!-- Paso 2: Selección de hora -->                <ng-container *ngIf="stepSelectHour && selectedDate && flightsByDate.get(selectedDate)">                  <div class="p-2 space-y-2 dark:bg-[#3b3b3b]">                    <div class="flex justify-between items-center mb-2">                      <h3 class="text-sm text-gray-700 dark:text-white">                        <button (click)="stepSelectHour = false" class="text-sm text-blue-600 hover:underline">                          ←                        </button>                        {{ selectedDate | date: \'fullDate\' }}                      </h3>                    </div>                    <div class="grid grid-cols-4 sm:grid-cols-3 gap-2">                      <button                        *ngFor="let hour of flightsByDate.get(selectedDate)"                        (click)="selectTime(hour)"                        class="px-2 py-2 rounded border text-sm font-medium transition-all hover:bg-blue-600 hover:text-white"                        [class.bg-blue-600]="selectedTime === hour"                        [class.text-white]="selectedTime === hour"                        [class.bg-white]="selectedTime !== hour"                        [class.text-black]="selectedTime !== hour"                      >                        {{ hour }}                      </button>                    </div>                  </div>                </ng-container>              </div>            </div>          </div>        </div>        <div class="w-full md:px-[150px] px-4 mt-2">          <ion-button            class="h-[40px] flex items-center justify-center text-sm font-medium rounded-md"            color="tertiary"            (click)="confirmBookingAlert()"            [disabled]="!selectedOrigin || !selectedDestination || !selectedDate || !selectedTime"            expand="block">            {{ \'BOOK.BOOK_NOW\' | translate }}          </ion-button>        </div>      </div>    </div>    <div class="w-full flex justify-center px-6">      <div class="mt-4 h-[1.5px] w-full bg-black dark:bg-zinc-400 rounded-full"></div>    </div>    <!-- TITULO SWIPER -->    <div class="px-4 pt-8 text-center" id="carousel-title">      <h2 class="text-3xl md:text-4xl font-istokWeb font-bold tracking-tight drop-shadow whitespace-normal break-words leading-tight text-wrap max-w-3xl mx-auto text-[var(--ion-color-secondary)]">        {{ \'BOOK.SWIPER\' | translate }}      </h2>    </div>    <div class="flex justify-center w-full px-4 mt-4">      <swiper-container        navigation="true"        pagination="true"        [spaceBetween]="20"        [breakpoints]="{          \'640\': { \'slidesPerView\': 1 },          \'768\': { \'slidesPerView\': 1.5 },          \'1024\': { \'slidesPerView\': 1 }        }"        class="w-full max-w-5xl h-[200px] md:h-[400px]"      >        <swiper-slide          lazy="true"          *ngFor="let destination of destinationImages"          (click)="selectDestinationFromImage(destination.name)"          class="relative cursor-pointer transition-transform transform hover:scale-105 rounded-md overflow-hidden shadow-lg"        >          <img            [src]="destination.image"            [alt]="destination.name"            loading="lazy"            class="w-full h-full object-cover"          />          <div class="absolute inset-0 bg-black/40 flex items-center justify-center">            <span class="text-white font-semibold text-lg">{{ destination.name }}</span>          </div>        </swiper-slide>      </swiper-container>    </div>    <app-footer></app-footer>  </div></ion-content></div>'
+    var COMPONENTS = [{'name': 'AboutPage', 'selector': 'app-about'},{'name': 'AccessDeniedPage', 'selector': 'app-access-denied'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'BookingModalComponent', 'selector': 'app-booking-modal'},{'name': 'BookingsPage', 'selector': 'app-bookings'},{'name': 'BookPage', 'selector': 'app-book'},{'name': 'ConfirmBookModalComponent', 'selector': 'app-confirm-book-modal'},{'name': 'ConfirmCancelModalComponent', 'selector': 'app-confirm-cancel-modal'},{'name': 'ConfirmRoleModalComponent', 'selector': 'app-confirm-role-modal'},{'name': 'FlightModalComponent', 'selector': 'app-flight-modal'},{'name': 'FlightSelectableComponent', 'selector': 'app-flight-selectable'},{'name': 'FlightsPage', 'selector': 'app-flights'},{'name': 'FooterComponent', 'selector': 'app-footer'},{'name': 'HomePage', 'selector': 'app-home'},{'name': 'LanguageSelectorComponent', 'selector': 'app-language-selector'},{'name': 'LoginPage', 'selector': 'app-login'},{'name': 'NotFoundPage', 'selector': 'app-not-found'},{'name': 'PictureOptionsComponent', 'selector': ''},{'name': 'PictureSelectableComponent', 'selector': 'app-picture-selectable'},{'name': 'ProfilePage', 'selector': 'app-profile'},{'name': 'RegisterPage', 'selector': 'app-register'},{'name': 'SplashPage', 'selector': 'app-splash'},{'name': 'UsersPage', 'selector': 'app-users'}];
+    var DIRECTIVES = [{'name': 'BookingStatusDirective', 'selector': '[appBookingState]'}];
+    var ACTUAL_COMPONENT = {'name': 'BookPage'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'BookPage.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

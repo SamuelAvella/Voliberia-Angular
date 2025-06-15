@@ -1,0 +1,1928 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Voliberia-Angular documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">Voliberia-Angular documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content miscellaneous-variables">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Miscellaneous</li>
+  <li class="breadcrumb-item">Variables</li>
+</ol>
+
+<section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <ul class="index-list">
+                        <li>
+                            <a href="#API_URL_TOKEN" title="src/app/core/repositories/repository.token.ts" ><b>API_URL_TOKEN</b>&nbsp;&nbsp;&nbsp;(src/.../repository.token.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#arrivalDateValidator" title="src/app/shared/validators/date.validators.ts" ><b>arrivalDateValidator</b>&nbsp;&nbsp;&nbsp;(src/.../date.validators.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#AUTH_MAPPING_TOKEN" title="src/app/core/repositories/repository.token.ts" ><b>AUTH_MAPPING_TOKEN</b>&nbsp;&nbsp;&nbsp;(src/.../repository.token.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#AUTH_ME_API_URL_TOKEN" title="src/app/core/repositories/repository.token.ts" ><b>AUTH_ME_API_URL_TOKEN</b>&nbsp;&nbsp;&nbsp;(src/.../repository.token.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#AUTH_SIGN_IN_API_URL_TOKEN" title="src/app/core/repositories/repository.token.ts" ><b>AUTH_SIGN_IN_API_URL_TOKEN</b>&nbsp;&nbsp;&nbsp;(src/.../repository.token.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#AUTH_SIGN_UP_API_URL_TOKEN" title="src/app/core/repositories/repository.token.ts" ><b>AUTH_SIGN_UP_API_URL_TOKEN</b>&nbsp;&nbsp;&nbsp;(src/.../repository.token.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#AUTH_TOKEN" title="src/app/core/repositories/repository.token.ts" ><b>AUTH_TOKEN</b>&nbsp;&nbsp;&nbsp;(src/.../repository.token.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#AuthenticationServiceFactory" title="src/app/core/repositories/repository.factory.ts" ><b>AuthenticationServiceFactory</b>&nbsp;&nbsp;&nbsp;(src/.../repository.factory.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#authGuard" title="src/app/core/guards/auth.guard.ts" ><b>authGuard</b>&nbsp;&nbsp;&nbsp;(src/.../auth.guard.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#AuthMappingFactory" title="src/app/core/repositories/repository.factory.ts" ><b>AuthMappingFactory</b>&nbsp;&nbsp;&nbsp;(src/.../repository.factory.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#BACKEND_TOKEN" title="src/app/core/repositories/repository.token.ts" ><b>BACKEND_TOKEN</b>&nbsp;&nbsp;&nbsp;(src/.../repository.token.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#BOOKINGS_API_URL_TOKEN" title="src/app/core/repositories/repository.token.ts" ><b>BOOKINGS_API_URL_TOKEN</b>&nbsp;&nbsp;&nbsp;(src/.../repository.token.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#BOOKINGS_COLLECTION_SUBSCRIPTION_TOKEN" title="src/app/core/repositories/repository.token.ts" ><b>BOOKINGS_COLLECTION_SUBSCRIPTION_TOKEN</b>&nbsp;&nbsp;&nbsp;(src/.../repository.token.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#BOOKINGS_REPOSITORY_MAPPING_TOKEN" title="src/app/core/repositories/repository.token.ts" ><b>BOOKINGS_REPOSITORY_MAPPING_TOKEN</b>&nbsp;&nbsp;&nbsp;(src/.../repository.token.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#BOOKINGS_REPOSITORY_TOKEN" title="src/app/core/repositories/repository.token.ts" ><b>BOOKINGS_REPOSITORY_TOKEN</b>&nbsp;&nbsp;&nbsp;(src/.../repository.token.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#BOOKINGS_RESOURCE_NAME_TOKEN" title="src/app/core/repositories/repository.token.ts" ><b>BOOKINGS_RESOURCE_NAME_TOKEN</b>&nbsp;&nbsp;&nbsp;(src/.../repository.token.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#BookingsCollectionSubscriptionFactory" title="src/app/core/repositories/repository.factory.ts" ><b>BookingsCollectionSubscriptionFactory</b>&nbsp;&nbsp;&nbsp;(src/.../repository.factory.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#BookingsMappingFactory" title="src/app/core/repositories/repository.factory.ts" ><b>BookingsMappingFactory</b>&nbsp;&nbsp;&nbsp;(src/.../repository.factory.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#BookingsRepositoryFactory" title="src/app/core/repositories/repository.factory.ts" ><b>BookingsRepositoryFactory</b>&nbsp;&nbsp;&nbsp;(src/.../repository.factory.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#COLLECTION_SUBSCRIPTION_TOKEN" title="src/app/core/repositories/repository.token.ts" ><b>COLLECTION_SUBSCRIPTION_TOKEN</b>&nbsp;&nbsp;&nbsp;(src/.../repository.token.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#config" title="capacitor.config.ts" ><b>config</b>&nbsp;&nbsp;&nbsp;(capacitor.config.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#environment" title="src/environments/environment.prod.ts" ><b>environment</b>&nbsp;&nbsp;&nbsp;(src/.../environment.prod.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#environment" title="src/environments/environment.ts" ><b>environment</b>&nbsp;&nbsp;&nbsp;(src/.../environment.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#FIREBASE_COLLECTION_TOKEN" title="src/app/core/repositories/repository.token.ts" ><b>FIREBASE_COLLECTION_TOKEN</b>&nbsp;&nbsp;&nbsp;(src/.../repository.token.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#FIREBASE_CONFIG_TOKEN" title="src/app/core/repositories/repository.token.ts" ><b>FIREBASE_CONFIG_TOKEN</b>&nbsp;&nbsp;&nbsp;(src/.../repository.token.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#FLIGHTS_API_URL_TOKEN" title="src/app/core/repositories/repository.token.ts" ><b>FLIGHTS_API_URL_TOKEN</b>&nbsp;&nbsp;&nbsp;(src/.../repository.token.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#FLIGHTS_COLLECTION_SUBSCRIPTION_TOKEN" title="src/app/core/repositories/repository.token.ts" ><b>FLIGHTS_COLLECTION_SUBSCRIPTION_TOKEN</b>&nbsp;&nbsp;&nbsp;(src/.../repository.token.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#FLIGHTS_REPOSITORY_MAPPING_TOKEN" title="src/app/core/repositories/repository.token.ts" ><b>FLIGHTS_REPOSITORY_MAPPING_TOKEN</b>&nbsp;&nbsp;&nbsp;(src/.../repository.token.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#FLIGHTS_REPOSITORY_TOKEN" title="src/app/core/repositories/repository.token.ts" ><b>FLIGHTS_REPOSITORY_TOKEN</b>&nbsp;&nbsp;&nbsp;(src/.../repository.token.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#FLIGHTS_RESOURCE_NAME_TOKEN" title="src/app/core/repositories/repository.token.ts" ><b>FLIGHTS_RESOURCE_NAME_TOKEN</b>&nbsp;&nbsp;&nbsp;(src/.../repository.token.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#FlightsCollectionSubscriptionFactory" title="src/app/core/repositories/repository.factory.ts" ><b>FlightsCollectionSubscriptionFactory</b>&nbsp;&nbsp;&nbsp;(src/.../repository.factory.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#FlightsMappingFactory" title="src/app/core/repositories/repository.factory.ts" ><b>FlightsMappingFactory</b>&nbsp;&nbsp;&nbsp;(src/.../repository.factory.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#FlightsRepositoryFactory" title="src/app/core/repositories/repository.factory.ts" ><b>FlightsRepositoryFactory</b>&nbsp;&nbsp;&nbsp;(src/.../repository.factory.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#guestGuard" title="src/app/core/guards/guest.guard.ts" ><b>guestGuard</b>&nbsp;&nbsp;&nbsp;(src/.../guest.guard.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#MediaServiceFactory" title="src/app/core/repositories/repository.factory.ts" ><b>MediaServiceFactory</b>&nbsp;&nbsp;&nbsp;(src/.../repository.factory.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#PICTURE_SELECTABLE_VALUE_ACCESSOR" title="src/app/shared/components/picture-selectable/picture-selectable.component.ts" ><b>PICTURE_SELECTABLE_VALUE_ACCESSOR</b>&nbsp;&nbsp;&nbsp;(src/.../picture-selectable.component.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#REPOSITORY_MAPPING_TOKEN" title="src/app/core/repositories/repository.token.ts" ><b>REPOSITORY_MAPPING_TOKEN</b>&nbsp;&nbsp;&nbsp;(src/.../repository.token.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#REPOSITORY_TOKEN" title="src/app/core/repositories/repository.token.ts" ><b>REPOSITORY_TOKEN</b>&nbsp;&nbsp;&nbsp;(src/.../repository.token.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#RESOURCE_NAME_TOKEN" title="src/app/core/repositories/repository.token.ts" ><b>RESOURCE_NAME_TOKEN</b>&nbsp;&nbsp;&nbsp;(src/.../repository.token.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#roleGuard" title="src/app/core/guards/role.guard.ts" ><b>roleGuard</b>&nbsp;&nbsp;&nbsp;(src/.../role.guard.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#sanitizeBookingState" title="src/app/core/repositories/impl/bookings-mapping-firebase.service.ts" ><b>sanitizeBookingState</b>&nbsp;&nbsp;&nbsp;(src/.../bookings-mapping-firebase.service.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#sanitizeBookingState" title="src/app/core/repositories/impl/bookings-mapping-strapi.service.ts" ><b>sanitizeBookingState</b>&nbsp;&nbsp;&nbsp;(src/.../bookings-mapping-strapi.service.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#STRAPI_AUTH_TOKEN" title="src/app/core/repositories/repository.token.ts" ><b>STRAPI_AUTH_TOKEN</b>&nbsp;&nbsp;&nbsp;(src/.../repository.token.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#UPLOAD_API_URL_TOKEN" title="src/app/core/repositories/repository.token.ts" ><b>UPLOAD_API_URL_TOKEN</b>&nbsp;&nbsp;&nbsp;(src/.../repository.token.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#USERSAPP_API_URL_TOKEN" title="src/app/core/repositories/repository.token.ts" ><b>USERSAPP_API_URL_TOKEN</b>&nbsp;&nbsp;&nbsp;(src/.../repository.token.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#USERSAPP_REPOSITORY_MAPPING_TOKEN" title="src/app/core/repositories/repository.token.ts" ><b>USERSAPP_REPOSITORY_MAPPING_TOKEN</b>&nbsp;&nbsp;&nbsp;(src/.../repository.token.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#USERSAPP_REPOSITORY_TOKEN" title="src/app/core/repositories/repository.token.ts" ><b>USERSAPP_REPOSITORY_TOKEN</b>&nbsp;&nbsp;&nbsp;(src/.../repository.token.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#USERSAPP_RESOURCE_NAME_TOKEN" title="src/app/core/repositories/repository.token.ts" ><b>USERSAPP_RESOURCE_NAME_TOKEN</b>&nbsp;&nbsp;&nbsp;(src/.../repository.token.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#UsersAppMappingFactory" title="src/app/core/repositories/repository.factory.ts" ><b>UsersAppMappingFactory</b>&nbsp;&nbsp;&nbsp;(src/.../repository.factory.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#UsersAppRepositoryFactory" title="src/app/core/repositories/repository.factory.ts" ><b>UsersAppRepositoryFactory</b>&nbsp;&nbsp;&nbsp;(src/.../repository.factory.ts)</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+    <h3>src/app/core/repositories/repository.token.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="API_URL_TOKEN"></a>
+                    <span class="name">
+                        <span ><b>API_URL_TOKEN</b></span>
+                        <a href="#API_URL_TOKEN"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new InjectionToken&lt;string&gt;(&#x27;ApiUrl&#x27;)</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Token genérico para la URL de la API.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="AUTH_MAPPING_TOKEN"></a>
+                    <span class="name">
+                        <span ><b>AUTH_MAPPING_TOKEN</b></span>
+                        <a href="#AUTH_MAPPING_TOKEN"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new InjectionToken&lt;IBaseMapping&lt;UserApp&gt;&gt;(&#x27;IAuthMapping&#x27;)</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Token para el mapeador de autenticación.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="AUTH_ME_API_URL_TOKEN"></a>
+                    <span class="name">
+                        <span ><b>AUTH_ME_API_URL_TOKEN</b></span>
+                        <a href="#AUTH_ME_API_URL_TOKEN"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new InjectionToken&lt;string&gt;(&#x27;AuthMeApiUrl&#x27;)</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Token para la URL del usuario autenticado.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="AUTH_SIGN_IN_API_URL_TOKEN"></a>
+                    <span class="name">
+                        <span ><b>AUTH_SIGN_IN_API_URL_TOKEN</b></span>
+                        <a href="#AUTH_SIGN_IN_API_URL_TOKEN"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new InjectionToken&lt;string&gt;(&#x27;AuthSignInApiUrl&#x27;)</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Token para la URL de login.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="AUTH_SIGN_UP_API_URL_TOKEN"></a>
+                    <span class="name">
+                        <span ><b>AUTH_SIGN_UP_API_URL_TOKEN</b></span>
+                        <a href="#AUTH_SIGN_UP_API_URL_TOKEN"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new InjectionToken&lt;string&gt;(&#x27;AuthSignUpApiUrl&#x27;)</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Token para la URL de registro.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="AUTH_TOKEN"></a>
+                    <span class="name">
+                        <span ><b>AUTH_TOKEN</b></span>
+                        <a href="#AUTH_TOKEN"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new InjectionToken&lt;IAuthentication&gt;(&#x27;IAuthentication&#x27;)</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Token para el servicio de autenticación.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="BACKEND_TOKEN"></a>
+                    <span class="name">
+                        <span ><b>BACKEND_TOKEN</b></span>
+                        <a href="#BACKEND_TOKEN"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new InjectionToken&lt;string&gt;(&#x27;Backend&#x27;)</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Token para el backend seleccionado (&#39;firebase&#39;, &#39;strapi&#39;, etc.).</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="BOOKINGS_API_URL_TOKEN"></a>
+                    <span class="name">
+                        <span ><b>BOOKINGS_API_URL_TOKEN</b></span>
+                        <a href="#BOOKINGS_API_URL_TOKEN"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new InjectionToken&lt;string&gt;(&#x27;BookingsApiUrl&#x27;)</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Token para la URL de la API de reservas.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="BOOKINGS_COLLECTION_SUBSCRIPTION_TOKEN"></a>
+                    <span class="name">
+                        <span ><b>BOOKINGS_COLLECTION_SUBSCRIPTION_TOKEN</b></span>
+                        <a href="#BOOKINGS_COLLECTION_SUBSCRIPTION_TOKEN"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new InjectionToken&lt;ICollectionSubscription&lt;Booking&gt;&gt;(&#x27;BookingsCollectionSubscriptionToken&#x27;)</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Token de subscripción para la colección de reservas.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="BOOKINGS_REPOSITORY_MAPPING_TOKEN"></a>
+                    <span class="name">
+                        <span ><b>BOOKINGS_REPOSITORY_MAPPING_TOKEN</b></span>
+                        <a href="#BOOKINGS_REPOSITORY_MAPPING_TOKEN"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new InjectionToken&lt;IBaseMapping&lt;Booking&gt;&gt;(&#x27;IBaseRepositoryMapping&#x27;)</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Token para el mapeador de reservas.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="BOOKINGS_REPOSITORY_TOKEN"></a>
+                    <span class="name">
+                        <span ><b>BOOKINGS_REPOSITORY_TOKEN</b></span>
+                        <a href="#BOOKINGS_REPOSITORY_TOKEN"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new InjectionToken&lt;IBookingsRepository&gt;(&#x27;IBookingsRepository&#x27;)</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Token para el repositorio de reservas.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="BOOKINGS_RESOURCE_NAME_TOKEN"></a>
+                    <span class="name">
+                        <span ><b>BOOKINGS_RESOURCE_NAME_TOKEN</b></span>
+                        <a href="#BOOKINGS_RESOURCE_NAME_TOKEN"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new InjectionToken&lt;String&gt;(&#x27;BookingsResourceName&#x27;)</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Token para el recurso de reservas.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="COLLECTION_SUBSCRIPTION_TOKEN"></a>
+                    <span class="name">
+                        <span ><b>COLLECTION_SUBSCRIPTION_TOKEN</b></span>
+                        <a href="#COLLECTION_SUBSCRIPTION_TOKEN"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new InjectionToken&lt;ICollectionSubscription&lt;Model&gt;&gt;(&#x27;CollectionSubscriptionToken&#x27;)</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Token genérico para subscripción a colección en Firebase.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="FIREBASE_COLLECTION_TOKEN"></a>
+                    <span class="name">
+                        <span ><b>FIREBASE_COLLECTION_TOKEN</b></span>
+                        <a href="#FIREBASE_COLLECTION_TOKEN"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new InjectionToken&lt;string&gt;(&#x27;FIREBASE_COLLECTION_TOKEN&#x27;)</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Token de nombre de colección Firebase.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="FIREBASE_CONFIG_TOKEN"></a>
+                    <span class="name">
+                        <span ><b>FIREBASE_CONFIG_TOKEN</b></span>
+                        <a href="#FIREBASE_CONFIG_TOKEN"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new InjectionToken&lt;any&gt;(&#x27;FIREBASE_CONFIG_TOKEN&#x27;)</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Token de configuración de Firebase.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="FLIGHTS_API_URL_TOKEN"></a>
+                    <span class="name">
+                        <span ><b>FLIGHTS_API_URL_TOKEN</b></span>
+                        <a href="#FLIGHTS_API_URL_TOKEN"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new InjectionToken&lt;string&gt;(&#x27;FlightsApiUrl&#x27;)</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Token para la URL de la API de vuelos.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="FLIGHTS_COLLECTION_SUBSCRIPTION_TOKEN"></a>
+                    <span class="name">
+                        <span ><b>FLIGHTS_COLLECTION_SUBSCRIPTION_TOKEN</b></span>
+                        <a href="#FLIGHTS_COLLECTION_SUBSCRIPTION_TOKEN"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new InjectionToken&lt;ICollectionSubscription&lt;Flight&gt;&gt;(&#x27;FlightsCollectionSubscriptionToken&#x27;)</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Token de subscripción para la colección de vuelos.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="FLIGHTS_REPOSITORY_MAPPING_TOKEN"></a>
+                    <span class="name">
+                        <span ><b>FLIGHTS_REPOSITORY_MAPPING_TOKEN</b></span>
+                        <a href="#FLIGHTS_REPOSITORY_MAPPING_TOKEN"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new InjectionToken&lt;IBaseMapping&lt;Flight&gt;&gt;(&#x27;IBaseRepositoryMapping&#x27;)</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Token para el mapeador de vuelos.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="FLIGHTS_REPOSITORY_TOKEN"></a>
+                    <span class="name">
+                        <span ><b>FLIGHTS_REPOSITORY_TOKEN</b></span>
+                        <a href="#FLIGHTS_REPOSITORY_TOKEN"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new InjectionToken&lt;IFlightsRepository&gt;(&#x27;IFlightsRepository&#x27;)</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Token para el repositorio de vuelos.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="FLIGHTS_RESOURCE_NAME_TOKEN"></a>
+                    <span class="name">
+                        <span ><b>FLIGHTS_RESOURCE_NAME_TOKEN</b></span>
+                        <a href="#FLIGHTS_RESOURCE_NAME_TOKEN"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new InjectionToken&lt;String&gt;(&#x27;FlightsResourceName&#x27;)</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Token para el recurso de vuelos.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="REPOSITORY_MAPPING_TOKEN"></a>
+                    <span class="name">
+                        <span ><b>REPOSITORY_MAPPING_TOKEN</b></span>
+                        <a href="#REPOSITORY_MAPPING_TOKEN"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new InjectionToken&lt;IBaseMapping&lt;any&gt;&gt;(&#x27;IBaseRepositoryMapping&#x27;)</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Token genérico para mapeo de repositorios.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="REPOSITORY_TOKEN"></a>
+                    <span class="name">
+                        <span ><b>REPOSITORY_TOKEN</b></span>
+                        <a href="#REPOSITORY_TOKEN"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new InjectionToken&lt;IBaseRepository&lt;any&gt;&gt;(&#x27;REPOSITORY_TOKEN&#x27;)</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Token genérico de repositorio.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="RESOURCE_NAME_TOKEN"></a>
+                    <span class="name">
+                        <span ><b>RESOURCE_NAME_TOKEN</b></span>
+                        <a href="#RESOURCE_NAME_TOKEN"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new InjectionToken&lt;String&gt;(&#x27;ResourceName&#x27;)</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Token para el nombre genérico del recurso.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="STRAPI_AUTH_TOKEN"></a>
+                    <span class="name">
+                        <span ><b>STRAPI_AUTH_TOKEN</b></span>
+                        <a href="#STRAPI_AUTH_TOKEN"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new InjectionToken&lt;IStrapiAuthentication&gt;(&#x27;IStrapiAuthentication&#x27;)</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Token específico para autenticación con Strapi.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="UPLOAD_API_URL_TOKEN"></a>
+                    <span class="name">
+                        <span ><b>UPLOAD_API_URL_TOKEN</b></span>
+                        <a href="#UPLOAD_API_URL_TOKEN"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new InjectionToken&lt;string&gt;(&#x27;UploadApiUrl&#x27;)</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Token para la URL de subida de ficheros.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="USERSAPP_API_URL_TOKEN"></a>
+                    <span class="name">
+                        <span ><b>USERSAPP_API_URL_TOKEN</b></span>
+                        <a href="#USERSAPP_API_URL_TOKEN"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new InjectionToken&lt;string&gt;(&#x27;UsersAppApiUrl&#x27;)</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Token para la URL de la API de usuarios.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="USERSAPP_REPOSITORY_MAPPING_TOKEN"></a>
+                    <span class="name">
+                        <span ><b>USERSAPP_REPOSITORY_MAPPING_TOKEN</b></span>
+                        <a href="#USERSAPP_REPOSITORY_MAPPING_TOKEN"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new InjectionToken&lt;IBaseMapping&lt;UserApp&gt;&gt;(&#x27;IBaseRepositoryMapping&#x27;)</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Token para el mapeador de usuarios.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="USERSAPP_REPOSITORY_TOKEN"></a>
+                    <span class="name">
+                        <span ><b>USERSAPP_REPOSITORY_TOKEN</b></span>
+                        <a href="#USERSAPP_REPOSITORY_TOKEN"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new InjectionToken&lt;IUsersAppRepository&gt;(&#x27;IUsersAppRepository&#x27;)</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Token para el repositorio de usuarios.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="USERSAPP_RESOURCE_NAME_TOKEN"></a>
+                    <span class="name">
+                        <span ><b>USERSAPP_RESOURCE_NAME_TOKEN</b></span>
+                        <a href="#USERSAPP_RESOURCE_NAME_TOKEN"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new InjectionToken&lt;String&gt;(&#x27;UsersAppResourceName&#x27;)</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Token para el recurso de usuarios.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/shared/validators/date.validators.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="arrivalDateValidator"></a>
+                    <span class="name">
+                        <span ><b>arrivalDateValidator</b></span>
+                        <a href="#arrivalDateValidator"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>ValidatorFn</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>(control: AbstractControl): ValidationErrors | null &#x3D;&gt; {
+  const departure &#x3D; control.get(&#x27;departureDate&#x27;)?.value;
+  const arrival &#x3D; control.get(&#x27;arrivalDate&#x27;)?.value;
+
+  
+  if (!departure || !arrival) {
+    return null;
+  }
+
+  const departureDate &#x3D; new Date(departure);
+  const arrivalDate &#x3D; new Date(arrival);
+
+  const diffInMinutes &#x3D; (arrivalDate.getTime() - departureDate.getTime()) / 60000;
+
+  console.log(&#x27;Validating dates:&#x27;, departureDate, arrivalDate, diffInMinutes);
+
+  if (diffInMinutes &lt; 30) {
+    return { arrivalTooSoon: true };
+  }
+
+  return null;
+}</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Validador personalizado que asegura que la llegada ocurra al menos 30 minutos
+después de la salida.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/core/repositories/repository.factory.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="AuthenticationServiceFactory"></a>
+                    <span class="name">
+                        <span ><b>AuthenticationServiceFactory</b></span>
+                        <a href="#AuthenticationServiceFactory"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>FactoryProvider</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{
+    provide: BaseAuthenticationService,
+    useFactory: (backend:string, firebaseConfig: any, signIn:string, signUp:string, meUrl:string, mapping:IAuthMapping, http:HttpClient) &#x3D;&gt; {
+      switch(backend){
+        case &#x27;http&#x27;:
+          throw new Error(&quot;BACKEND NOT IMPLEMENTED&quot;);
+        case &#x27;local-storage&#x27;:
+          throw new Error(&quot;BACKEND NOT IMPLEMENTED&quot;);
+        case &#x27;json-server&#x27;:
+          throw new Error(&quot;BACKEND NOT IMPLEMENTED&quot;);
+        case &#x27;strapi&#x27;:
+          return new StrapiAuthenticationService(signIn, signUp, meUrl, mapping, http);
+        case &#x27;firebase&#x27;:
+          return new FirebaseAuthenticationService(firebaseConfig, mapping);
+        default:
+          throw new Error(&quot;BACKEND NOT IMPLEMENTED&quot;);
+      }
+
+    },
+    deps: [BACKEND_TOKEN, FIREBASE_CONFIG_TOKEN, AUTH_SIGN_IN_API_URL_TOKEN, AUTH_SIGN_UP_API_URL_TOKEN, AUTH_ME_API_URL_TOKEN, AUTH_MAPPING_TOKEN, HttpClient]
+}</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Factoría para el servicio de autenticación.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="AuthMappingFactory"></a>
+                    <span class="name">
+                        <span ><b>AuthMappingFactory</b></span>
+                        <a href="#AuthMappingFactory"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>FactoryProvider</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>createBaseAuthMappingFactory(AUTH_MAPPING_TOKEN, [BACKEND_TOKEN])</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Factoría para el mapeador de autenticación.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="BookingsCollectionSubscriptionFactory"></a>
+                    <span class="name">
+                        <span ><b>BookingsCollectionSubscriptionFactory</b></span>
+                        <a href="#BookingsCollectionSubscriptionFactory"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>createCollectionSubscriptionFactory&lt;Booking&gt;(
+  &#x27;bookings&#x27;,
+  BOOKINGS_REPOSITORY_MAPPING_TOKEN,
+  BOOKINGS_COLLECTION_SUBSCRIPTION_TOKEN
+)</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Suscripción en tiempo real a la colección de reservas.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="BookingsMappingFactory"></a>
+                    <span class="name">
+                        <span ><b>BookingsMappingFactory</b></span>
+                        <a href="#BookingsMappingFactory"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>createBaseMappingFactory&lt;Booking&gt;(
+    BOOKINGS_REPOSITORY_MAPPING_TOKEN,
+    [BACKEND_TOKEN, FIREBASE_CONFIG_TOKEN],
+    &#x27;booking&#x27;
+)</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Factoría para el mapeador de Booking.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="BookingsRepositoryFactory"></a>
+                    <span class="name">
+                        <span ><b>BookingsRepositoryFactory</b></span>
+                        <a href="#BookingsRepositoryFactory"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>FactoryProvider</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>createBaseRepositoryFactory&lt;Booking&gt;(
+  BOOKINGS_REPOSITORY_TOKEN,
+  [
+    BACKEND_TOKEN,
+    HttpClient,
+    BaseAuthenticationService,
+    BOOKINGS_API_URL_TOKEN,
+    BOOKINGS_RESOURCE_NAME_TOKEN,
+    BOOKINGS_REPOSITORY_MAPPING_TOKEN,
+    FIREBASE_CONFIG_TOKEN,
+  ]
+)</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Factoría para el repositorio de reservas (Booking).</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="FlightsCollectionSubscriptionFactory"></a>
+                    <span class="name">
+                        <span ><b>FlightsCollectionSubscriptionFactory</b></span>
+                        <a href="#FlightsCollectionSubscriptionFactory"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>createCollectionSubscriptionFactory&lt;Flight&gt;(
+  &#x27;fligths&#x27;,
+  FLIGHTS_REPOSITORY_MAPPING_TOKEN,
+  FLIGHTS_COLLECTION_SUBSCRIPTION_TOKEN
+)</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Suscripción en tiempo real a la colección de vuelos.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="FlightsMappingFactory"></a>
+                    <span class="name">
+                        <span ><b>FlightsMappingFactory</b></span>
+                        <a href="#FlightsMappingFactory"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>createBaseMappingFactory&lt;Flight&gt;(
+    FLIGHTS_REPOSITORY_MAPPING_TOKEN,
+    [BACKEND_TOKEN, FIREBASE_CONFIG_TOKEN],
+    &#x27;flight&#x27;
+)</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Factoría para el mapeador de Flight.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="FlightsRepositoryFactory"></a>
+                    <span class="name">
+                        <span ><b>FlightsRepositoryFactory</b></span>
+                        <a href="#FlightsRepositoryFactory"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>FactoryProvider</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>createBaseRepositoryFactory&lt;Flight&gt;(
+  FLIGHTS_REPOSITORY_TOKEN,
+    [
+      BACKEND_TOKEN,
+      HttpClient,
+      BaseAuthenticationService,
+      FLIGHTS_API_URL_TOKEN,
+      FLIGHTS_RESOURCE_NAME_TOKEN,
+      FLIGHTS_REPOSITORY_MAPPING_TOKEN,
+      FIREBASE_CONFIG_TOKEN
+    ]
+)</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Factoría para el repositorio de vuelos (Flight).</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="MediaServiceFactory"></a>
+                    <span class="name">
+                        <span ><b>MediaServiceFactory</b></span>
+                        <a href="#MediaServiceFactory"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>FactoryProvider</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{
+    provide: BaseMediaService,
+    useFactory: (backend:string, firebaseConfig: any, upload:string, auth:IAuthentication, http:HttpClient) &#x3D;&gt; {
+      switch(backend){
+        case &#x27;http&#x27;:
+          throw new Error(&quot;BACKEND NOT IMPLEMENTED&quot;);
+        case &#x27;local-storage&#x27;:
+          throw new Error(&quot;BACKEND NOT IMPLEMENTED&quot;);
+        case &#x27;json-server&#x27;:
+          throw new Error(&quot;BACKEND NOT IMPLEMENTED&quot;);
+        case &#x27;firebase&#x27;:
+          return new FirebaseMediaService(firebaseConfig, auth)
+        case &#x27;strapi&#x27;:
+          return new StrapiMediaService(upload, auth as IStrapiAuthentication, http);
+        default:
+          throw new Error(&quot;BACKEND NOT IMPLEMENTED&quot;);
+      }
+
+    },
+    deps: [BACKEND_TOKEN, FIREBASE_CONFIG_TOKEN, UPLOAD_API_URL_TOKEN, BaseAuthenticationService, HttpClient]
+}</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Factoría para el servicio de subida de ficheros.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="UsersAppMappingFactory"></a>
+                    <span class="name">
+                        <span ><b>UsersAppMappingFactory</b></span>
+                        <a href="#UsersAppMappingFactory"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>createBaseMappingFactory&lt;UserApp&gt;(
+    USERSAPP_REPOSITORY_MAPPING_TOKEN,
+    [BACKEND_TOKEN, FIREBASE_CONFIG_TOKEN],
+    &#x27;userApp&#x27;
+)</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Factoría para el mapeador de UserApp.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="UsersAppRepositoryFactory"></a>
+                    <span class="name">
+                        <span ><b>UsersAppRepositoryFactory</b></span>
+                        <a href="#UsersAppRepositoryFactory"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>FactoryProvider</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>createBaseRepositoryFactory&lt;User&gt;(
+  USERSAPP_REPOSITORY_TOKEN,
+    [
+      BACKEND_TOKEN,
+      HttpClient,
+      BaseAuthenticationService,
+      USERSAPP_API_URL_TOKEN,
+      USERSAPP_RESOURCE_NAME_TOKEN,
+      USERSAPP_REPOSITORY_MAPPING_TOKEN,
+      FIREBASE_CONFIG_TOKEN
+    ]
+)</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Factoría para el repositorio de usuarios (UserApp).</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/core/guards/auth.guard.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="authGuard"></a>
+                    <span class="name">
+                        <span ><b>authGuard</b></span>
+                        <a href="#authGuard"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>CanActivateFn</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>async (route, state) &#x3D;&gt; {
+  const router &#x3D; inject(Router);
+  const authService &#x3D; inject(BaseAuthenticationService);
+
+  try {
+    const user &#x3D; await authService.getCurrentUser();
+    if (!user) {
+      router.navigate([&#x27;/login&#x27;], { queryParams: { returnUrl: state.url } });
+      return false;
+    }
+    return true;
+  } catch (error) {
+    console.error(&#x27;Error in auth guard:&#x27;, error);
+    router.navigate([&#x27;/login&#x27;], { queryParams: { returnUrl: state.url } });
+    return false;
+  }
+}</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Guard que permite el acceso solo si el usuario está autenticado.
+Redirige a la página de login si no lo está, incluyendo la URL de retorno.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+    <h3>capacitor.config.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="config"></a>
+                    <span class="name">
+                        <span ><b>config</b></span>
+                        <a href="#config"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>CapacitorConfig</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{
+  appId: &#x27;io.ionic.starter&#x27;,
+  appName: &#x27;Voliberia-Angular&#x27;,
+  webDir: &#x27;www&#x27;
+}</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/environments/environment.prod.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="environment"></a>
+                    <span class="name">
+                        <span ><b>environment</b></span>
+                        <a href="#environment"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{
+  production: true,
+  apiUrl: &quot;https://voliberia-service.onrender.com&quot;
+}</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/environments/environment.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="environment"></a>
+                    <span class="name">
+                        <span ><b>environment</b></span>
+                        <a href="#environment"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{
+  production: false,
+  apiUrl:&quot;http://localhost:1337&quot;
+}</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/core/guards/guest.guard.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="guestGuard"></a>
+                    <span class="name">
+                        <span ><b>guestGuard</b></span>
+                        <a href="#guestGuard"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>CanActivateFn</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>(route, state) &#x3D;&gt; {
+  const authService &#x3D; inject(BaseAuthenticationService);
+  const router &#x3D; inject(Router);
+
+  return authService.ready$.pipe(
+    filter(isReady &#x3D;&gt; isReady),
+    take(1),
+    switchMap(() &#x3D;&gt; authService.authenticated$),
+    map(isLoggedIn &#x3D;&gt; {
+      if (isLoggedIn) {
+        router.navigate([&#x27;/home&#x27;]);
+        return false;
+      }
+      return true;
+    })
+  );
+}</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Guard que bloquea el acceso a usuarios ya autenticados.
+Redirige a <code>/home</code> si el usuario ya ha iniciado sesión.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/shared/components/picture-selectable/picture-selectable.component.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="PICTURE_SELECTABLE_VALUE_ACCESSOR"></a>
+                    <span class="name">
+                        <span ><b>PICTURE_SELECTABLE_VALUE_ACCESSOR</b></span>
+                        <a href="#PICTURE_SELECTABLE_VALUE_ACCESSOR"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{
+  provide: NG_VALUE_ACCESSOR,
+  useExisting: forwardRef(() &#x3D;&gt; PictureSelectableComponent),
+  multi: true
+}</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/core/guards/role.guard.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="roleGuard"></a>
+                    <span class="name">
+                        <span ><b>roleGuard</b></span>
+                        <a href="#roleGuard"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>(allowedRoles: string[]): CanActivateFn &#x3D;&gt; {
+  return async () &#x3D;&gt; {
+    const router &#x3D; inject(Router);
+    const authService &#x3D; inject(BaseAuthenticationService);
+    const usersAppService &#x3D; inject(UsersAppService);
+
+    try {
+      const user &#x3D; await authService.getCurrentUser();
+      if (!user) {
+        router.navigate([&#x27;/login&#x27;]);
+        return false;
+      }
+
+      const userApp &#x3D; await lastValueFrom(usersAppService.getByUserId(user.id));
+      if (!userApp || !allowedRoles.includes(userApp.role)) {
+        router.navigate([&#x27;/access-denied&#x27;]);
+        return false;
+      }
+
+      return true;
+    } catch (error) {
+      console.error(&#x27;Error in role guard:&#x27;, error);
+      router.navigate([&#x27;/login&#x27;]);
+      return false;
+    }
+  };
+}</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Guard que permite el acceso solo a usuarios con roles específicos.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/core/repositories/impl/bookings-mapping-firebase.service.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="sanitizeBookingState"></a>
+                    <span class="name">
+                        <span ><b>sanitizeBookingState</b></span>
+                        <a href="#sanitizeBookingState"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>(state: any): BookingState &#x3D;&gt; {
+  return [&#x27;pending&#x27;, &#x27;confirm&#x27;, &#x27;cancelled&#x27;].includes(state) ? state : &#x27;cancelled&#x27;;
+}</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Sanitiza el estado de la reserva asegurando que solo sea uno de los valores válidos.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/core/repositories/impl/bookings-mapping-strapi.service.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="sanitizeBookingState"></a>
+                    <span class="name">
+                        <span ><b>sanitizeBookingState</b></span>
+                        <a href="#sanitizeBookingState"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>(state: any): BookingState &#x3D;&gt; {
+  if (typeof state !&#x3D;&#x3D; &#x27;string&#x27;) return &#x27;cancelled&#x27;;
+  return ([&#x27;pending&#x27;, &#x27;confirm&#x27;, &#x27;cancelled&#x27;].includes(state) ? state : &#x27;cancelled&#x27;) as BookingState;
+}</code>
+                    </td>
+                </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Sanitiza el estado de la reserva, devolviendo uno válido o &#39;cancelled&#39; por defecto.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'miscellaneous-variables';
+            var COMPODOC_CURRENT_PAGE_URL = 'variables.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

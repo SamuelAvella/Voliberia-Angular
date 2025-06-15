@@ -5,6 +5,10 @@ import { Flight } from "src/app/core/models/flight.model";
 import { arrivalDateValidator } from "../../validators/date.validators";
 import { BreakpointsService } from "src/app/core/services/breakpoints.service";
 
+/**
+ * Modal para crear o editar un vuelo.
+ * Permite seleccionar origen, destino, fechas y horas con validaciones personalizadas.
+ */
 @Component({
   selector: 'app-flight-modal',
   templateUrl: './flight-modal.component.html',
@@ -12,29 +16,31 @@ import { BreakpointsService } from "src/app/core/services/breakpoints.service";
 })
 export class FlightModalComponent implements OnInit {
 
-  
+  /** Vuelo a editar (opcional) */
   @Input() flight?: Flight;
 
   @ViewChild('departureWrapper') departureWrapper!: ElementRef;
   @ViewChild('arrivalWrapper') arrivalWrapper!: ElementRef;
 
+  /** Formulario reactivo del vuelo */
   formGroup: FormGroup;
 
-  toggleDepartureDateSelector:boolean = false;
-  toggleArrivalDateSelector:boolean = false;
-
+  /** Estado de visibilidad de selectores */
+  toggleDepartureDateSelector = false;
+  toggleArrivalDateSelector = false;
   toggleTimeSelector: 'departure' | 'arrival' | null = null;
-  
 
+  /** Campos separados de fecha y hora */
   departureDate: string | null = null;
   departureTime: string | null = null;
-
   arrivalDate: string | null = null;
   arrivalTime: string | null = null;
 
+  /** Fechas mínimas válidas */
   minDepartureDate = new Date().toISOString();
   minArrivalDate = new Date(Date.now() + 40 * 60000).toISOString();
 
+  /** Indica si el dispositivo es móvil */
   isMobile = false;
 
   constructor(
@@ -45,6 +51,7 @@ export class FlightModalComponent implements OnInit {
     this.breakpointsService.isHandset$.subscribe(value => {
       this.isMobile = value;
     });
+
     this.formGroup = this.fb.group({
       origin: ['', [Validators.required, Validators.minLength(3)]],
       destination: ['', [Validators.required, Validators.minLength(3)]],
@@ -54,8 +61,12 @@ export class FlightModalComponent implements OnInit {
     }, { validators: arrivalDateValidator });
   }
 
+  /**
+   * Inicializa el componente y carga datos si se está editando un vuelo.
+   */
   ngOnInit(): void {
     this.minDepartureDate = new Date(new Date().setDate(new Date().getDate() + 1)).toISOString().split('T')[0] + 'T00:00:00.000Z';
+
     if (this.flight) {
       this.formGroup.patchValue(this.flight);
       const [depDate, depTime] = this.flight.departureDate.split('T');
@@ -67,33 +78,21 @@ export class FlightModalComponent implements OnInit {
     }
   }
 
-
+  /** Cierra el modal sin guardar cambios */
   dismiss(): void {
     this.modalCtrl.dismiss();
   }
 
+  /** Confirma y envía el formulario */
   onSubmit(): void {
     this.modalCtrl.dismiss(this.formGroup.value);
   }
 
-  // openDateSelector(type: 'departure' | 'arrival', event: Event): void {
-  //   event.stopPropagation();
-  //   this.toggleDateSelector = type;
-  //   this.toggleTimeSelector = null;
-  // }
-
-  // onDatePartSelected(event: CustomEvent, type: 'departure' | 'arrival', originalEvent?: Event): void {
-  //   originalEvent?.stopPropagation();
-  //   const date = event.detail.value;
-  //   if (type === 'departure') {
-  //     this.departureDate = date;
-  //   } else {
-  //     this.arrivalDate = date;
-  //   }
-  //   this.toggleDateSelector = null;
-  //   this.toggleTimeSelector = type;
-  // }
-
+  /**
+   * Maneja la selección de hora en el selector.
+   * @param event Evento del componente
+   * @param type Tipo de campo: 'departure' o 'arrival'
+   */
   onTimePartSelected(event: CustomEvent, type: 'departure' | 'arrival'): void {
     const time = event.detail.value;
     if (type === 'departure') {
@@ -110,60 +109,14 @@ export class FlightModalComponent implements OnInit {
     this.toggleTimeSelector = null;
   }
 
-  // clearDate(type: 'departure' | 'arrival'): void {
-  //   if (type === 'departure') {
-  //     this.departureDate = null;
-  //     this.departureTime = null;
-  //     this.formGroup.get('departureDate')?.reset();
-  //   } else {
-  //     this.arrivalDate = null;
-  //     this.arrivalTime = null;
-  //     this.formGroup.get('arrivalDate')?.reset();
-  //   }
-  //   this.toggleDateSelector = null;
-  //   this.toggleTimeSelector = null;
-  // }
-
+  /**
+   * Une una fecha y una hora en formato ISO.
+   * @param dateStr Fecha en string
+   * @param timeStr Hora en string
+   * @returns Fecha completa en formato ISO
+   */
   combineDateTime(dateStr: string, timeStr: string): string {
     return new Date(`${dateStr}T${timeStr}`).toISOString();
   }
-
-  
-
-  // @HostListener('document:click', ['$event'])
-  // handleClickOutside(event: MouseEvent): void {
-  //   const path = event.composedPath();
-  //   if (
-  //     this.toggleDateSelector &&
-  //     this.departureWrapper &&
-  //     !path.includes(this.departureWrapper.nativeElement) &&
-  //     this.toggleDateSelector === 'departure'
-  //   ) {
-  //     this.toggleDateSelector = null;
-  //   }
-  //   if (
-  //     this.toggleTimeSelector &&
-  //     this.departureWrapper &&
-  //     !path.includes(this.departureWrapper.nativeElement) &&
-  //     this.toggleTimeSelector === 'departure'
-  //   ) {
-  //     this.toggleTimeSelector = null;
-  //   }
-  //   if (
-  //     this.toggleDateSelector &&
-  //     this.arrivalWrapper &&
-  //     !path.includes(this.arrivalWrapper.nativeElement) &&
-  //     this.toggleDateSelector === 'arrival'
-  //   ) {
-  //     this.toggleDateSelector = null;
-  //   }
-  //   if (
-  //     this.toggleTimeSelector &&
-  //     this.arrivalWrapper &&
-  //     !path.includes(this.arrivalWrapper.nativeElement) &&
-  //     this.toggleTimeSelector === 'arrival'
-  //   ) {
-  //     this.toggleTimeSelector = null;
-  //   }
-  // }
 }
+

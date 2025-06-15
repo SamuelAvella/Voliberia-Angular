@@ -1,0 +1,830 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Voliberia-Angular documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">Voliberia-Angular documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  HomePage</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#styleData" class="nav-link"
+                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/pages/home/home.page.ts</code>
+</p>
+
+
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                <code>OnInit</code>
+    </p>
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-home</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./home.page.scss</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./home.page.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Optional</span>
+                                <a href="#currentUser" >currentUser</a>
+                            </li>
+                            <li>
+                                <a href="#loading" >loading</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#ngOnInit" >ngOnInit</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(authService: <a href="../injectables/BaseAuthenticationService.html" target="_self">BaseAuthenticationService</a>, usersService: <a href="../injectables/UsersAppService.html" target="_self">UsersAppService</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/app/pages/home/home.page.ts:24</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>authService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/BaseAuthenticationService.html" target="_self" >BaseAuthenticationService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>usersService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/UsersAppService.html" target="_self" >UsersAppService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>ngOnInit</b></span>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="34"
+                                    class="link-to-prism">src/app/pages/home/home.page.ts:34</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Al inicializar, carga el usuario autenticado y su perfil extendido.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="currentUser"></a>
+                    <span class="name">
+                            <span class="modifier">Optional</span>
+                        <span ><b>currentUser</b></span>
+                        <a href="#currentUser"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/UserApp.html" target="_self" >UserApp</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="21" class="link-to-prism">src/app/pages/home/home.page.ts:21</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Usuario actual cargado desde la base de datos</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="loading"></a>
+                    <span class="name">
+                        <span ><b>loading</b></span>
+                        <a href="#loading"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>true</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/app/pages/home/home.page.ts:24</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Indica si los datos se están cargando</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit } from &#x27;@angular/core&#x27;;
+import { IonicModule } from &#x27;@ionic/angular&#x27;;
+import { CommonModule } from &#x27;@angular/common&#x27;;
+import { TranslateModule } from &#x27;@ngx-translate/core&#x27;;
+import { RouterModule } from &#x27;@angular/router&#x27;;
+import { BaseAuthenticationService } from &#x27;../../core/services/impl/base-authentication.service&#x27;;
+import { UsersAppService } from &#x27;../../core/services/impl/usersApp.service&#x27;;
+import { UserApp } from &#x27;../../core/models/userApp.model&#x27;;
+import { firstValueFrom } from &#x27;rxjs&#x27;;
+@Component({
+  selector: &#x27;app-home&#x27;,
+  templateUrl: &#x27;./home.page.html&#x27;,
+  styleUrls: [&#x27;./home.page.scss&#x27;],
+})
+export class HomePage implements OnInit {
+  /** Usuario actual cargado desde la base de datos */
+  currentUser?: UserApp;
+
+  /** Indica si los datos se están cargando */
+  loading &#x3D; true;
+
+  constructor(
+    private authService: BaseAuthenticationService,
+    private usersService: UsersAppService
+  ) {}
+
+  /**
+   * Al inicializar, carga el usuario autenticado y su perfil extendido.
+   */
+  async ngOnInit() {
+    try {
+      const user &#x3D; await this.authService.getCurrentUser();
+      if (user) {
+        const userApp &#x3D; await firstValueFrom(this.usersService.getByUserId(user.id));
+        this.currentUser &#x3D; userApp || undefined;
+      }
+    } catch (error) {
+      console.error(&#x27;Error getting current user:&#x27;, error);
+    } finally {
+      this.loading &#x3D; false;
+    }
+  }
+}
+
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;ion-header [translucent]&#x3D;&quot;true&quot;&gt;
+  &lt;ion-toolbar class&#x3D;&quot;bg-white dark:bg-zinc-900 shadow-md&quot;&gt;
+    &lt;ion-buttons slot&#x3D;&quot;start&quot;&gt;
+      &lt;ion-menu-button&gt;&lt;/ion-menu-button&gt;
+    &lt;/ion-buttons&gt;
+    &lt;ion-title class&#x3D;&quot;text-zinc-800 dark:text-white font-bold text-lg&quot;&gt;
+      {{ &#x27;HOME.TITLE&#x27; | translate }}
+    &lt;/ion-title&gt;
+  &lt;/ion-toolbar&gt;
+&lt;/ion-header&gt;
+
+&lt;ion-content fullscreen class&#x3D;&quot;font-inter &quot;&gt;
+  &lt;!-- Hero Section --&gt;
+  &lt;section class&#x3D;&quot;bg-gradient-to-r
+                from-blue-100 via-blue-200 to-blue-300
+                dark:from-[#284fbf] dark:via-[#1e40af] dark:to-[#1e293b]&quot;&gt;
+
+
+    &lt;div class&#x3D;&quot;px-4 pt-8 text-center&quot;&gt;
+      &lt;h1 *ngIf&#x3D;&quot;currentUser&quot; class&#x3D;&quot;mb-4 text-4xl md:text-5xl font-bold tracking-tight text-zinc-800 dark:text-white drop-shadow text-center break-words&quot;&gt;
+        {{ &#x27;HOME.GREETING&#x27; | translate }} {{ currentUser.name }}
+      &lt;/h1&gt;
+
+      &lt;p class&#x3D;&quot;mt-6 text-xl max-w-3xl mx-auto text-zinc-700 dark:text-white/90&quot;&gt;
+        {{ &#x27;HOME.SUBTITLE&#x27; | translate }}
+      &lt;/p&gt;
+    &lt;/div&gt;
+
+    &lt;!-- Decorative Wave --&gt;
+     &lt;div class&#x3D;&quot;w-full&quot;&gt;
+      &lt;svg class&#x3D;&quot;relative -mb-2 block h-40 w-full&quot; viewBox&#x3D;&quot;0 0 1440 320&quot; preserveAspectRatio&#x3D;&quot;none&quot;&gt;
+        &lt;path class&#x3D;&quot;fill-white dark:fill-[#121212]&quot; d&#x3D;&quot;M0,224L120,186.7C240,149,480,75,720,64C960,53,1200,107,1320,133.3L1440,160L1440,320L1320,320C1200,320,960,320,720,320C480,320,240,320,120,320L0,320Z&quot;&gt;&lt;/path&gt;
+      &lt;/svg&gt;
+    &lt;/div&gt;
+  &lt;/section&gt;
+
+
+  &lt;!-- Main Section --&gt;
+  &lt;section class&#x3D;&quot;max-w-7xl mx-auto px-4 py-4 sm:px-6 lg:px-8&quot;&gt;
+    &lt;!-- Loading Spinner --&gt;
+    &lt;div *ngIf&#x3D;&quot;loading&quot; class&#x3D;&quot;flex justify-center items-center min-h-[300px]&quot;&gt;
+      &lt;ion-spinner name&#x3D;&quot;crescent&quot; color&#x3D;&quot;primary&quot;&gt;&lt;/ion-spinner&gt;
+    &lt;/div&gt;
+
+    &lt;!-- Admin Cards --&gt;
+    &lt;div
+      *ngIf&#x3D;&quot;!loading &amp;&amp; currentUser?.role &#x3D;&#x3D;&#x3D; &#x27;admin&#x27;&quot;
+      class&#x3D;&quot;grid gap-6 sm:grid-cols-2 lg:grid-cols-3&quot;
+    &gt;
+      &lt;ion-card
+        routerLink&#x3D;&quot;/flights&quot;
+        class&#x3D;&quot;hover:scale-[1.03] transition-transform shadow-xl bg-zinc-100 dark:bg-zinc-800 dark:text-white&quot;
+      &gt;
+        &lt;ion-card-header&gt;
+          &lt;div class&#x3D;&quot;flex items-center space-x-2&quot;&gt;
+            &lt;ion-icon name&#x3D;&quot;airplane&quot; class&#x3D;&quot;text-3xl text-blue-500&quot;&gt;&lt;/ion-icon&gt;
+            &lt;ion-card-title class&#x3D;&quot;font-semibold text-lg&quot;&gt;{{
+              &#x27;HOME.ADMIN.FLIGHTS.TITLE&#x27; | translate
+            }}&lt;/ion-card-title&gt;
+          &lt;/div&gt;
+        &lt;/ion-card-header&gt;
+        &lt;ion-card-content&gt;
+          &lt;p class&#x3D;&quot;text-sm text-gray-600 dark:text-gray-300&quot;&gt;
+            {{ &#x27;HOME.ADMIN.FLIGHTS.DESCRIPTION&#x27; | translate }}
+          &lt;/p&gt;
+        &lt;/ion-card-content&gt;
+      &lt;/ion-card&gt;
+
+      &lt;ion-card
+        routerLink&#x3D;&quot;/users&quot;
+        class&#x3D;&quot;hover:scale-[1.03] transition-transform shadow-xl bg-zinc-100 dark:bg-zinc-800 dark:text-white&quot;
+      &gt;
+        &lt;ion-card-header&gt;
+          &lt;div class&#x3D;&quot;flex items-center space-x-2&quot;&gt;
+            &lt;ion-icon name&#x3D;&quot;people&quot; class&#x3D;&quot;text-3xl text-green-500&quot;&gt;&lt;/ion-icon&gt;
+            &lt;ion-card-title class&#x3D;&quot;font-semibold text-lg&quot;&gt;{{
+              &#x27;HOME.ADMIN.USERS.TITLE&#x27; | translate
+            }}&lt;/ion-card-title&gt;
+          &lt;/div&gt;
+        &lt;/ion-card-header&gt;
+        &lt;ion-card-content&gt;
+          &lt;p class&#x3D;&quot;text-sm text-gray-600 dark:text-gray-300&quot;&gt;
+            {{ &#x27;HOME.ADMIN.USERS.DESCRIPTION&#x27; | translate }}
+          &lt;/p&gt;
+        &lt;/ion-card-content&gt;
+      &lt;/ion-card&gt;
+
+      &lt;ion-card
+        class&#x3D;&quot;opacity-60 pointer-events-none shadow-md bg-zinc-100 dark:bg-zinc-800 dark:text-white&quot;
+      &gt;
+        &lt;ion-card-header&gt;
+          &lt;div class&#x3D;&quot;flex items-center space-x-2&quot;&gt;
+            &lt;ion-icon name&#x3D;&quot;bar-chart&quot; class&#x3D;&quot;text-3xl text-purple-500&quot;&gt;&lt;/ion-icon&gt;
+            &lt;ion-card-title class&#x3D;&quot;font-semibold text-lg&quot;&gt;{{
+              &#x27;HOME.ADMIN.ANALYTICS.TITLE&#x27; | translate
+            }}&lt;/ion-card-title&gt;
+          &lt;/div&gt;
+        &lt;/ion-card-header&gt;
+        &lt;ion-card-content&gt;
+          &lt;p class&#x3D;&quot;text-sm text-gray-600 dark:text-gray-300&quot;&gt;
+            {{ &#x27;HOME.ADMIN.ANALYTICS.DESCRIPTION&#x27; | translate }}
+          &lt;/p&gt;
+        &lt;/ion-card-content&gt;
+      &lt;/ion-card&gt;
+    &lt;/div&gt;
+
+    &lt;!-- User Cards --&gt;
+    &lt;div
+      *ngIf&#x3D;&quot;!loading &amp;&amp; currentUser?.role &#x3D;&#x3D;&#x3D; &#x27;user&#x27;&quot;
+      class&#x3D;&quot;grid gap-6 sm:grid-cols-2 lg:grid-cols-3&quot;
+    &gt;
+      &lt;ion-card
+        routerLink&#x3D;&quot;/book&quot;
+        class&#x3D;&quot;hover:scale-[1.03] transition-transform shadow-xl bg-zinc-100 dark:bg-zinc-800 dark:text-white&quot;
+      &gt;
+        &lt;ion-card-header&gt;
+          &lt;div class&#x3D;&quot;flex items-center space-x-2&quot;&gt;
+            &lt;ion-icon name&#x3D;&quot;airplane&quot; class&#x3D;&quot;text-3xl text-blue-500&quot;&gt;&lt;/ion-icon&gt;
+            &lt;ion-card-title class&#x3D;&quot;font-semibold text-lg&quot;&gt;{{
+              &#x27;HOME.USER.BOOK.TITLE&#x27; | translate
+            }}&lt;/ion-card-title&gt;
+          &lt;/div&gt;
+        &lt;/ion-card-header&gt;
+        &lt;ion-card-content&gt;
+          &lt;p class&#x3D;&quot;text-sm text-gray-600 dark:text-gray-300&quot;&gt;
+            {{ &#x27;HOME.USER.BOOK.DESCRIPTION&#x27; | translate }}
+          &lt;/p&gt;
+        &lt;/ion-card-content&gt;
+      &lt;/ion-card&gt;
+
+      &lt;ion-card
+        routerLink&#x3D;&quot;/bookings&quot;
+        class&#x3D;&quot;hover:scale-[1.03] transition-transform shadow-xl bg-zinc-100 dark:bg-zinc-800 dark:text-white&quot;
+      &gt;
+        &lt;ion-card-header&gt;
+          &lt;div class&#x3D;&quot;flex items-center space-x-2&quot;&gt;
+            &lt;ion-icon name&#x3D;&quot;calendar&quot; class&#x3D;&quot;text-3xl text-yellow-500&quot;&gt;&lt;/ion-icon&gt;
+            &lt;ion-card-title class&#x3D;&quot;font-semibold text-lg&quot;&gt;{{
+              &#x27;HOME.USER.BOOKINGS.TITLE&#x27; | translate
+            }}&lt;/ion-card-title&gt;
+          &lt;/div&gt;
+        &lt;/ion-card-header&gt;
+        &lt;ion-card-content&gt;
+          &lt;p class&#x3D;&quot;text-sm text-gray-600 dark:text-gray-300&quot;&gt;
+            {{ &#x27;HOME.USER.BOOKINGS.DESCRIPTION&#x27; | translate }}
+          &lt;/p&gt;
+        &lt;/ion-card-content&gt;
+      &lt;/ion-card&gt;
+
+      &lt;ion-card
+        routerLink&#x3D;&quot;/profile&quot;
+        class&#x3D;&quot;hover:scale-[1.03] transition-transform shadow-xl bg-zinc-100 dark:bg-zinc-800 dark:text-white&quot;
+      &gt;
+        &lt;ion-card-header&gt;
+          &lt;div class&#x3D;&quot;flex items-center space-x-2&quot;&gt;
+            &lt;ion-icon name&#x3D;&quot;person&quot; class&#x3D;&quot;text-3xl text-pink-500&quot;&gt;&lt;/ion-icon&gt;
+            &lt;ion-card-title class&#x3D;&quot;font-semibold text-lg&quot;&gt;{{
+              &#x27;HOME.USER.PROFILE.TITLE&#x27; | translate
+            }}&lt;/ion-card-title&gt;
+          &lt;/div&gt;
+        &lt;/ion-card-header&gt;
+        &lt;ion-card-content&gt;
+          &lt;p class&#x3D;&quot;text-sm text-gray-600 dark:text-gray-300&quot;&gt;
+            {{ &#x27;HOME.USER.PROFILE.DESCRIPTION&#x27; | translate }}
+          &lt;/p&gt;
+        &lt;/ion-card-content&gt;
+      &lt;/ion-card&gt;
+    &lt;/div&gt;
+  &lt;/section&gt;
+
+
+&lt;/ion-content&gt;
+
+  &lt;app-footer&gt;&lt;/app-footer&gt;
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="styleData">
+                <p class="comment">
+                    <code>./home.page.scss</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">.card-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Dos columnas por defecto */
+    gap: 1rem; /* Espaciado entre las tarjetas */
+    padding: 1rem;
+  }
+  
+  .home-card {
+    margin: 1rem;
+    padding: 1rem;
+    border-radius: 12px;
+    background-color: #007bff; /* Azul corporativo */
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    cursor: pointer;
+  }
+  
+  .home-card:hover {
+    transform: translateY(-5px); /* Eleva la tarjeta al pasar el mouse */
+    box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.2); /* Sombra más intensa */
+  }
+  
+  .home-card ion-card-header {
+    font-weight: bold;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+  }
+  
+  .home-card ion-card-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-align: center;
+  }
+  
+  
+  .home-card ion-card-content {
+        font-size: 1rem;
+        text-align: center;
+    }
+
+    .header-title {
+        color: white; /* Color del título */
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+  ion-button {
+    --background: white; /* Fondo blanco */
+    --color: #007bff; /* Texto azul */
+    --border-radius: 8px;
+    --padding-start: 1rem;
+    --padding-end: 1rem;
+    --transition: all 0.3s ease;
+    font-weight: bold;
+  }
+  @media (max-width: 768px) {
+    .card-grid {
+      grid-template-columns: 1fr; /* Una columna en pantallas pequeñas */
+    }
+  }
+  </code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><ion-header [translucent]="true">  <ion-toolbar class="bg-white dark:bg-zinc-900 shadow-md">    <ion-buttons slot="start">      <ion-menu-button></ion-menu-button>    </ion-buttons>    <ion-title class="text-zinc-800 dark:text-white font-bold text-lg">      {{ \'HOME.TITLE\' | translate }}    </ion-title>  </ion-toolbar></ion-header><ion-content fullscreen class="font-inter ">  <!-- Hero Section -->  <section class="bg-gradient-to-r                from-blue-100 via-blue-200 to-blue-300                dark:from-[#284fbf] dark:via-[#1e40af] dark:to-[#1e293b]">    <div class="px-4 pt-8 text-center">      <h1 *ngIf="currentUser" class="mb-4 text-4xl md:text-5xl font-bold tracking-tight text-zinc-800 dark:text-white drop-shadow text-center break-words">        {{ \'HOME.GREETING\' | translate }} {{ currentUser.name }}      </h1>      <p class="mt-6 text-xl max-w-3xl mx-auto text-zinc-700 dark:text-white/90">        {{ \'HOME.SUBTITLE\' | translate }}      </p>    </div>    <!-- Decorative Wave -->     <div class="w-full">      <svg class="relative -mb-2 block h-40 w-full" viewBox="0 0 1440 320" preserveAspectRatio="none">        <path class="fill-white dark:fill-[#121212]" d="M0,224L120,186.7C240,149,480,75,720,64C960,53,1200,107,1320,133.3L1440,160L1440,320L1320,320C1200,320,960,320,720,320C480,320,240,320,120,320L0,320Z"></path>      </svg>    </div>  </section>  <!-- Main Section -->  <section class="max-w-7xl mx-auto px-4 py-4 sm:px-6 lg:px-8">    <!-- Loading Spinner -->    <div *ngIf="loading" class="flex justify-center items-center min-h-[300px]">      <ion-spinner name="crescent" color="primary"></ion-spinner>    </div>    <!-- Admin Cards -->    <div      *ngIf="!loading && currentUser?.role === \'admin\'"      class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3"    >      <ion-card        routerLink="/flights"        class="hover:scale-[1.03] transition-transform shadow-xl bg-zinc-100 dark:bg-zinc-800 dark:text-white"      >        <ion-card-header>          <div class="flex items-center space-x-2">            <ion-icon name="airplane" class="text-3xl text-blue-500"></ion-icon>            <ion-card-title class="font-semibold text-lg">{{              \'HOME.ADMIN.FLIGHTS.TITLE\' | translate            }}</ion-card-title>          </div>        </ion-card-header>        <ion-card-content>          <p class="text-sm text-gray-600 dark:text-gray-300">            {{ \'HOME.ADMIN.FLIGHTS.DESCRIPTION\' | translate }}          </p>        </ion-card-content>      </ion-card>      <ion-card        routerLink="/users"        class="hover:scale-[1.03] transition-transform shadow-xl bg-zinc-100 dark:bg-zinc-800 dark:text-white"      >        <ion-card-header>          <div class="flex items-center space-x-2">            <ion-icon name="people" class="text-3xl text-green-500"></ion-icon>            <ion-card-title class="font-semibold text-lg">{{              \'HOME.ADMIN.USERS.TITLE\' | translate            }}</ion-card-title>          </div>        </ion-card-header>        <ion-card-content>          <p class="text-sm text-gray-600 dark:text-gray-300">            {{ \'HOME.ADMIN.USERS.DESCRIPTION\' | translate }}          </p>        </ion-card-content>      </ion-card>      <ion-card        class="opacity-60 pointer-events-none shadow-md bg-zinc-100 dark:bg-zinc-800 dark:text-white"      >        <ion-card-header>          <div class="flex items-center space-x-2">            <ion-icon name="bar-chart" class="text-3xl text-purple-500"></ion-icon>            <ion-card-title class="font-semibold text-lg">{{              \'HOME.ADMIN.ANALYTICS.TITLE\' | translate            }}</ion-card-title>          </div>        </ion-card-header>        <ion-card-content>          <p class="text-sm text-gray-600 dark:text-gray-300">            {{ \'HOME.ADMIN.ANALYTICS.DESCRIPTION\' | translate }}          </p>        </ion-card-content>      </ion-card>    </div>    <!-- User Cards -->    <div      *ngIf="!loading && currentUser?.role === \'user\'"      class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3"    >      <ion-card        routerLink="/book"        class="hover:scale-[1.03] transition-transform shadow-xl bg-zinc-100 dark:bg-zinc-800 dark:text-white"      >        <ion-card-header>          <div class="flex items-center space-x-2">            <ion-icon name="airplane" class="text-3xl text-blue-500"></ion-icon>            <ion-card-title class="font-semibold text-lg">{{              \'HOME.USER.BOOK.TITLE\' | translate            }}</ion-card-title>          </div>        </ion-card-header>        <ion-card-content>          <p class="text-sm text-gray-600 dark:text-gray-300">            {{ \'HOME.USER.BOOK.DESCRIPTION\' | translate }}          </p>        </ion-card-content>      </ion-card>      <ion-card        routerLink="/bookings"        class="hover:scale-[1.03] transition-transform shadow-xl bg-zinc-100 dark:bg-zinc-800 dark:text-white"      >        <ion-card-header>          <div class="flex items-center space-x-2">            <ion-icon name="calendar" class="text-3xl text-yellow-500"></ion-icon>            <ion-card-title class="font-semibold text-lg">{{              \'HOME.USER.BOOKINGS.TITLE\' | translate            }}</ion-card-title>          </div>        </ion-card-header>        <ion-card-content>          <p class="text-sm text-gray-600 dark:text-gray-300">            {{ \'HOME.USER.BOOKINGS.DESCRIPTION\' | translate }}          </p>        </ion-card-content>      </ion-card>      <ion-card        routerLink="/profile"        class="hover:scale-[1.03] transition-transform shadow-xl bg-zinc-100 dark:bg-zinc-800 dark:text-white"      >        <ion-card-header>          <div class="flex items-center space-x-2">            <ion-icon name="person" class="text-3xl text-pink-500"></ion-icon>            <ion-card-title class="font-semibold text-lg">{{              \'HOME.USER.PROFILE.TITLE\' | translate            }}</ion-card-title>          </div>        </ion-card-header>        <ion-card-content>          <p class="text-sm text-gray-600 dark:text-gray-300">            {{ \'HOME.USER.PROFILE.DESCRIPTION\' | translate }}          </p>        </ion-card-content>      </ion-card>    </div>  </section></ion-content>  <app-footer></app-footer></div>'
+    var COMPONENTS = [{'name': 'AboutPage', 'selector': 'app-about'},{'name': 'AccessDeniedPage', 'selector': 'app-access-denied'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'BookingModalComponent', 'selector': 'app-booking-modal'},{'name': 'BookingsPage', 'selector': 'app-bookings'},{'name': 'BookPage', 'selector': 'app-book'},{'name': 'ConfirmBookModalComponent', 'selector': 'app-confirm-book-modal'},{'name': 'ConfirmCancelModalComponent', 'selector': 'app-confirm-cancel-modal'},{'name': 'ConfirmRoleModalComponent', 'selector': 'app-confirm-role-modal'},{'name': 'FlightModalComponent', 'selector': 'app-flight-modal'},{'name': 'FlightSelectableComponent', 'selector': 'app-flight-selectable'},{'name': 'FlightsPage', 'selector': 'app-flights'},{'name': 'FooterComponent', 'selector': 'app-footer'},{'name': 'HomePage', 'selector': 'app-home'},{'name': 'LanguageSelectorComponent', 'selector': 'app-language-selector'},{'name': 'LoginPage', 'selector': 'app-login'},{'name': 'NotFoundPage', 'selector': 'app-not-found'},{'name': 'PictureOptionsComponent', 'selector': ''},{'name': 'PictureSelectableComponent', 'selector': 'app-picture-selectable'},{'name': 'ProfilePage', 'selector': 'app-profile'},{'name': 'RegisterPage', 'selector': 'app-register'},{'name': 'SplashPage', 'selector': 'app-splash'},{'name': 'UsersPage', 'selector': 'app-users'}];
+    var DIRECTIVES = [{'name': 'BookingStatusDirective', 'selector': '[appBookingState]'}];
+    var ACTUAL_COMPONENT = {'name': 'HomePage'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'HomePage.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

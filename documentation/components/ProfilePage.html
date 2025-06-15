@@ -1,0 +1,1378 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Voliberia-Angular documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">Voliberia-Angular documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  ProfilePage</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#styleData" class="nav-link"
+                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/pages/profile/profile.page.ts</code>
+</p>
+
+
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                <code>OnInit</code>
+    </p>
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-profile</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./profile.page.scss</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./profile.page.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#formGroup" >formGroup</a>
+                            </li>
+                            <li>
+                                <a href="#isAdmin" >isAdmin</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Optional</span>
+                                <a href="#userApp" >userApp</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#exportAllData" >exportAllData</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#exportToCsv" >exportToCsv</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#ngOnInit" >ngOnInit</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#onSubmit" >onSubmit</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#showEmailWarning" >showEmailWarning</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <h6><b>Accessors</b></h6>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <ul class="index-list">
+                                <li>
+                                    <a href="#name" >name</a>
+                                </li>
+                                <li>
+                                    <a href="#surname" >surname</a>
+                                </li>
+                                <li>
+                                    <a href="#email" >email</a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(formBuilder: FormBuilder, usersAppSvc: <a href="../injectables/UsersAppService.html" target="_self">UsersAppService</a>, authSvc: <a href="../injectables/BaseAuthenticationService.html" target="_self">BaseAuthenticationService</a>, mediaSvc: <a href="../classes/BaseMediaService.html" target="_self">BaseMediaService</a>, loadingController: LoadingController, toastController: ToastController, translateSvc: TranslateService, flightsSvc: <a href="../injectables/FlightsService.html" target="_self">FlightsService</a>, bookingsSvc: <a href="../injectables/BookingsService.html" target="_self">BookingsService</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/app/pages/profile/profile.page.ts:41</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>formBuilder</td>
+                                                  
+                                                        <td>
+                                                                    <code>FormBuilder</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>usersAppSvc</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/UsersAppService.html" target="_self" >UsersAppService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>authSvc</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/BaseAuthenticationService.html" target="_self" >BaseAuthenticationService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>mediaSvc</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../classes/BaseMediaService.html" target="_self" >BaseMediaService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>loadingController</td>
+                                                  
+                                                        <td>
+                                                                    <code>LoadingController</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>toastController</td>
+                                                  
+                                                        <td>
+                                                                    <code>ToastController</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>translateSvc</td>
+                                                  
+                                                        <td>
+                                                                    <code>TranslateService</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>flightsSvc</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/FlightsService.html" target="_self" >FlightsService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>bookingsSvc</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/BookingsService.html" target="_self" >BookingsService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="exportAllData"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>exportAllData</b></span>
+                        <a href="#exportAllData"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>exportAllData()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="158"
+                                    class="link-to-prism">src/app/pages/profile/profile.page.ts:158</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Exporta todos los datos del sistema en formato CSV.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="exportToCsv"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>exportToCsv</b></span>
+                        <a href="#exportToCsv"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>exportToCsv(filename: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, data: any[])</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="194"
+                                    class="link-to-prism">src/app/pages/profile/profile.page.ts:194</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Exporta un array de objetos como archivo CSV.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>filename</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>Nombre del archivo</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>data</td>
+                                            <td>
+                                                        <code>any[]</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>Datos a exportar</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>ngOnInit</b></span>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="65"
+                                    class="link-to-prism">src/app/pages/profile/profile.page.ts:65</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Inicializa el perfil cargando los datos del usuario actual.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onSubmit"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>onSubmit</b></span>
+                        <a href="#onSubmit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>onSubmit()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="104"
+                                    class="link-to-prism">src/app/pages/profile/profile.page.ts:104</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Guarda los cambios realizados en el perfil.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="showEmailWarning"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>showEmailWarning</b></span>
+                        <a href="#showEmailWarning"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>showEmailWarning()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="146"
+                                    class="link-to-prism">src/app/pages/profile/profile.page.ts:146</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Muestra advertencia al intentar modificar el email</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="formGroup"></a>
+                    <span class="name">
+                        <span ><b>formGroup</b></span>
+                        <a href="#formGroup"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>FormGroup</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/app/pages/profile/profile.page.ts:35</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Formulario de edición del perfil</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isAdmin"></a>
+                    <span class="name">
+                        <span ><b>isAdmin</b></span>
+                        <a href="#isAdmin"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/app/pages/profile/profile.page.ts:41</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Si el usuario actual tiene rol de administrador</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="userApp"></a>
+                    <span class="name">
+                            <span class="modifier">Optional</span>
+                        <span ><b>userApp</b></span>
+                        <a href="#userApp"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>UserApp | null</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/app/pages/profile/profile.page.ts:38</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Datos del usuario extendido</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-accessors">
+    <h3 id="accessors">
+        Accessors
+    </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="name"></a>
+                        <span class="name"><b>name</b><a href="#name"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>name()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="208" class="link-to-prism">src/app/pages/profile/profile.page.ts:208</a></div>
+                                </td>
+                            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description"><p>Getters de los campos del formulario</p>
+</div>
+
+                        </td>
+                    </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="surname"></a>
+                        <span class="name"><b>surname</b><a href="#surname"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>surname()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="209" class="link-to-prism">src/app/pages/profile/profile.page.ts:209</a></div>
+                                </td>
+                            </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="email"></a>
+                        <span class="name"><b>email</b><a href="#email"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>email()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="210" class="link-to-prism">src/app/pages/profile/profile.page.ts:210</a></div>
+                                </td>
+                            </tr>
+
+            </tbody>
+        </table>
+</section>
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit } from &quot;@angular/core&quot;;
+import { FormBuilder, FormGroup, Validators } from &quot;@angular/forms&quot;;
+import { LoadingController, ToastController } from &quot;@ionic/angular&quot;;
+import { TranslateService } from &quot;@ngx-translate/core&quot;;
+import { lastValueFrom } from &quot;rxjs&quot;;
+import { UserApp } from &quot;src/app/core/models/userApp.model&quot;;
+import { BaseAuthenticationService } from &quot;src/app/core/services/impl/base-authentication.service&quot;;
+import { BaseMediaService } from &quot;src/app/core/services/impl/base-media.service&quot;;
+import { UsersAppService } from &quot;src/app/core/services/impl/usersApp.service&quot;;
+
+import { saveAs } from &#x27;file-saver&#x27;
+import { FlightsService } from &#x27;src/app/core/services/impl/flights.service&#x27;;
+import { BookingsService } from &#x27;src/app/core/services/impl/bookings.service&#x27;;
+import { Flight } from &quot;src/app/core/models/flight.model&quot;;
+import { Booking } from &quot;src/app/core/models/booking.model&quot;;
+
+export interface PagedResult&lt;T&gt; {
+  data: T[];
+  page: number;
+  pageSize: number;
+  pages: number;
+}
+
+@Component({
+  selector: &#x27;app-profile&#x27;,
+  templateUrl: &#x27;./profile.page.html&#x27;,
+  styleUrls: [&#x27;./profile.page.scss&#x27;],
+})
+export class ProfilePage implements OnInit {
+  /** Formulario de edición del perfil */
+  formGroup: FormGroup;
+
+  /** Datos del usuario extendido */
+  userApp?: UserApp | null;
+
+  /** Si el usuario actual tiene rol de administrador */
+  isAdmin: boolean &#x3D; false;
+
+  constructor(
+    private formBuilder: FormBuilder,
+    private usersAppSvc: UsersAppService,
+    private authSvc: BaseAuthenticationService,
+    private mediaSvc: BaseMediaService,
+    private loadingController: LoadingController,
+    private toastController: ToastController,
+    private translateSvc: TranslateService,
+    private flightsSvc: FlightsService,
+    private bookingsSvc: BookingsService
+  ) {
+    this.formGroup &#x3D; this.formBuilder.group({
+      name: [&#x27;&#x27;, [Validators.required]],
+      surname: [&#x27;&#x27;, [Validators.required]],
+      email: [{ value: &#x27;&#x27;, disabled: true }, [Validators.required, Validators.email]],
+      picture: [&#x27;&#x27;]
+    });
+  }
+
+  /**
+   * Inicializa el perfil cargando los datos del usuario actual.
+   */
+  async ngOnInit() {
+    const loading &#x3D; await this.loadingController.create();
+    await loading.present();
+
+    try {
+      const user &#x3D; await this.authSvc.getCurrentUser();
+      if (user) {
+        this.userApp &#x3D; await lastValueFrom(this.usersAppSvc.getByUserId(user.id));
+
+        if (this.userApp) {
+          const updatedUserApp: any &#x3D; {
+            ...this.userApp,
+            username: &#x60;${this.userApp.name} ${this.userApp.surname}&#x60;,
+            email: user.email,
+            userId: user.id,
+            picture: typeof this.userApp.picture &#x3D;&#x3D;&#x3D; &#x27;object&#x27;
+              ? this.userApp.picture.url
+              : undefined
+          };
+          this.formGroup.patchValue(updatedUserApp);
+        }
+
+        this.isAdmin &#x3D; this.userApp?.role &#x3D;&#x3D;&#x3D; &#x27;admin&#x27;;
+      }
+    } catch (error) {
+      const toast &#x3D; await this.toastController.create({
+        message: await lastValueFrom(this.translateSvc.get(&#x27;COMMON.ERROR.LOAD&#x27;)),
+        duration: 3000,
+        position: &#x27;bottom&#x27;,
+      });
+      await toast.present();
+    } finally {
+      await loading.dismiss();
+    }
+  }
+
+  /**
+   * Guarda los cambios realizados en el perfil.
+   */
+  async onSubmit() {
+    if (this.formGroup.valid &amp;&amp; this.userApp) {
+      const loading &#x3D; await this.loadingController.create();
+      await loading.present();
+
+      try {
+        const changedValues &#x3D; {} as Record&lt;keyof UserApp, any&gt;;
+        Object.keys(this.formGroup.controls).forEach((key) &#x3D;&gt; {
+          if (this.formGroup.get(key)?.dirty) {
+            changedValues[key as keyof UserApp] &#x3D; this.formGroup.get(key)?.value;
+          }
+        });
+
+        if (changedValues.picture) {
+          const base64Response &#x3D; await fetch(changedValues.picture);
+          const blob &#x3D; await base64Response.blob();
+          const uploadedBlob &#x3D; await lastValueFrom(this.mediaSvc.upload(blob));
+          changedValues.picture &#x3D; uploadedBlob[0];
+        }
+
+        await lastValueFrom(this.usersAppSvc.update(this.userApp.id, changedValues));
+
+        const toast &#x3D; await this.toastController.create({
+          message: await this.translateSvc.get(&#x27;COMMON.SUCCESS.SAVE&#x27;).toPromise(),
+          duration: 3000,
+          position: &#x27;bottom&#x27;,
+        });
+        await toast.present();
+      } catch (error) {
+        const toast &#x3D; await this.toastController.create({
+          message: await this.translateSvc.get(&#x27;COMMON.ERROR.SAVE&#x27;).toPromise(),
+          duration: 3000,
+          position: &#x27;bottom&#x27;,
+        });
+        await toast.present();
+      } finally {
+        await loading.dismiss();
+      }
+    }
+  }
+
+  /** Muestra advertencia al intentar modificar el email */
+  async showEmailWarning() {
+    const toast &#x3D; await this.toastController.create({
+      message: await this.translateSvc.get(&#x27;PROFILE.ERRORS.EMAIL_CANNOT_BE_CHANGED&#x27;).toPromise(),
+      duration: 3000,
+      position: &#x27;bottom&#x27;,
+    });
+    await toast.present();
+  }
+
+  /**
+   * Exporta todos los datos del sistema en formato CSV.
+   */
+  async exportAllData() {
+    const loading &#x3D; await this.loadingController.create({ message: &#x27;Exportando datos...&#x27; });
+    await loading.present();
+
+    try {
+      const flightsPaged: any &#x3D; await lastValueFrom(this.flightsSvc.getAll());
+      const bookingsPaged: any &#x3D; await lastValueFrom(this.bookingsSvc.getAll());
+      const usersPaged: any &#x3D; await lastValueFrom(this.usersAppSvc.getAll());
+
+      this.exportToCsv(&#x27;flights.csv&#x27;, flightsPaged?.data ?? []);
+      this.exportToCsv(&#x27;bookings.csv&#x27;, bookingsPaged?.data ?? []);
+      this.exportToCsv(&#x27;users.csv&#x27;, usersPaged?.data ?? []);
+
+      const toast &#x3D; await this.toastController.create({
+        message: &#x27;Datos exportados correctamente.&#x27;,
+        duration: 3000,
+        position: &#x27;bottom&#x27;,
+      });
+      await toast.present();
+    } catch (error) {
+      const toast &#x3D; await this.toastController.create({
+        message: &#x27;Error al exportar datos.&#x27;,
+        duration: 3000,
+        position: &#x27;bottom&#x27;,
+      });
+      await toast.present();
+    } finally {
+      await loading.dismiss();
+    }
+  }
+
+  /**
+   * Exporta un array de objetos como archivo CSV.
+   * @param filename Nombre del archivo
+   * @param data Datos a exportar
+   */
+  private exportToCsv(filename: string, data: any[]): void {
+    if (!data || data.length &#x3D;&#x3D;&#x3D; 0) return;
+
+    const keys &#x3D; Object.keys(data[0] ?? {});
+    const csvRows &#x3D; [
+      keys.join(&#x27;,&#x27;),
+      ...data.map(item &#x3D;&gt; keys.map(k &#x3D;&gt; &#x60;&quot;${(item[k] ?? &#x27;&#x27;).toString().replace(/&quot;/g, &#x27;&quot;&quot;&#x27;)}&quot;&#x60;).join(&#x27;,&#x27;))
+    ];
+
+    const blob &#x3D; new Blob([csvRows.join(&#x27;\r\n&#x27;)], { type: &#x27;text/csv;charset&#x3D;utf-8;&#x27; });
+    saveAs(blob, filename);
+  }
+
+  /** Getters de los campos del formulario */
+  get name() { return this.formGroup.controls[&#x27;name&#x27;]; }
+  get surname() { return this.formGroup.controls[&#x27;surname&#x27;]; }
+  get email() { return this.formGroup.controls[&#x27;email&#x27;]; }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;ion-header [translucent]&#x3D;&quot;true&quot;&gt;
+  &lt;ion-toolbar color&#x3D;&quot;primary&quot;&gt;
+    &lt;ion-buttons slot&#x3D;&quot;start&quot;&gt;
+      &lt;ion-menu-button&gt;&lt;/ion-menu-button&gt;
+    &lt;/ion-buttons&gt;
+    &lt;ion-title class&#x3D;&quot;header-title&quot;&gt;{{&#x27;PROFILE.TITLE&#x27; | translate}}&lt;/ion-title&gt;
+  &lt;/ion-toolbar&gt;
+&lt;/ion-header&gt;
+
+&lt;ion-content class&#x3D;&quot;dark:bg-[#23242b]&quot;&gt;
+  &lt;div class&#x3D;&quot;profile-container&quot;&gt;
+    &lt;h2 class&#x3D;&quot;profile-title text-[var(--ion-color-secondary)]&quot;&gt;{{&#x27;PROFILE.PERSONAL_INFO&#x27; | translate}}&lt;/h2&gt;
+    &lt;form [formGroup]&#x3D;&quot;formGroup&quot; (ngSubmit)&#x3D;&quot;onSubmit()&quot;&gt;
+      &lt;ion-grid&gt;
+        &lt;ion-row class&#x3D;&quot;profile-row&quot;&gt;
+          &lt;!-- Image at the left side --&gt;
+          &lt;ion-col size&#x3D;&quot;12&quot; size-md&#x3D;&quot;6&quot; class&#x3D;&quot;profile-image&quot;&gt;
+            &lt;ion-card class&#x3D;&quot;ion-no-margin full-height&quot;&gt;
+              &lt;ion-card-content&gt;
+                &lt;app-picture-selectable formControlName&#x3D;&quot;picture&quot;&gt;&lt;/app-picture-selectable&gt;
+              &lt;/ion-card-content&gt;
+            &lt;/ion-card&gt;
+          &lt;/ion-col&gt;
+
+          &lt;!-- Text inputs at the rights side --&gt;
+          &lt;ion-col size&#x3D;&quot;12&quot; size-md&#x3D;&quot;6&quot;&gt;
+            &lt;ion-list&gt;
+              &lt;ion-item class&#x3D;&quot;input-item dark:text-black&quot;&gt;
+                &lt;ion-label position&#x3D;&quot;stacked&quot;&gt;{{&#x27;PROFILE.FIELDS.NAME&#x27; | translate}}&lt;/ion-label&gt;
+                &lt;ion-input type&#x3D;&quot;text&quot; formControlName&#x3D;&quot;name&quot;&gt;&lt;/ion-input&gt;
+              &lt;/ion-item&gt;
+              &lt;ion-text color&#x3D;&quot;danger&quot; *ngIf&#x3D;&quot;name.invalid &amp;&amp; (name.dirty || name.touched)&quot;&gt;
+                &lt;p *ngIf&#x3D;&quot;name.errors?.[&#x27;required&#x27;]&quot;&gt;{{&#x27;PROFILE.ERRORS.NAME_REQUIRED&#x27; | translate}}&lt;/p&gt;
+              &lt;/ion-text&gt;
+
+              &lt;ion-item class&#x3D;&quot;input-item dark:text-black&quot;&gt;
+                &lt;ion-label position&#x3D;&quot;stacked&quot;&gt;{{&#x27;PROFILE.FIELDS.SURNAME&#x27; | translate}}&lt;/ion-label&gt;
+                &lt;ion-input type&#x3D;&quot;text&quot; formControlName&#x3D;&quot;surname&quot;&gt;&lt;/ion-input&gt;
+              &lt;/ion-item&gt;
+              &lt;ion-text color&#x3D;&quot;danger&quot; *ngIf&#x3D;&quot;surname.invalid &amp;&amp; (surname.dirty || surname.touched)&quot;&gt;
+                &lt;p *ngIf&#x3D;&quot;surname.errors?.[&#x27;required&#x27;]&quot;&gt;{{&#x27;PROFILE.ERRORS.SURNAME_REQUIRED&#x27; | translate}}&lt;/p&gt;
+              &lt;/ion-text&gt;
+
+              &lt;ion-item class&#x3D;&quot;input-item dark:text-black&quot; (click)&#x3D;&quot;showEmailWarning()&quot;&gt;
+                &lt;ion-label position&#x3D;&quot;stacked&quot;&gt;{{&#x27;PROFILE.FIELDS.EMAIL&#x27; | translate}}&lt;/ion-label&gt;
+                &lt;ion-input type&#x3D;&quot;email&quot; formControlName&#x3D;&quot;email&quot;&gt;&lt;/ion-input&gt;
+              &lt;/ion-item&gt;
+              &lt;ion-text color&#x3D;&quot;danger&quot; *ngIf&#x3D;&quot;email.invalid &amp;&amp; (email.dirty || email.touched)&quot;&gt;
+                &lt;p *ngIf&#x3D;&quot;email.errors?.[&#x27;required&#x27;]&quot;&gt;{{&#x27;PROFILE.ERRORS.EMAIL_REQUIRED&#x27; | translate}}&lt;/p&gt;
+              &lt;/ion-text&gt;
+            &lt;/ion-list&gt;
+          &lt;/ion-col&gt;
+        &lt;/ion-row&gt;
+      &lt;/ion-grid&gt;
+
+      &lt;div class&#x3D;&quot;button-container&quot;&gt;
+        &lt;ion-button expand&#x3D;&quot;full&quot; type&#x3D;&quot;submit&quot; class&#x3D;&quot;update-button&quot; [disabled]&#x3D;&quot;!formGroup.valid || !formGroup.dirty&quot;&gt;
+          {{&#x27;PROFILE.BUTTONS.UPDATE&#x27; | translate}}
+        &lt;/ion-button&gt;
+
+        &lt;ng-container&gt;
+
+          &lt;ion-button *ngIf&#x3D;&quot;isAdmin&quot; expand&#x3D;&quot;full&quot; color&#x3D;&quot;secondary&quot; class&#x3D;&quot;update-button&quot; (click)&#x3D;&quot;exportAllData()&quot;&gt;
+            Exportar datos CSV
+          &lt;/ion-button&gt;
+        &lt;/ng-container&gt;
+      &lt;/div&gt;
+
+    &lt;/form&gt;
+  &lt;/div&gt;
+&lt;/ion-content&gt;
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="styleData">
+                <p class="comment">
+                    <code>./profile.page.scss</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">/* Contenedor principal */
+.profile-container {
+  margin: 2rem auto;
+  padding: 2rem;
+  max-width: 900px; /* Ahora permite más espacio en pantallas grandes */
+  background-color: rgba(255, 255, 255, 0.712);
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+/* Título */
+.profile-title {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #007bff;
+  margin-bottom: 1.5rem;
+}
+
+/* Filas del formulario */
+.profile-row {
+  align-items: center; /* Asegura alineación vertical */
+  display: flex;
+  flex-wrap: wrap;
+}
+
+/* Imagen ocupa la misma altura que los campos */
+.profile-image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+ion-list {
+  --background: transparent; /* Fondo transparente para evitar el negro */
+  background: transparent !important; /* Asegura que no haya fondo negro */
+  width: 100%; /* Asegura que ocupa el ancho del contenedor */
+  max-width: 500px; /* Ajusta el ancho máximo */
+}
+
+
+/* Inputs */
+.input-item {
+  margin-bottom: 1.2rem;
+  --highlight-color-focused: #007bff; /* Azul corporativo */
+    --background: white; /* Fondo blanco para los inputs */
+    --placeholder-color: #aaa; /* Color del marcador de posición */
+      border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 100%;
+}
+
+ion-input {
+  font-size: 1.1rem;
+  padding: 0.5rem;
+  background: transparent;
+  color: #000;
+  width: 100%;
+}
+
+/* Botón */
+.button-container {
+  margin-top: 1.5rem;
+  display: flex;
+  justify-content: center;
+}
+
+.update-button {
+  --background: #007bff;
+  --color: white;
+  font-weight: bold;
+  font-size: 1.1rem;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  width: 100%;
+  max-width: 300px;
+}
+
+.update-button:hover {
+  --background: #0056b3;
+  transform: scale(1.02);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .profile-container {
+    padding: 1.5rem;
+  }
+
+  .profile-title {
+    font-size: 1.5rem;
+  }
+
+  ion-input {
+    font-size: 1rem;
+  }
+}
+
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><ion-header [translucent]="true">  <ion-toolbar color="primary">    <ion-buttons slot="start">      <ion-menu-button></ion-menu-button>    </ion-buttons>    <ion-title class="header-title">{{\'PROFILE.TITLE\' | translate}}</ion-title>  </ion-toolbar></ion-header><ion-content class="dark:bg-[#23242b]">  <div class="profile-container">    <h2 class="profile-title text-[var(--ion-color-secondary)]">{{\'PROFILE.PERSONAL_INFO\' | translate}}</h2>    <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">      <ion-grid>        <ion-row class="profile-row">          <!-- Image at the left side -->          <ion-col size="12" size-md="6" class="profile-image">            <ion-card class="ion-no-margin full-height">              <ion-card-content>                <app-picture-selectable formControlName="picture"></app-picture-selectable>              </ion-card-content>            </ion-card>          </ion-col>          <!-- Text inputs at the rights side -->          <ion-col size="12" size-md="6">            <ion-list>              <ion-item class="input-item dark:text-black">                <ion-label position="stacked">{{\'PROFILE.FIELDS.NAME\' | translate}}</ion-label>                <ion-input type="text" formControlName="name"></ion-input>              </ion-item>              <ion-text color="danger" *ngIf="name.invalid && (name.dirty || name.touched)">                <p *ngIf="name.errors?.[\'required\']">{{\'PROFILE.ERRORS.NAME_REQUIRED\' | translate}}</p>              </ion-text>              <ion-item class="input-item dark:text-black">                <ion-label position="stacked">{{\'PROFILE.FIELDS.SURNAME\' | translate}}</ion-label>                <ion-input type="text" formControlName="surname"></ion-input>              </ion-item>              <ion-text color="danger" *ngIf="surname.invalid && (surname.dirty || surname.touched)">                <p *ngIf="surname.errors?.[\'required\']">{{\'PROFILE.ERRORS.SURNAME_REQUIRED\' | translate}}</p>              </ion-text>              <ion-item class="input-item dark:text-black" (click)="showEmailWarning()">                <ion-label position="stacked">{{\'PROFILE.FIELDS.EMAIL\' | translate}}</ion-label>                <ion-input type="email" formControlName="email"></ion-input>              </ion-item>              <ion-text color="danger" *ngIf="email.invalid && (email.dirty || email.touched)">                <p *ngIf="email.errors?.[\'required\']">{{\'PROFILE.ERRORS.EMAIL_REQUIRED\' | translate}}</p>              </ion-text>            </ion-list>          </ion-col>        </ion-row>      </ion-grid>      <div class="button-container">        <ion-button expand="full" type="submit" class="update-button" [disabled]="!formGroup.valid || !formGroup.dirty">          {{\'PROFILE.BUTTONS.UPDATE\' | translate}}        </ion-button>        <ng-container>          <ion-button *ngIf="isAdmin" expand="full" color="secondary" class="update-button" (click)="exportAllData()">            Exportar datos CSV          </ion-button>        </ng-container>      </div>    </form>  </div></ion-content></div>'
+    var COMPONENTS = [{'name': 'AboutPage', 'selector': 'app-about'},{'name': 'AccessDeniedPage', 'selector': 'app-access-denied'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'BookingModalComponent', 'selector': 'app-booking-modal'},{'name': 'BookingsPage', 'selector': 'app-bookings'},{'name': 'BookPage', 'selector': 'app-book'},{'name': 'ConfirmBookModalComponent', 'selector': 'app-confirm-book-modal'},{'name': 'ConfirmCancelModalComponent', 'selector': 'app-confirm-cancel-modal'},{'name': 'ConfirmRoleModalComponent', 'selector': 'app-confirm-role-modal'},{'name': 'FlightModalComponent', 'selector': 'app-flight-modal'},{'name': 'FlightSelectableComponent', 'selector': 'app-flight-selectable'},{'name': 'FlightsPage', 'selector': 'app-flights'},{'name': 'FooterComponent', 'selector': 'app-footer'},{'name': 'HomePage', 'selector': 'app-home'},{'name': 'LanguageSelectorComponent', 'selector': 'app-language-selector'},{'name': 'LoginPage', 'selector': 'app-login'},{'name': 'NotFoundPage', 'selector': 'app-not-found'},{'name': 'PictureOptionsComponent', 'selector': ''},{'name': 'PictureSelectableComponent', 'selector': 'app-picture-selectable'},{'name': 'ProfilePage', 'selector': 'app-profile'},{'name': 'RegisterPage', 'selector': 'app-register'},{'name': 'SplashPage', 'selector': 'app-splash'},{'name': 'UsersPage', 'selector': 'app-users'}];
+    var DIRECTIVES = [{'name': 'BookingStatusDirective', 'selector': '[appBookingState]'}];
+    var ACTUAL_COMPONENT = {'name': 'ProfilePage'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'ProfilePage.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

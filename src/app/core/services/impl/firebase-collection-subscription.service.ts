@@ -1,3 +1,7 @@
+/**
+ * Servicio que gestiona las suscripciones en tiempo real a colecciones de Firestore.
+ * Se encarga de emitir eventos cuando los documentos se agregan, modifican o eliminan.
+ */
 import { Inject, Injectable } from '@angular/core';
 import { initializeApp } from 'firebase/app';
 import { 
@@ -22,6 +26,11 @@ export class FirebaseCollectionSubscriptionService<T extends Model> implements I
   private subscriptions: Map<string, Subject<CollectionChange<T>>> = new Map();
   private unsubscribeFunctions: Map<string, () => void> = new Map();
 
+  /**
+   * Inicializa Firebase y el mapeo para convertir datos de Firestore al modelo de la app.
+   * @param firebaseConfig Configuración de Firebase inyectada
+   * @param mapping Mapeo de datos para transformar los documentos Firestore al modelo T
+   */
   constructor(
     @Inject(FIREBASE_CONFIG_TOKEN) protected firebaseConfig: any,
     @Inject(REPOSITORY_MAPPING_TOKEN) protected mapping: IBaseMapping<T>
@@ -30,6 +39,11 @@ export class FirebaseCollectionSubscriptionService<T extends Model> implements I
     this.db = getFirestore(app);
   }
 
+  /**
+   * Se suscribe a una colección de Firestore y emite los cambios en tiempo real.
+   * @param collectionName Nombre de la colección a observar
+   * @returns Observable que emite los cambios en la colección
+   */
   subscribe(collectionName: string): Observable<CollectionChange<T>> {
     if (this.subscriptions.has(collectionName)) {
       return this.subscriptions.get(collectionName)!.asObservable();
@@ -67,6 +81,10 @@ export class FirebaseCollectionSubscriptionService<T extends Model> implements I
     return subject.asObservable();
   }
 
+  /**
+   * Cancela la suscripción activa a una colección específica.
+   * @param collectionName Nombre de la colección
+   */
   unsubscribe(collectionName: string): void {
     const unsubscribe = this.unsubscribeFunctions.get(collectionName);
     if (unsubscribe) {
@@ -81,6 +99,9 @@ export class FirebaseCollectionSubscriptionService<T extends Model> implements I
     }
   }
 
+  /**
+   * Limpia todas las suscripciones al destruirse el servicio.
+   */
   ngOnDestroy() {
     // Limpiar todas las suscripciones al destruir el servicio
     this.unsubscribeFunctions.forEach(unsubscribe => unsubscribe());

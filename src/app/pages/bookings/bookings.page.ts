@@ -1,3 +1,7 @@
+/**
+ * Página que muestra las reservas realizadas por el usuario autenticado.
+ * Permite paginar, cancelar reservas, y ver los vuelos asociados.
+ */
 import { Component, Inject, OnInit } from '@angular/core';
 import { AlertController, ModalController } from '@ionic/angular';
 import { TranslateService } from '@ngx-translate/core';
@@ -22,21 +26,39 @@ import { BookingModalComponent } from 'src/app/shared/components/booking-modal/b
   styleUrls: ['./bookings.page.scss'],
 })
 export class BookingsPage implements OnInit {
+  
+  /** Stream de reservas */
   private _bookings = new BehaviorSubject<Booking[]>([]);
   bookings$: Observable<Booking[]> = this._bookings.asObservable();
 
+  /** Stream de vuelos */
   private _flights = new BehaviorSubject<Flight[]>([]);
   flights$: Observable<Flight[]> = this._flights.asObservable();
-
+  
+  /** Mapa de ID de vuelo a objeto `Flight` */
   flightsMap: { [flightId: string]: Flight } = {};
+
+  /** IDs de reservas ya cargadas */
   private loadedIds: Set<string> = new Set();
 
   private page = 1;
   private readonly pageSize = 25;
   private loading = false;
 
+  /** Idioma actual */
   currentLocale: string;
+  
+  /** Fecha actual */
   now: Date = new Date();
+
+  /** Fecha seleccionada en la vista */
+  selectedDate: string | null = null;
+
+  /** Hora seleccionada en la vista */
+  selectedTime: string | null = null;
+
+  /** Fechas con vuelos disponibles agrupadas */
+  flightsByDate: Map<string, string[]> = new Map();
 
   constructor(
     private bookingsSvc: BookingsService,
@@ -61,10 +83,10 @@ export class BookingsPage implements OnInit {
 
   ionViewWillEnter(): void {
     const navigation = window.history.state;
-
+    
     if (navigation?.reload) {
       console.log('Recargando reservas por navegación desde BookPage');
-
+      
       this.page = 1;
       this._bookings.next([]);
       this.loadedIds.clear();
@@ -72,7 +94,10 @@ export class BookingsPage implements OnInit {
       this.loadBookings();
     }
   }
-
+  
+  /**
+   * Inicializa la página: carga vuelos y reservas, y se suscribe a cambios en tiempo real.
+   */
   ngOnInit(): void {
     this.loadAllFlights();
     this.loadBookings();
@@ -118,6 +143,9 @@ export class BookingsPage implements OnInit {
     });
   }
 
+  /**
+   * Carga todas las reservas del usuario actual y las ordena por fecha descendente.
+   */
   async loadBookings(notify: HTMLIonInfiniteScrollElement | null = null): Promise<void> {
     if (this.loading) return;
     this.loading = true;
@@ -157,6 +185,9 @@ export class BookingsPage implements OnInit {
     }
   }
 
+  /**
+   * Carga los vuelos asociados a las reservas si no están en cache.
+   */
   private async loadFlightsForBookings(bookings: Booking[]): Promise<void> {
     const missingFlightIds = bookings.map(b => b.flightId).filter(fId => !this.flightsMap[fId]);
     if (missingFlightIds.length === 0) return;
@@ -171,6 +202,9 @@ export class BookingsPage implements OnInit {
     });
   }
 
+  /**
+   * Carga todos los vuelos para visualización general.
+   */
   private loadAllFlights(): void {
     this.flightsSvc.getAll(1, 1000).subscribe({
       next: (response: Paginated<Flight>) => {
@@ -183,17 +217,26 @@ export class BookingsPage implements OnInit {
     });
   }
 
+  /**
+   * Vuelve a cargar las reservas desde la primera página.
+   */
   refreshBookings(): void {
     this.page = 1;
     this._bookings.next([]);
     this.loadBookings();
   }
 
+  /**
+   * Llama a la carga de más reservas al hacer scroll infinito.
+   */
   onIonInfinite(ev: any): void {
     this.loadBookings(ev.target);
   }
 
-
+  /**
+   * Cancela una reserva seleccionada tras confirmación.
+   * @param booking Reserva a cancelar
+   */
   async cancelBooking(booking: Booking): Promise<void> {
     const alert = await this.alertCtrl.create({
       header: this.translateService.instant('BOOKING.CANCEL_TITLE'),
@@ -224,45 +267,49 @@ export class BookingsPage implements OnInit {
     await alert.present();
   }
 
-  // Al final de BookingsPage
+  /**
+   * Agrupa las fechas de salida de vuelos para mostrarlas en el calendario.
+   */
+  prepareFlightDates(): void {
+    this.flightsByDate.clear();
 
-selectedDate: string | null = null;
-selectedTime: string | null = null;
+    const allFlights = Object.values(this.flightsMap);
 
-flightsByDate: Map<string, string[]> = new Map();
+    allFlights.forEach(flight => {
+      const [date, time] = flight.departureDate.split('T');
+      if (!this.flightsByDate.has(date)) {
+        this.flightsByDate.set(date, []);
+      }
+      this.flightsByDate.get(date)!.push(time.slice(0, 5)); // HH:mm
+    });
 
-prepareFlightDates(): void {
-  this.flightsByDate.clear();
+    console.log('🧭 Fechas de vuelos agrupadas:', this.flightsByDate);
+  }
 
-  const allFlights = Object.values(this.flightsMap);
+  /**
+   * Determina si una fecha tiene vuelos disponibles.
+   */
+  isFlightDate = (dateIsoString: string): boolean => {
+    const dateOnly = dateIsoString.split('T')[0];
+    return this.flightsByDate.has(dateOnly);
+  };
 
-  allFlights.forEach(flight => {
-    const [date, time] = flight.departureDate.split('T');
-    if (!this.flightsByDate.has(date)) {
-      this.flightsByDate.set(date, []);
-    }
-    this.flightsByDate.get(date)!.push(time.slice(0, 5)); // HH:mm
-  });
+  /**
+   * Maneja la selección de fecha en el calendario.
+   */
+  onDateSelected(event: CustomEvent): void {
+    const isoDate = event.detail.value as string;
+    this.selectedDate = isoDate.split('T')[0];
+    this.selectedTime = null;
+    console.log('📅 Día seleccionado:', this.selectedDate);
+  }
 
-  console.log('🧭 Fechas de vuelos agrupadas:', this.flightsByDate);
-}
-
-isFlightDate = (dateIsoString: string): boolean => {
-  const dateOnly = dateIsoString.split('T')[0];
-  return this.flightsByDate.has(dateOnly);
-};
-
-onDateSelected(event: CustomEvent): void {
-  const isoDate = event.detail.value as string;
-  this.selectedDate = isoDate.split('T')[0];
-  this.selectedTime = null;
-  console.log('📅 Día seleccionado:', this.selectedDate);
-}
-
-selectTime(time: string): void {
-  this.selectedTime = time;
-  const fullDateTime = `${this.selectedDate}T${time}:00`;
-  console.log('✅ Fecha completa seleccionada:', fullDateTime);
-}
-
+  /**
+   * Asigna una hora seleccionada en el calendario.
+   */
+  selectTime(time: string): void {
+    this.selectedTime = time;
+    const fullDateTime = `${this.selectedDate}T${time}:00`;
+    console.log('✅ Fecha completa seleccionada:', fullDateTime);
+  }
 }

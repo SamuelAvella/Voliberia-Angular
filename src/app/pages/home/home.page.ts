@@ -1,3 +1,7 @@
+/**
+ * Página de inicio de la aplicación.
+ * Muestra información del usuario actual al cargar.
+ */
 import { Component, OnInit } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
 import { CommonModule } from '@angular/common';
@@ -7,14 +11,16 @@ import { BaseAuthenticationService } from '../../core/services/impl/base-authent
 import { UsersAppService } from '../../core/services/impl/usersApp.service';
 import { UserApp } from '../../core/models/userApp.model';
 import { firstValueFrom } from 'rxjs';
-
 @Component({
   selector: 'app-home',
   templateUrl: './home.page.html',
   styleUrls: ['./home.page.scss'],
 })
 export class HomePage implements OnInit {
+  /** Usuario actual cargado desde la base de datos */
   currentUser?: UserApp;
+
+  /** Indica si los datos se están cargando */
   loading = true;
 
   constructor(
@@ -22,6 +28,9 @@ export class HomePage implements OnInit {
     private usersService: UsersAppService
   ) {}
 
+  /**
+   * Al inicializar, carga el usuario autenticado y su perfil extendido.
+   */
   async ngOnInit() {
     try {
       const user = await this.authService.getCurrentUser();
@@ -36,3 +45,4 @@ export class HomePage implements OnInit {
     }
   }
 }
+

@@ -1,3 +1,7 @@
+/**
+ * Componente que muestra un popover con opciones para seleccionar una imagen:
+ * tomar foto, elegir desde galería o cancelar.
+ */
 import { Component } from '@angular/core';
 import { PopoverController } from '@ionic/angular';
 
@@ -22,6 +26,10 @@ import { PopoverController } from '@ionic/angular';
 export class PictureOptionsComponent {
   constructor(private popoverCtrl: PopoverController) {}
 
+  /**
+   * Cierra el popover y devuelve la opción seleccionada.
+   * @param option Opción seleccionada: 'camera', 'gallery' o 'cancel'
+   */
   onOption(option: string) {
     this.popoverCtrl.dismiss(option);
   }

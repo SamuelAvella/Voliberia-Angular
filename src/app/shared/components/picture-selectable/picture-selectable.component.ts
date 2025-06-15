@@ -33,6 +33,8 @@ export class PictureSelectableComponent  implements OnInit, ControlValueAccessor
   isDisabled:boolean = false;
   /** Indica si hay una imagen seleccionada */
   hasValue:boolean = false;
+
+  /** Indica si el dispositivo tiene cámara disponible */
   hasCameraFeature: boolean = false;
 
   constructor(
@@ -71,12 +73,15 @@ export class PictureSelectableComponent  implements OnInit, ControlValueAccessor
     }
   }
 
+  /** Registra la función que propaga cambios */
   registerOnChange(fn: any): void {
     this.propagateChange = fn;
   }
 
+  /** Registra la función que indica que se tocó el control (sin usar) */
   registerOnTouched(fn: any): void {
   }
+
 
   setDisabledState?(isDisabled: boolean): void {
     this.isDisabled = isDisabled;
@@ -142,6 +147,9 @@ export class PictureSelectableComponent  implements OnInit, ControlValueAccessor
     }
   }
 
+  /**
+   * Abre la cámara y captura una imagen, que luego se asigna al componente.
+   */  
   async takePicture(){
     try {
       if (this.platform.is('hybrid')) {
@@ -174,7 +182,12 @@ export class PictureSelectableComponent  implements OnInit, ControlValueAccessor
     }
   }
   
-
+  /**
+   * Muestra un menú con opciones para tomar o seleccionar imagen.
+   * El diseño cambia según orientación: popover en landscape, action sheet en portrait.
+   * @param event Evento de click
+   * @param fileLoader Input file oculto para cargar imágenes
+   */
   async presentPictureOptions(event: Event, fileLoader: HTMLInputElement) {
     event.stopPropagation();
     
