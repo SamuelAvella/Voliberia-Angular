@@ -9,7 +9,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content fullscreen class="font-inter">
+<ion-content fullscreen class="font-inter ">
   <!-- Hero Section -->
   <section class="bg-gradient-to-r
                 from-blue-100 via-blue-200 to-blue-300
@@ -17,9 +17,10 @@
 
 
     <div class="px-4 pt-8 text-center">
-      <ion-title *ngIf="currentUser" color="secondary" class="mb-4 text-4xl md:text-5xl font-bold tracking-tight dark:text-white drop-shadow">
-        {{ 'HOME.GREETING' | translate }} {{currentUser.name}}
-      </ion-title>
+      <h1 *ngIf="currentUser" class="mb-4 text-4xl md:text-5xl font-bold tracking-tight text-zinc-800 dark:text-white drop-shadow text-center break-words">
+        {{ 'HOME.GREETING' | translate }} {{ currentUser.name }}
+      </h1>
+
       <p class="mt-6 text-xl max-w-3xl mx-auto text-zinc-700 dark:text-white/90">
         {{ 'HOME.SUBTITLE' | translate }}
       </p>
@@ -27,7 +28,7 @@
 
     <!-- Decorative Wave -->
      <div class="w-full">
-      <svg class="relative -mb-1 block h-40 w-full" viewBox="0 0 1440 320" preserveAspectRatio="none">
+      <svg class="relative -mb-2 block h-40 w-full" viewBox="0 0 1440 320" preserveAspectRatio="none">
         <path class="fill-white dark:fill-[#121212]" d="M0,224L120,186.7C240,149,480,75,720,64C960,53,1200,107,1320,133.3L1440,160L1440,320L1320,320C1200,320,960,320,720,320C480,320,240,320,120,320L0,320Z"></path>
       </svg>
     </div>

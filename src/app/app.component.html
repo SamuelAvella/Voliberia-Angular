@@ -2,44 +2,39 @@
   <!-- Responsive Header/Navbar -->
   <ion-header class="shadow" *ngIf="!shouldHideHeader">
     <ion-toolbar class="px-4" color="primary">
-      <!-- Mobile (left) -->
-      <div class="flex items-center justify-between sm:hidden">
-        <div class="flex items-center gap-2">
-          <ion-menu-button autoHide="false"></ion-menu-button>
-          <span class="text-xl font-bold text-white">Voliberia</span>
-        </div>
-      </div>
+      <!-- ✅ Botón SIEMPRE presente, oculto solo en pantallas grandes -->
+      <ion-buttons slot="start" class="sm:hidden">
+        <ion-menu-button menu="mainMenu" autoHide="false" class="text-white"></ion-menu-button>
+      </ion-buttons>
 
-      <!-- Desktop -->
-      <div class="hidden sm:grid sm:grid-cols-3 sm:items-center w-full text">
-        <!-- Left Navigation -->
+      <!-- Título visible también solo en móvil si quieres -->
+      <span class="text-white text-xl font-bold sm:hidden ml-2">Voliberia</span>
+
+      <!-- ✅ Desktop completo -->
+      <div class="hidden sm:grid sm:grid-cols-3 sm:items-center w-full">
+        <!-- Left -->
         <div class="flex gap-4 justify-start">
           <a *ngFor="let p of leftPages"
-             [routerLink]="p.url"
-             routerLinkActive="text-blue-300"
-             class="text-white hover:text-blue-300 transition">
+            [routerLink]="p.url"
+            routerLinkActive="text-blue-300"
+            class="text-white hover:text-blue-300 transition">
             {{ p.title }}
           </a>
         </div>
 
-        <!-- Center Title -->
+        <!-- Center -->
         <div class="flex justify-center items-center gap-2 text-2xl font-black text-white">
-          <img src="assets/img/logo.png" alt="Logo Voliberia" class="h-8 w-8 object-contain" />
+          <img src="assets/img/logo.png" alt="Logo Voliberia" class="h-8 w-8 object-contain dark:hidden" />
+          <img src="assets/img/logo-dark.png" alt="Logo Voliberia" class="h-8 w-8 object-contain hidden dark:block">
           Voliberia
         </div>
 
-
-        <!-- Right Icons -->
+        <!-- Right -->
         <div class="flex gap-4 justify-end text-white">
-          <a
-            (click)="openLanguageSelector($event)"
-            class="uppercase font-bold text-white hover:text-blue-300 transition text-sm tracking-wide"
-          >
+          <a (click)="openLanguageSelector($event)" class="uppercase font-bold hover:text-blue-300 text-sm tracking-wide">
             {{ 'MENU.CURRENT-LANGUAGE' | translate }}
           </a>
-          <a *ngFor="let p of rightPages"
-             [routerLink]="p.url"
-             class="hover:text-blue-300 text-xl">
+          <a *ngFor="let p of rightPages" [routerLink]="p.url" class="hover:text-blue-300 text-xl">
             <ion-icon [name]="p.icon"></ion-icon>
           </a>
           <a (click)="logout()" class="hover:text-blue-300 text-xl">
@@ -49,6 +44,7 @@
       </div>
     </ion-toolbar>
   </ion-header>
+
 
   <!-- Mobile Menu -->
   <ion-menu menuId="mainMenu" contentId="main-content" type="overlay" *ngIf="!shouldHideHeader">

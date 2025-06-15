@@ -196,15 +196,15 @@ export class BookingsPage implements OnInit {
 
   async cancelBooking(booking: Booking): Promise<void> {
     const alert = await this.alertCtrl.create({
-      header: this.translateService.instant('BOOKING.CANCEL_TITLE') || '¿Cancelar reserva?',
-      message: this.translateService.instant('BOOKING.CANCEL_CONFIRM') || '¿Estás seguro de que deseas cancelar esta reserva?',
+      header: this.translateService.instant('BOOKING.CANCEL_TITLE'),
+      message: this.translateService.instant('BOOKING.CANCEL_CONFIRM'),
       buttons: [
         {
-          text: this.translateService.instant('COMMON.NO') || 'No',
+          text: this.translateService.instant('COMMON.NO'),
           role: 'cancel'
         },
         {
-          text: this.translateService.instant('COMMON.YES') || 'Sí',
+          text: this.translateService.instant('COMMON.YES'),
           role: 'confirm',
           handler: () => {
             const updated: Booking = {

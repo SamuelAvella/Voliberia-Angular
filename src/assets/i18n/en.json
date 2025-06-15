@@ -145,7 +145,18 @@
     "CANCEL" : "Cancel",
     "DELETE" : "Delete",
     "HERO_TITLE": "Hi admin, take a look!",
-    "HERO_TEXT": "Create, edit and delete flights"
+    "HERO_TEXT": "Create, edit and delete flights",
+    "SUCCESS": {
+      "CREATE": "Vuelo creado correctamente.",
+      "EDIT": "Vuelo editado correctamente.",
+      "DELETE": "Vuelo eliminado correctamente."
+    },
+    "DELETE_CONFIRM": {
+      "TITLE": "Confirmar eliminación",
+      "MESSAGE": "¿Estás seguro de que quieres eliminar este vuelo?",
+      "CANCEL": "Cancelar",
+      "DELETE": "Eliminar"
+    }
   },
 
   "BOOKING": {
@@ -189,7 +200,9 @@
     "HERO_BUTTON": "Show me",
     "DATE": "Departure",
     "BOOK_NOW": "Book",
-    "BOOKING": "Details"
+    "BOOKING": "Details",
+    "SUCCESS": "Booking successfully completed"
+
   },
 
   "FLIGHT_SELECTABLE": {
@@ -217,7 +230,8 @@
     },
     "BUTTONS": {
       "UPDATE": "Update"
-    }
+    },
+    "CSV": "Export CSV data"
   },
 
   "PICTURE":{

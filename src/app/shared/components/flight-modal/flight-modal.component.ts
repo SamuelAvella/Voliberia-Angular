@@ -1,8 +1,9 @@
-import { Component, ElementRef, HostListener, Input, OnInit, ViewChild } from "@angular/core";
+import { Component, ElementRef, HostListener, Input, OnInit, ViewChild, AfterViewInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { ModalController } from "@ionic/angular";
 import { Flight } from "src/app/core/models/flight.model";
 import { arrivalDateValidator } from "../../validators/date.validators";
+import { BreakpointsService } from "src/app/core/services/breakpoints.service";
 
 @Component({
   selector: 'app-flight-modal',
@@ -10,6 +11,8 @@ import { arrivalDateValidator } from "../../validators/date.validators";
   styleUrls: ['./flight-modal.component.scss'],
 })
 export class FlightModalComponent implements OnInit {
+
+  
   @Input() flight?: Flight;
 
   @ViewChild('departureWrapper') departureWrapper!: ElementRef;
@@ -17,8 +20,11 @@ export class FlightModalComponent implements OnInit {
 
   formGroup: FormGroup;
 
-  toggleDateSelector: 'departure' | 'arrival' | null = null;
+  toggleDepartureDateSelector:boolean = false;
+  toggleArrivalDateSelector:boolean = false;
+
   toggleTimeSelector: 'departure' | 'arrival' | null = null;
+  
 
   departureDate: string | null = null;
   departureTime: string | null = null;
@@ -29,10 +35,16 @@ export class FlightModalComponent implements OnInit {
   minDepartureDate = new Date().toISOString();
   minArrivalDate = new Date(Date.now() + 40 * 60000).toISOString();
 
+  isMobile = false;
+
   constructor(
     private modalCtrl: ModalController,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private breakpointsService: BreakpointsService
   ) {
+    this.breakpointsService.isHandset$.subscribe(value => {
+      this.isMobile = value;
+    });
     this.formGroup = this.fb.group({
       origin: ['', [Validators.required, Validators.minLength(3)]],
       destination: ['', [Validators.required, Validators.minLength(3)]],
@@ -43,6 +55,7 @@ export class FlightModalComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.minDepartureDate = new Date(new Date().setDate(new Date().getDate() + 1)).toISOString().split('T')[0] + 'T00:00:00.000Z';
     if (this.flight) {
       this.formGroup.patchValue(this.flight);
       const [depDate, depTime] = this.flight.departureDate.split('T');
@@ -54,6 +67,7 @@ export class FlightModalComponent implements OnInit {
     }
   }
 
+
   dismiss(): void {
     this.modalCtrl.dismiss();
   }
@@ -62,23 +76,23 @@ export class FlightModalComponent implements OnInit {
     this.modalCtrl.dismiss(this.formGroup.value);
   }
 
-  openDateSelector(type: 'departure' | 'arrival', event: Event): void {
-    event.stopPropagation();
-    this.toggleDateSelector = type;
-    this.toggleTimeSelector = null;
-  }
+  // openDateSelector(type: 'departure' | 'arrival', event: Event): void {
+  //   event.stopPropagation();
+  //   this.toggleDateSelector = type;
+  //   this.toggleTimeSelector = null;
+  // }
 
-  onDatePartSelected(event: CustomEvent, type: 'departure' | 'arrival', originalEvent?: Event): void {
-    originalEvent?.stopPropagation();
-    const date = event.detail.value;
-    if (type === 'departure') {
-      this.departureDate = date;
-    } else {
-      this.arrivalDate = date;
-    }
-    this.toggleDateSelector = null;
-    this.toggleTimeSelector = type;
-  }
+  // onDatePartSelected(event: CustomEvent, type: 'departure' | 'arrival', originalEvent?: Event): void {
+  //   originalEvent?.stopPropagation();
+  //   const date = event.detail.value;
+  //   if (type === 'departure') {
+  //     this.departureDate = date;
+  //   } else {
+  //     this.arrivalDate = date;
+  //   }
+  //   this.toggleDateSelector = null;
+  //   this.toggleTimeSelector = type;
+  // }
 
   onTimePartSelected(event: CustomEvent, type: 'departure' | 'arrival'): void {
     const time = event.detail.value;
@@ -96,58 +110,60 @@ export class FlightModalComponent implements OnInit {
     this.toggleTimeSelector = null;
   }
 
-  clearDate(type: 'departure' | 'arrival'): void {
-    if (type === 'departure') {
-      this.departureDate = null;
-      this.departureTime = null;
-      this.formGroup.get('departureDate')?.reset();
-    } else {
-      this.arrivalDate = null;
-      this.arrivalTime = null;
-      this.formGroup.get('arrivalDate')?.reset();
-    }
-    this.toggleDateSelector = null;
-    this.toggleTimeSelector = null;
-  }
+  // clearDate(type: 'departure' | 'arrival'): void {
+  //   if (type === 'departure') {
+  //     this.departureDate = null;
+  //     this.departureTime = null;
+  //     this.formGroup.get('departureDate')?.reset();
+  //   } else {
+  //     this.arrivalDate = null;
+  //     this.arrivalTime = null;
+  //     this.formGroup.get('arrivalDate')?.reset();
+  //   }
+  //   this.toggleDateSelector = null;
+  //   this.toggleTimeSelector = null;
+  // }
 
   combineDateTime(dateStr: string, timeStr: string): string {
     return new Date(`${dateStr}T${timeStr}`).toISOString();
   }
 
-  @HostListener('document:click', ['$event'])
-  handleClickOutside(event: MouseEvent): void {
-    const path = event.composedPath();
-    if (
-      this.toggleDateSelector &&
-      this.departureWrapper &&
-      !path.includes(this.departureWrapper.nativeElement) &&
-      this.toggleDateSelector === 'departure'
-    ) {
-      this.toggleDateSelector = null;
-    }
-    if (
-      this.toggleTimeSelector &&
-      this.departureWrapper &&
-      !path.includes(this.departureWrapper.nativeElement) &&
-      this.toggleTimeSelector === 'departure'
-    ) {
-      this.toggleTimeSelector = null;
-    }
-    if (
-      this.toggleDateSelector &&
-      this.arrivalWrapper &&
-      !path.includes(this.arrivalWrapper.nativeElement) &&
-      this.toggleDateSelector === 'arrival'
-    ) {
-      this.toggleDateSelector = null;
-    }
-    if (
-      this.toggleTimeSelector &&
-      this.arrivalWrapper &&
-      !path.includes(this.arrivalWrapper.nativeElement) &&
-      this.toggleTimeSelector === 'arrival'
-    ) {
-      this.toggleTimeSelector = null;
-    }
-  }
+  
+
+  // @HostListener('document:click', ['$event'])
+  // handleClickOutside(event: MouseEvent): void {
+  //   const path = event.composedPath();
+  //   if (
+  //     this.toggleDateSelector &&
+  //     this.departureWrapper &&
+  //     !path.includes(this.departureWrapper.nativeElement) &&
+  //     this.toggleDateSelector === 'departure'
+  //   ) {
+  //     this.toggleDateSelector = null;
+  //   }
+  //   if (
+  //     this.toggleTimeSelector &&
+  //     this.departureWrapper &&
+  //     !path.includes(this.departureWrapper.nativeElement) &&
+  //     this.toggleTimeSelector === 'departure'
+  //   ) {
+  //     this.toggleTimeSelector = null;
+  //   }
+  //   if (
+  //     this.toggleDateSelector &&
+  //     this.arrivalWrapper &&
+  //     !path.includes(this.arrivalWrapper.nativeElement) &&
+  //     this.toggleDateSelector === 'arrival'
+  //   ) {
+  //     this.toggleDateSelector = null;
+  //   }
+  //   if (
+  //     this.toggleTimeSelector &&
+  //     this.arrivalWrapper &&
+  //     !path.includes(this.arrivalWrapper.nativeElement) &&
+  //     this.toggleTimeSelector === 'arrival'
+  //   ) {
+  //     this.toggleTimeSelector = null;
+  //   }
+  // }
 }

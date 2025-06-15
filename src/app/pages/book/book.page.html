@@ -92,7 +92,7 @@
                 *ngIf="toggleOriginSelector"
                 [(ngModel)]="searchOrigin"
                 (input)="filterOriginsSearch()"
-                class="h-[40px] w-full px-3 border border-gray-300 rounded-md text-sm text-black focus:outline-none shadow-md"
+                class="h-[40px] w-full px-3 border border-gray-300 rounded-md text-sm text-black focus:outline-none shadow-md dark:text-gray-400"
                 type="text"
                 [placeholder]="'BOOK.SEARCH_ORIGIN' | translate" />
 
@@ -137,7 +137,7 @@
                 [(ngModel)]="searchDestination"
                 (input)="filterDestinationsSearch()"
                 type="text"
-                class="h-[40px] w-full px-3 border border-gray-300 rounded-md text-sm text-black focus:outline-none shadow-md"
+                class="h-[40px] w-full px-3 border border-gray-300 rounded-md text-sm text-black focus:outline-none shadow-md dark:text-gray-400"
                 [placeholder]="'BOOK.SEARCH_DESTINATION' | translate" />
 
               <ul
@@ -266,8 +266,6 @@
     <div class="w-full flex justify-center px-6">
       <div class="mt-4 h-[1.5px] w-full bg-black dark:bg-zinc-400 rounded-full"></div>
     </div>
-
-
 
     <!-- TITULO SWIPER -->
     <div class="px-4 pt-8 text-center" id="carousel-title">
