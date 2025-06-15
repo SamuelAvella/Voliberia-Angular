@@ -8,7 +8,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true" class="bg-no-repeat bg-center bg-contain font-inter dark:bg-[#23242b] bg-[length:400px_auto]" style="background-image: url('../../../assets/img/logo.png')">
+<ion-content [fullscreen]="true" class="bg-no-repeat bg-center bg-contain font-inter dark:bg-[#23242b] bg-[length:400px_auto]">
 
   <div class="md:px-14 md:pt-6">
     <ion-grid
@@ -104,17 +104,19 @@
     </div>
 
   <!-- Botón flotante "Crear" abajo a la derecha -->
-  <div class="fixed bottom-6 right-6 z-50 w-full px-4 md:px-0 md:w-auto">
-    <ion-button
-      color="tertiary"
-      expand="block"
-      class="w-full md:w-[300px] mx-auto text-white font-semibold py-2 rounded-lg shadow-lg transition-all hover:brightness-90"
-      (click)="onAddFlight()"
-    >
-      <ion-icon slot="start" name="add-outline"></ion-icon>
-      {{ 'FLIGHT.CREATE' | translate }}
-    </ion-button>
-  </div>
+  <!-- Botón flotante responsive abajo a la derecha -->
+<div class="fixed bottom-4 right-4 z-50">
+  <ion-button
+    color="tertiary"
+    shape="round"
+    class="rounded-full px-6 py-3 shadow-xl text-white font-semibold text-sm md:text-base"
+    (click)="onAddFlight()"
+  >
+    <ion-icon slot="start" name="add-outline"></ion-icon>
+    {{ 'FLIGHT.CREATE' | translate }}
+  </ion-button>
+</div>
+
 
 
 

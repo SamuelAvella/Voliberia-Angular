@@ -11,13 +11,13 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="bg-white font-inter">
+<ion-content class="bg-white font-inter dark:bg-[#23242b]">
   <div class="w-full max-w-xl mx-auto px-6 py-4">
     <form [formGroup]="formGroup" (ngSubmit)="onSubmit()" class="space-y-4">
 
       
       <div>
-        <label class="text-sm font-semibold text-gray-700">{{ 'FLIGHT.ORIGIN' | translate }}</label>
+        <label class="text-sm font-semibold text-gray-700 dark:text-gray-400">{{ 'FLIGHT.ORIGIN' | translate }}</label>
         <div class="relative mt-1">
           <ion-icon name="airplane-outline"
           class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 text-lg z-10 rotate-[-45deg]"></ion-icon>
@@ -32,7 +32,7 @@
       </div>
       
       <div>
-        <label class="text-sm font-semibold text-gray-700">{{ 'FLIGHT.DESTINATION' | translate }}</label>
+        <label class="text-sm font-semibold text-gray-700 dark:text-gray-400">{{ 'FLIGHT.DESTINATION' | translate }}</label>
         <div class="relative mt-1">
           <ion-icon name="airplane-outline"
           class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 text-lg z-10  rotate-[45deg]"></ion-icon>
@@ -48,7 +48,7 @@
       
       <!--Departure-->
       <div class="w-full">
-        <label class="text-sm font-semibold text-gray-700">{{ 'FLIGHT.DEPARTURE' | translate }}</label>
+        <label class="text-sm font-semibold text-gray-700 dark:text-gray-400">{{ 'FLIGHT.DEPARTURE' | translate }}</label>
 
         <div
           class="h-[45px] border border-gray-300 rounded-md mt-1 px-3 bg-white text-sm text-black cursor-pointer hover:shadow-sm flex justify-between items-center"
@@ -84,7 +84,7 @@
 
       <!-- Arrival-->
       <div class="w-full">
-        <label class="text-sm font-semibold text-gray-700">{{ 'FLIGHT.ARRIVAL' | translate }}</label>
+        <label class="text-sm font-semibold text-gray-700 dark:text-gray-400">{{ 'FLIGHT.ARRIVAL' | translate }}</label>
         <div
           class="h-[45px] border border-gray-300 rounded-md mt-1 px-3 bg-white text-sm text-black cursor-pointer hover:shadow-sm flex justify-between items-center"
           (click)="toggleArrivalDateSelector = !toggleArrivalDateSelector; toggleDepartureDateSelector = false">
@@ -122,7 +122,7 @@
       </div>
 
       <div>
-        <label class="text-sm font-semibold text-gray-700">{{ 'FLIGHT.PRICE' | translate }}</label>
+        <label class="text-sm font-semibold text-gray-700 dark:text-gray-400">{{ 'FLIGHT.PRICE' | translate }}</label>
         <div class="relative mt-1">
           <ion-icon name="cash-outline"
             class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 text-lg z-10"></ion-icon>

@@ -1,4 +1,4 @@
-import { ModalController } from '@ionic/angular';
+import { ModalController, ToastController } from '@ionic/angular';
 /**
  * BookPage
  * Componente principal para gestionar reservas de vuelos.
@@ -85,6 +85,7 @@ export class BookPage implements OnInit {
 
   constructor(
     private flightsSvc: FlightsService,
+    private toastController: ToastController,
     private translateService: TranslateService,
     private bookingsSvc: BookingsService,
     private authService: BaseAuthenticationService,
@@ -460,68 +461,88 @@ export class BookPage implements OnInit {
       };
 
       const created = await firstValueFrom(this.bookingsSvc.add(booking));
-      alert('Reserva realizada con éxito');
       const fakeEvent = new Event('click');
       this.clearOriginSelection(fakeEvent);
       this.clearDestinationSelection(fakeEvent);
       this.clearDateSelection(fakeEvent);
+      const toastSuccess = await this.toastController.create({
+        message: await this.translateService.get('BOOK.SUCCESS').toPromise(),      
+        duration: 3000,
+        position: 'bottom',
+        color: 'success',
+      });
+      await toastSuccess.present();
       this.router.navigate(['/bookings'], {
         state: { reload: true }
       });
 
     } catch (error) {
+      const toastSuccess = await this.toastController.create({
+        message: await this.translateService.instant('COMMON.ERROR.SAVE'), // por ejemplo: "Error al guardar"
+        duration: 3000,
+        position: 'bottom',
+        color: 'danger',
+      });
+      await toastSuccess.present();
       console.error('[createBooking] ❌ Error:', error);
-      alert('Error al crear la reserva');
     }
   }
 
   async confirmBookingAlert() {
-  const flightDateTime = `${this.selectedDate}, ${this.selectedTime}h`;
+    const flightDateTime = `${this.selectedDate}, ${this.selectedTime}h`;
 
-  const selectedFlight = this.allFlights.find(
-    f =>
-      f.origin === this.selectedOrigin &&
-      f.destination === this.selectedDestination &&
-      f.departureDate === `${this.selectedDate}T${this.selectedTime}:00`
-  );
+    const selectedFlight = this.allFlights.find(
+      f =>
+        f.origin === this.selectedOrigin &&
+        f.destination === this.selectedDestination &&
+        f.departureDate === `${this.selectedDate}T${this.selectedTime}:00`
+    );
 
-  if (!selectedFlight) {
-    console.error('❌ Vuelo no encontrado para mostrar alerta');
-    return;
-  }
-
-  const price = selectedFlight.seatPrice ?? 'Desconocido';
-
-  // Formatea las fechas
-  const departure = new Date(selectedFlight.departureDate).toLocaleString('es-ES', {
-
-  });
-
-  const arrival = new Date(selectedFlight.arrivalDate).toLocaleString('es-ES', {
-
-  });
-
-  const modal = await this.modalController.create({
-    component: ConfirmBookModalComponent,
-    cssClass: 'custom-tailwind-modal', // clase para hacer el fondo transparente
-    showBackdrop: true,
-    backdropDismiss: true,
-    componentProps: {
-      origin: selectedFlight.origin,
-      destination: selectedFlight.destination,
-      departure,
-      arrival,
-      price: selectedFlight.seatPrice ?? 'Desconocido'
+    if (!selectedFlight) {
+      const toastSuccess = await this.toastController.create({
+        message: await this.translateService.instant('COMMON.ERROR.SAVE'), // por ejemplo: "Error al guardar"
+        duration: 3000,
+        position: 'bottom',
+        color: 'danger',
+      });
+      await toastSuccess.present();
+      return;
     }
-  });
 
-  await modal.present();
+    const price = selectedFlight.seatPrice ?? 'Desconocido';
 
-  const { data } = await modal.onDidDismiss();
-  if (data === true) {
-    this.createBooking();
+    // Formatea las fechas
+    const departure = new Date(selectedFlight.departureDate).toLocaleString('es-ES', {
+
+    });
+
+    const arrival = new Date(selectedFlight.arrivalDate).toLocaleString('es-ES', {
+
+    });
+
+    const modal = await this.modalController.create({
+      component: ConfirmBookModalComponent,
+      cssClass: 'custom-tailwind-modal', // clase para hacer el fondo transparente
+      showBackdrop: true,
+      backdropDismiss: true,
+      componentProps: {
+        origin: selectedFlight.origin,
+        destination: selectedFlight.destination,
+        departure,
+        arrival,
+        price: selectedFlight.seatPrice ?? 'Desconocido'
+      }
+    });
+
+    await modal.present();
+
+
+    const { data } = await modal.onDidDismiss();
+    if (data === true) {
+      
+      this.createBooking();
+    }
   }
-}
 
 
 

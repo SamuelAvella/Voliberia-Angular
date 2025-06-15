@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit } from "@angular/core";
-import { AlertController, ModalController } from "@ionic/angular";
+import { AlertController, ModalController, ToastController } from "@ionic/angular";
 import { TranslateService } from "@ngx-translate/core";
-import { BehaviorSubject, Observable } from "rxjs";
+import { BehaviorSubject, lastValueFrom, Observable } from "rxjs";
 import { Flight } from "src/app/core/models/flight.model";
 import { Paginated } from "src/app/core/models/paginated.model";
 import { BookingsStrapiRepositoryService } from "src/app/core/repositories/impl/bookings-strapi-repository.service";
@@ -31,6 +31,7 @@ export class FlightsPage implements OnInit {
     private modalCtrl: ModalController,
     private alertCtrl: AlertController,
     private bookingsSvc: BookingsService,
+    private toastController: ToastController,
     private translateService: TranslateService,
     @Inject(FLIGHTS_COLLECTION_SUBSCRIPTION_TOKEN)
     private flightsSubscription: ICollectionSubscription<Flight>
@@ -113,15 +114,21 @@ export class FlightsPage implements OnInit {
       component: FlightModalComponent,
     });
 
-    modal.onDidDismiss().then((result) => {
+    modal.onDidDismiss().then(async (result) => {
       if (result.data) {
-        this.flightsSvc.add(result.data).subscribe(() => {
-          console.log('Vuelo agregado, refrescando lista');
-          this.refreshFlights();
+        await lastValueFrom(this.flightsSvc.add(result.data));
+
+        const toastSuccess = await this.toastController.create({
+          message: this.translateService.instant('FLIGHT.SUCCESS.CREATE'), // Cambia al mensaje que quieras
+          duration: 3000,
+          position: 'bottom',
+          color: 'success',
         });
+        await toastSuccess.present();
+
+        this.refreshFlights();
       }
     });
-
     await modal.present();
   }
 
@@ -131,40 +138,55 @@ export class FlightsPage implements OnInit {
       componentProps: { flight },
     });
 
-    modal.onDidDismiss().then((result) => {
+    modal.onDidDismiss().then(async (result) => {
       if (result.data) {
-        this.flightsSvc.update(flight.id, result.data).subscribe(() => {
-          console.log('Vuelo editado, refrescando lista');
-          this.refreshFlights();
+        await lastValueFrom(this.flightsSvc.update(flight.id, result.data));
+
+        const toast = await this.toastController.create({
+          message: this.translateService.instant('FLIGHT.SUCCESS.EDIT'),
+          duration: 3000,
+          position: 'bottom',
+          color: 'success',
         });
+        await toast.present();
+
+        this.refreshFlights();
       }
     });
 
     await modal.present();
   }
 
+
   async onDeleteFlight(flight: Flight) {
     const alert = await this.alertCtrl.create({
-      header: 'Confirm Deletion',
-      message: 'Are you sure you want to delete this booking?',
+      header: await this.translateService.get('FLIGHT.DELETE_CONFIRM.TITLE').toPromise(),
+      message: await this.translateService.get('FLIGHT.DELETE_CONFIRM.MESSAGE').toPromise(),
       buttons: [
         {
-          text: 'Cancel',
+          text: await this.translateService.get('FLIGHT.DELETE_CONFIRM.CANCEL').toPromise(),
           role: 'cancel',
         },
         {
-          text: 'Delete',
+          text: await this.translateService.get('FLIGHT.DELETE_CONFIRM.DELETE').toPromise(),
           role: 'destructive',
-          handler: () => {
-            this.bookingsSvc.deleteBookingsByFlightId(flight.id).subscribe({
-              next: () => {
-                this.flightsSvc.delete(flight.id).subscribe(() => {
-                  console.log('Vuelo eliminado, refrescando lista');
-                  this.refreshFlights();
-                });
-              },
-              error: (err) => console.error('Error eliminando bookings:', err),
-            });
+          handler: async () => {
+            try {
+              await lastValueFrom(this.bookingsSvc.deleteBookingsByFlightId(flight.id));
+              await lastValueFrom(this.flightsSvc.delete(flight.id));
+
+              const toast = await this.toastController.create({
+                message: this.translateService.instant('FLIGHT.SUCCESS.DELETE'),
+                duration: 3000,
+                position: 'bottom',
+                color: 'success',
+              });
+              await toast.present();
+
+              this.refreshFlights();
+            } catch (error) {
+              console.error('❌ Error eliminando vuelo:', error);
+            }
           },
         },
       ],
@@ -172,6 +194,7 @@ export class FlightsPage implements OnInit {
 
     await alert.present();
   }
+
 
 
 

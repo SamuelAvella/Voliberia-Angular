@@ -92,7 +92,7 @@
                 *ngIf="toggleOriginSelector"
                 [(ngModel)]="searchOrigin"
                 (input)="filterOriginsSearch()"
-                class="h-[40px] w-full px-3 border border-gray-300 rounded-md text-sm text-black focus:outline-none shadow-md"
+                class="h-[40px] w-full px-3 border border-gray-300 rounded-md text-sm text-black focus:outline-none shadow-md dark:text-gray-400"
                 type="text"
                 [placeholder]="'BOOK.SEARCH_ORIGIN' | translate" />
 
@@ -137,7 +137,7 @@
                 [(ngModel)]="searchDestination"
                 (input)="filterDestinationsSearch()"
                 type="text"
-                class="h-[40px] w-full px-3 border border-gray-300 rounded-md text-sm text-black focus:outline-none shadow-md"
+                class="h-[40px] w-full px-3 border border-gray-300 rounded-md text-sm text-black focus:outline-none shadow-md dark:text-gray-400"
                 [placeholder]="'BOOK.SEARCH_DESTINATION' | translate" />
 
               <ul
