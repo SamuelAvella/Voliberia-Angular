@@ -28,11 +28,20 @@ import { StrapiAuthenticationService } from './core/services/impl/strapi-authent
 import { AuthenticationServiceFactory, AuthMappingFactory, BookingsMappingFactory, BookingsRepositoryFactory, FlightsRepositoryFactory, FlightsMappingFactory, MediaServiceFactory, UsersAppMappingFactory, UsersAppRepositoryFactory } from './core/repositories/repository.factory';
 import { FlightsCollectionSubscriptionFactory, BookingsCollectionSubscriptionFactory } from './core/repositories/repository.factory';
 import { CalendarModule, DatePickerModule, TimePickerModule, DateRangePickerModule, DateTimePickerModule } from '@syncfusion/ej2-angular-calendars';
-// Factory function para el loader de traducción
+
+/**
+ * Función auxiliar para crear el loader de traducción con ngx-translate.
+ * @param http Cliente HTTP
+ * @returns Cargador de traducciones
+ */
 export function createTranslateLoader(http: HttpClient){
   return new TranslateHttpLoader(http, './assets/i18n/', '.json')
 }
 
+/**
+ * Módulo principal de la aplicación.
+ * Declara e importa todos los módulos necesarios y registra servicios globales.
+ */
 @NgModule({
   declarations: [
     AppComponent
@@ -60,6 +69,8 @@ export function createTranslateLoader(http: HttpClient){
     provideLottieOptions({
       player:() => player,
     }),
+    
+    /** Tokens de configuración y servicios personalizados */
     provideHttpClient(),
     { provide: BACKEND_TOKEN, useValue: 'firebase' },
     { provide: USERSAPP_RESOURCE_NAME_TOKEN, useValue: 'user-apps' },
@@ -84,6 +95,7 @@ export function createTranslateLoader(http: HttpClient){
       }
     },
 
+    /** Fábricas de mapeo y repositorios */
     UsersAppMappingFactory,
     BookingsMappingFactory,
     FlightsMappingFactory,
@@ -91,9 +103,8 @@ export function createTranslateLoader(http: HttpClient){
     UsersAppRepositoryFactory,
     BookingsRepositoryFactory,
     FlightsRepositoryFactory,
-    // Register other repositories as it is necesary
-
-    // App services
+    
+    /** Servicios de aplicación */
     {
       provide: 'UsersAppService',
       useClass: UsersAppService

@@ -1,3 +1,7 @@
+/**
+ * Página de administración de usuarios.
+ * Permite listar, buscar y actualizar el rol de los usuarios.
+ */
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { UsersAppService } from '../../core/services/impl/usersApp.service';
@@ -13,11 +17,22 @@ import { ConfirmRoleModalComponent } from '../../shared/components/confirm-role-
   styleUrls: ['./users.page.scss'],
 })
 export class UsersPage implements OnInit {
+  /** Lista completa de usuarios */
   users: UserApp[] = [];
+
+  /** Lista de usuarios con rol 'user' */
   filteredUsers: UserApp[] = [];
+
+  /** Lista de usuarios con rol 'admin' */
   filteredAdmins: UserApp[] = [];
+
+  /** Indica si los datos están cargando */
   loading = true;
+
+  /** Término de búsqueda actual */
   searchTerm = '';
+
+  /** Usuario actual autenticado */
   currentUserApp?: UserApp;
 
   constructor(
@@ -26,6 +41,9 @@ export class UsersPage implements OnInit {
     private modalCtrl: ModalController
   ) {}
 
+  /**
+   * Inicializa la página y carga los usuarios.
+   */
   async ngOnInit() {
     try {
       const currentUser = await this.authService.getCurrentUser();
@@ -40,6 +58,9 @@ export class UsersPage implements OnInit {
     }
   }
 
+  /**
+   * Carga todos los usuarios desde el servicio.
+   */
   loadUsers() {
     this.loading = true;
     this.usersService.getAll().subscribe({
@@ -55,6 +76,9 @@ export class UsersPage implements OnInit {
     });
   }
 
+  /**
+   * Filtra usuarios por rol y término de búsqueda.
+   */
   filterUsers() {
     let filtered = [...this.users];
 
@@ -71,23 +95,29 @@ export class UsersPage implements OnInit {
     this.filteredUsers = filtered.filter(user => user.role === 'user');
   }
 
+  /**
+   * Verifica si el usuario mostrado es el mismo que el actual.
+   * @param user Usuario a comparar
+   */
   isCurrentUser(user: UserApp): boolean {
     return this.currentUserApp?.id === user.id;
   }
 
+  /**
+   * Actualiza el rol de un usuario después de confirmación.
+   * @param user Usuario a actualizar
+   * @param event Evento con el nuevo rol seleccionado
+   */
   async updateUserRole(user: UserApp, event: any) {
     const newRole = event.detail.value;
     if (user.role === newRole || this.isCurrentUser(user)) return;
 
     const modal = await this.modalCtrl.create({
       component: ConfirmRoleModalComponent,
-      cssClass: 'custom-tailwind-modal', // clase para hacer el fondo transparente
+      cssClass: 'custom-tailwind-modal',
       showBackdrop: true,
       backdropDismiss: true,
-      componentProps: {
-        user,
-        newRole
-      },
+      componentProps: { user, newRole },
     });
 
     await modal.present();
@@ -95,7 +125,7 @@ export class UsersPage implements OnInit {
 
     if (confirmed) {
       this.usersService.update(user.id, { role: newRole }).subscribe({
-        next: (updatedUser) => {
+        next: () => {
           const index = this.users.findIndex(u => u.id === user.id);
           if (index !== -1) {
             this.users[index] = { ...this.users[index], role: newRole };
@@ -112,3 +142,4 @@ export class UsersPage implements OnInit {
     }
   }
 }
+

@@ -1,3 +1,7 @@
+/**
+ * Componente raíz de la aplicación.
+ * Se encarga de la navegación, cambio de idioma, visibilidad del header y permisos por rol.
+ */
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { PopoverController } from '@ionic/angular';
@@ -18,8 +22,10 @@ import { UsersAppService } from './core/services/impl/usersApp.service';
 })
 export class AppComponent implements OnInit {
 
-  // All pages with role restrictions
-  public appPages = [
+   /**
+   * Lista de todas las páginas del menú, con roles permitidos.
+   */
+    public appPages = [
     { key: 'MENU.PAGES.HOME', url: '/home', icon: 'home-outline', title: '', position: 'left', roles: ['admin', 'user'] },
     { key: 'MENU.PAGES.BOOK', url: '/book', icon: 'book-outline', title: '', position: 'left', roles: ['user'] },
     { key: 'MENU.PAGES.FLIGHTS', url: '/flights', icon: 'airplane-outline', title: '', position: 'left', roles: ['admin'] },
@@ -29,33 +35,44 @@ export class AppComponent implements OnInit {
     { key: 'MENU.PAGES.PROFILE', url: '/profile', icon: 'person-circle-outline', title: '', position: 'right', roles: ['admin', 'user'] },
   ];
 
-  // Filtered for the header based on role and position
+  /**
+   * Páginas que se muestran a la izquierda del menú, filtradas por rol.
+   */
   get leftPages() {
     return this.appPages
       .filter(p => p.position === 'left')
       .filter(p => this.userApp && p.roles.includes(this.userApp.role));
   }
 
-  get rightPages() {
-    return this.appPages
-      .filter(p => p.position === 'right')
-      .filter(p => this.userApp && p.roles.includes(this.userApp.role));
-  }
-
-  // Get all pages available for current user role
+  /**
+   * Páginas disponibles para el rol actual.
+   */
   get availablePages() {
     return this.appPages.filter(p => this.userApp && p.roles.includes(this.userApp.role));
   }
 
-  hiddenHeaderRoutes: string[] = ['/login', '/register', '/splash', '/register?returnUrl=%2Fhome', '/login?returnUrl=%2Fhome', '/access-denied', '/404'];
+  /**
+   * Rutas donde se debe ocultar el header (como login, splash, etc).
+   */
+  hiddenHeaderRoutes: string[] = [
+    '/login', '/register', '/splash', 
+    '/register?returnUrl=%2Fhome', '/login?returnUrl=%2Fhome', 
+    '/access-denied', '/404'
+  ];
 
+  /**
+   * Indica si el header debe ocultarse según la ruta actual.
+   */
   get shouldHideHeader(): boolean {
     const current = this.router.url;
     return this.hiddenHeaderRoutes.some(route => current.startsWith(route));
   }
 
+  /** Idioma actual */
   currentLang: string = 'es';
+  /** Año actual */
   currentYear: number = new Date().getFullYear();
+  /** Usuario autenticado */
   userApp?: UserApp | null;
 
   constructor(
@@ -72,12 +89,19 @@ export class AppComponent implements OnInit {
   this.translate.onLangChange.subscribe(() => this.loadTranslations());
   }
 
+  /**
+   * Carga los títulos traducidos para el menú.
+   */
   private loadTranslations() {
     this.appPages.forEach(page => {
       page.title = this.translate.instant(page.key);
     });
   }
 
+  /**
+   * Abre el selector de idioma en un popover.
+   * @param ev Evento de clic
+   */
   async openLanguageSelector(ev: any) {
     const popover = await this.popoverCtrl.create({
       component: LanguageSelectorComponent,
@@ -98,12 +122,18 @@ export class AppComponent implements OnInit {
     }
   }
 
+  /**
+   * Cierra sesión y redirige a la página de login.
+   */
   logout() {
     this.authSvc.signOut().subscribe(() => {
       this.router.navigate(['/login']);
     });
   }
 
+  /**
+   * Inicializa el componente, carga el usuario y redirecciona si no tiene permiso.
+   */
   async ngOnInit() {
     try {
       this.authSvc.user$.subscribe(async (user) => {

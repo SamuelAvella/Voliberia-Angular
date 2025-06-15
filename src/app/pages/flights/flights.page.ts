@@ -1,3 +1,8 @@
+/**
+ * Página de gestión de vuelos.
+ * Permite visualizar, añadir, editar y eliminar vuelos.
+ * Solo accesible para usuarios con permisos de administrador.
+ */
 import { Component, Inject, OnInit } from "@angular/core";
 import { AlertController, ModalController, ToastController } from "@ionic/angular";
 import { TranslateService } from "@ngx-translate/core";
@@ -17,15 +22,35 @@ import { FlightModalComponent } from "src/app/shared/components/flight-modal/fli
   styleUrls: ['./flights.page.scss'],
 })
 export class FlightsPage implements OnInit {
+  /** Lista observable de vuelos */
   _flights: BehaviorSubject<Flight[]> = new BehaviorSubject<Flight[]>([]);
+
+  /** Observable para los vuelos */
   flights$: Observable<Flight[]> = this._flights.asObservable();
+
+  /** Página actual para paginación */
   page: number = 1;
+
+  /** Tamaño de página para la paginación */
   pageSize: number = 25;
 
+  /** Idioma actual */
   currentLocale: string;
-  private loadedIds: Set<String> = new Set()
+
+  /** IDs de vuelos ya cargados para evitar duplicados */
+  private loadedIds: Set<String> = new Set();
 
 
+  /**
+   * Constructor. Inyecta servicios y configura el idioma.
+   * @param flightsSvc Servicio de vuelos
+   * @param modalCtrl Controlador de modales
+   * @param alertCtrl Controlador de alertas
+   * @param bookingsSvc Servicio de reservas
+   * @param toastController Controlador de toasts
+   * @param translateService Servicio de traducción
+   * @param flightsSubscription Suscripción a cambios en vuelos
+   */
   constructor(
     private flightsSvc: FlightsService,
     private modalCtrl: ModalController,
@@ -43,43 +68,43 @@ export class FlightsPage implements OnInit {
     });
   }
 
+  /**
+   * Inicializa la página y se suscribe a cambios en tiempo real de vuelos.
+   */
   ngOnInit(): void {
     this.getMoreFlights();
-    this.flightsSubscription.subscribe('fligths').subscribe((change: CollectionChange<Flight>) =>{
-      console.log('Cambio recibido de la suscripción de vuelos:', change);  // Log del cambio
+
+    this.flightsSubscription.subscribe('fligths').subscribe((change: CollectionChange<Flight>) => {
       const currentFlight = [...this._flights.value];
 
-      if(!this.loadedIds.has(change.id) && change.type !== "added"){
-        console.log('El vuelo no ha sido cargado o no es un vuelo añadido');  // Log si no es un vuelo nuevo
-        return;
-      }
+      if (!this.loadedIds.has(change.id) && change.type !== "added") return;
 
-      switch(change.type) {
+      switch (change.type) {
         case 'added':
         case 'modified':
-          console.log(`Vuelo ${change.type}:`, change.data);  // Log de los vuelos añadidos o modificados
           const index = currentFlight.findIndex(f => f.id === change.id);
           if (index >= 0) {
             currentFlight[index] = change.data!;
           }
           break;
         case 'removed':
-          console.log(`Vuelo removido:`, change.id);  // Log de vuelos eliminados
           const removeIndex = currentFlight.findIndex(f => f.id === change.id);
           if (removeIndex >= 0) {
             currentFlight.splice(removeIndex, 1);
             this.loadedIds.delete(change.id);
           }
           break;
-        }
-
-        this._flights.next(currentFlight);
       }
-    )
+
+      this._flights.next(currentFlight);
+    });
   }
 
+  /**
+   * Carga más vuelos usando paginación y actualiza la lista.
+   * @param notify Elemento opcional para scroll infinito.
+   */
   getMoreFlights(notify: HTMLIonInfiniteScrollElement | null = null): void {
-    console.log('Llamando a getMoreFlights');
     this.flightsSvc.getAll(this.page, this.pageSize).subscribe({
       next: (response: Paginated<Flight>) => {
         response.data.forEach(flight => this.loadedIds.add(flight.id));
@@ -94,8 +119,9 @@ export class FlightsPage implements OnInit {
           }
         });
 
-        // Sort descendent date
-        updatedFlights.sort((a, b) => new Date(b.departureDate).getTime() - new Date(a.departureDate).getTime());
+        updatedFlights.sort((a, b) =>
+          new Date(b.departureDate).getTime() - new Date(a.departureDate).getTime()
+        );
 
         this._flights.next(updatedFlights);
         this.page++;
@@ -108,8 +134,10 @@ export class FlightsPage implements OnInit {
     });
   }
 
-
-  async onAddFlight() {
+  /**
+   * Abre un modal para crear un nuevo vuelo.
+   */
+  async onAddFlight(): Promise<void> {
     const modal = await this.modalCtrl.create({
       component: FlightModalComponent,
     });
@@ -117,22 +145,19 @@ export class FlightsPage implements OnInit {
     modal.onDidDismiss().then(async (result) => {
       if (result.data) {
         await lastValueFrom(this.flightsSvc.add(result.data));
-
-        const toastSuccess = await this.toastController.create({
-          message: this.translateService.instant('FLIGHT.SUCCESS.CREATE'), // Cambia al mensaje que quieras
-          duration: 3000,
-          position: 'bottom',
-          color: 'success',
-        });
-        await toastSuccess.present();
-
+        await this.showToast('FLIGHT.SUCCESS.CREATE');
         this.refreshFlights();
       }
     });
+
     await modal.present();
   }
 
-  async onEditFlight(flight: Flight) {
+  /**
+   * Abre un modal para editar un vuelo existente.
+   * @param flight Vuelo a editar
+   */
+  async onEditFlight(flight: Flight): Promise<void> {
     const modal = await this.modalCtrl.create({
       component: FlightModalComponent,
       componentProps: { flight },
@@ -141,15 +166,7 @@ export class FlightsPage implements OnInit {
     modal.onDidDismiss().then(async (result) => {
       if (result.data) {
         await lastValueFrom(this.flightsSvc.update(flight.id, result.data));
-
-        const toast = await this.toastController.create({
-          message: this.translateService.instant('FLIGHT.SUCCESS.EDIT'),
-          duration: 3000,
-          position: 'bottom',
-          color: 'success',
-        });
-        await toast.present();
-
+        await this.showToast('FLIGHT.SUCCESS.EDIT');
         this.refreshFlights();
       }
     });
@@ -157,8 +174,12 @@ export class FlightsPage implements OnInit {
     await modal.present();
   }
 
-
-  async onDeleteFlight(flight: Flight) {
+  /**
+   * Muestra una alerta para confirmar la eliminación de un vuelo.
+   * También elimina sus reservas asociadas.
+   * @param flight Vuelo a eliminar
+   */
+  async onDeleteFlight(flight: Flight): Promise<void> {
     const alert = await this.alertCtrl.create({
       header: await this.translateService.get('FLIGHT.DELETE_CONFIRM.TITLE').toPromise(),
       message: await this.translateService.get('FLIGHT.DELETE_CONFIRM.MESSAGE').toPromise(),
@@ -174,15 +195,7 @@ export class FlightsPage implements OnInit {
             try {
               await lastValueFrom(this.bookingsSvc.deleteBookingsByFlightId(flight.id));
               await lastValueFrom(this.flightsSvc.delete(flight.id));
-
-              const toast = await this.toastController.create({
-                message: this.translateService.instant('FLIGHT.SUCCESS.DELETE'),
-                duration: 3000,
-                position: 'bottom',
-                color: 'success',
-              });
-              await toast.present();
-
+              await this.showToast('FLIGHT.SUCCESS.DELETE');
               this.refreshFlights();
             } catch (error) {
               console.error('❌ Error eliminando vuelo:', error);
@@ -195,21 +208,35 @@ export class FlightsPage implements OnInit {
     await alert.present();
   }
 
+  /**
+   * Muestra un mensaje toast con una clave de traducción.
+   * @param key Clave de traducción
+   */
+  private async showToast(key: string): Promise<void> {
+    const toast = await this.toastController.create({
+      message: this.translateService.instant(key),
+      duration: 3000,
+      position: 'bottom',
+      color: 'success',
+    });
+    await toast.present();
+  }
 
-
-
-
+  /**
+   * Reinicia la lista de vuelos y vuelve a cargar desde la página 1.
+   */
   refreshFlights(): void {
-  console.log('Llamando a refreshFlights');
-  this.page = 1;
-  this._flights.next([]);      // Limpia la lista actual
-  this.loadedIds.clear();      // Limpia los IDs para evitar duplicados
-  this.getMoreFlights();       // Carga desde cero
-}
+    this.page = 1;
+    this._flights.next([]);
+    this.loadedIds.clear();
+    this.getMoreFlights();
+  }
 
-
-
-  onIonInfinite(ev: any) {
+  /**
+   * Llama a la carga de más vuelos al hacer scroll infinito.
+   * @param ev Evento del scroll
+   */
+  onIonInfinite(ev: any): void {
     this.getMoreFlights(ev.target);
   }
 }

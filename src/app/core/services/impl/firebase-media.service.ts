@@ -1,3 +1,7 @@
+/**
+ * Servicio de subida de archivos a Firebase Storage.
+ * Hereda de `BaseMediaService` y utiliza el usuario autenticado para añadir metadatos.
+ */
 import { Inject, Injectable } from "@angular/core";
 import { BaseMediaService } from "./base-media.service";
 import { 
@@ -18,6 +22,11 @@ import { IAuthentication } from "../interfaces/authentication.interface";
 export class FirebaseMediaService extends BaseMediaService<string> {
   private storage;
 
+  /**
+   * Constructor que inicializa Firebase Storage y la configuración necesaria.
+   * @param firebaseConfig Configuración de Firebase
+   * @param auth Servicio de autenticación que proporciona el usuario actual
+   */
   constructor(
     @Inject(FIREBASE_CONFIG_TOKEN) protected firebaseConfig: any,
     @Inject(AUTH_TOKEN) private auth: IAuthentication
@@ -27,6 +36,14 @@ export class FirebaseMediaService extends BaseMediaService<string> {
     this.storage = getStorage(app);
   }
 
+  /**
+   * Sube un archivo en formato `Blob` al bucket de Firebase Storage.
+   * El nombre del archivo se genera aleatoriamente con timestamp y hash.
+   * Se incluyen metadatos personalizados con el ID del usuario autenticado.
+   *
+   * @param blob Archivo a subir
+   * @returns Observable con una lista que contiene la URL pública del archivo
+   */
   public upload(blob: Blob): Observable<string[]> {
     return from(this.auth.getCurrentUser()).pipe(
       switchMap(user => {

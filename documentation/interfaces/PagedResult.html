@@ -1,0 +1,603 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Voliberia-Angular documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">Voliberia-Angular documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content interface">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Interfaces</li>
+  <li class="breadcrumb-item"
+  >
+  PagedResult</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" 
+                class="nav-link"
+                
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/app/pages/profile/profile.page.ts</code>
+        </p>
+
+
+
+
+        <section data-compodoc="block-index">
+            <h3 id="index">Index</h3>
+            <table class="table table-sm table-bordered index-table">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <h6><b>Properties</b></h6>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <ul class="index-list">
+                                <li>
+                                        <a href="#data" 
+>
+                                            data
+                                        </a>
+                                </li>
+                                <li>
+                                        <a href="#page" 
+>
+                                            page
+                                        </a>
+                                </li>
+                                <li>
+                                        <a href="#pages" 
+>
+                                            pages
+                                        </a>
+                                </li>
+                                <li>
+                                        <a href="#pageSize" 
+>
+                                            pageSize
+                                        </a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+
+
+            <section data-compodoc="block-properties">
+                <h3 id="inputs">Properties</h3>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="data"></a>
+                                        <span class="name "><b>data</b>
+                                            <a href="#data">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>data:     <code>T[]</code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>    <code>T[]</code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="page"></a>
+                                        <span class="name "><b>page</b>
+                                            <a href="#page">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>page:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="pages"></a>
+                                        <span class="name "><b>pages</b>
+                                            <a href="#pages">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>pages:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="pageSize"></a>
+                                        <span class="name "><b>pageSize</b>
+                                            <a href="#pageSize">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>pageSize:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                        </tbody>
+                    </table>
+            </section>
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit } from &quot;@angular/core&quot;;
+import { FormBuilder, FormGroup, Validators } from &quot;@angular/forms&quot;;
+import { LoadingController, ToastController } from &quot;@ionic/angular&quot;;
+import { TranslateService } from &quot;@ngx-translate/core&quot;;
+import { lastValueFrom } from &quot;rxjs&quot;;
+import { UserApp } from &quot;src/app/core/models/userApp.model&quot;;
+import { BaseAuthenticationService } from &quot;src/app/core/services/impl/base-authentication.service&quot;;
+import { BaseMediaService } from &quot;src/app/core/services/impl/base-media.service&quot;;
+import { UsersAppService } from &quot;src/app/core/services/impl/usersApp.service&quot;;
+
+import { saveAs } from &#x27;file-saver&#x27;
+import { FlightsService } from &#x27;src/app/core/services/impl/flights.service&#x27;;
+import { BookingsService } from &#x27;src/app/core/services/impl/bookings.service&#x27;;
+import { Flight } from &quot;src/app/core/models/flight.model&quot;;
+import { Booking } from &quot;src/app/core/models/booking.model&quot;;
+
+export interface PagedResult&lt;T&gt; {
+  data: T[];
+  page: number;
+  pageSize: number;
+  pages: number;
+}
+
+@Component({
+  selector: &#x27;app-profile&#x27;,
+  templateUrl: &#x27;./profile.page.html&#x27;,
+  styleUrls: [&#x27;./profile.page.scss&#x27;],
+})
+export class ProfilePage implements OnInit {
+  /** Formulario de edición del perfil */
+  formGroup: FormGroup;
+
+  /** Datos del usuario extendido */
+  userApp?: UserApp | null;
+
+  /** Si el usuario actual tiene rol de administrador */
+  isAdmin: boolean &#x3D; false;
+
+  constructor(
+    private formBuilder: FormBuilder,
+    private usersAppSvc: UsersAppService,
+    private authSvc: BaseAuthenticationService,
+    private mediaSvc: BaseMediaService,
+    private loadingController: LoadingController,
+    private toastController: ToastController,
+    private translateSvc: TranslateService,
+    private flightsSvc: FlightsService,
+    private bookingsSvc: BookingsService
+  ) {
+    this.formGroup &#x3D; this.formBuilder.group({
+      name: [&#x27;&#x27;, [Validators.required]],
+      surname: [&#x27;&#x27;, [Validators.required]],
+      email: [{ value: &#x27;&#x27;, disabled: true }, [Validators.required, Validators.email]],
+      picture: [&#x27;&#x27;]
+    });
+  }
+
+  /**
+   * Inicializa el perfil cargando los datos del usuario actual.
+   */
+  async ngOnInit() {
+    const loading &#x3D; await this.loadingController.create();
+    await loading.present();
+
+    try {
+      const user &#x3D; await this.authSvc.getCurrentUser();
+      if (user) {
+        this.userApp &#x3D; await lastValueFrom(this.usersAppSvc.getByUserId(user.id));
+
+        if (this.userApp) {
+          const updatedUserApp: any &#x3D; {
+            ...this.userApp,
+            username: &#x60;${this.userApp.name} ${this.userApp.surname}&#x60;,
+            email: user.email,
+            userId: user.id,
+            picture: typeof this.userApp.picture &#x3D;&#x3D;&#x3D; &#x27;object&#x27;
+              ? this.userApp.picture.url
+              : undefined
+          };
+          this.formGroup.patchValue(updatedUserApp);
+        }
+
+        this.isAdmin &#x3D; this.userApp?.role &#x3D;&#x3D;&#x3D; &#x27;admin&#x27;;
+      }
+    } catch (error) {
+      const toast &#x3D; await this.toastController.create({
+        message: await lastValueFrom(this.translateSvc.get(&#x27;COMMON.ERROR.LOAD&#x27;)),
+        duration: 3000,
+        position: &#x27;bottom&#x27;,
+      });
+      await toast.present();
+    } finally {
+      await loading.dismiss();
+    }
+  }
+
+  /**
+   * Guarda los cambios realizados en el perfil.
+   */
+  async onSubmit() {
+    if (this.formGroup.valid &amp;&amp; this.userApp) {
+      const loading &#x3D; await this.loadingController.create();
+      await loading.present();
+
+      try {
+        const changedValues &#x3D; {} as Record&lt;keyof UserApp, any&gt;;
+        Object.keys(this.formGroup.controls).forEach((key) &#x3D;&gt; {
+          if (this.formGroup.get(key)?.dirty) {
+            changedValues[key as keyof UserApp] &#x3D; this.formGroup.get(key)?.value;
+          }
+        });
+
+        if (changedValues.picture) {
+          const base64Response &#x3D; await fetch(changedValues.picture);
+          const blob &#x3D; await base64Response.blob();
+          const uploadedBlob &#x3D; await lastValueFrom(this.mediaSvc.upload(blob));
+          changedValues.picture &#x3D; uploadedBlob[0];
+        }
+
+        await lastValueFrom(this.usersAppSvc.update(this.userApp.id, changedValues));
+
+        const toast &#x3D; await this.toastController.create({
+          message: await this.translateSvc.get(&#x27;COMMON.SUCCESS.SAVE&#x27;).toPromise(),
+          duration: 3000,
+          position: &#x27;bottom&#x27;,
+        });
+        await toast.present();
+      } catch (error) {
+        const toast &#x3D; await this.toastController.create({
+          message: await this.translateSvc.get(&#x27;COMMON.ERROR.SAVE&#x27;).toPromise(),
+          duration: 3000,
+          position: &#x27;bottom&#x27;,
+        });
+        await toast.present();
+      } finally {
+        await loading.dismiss();
+      }
+    }
+  }
+
+  /** Muestra advertencia al intentar modificar el email */
+  async showEmailWarning() {
+    const toast &#x3D; await this.toastController.create({
+      message: await this.translateSvc.get(&#x27;PROFILE.ERRORS.EMAIL_CANNOT_BE_CHANGED&#x27;).toPromise(),
+      duration: 3000,
+      position: &#x27;bottom&#x27;,
+    });
+    await toast.present();
+  }
+
+  /**
+   * Exporta todos los datos del sistema en formato CSV.
+   */
+  async exportAllData() {
+    const loading &#x3D; await this.loadingController.create({ message: &#x27;Exportando datos...&#x27; });
+    await loading.present();
+
+    try {
+      const flightsPaged: any &#x3D; await lastValueFrom(this.flightsSvc.getAll());
+      const bookingsPaged: any &#x3D; await lastValueFrom(this.bookingsSvc.getAll());
+      const usersPaged: any &#x3D; await lastValueFrom(this.usersAppSvc.getAll());
+
+      this.exportToCsv(&#x27;flights.csv&#x27;, flightsPaged?.data ?? []);
+      this.exportToCsv(&#x27;bookings.csv&#x27;, bookingsPaged?.data ?? []);
+      this.exportToCsv(&#x27;users.csv&#x27;, usersPaged?.data ?? []);
+
+      const toast &#x3D; await this.toastController.create({
+        message: &#x27;Datos exportados correctamente.&#x27;,
+        duration: 3000,
+        position: &#x27;bottom&#x27;,
+      });
+      await toast.present();
+    } catch (error) {
+      const toast &#x3D; await this.toastController.create({
+        message: &#x27;Error al exportar datos.&#x27;,
+        duration: 3000,
+        position: &#x27;bottom&#x27;,
+      });
+      await toast.present();
+    } finally {
+      await loading.dismiss();
+    }
+  }
+
+  /**
+   * Exporta un array de objetos como archivo CSV.
+   * @param filename Nombre del archivo
+   * @param data Datos a exportar
+   */
+  private exportToCsv(filename: string, data: any[]): void {
+    if (!data || data.length &#x3D;&#x3D;&#x3D; 0) return;
+
+    const keys &#x3D; Object.keys(data[0] ?? {});
+    const csvRows &#x3D; [
+      keys.join(&#x27;,&#x27;),
+      ...data.map(item &#x3D;&gt; keys.map(k &#x3D;&gt; &#x60;&quot;${(item[k] ?? &#x27;&#x27;).toString().replace(/&quot;/g, &#x27;&quot;&quot;&#x27;)}&quot;&#x60;).join(&#x27;,&#x27;))
+    ];
+
+    const blob &#x3D; new Blob([csvRows.join(&#x27;\r\n&#x27;)], { type: &#x27;text/csv;charset&#x3D;utf-8;&#x27; });
+    saveAs(blob, filename);
+  }
+
+  /** Getters de los campos del formulario */
+  get name() { return this.formGroup.controls[&#x27;name&#x27;]; }
+  get surname() { return this.formGroup.controls[&#x27;surname&#x27;]; }
+  get email() { return this.formGroup.controls[&#x27;email&#x27;]; }
+}
+</code></pre>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'interface';
+            var COMPODOC_CURRENT_PAGE_URL = 'PagedResult.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

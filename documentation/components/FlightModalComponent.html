@@ -1,0 +1,1540 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Voliberia-Angular documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">Voliberia-Angular documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  FlightModalComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#styleData" class="nav-link"
+                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/shared/components/flight-modal/flight-modal.component.ts</code>
+</p>
+
+
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>Modal para crear o editar un vuelo.
+Permite seleccionar origen, destino, fechas y horas con validaciones personalizadas.</p>
+
+    </p>
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                <code>OnInit</code>
+    </p>
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-flight-modal</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./flight-modal.component.scss</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./flight-modal.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#arrivalDate" >arrivalDate</a>
+                            </li>
+                            <li>
+                                <a href="#arrivalTime" >arrivalTime</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#arrivalWrapper" >arrivalWrapper</a>
+                            </li>
+                            <li>
+                                <a href="#departureDate" >departureDate</a>
+                            </li>
+                            <li>
+                                <a href="#departureTime" >departureTime</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#departureWrapper" >departureWrapper</a>
+                            </li>
+                            <li>
+                                <a href="#formGroup" >formGroup</a>
+                            </li>
+                            <li>
+                                <a href="#isMobile" >isMobile</a>
+                            </li>
+                            <li>
+                                <a href="#minArrivalDate" >minArrivalDate</a>
+                            </li>
+                            <li>
+                                <a href="#minDepartureDate" >minDepartureDate</a>
+                            </li>
+                            <li>
+                                <a href="#toggleArrivalDateSelector" >toggleArrivalDateSelector</a>
+                            </li>
+                            <li>
+                                <a href="#toggleDepartureDateSelector" >toggleDepartureDateSelector</a>
+                            </li>
+                            <li>
+                                <a href="#toggleTimeSelector" >toggleTimeSelector</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#combineDateTime" >combineDateTime</a>
+                            </li>
+                            <li>
+                                <a href="#dismiss" >dismiss</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit" >ngOnInit</a>
+                            </li>
+                            <li>
+                                <a href="#onSubmit" >onSubmit</a>
+                            </li>
+                            <li>
+                                <a href="#onTimePartSelected" >onTimePartSelected</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Inputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#flight" >flight</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(modalCtrl: ModalController, fb: FormBuilder, breakpointsService: <a href="../injectables/BreakpointsService.html" target="_self">BreakpointsService</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/app/shared/components/flight-modal/flight-modal.component.ts:44</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>modalCtrl</td>
+                                                  
+                                                        <td>
+                                                                    <code>ModalController</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>fb</td>
+                                                  
+                                                        <td>
+                                                                    <code>FormBuilder</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>breakpointsService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/BreakpointsService.html" target="_self" >BreakpointsService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+    <section data-compodoc="block-inputs">
+    <h3 id="inputs">Inputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="flight"></a>
+                        <b>flight</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/Flight.html" target="_self" >Flight</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/app/shared/components/flight-modal/flight-modal.component.ts:20</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Vuelo a editar (opcional)</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="combineDateTime"></a>
+                    <span class="name">
+                        <span ><b>combineDateTime</b></span>
+                        <a href="#combineDateTime"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>combineDateTime(dateStr: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, timeStr: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="118"
+                                    class="link-to-prism">src/app/shared/components/flight-modal/flight-modal.component.ts:118</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Une una fecha y una hora en formato ISO.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>dateStr</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>Fecha en string</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>timeStr</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>Hora en string</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Fecha completa en formato ISO</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="dismiss"></a>
+                    <span class="name">
+                        <span ><b>dismiss</b></span>
+                        <a href="#dismiss"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>dismiss()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="82"
+                                    class="link-to-prism">src/app/shared/components/flight-modal/flight-modal.component.ts:82</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Cierra el modal sin guardar cambios</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <span ><b>ngOnInit</b></span>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="67"
+                                    class="link-to-prism">src/app/shared/components/flight-modal/flight-modal.component.ts:67</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Inicializa el componente y carga datos si se está editando un vuelo.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onSubmit"></a>
+                    <span class="name">
+                        <span ><b>onSubmit</b></span>
+                        <a href="#onSubmit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onSubmit()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="87"
+                                    class="link-to-prism">src/app/shared/components/flight-modal/flight-modal.component.ts:87</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Confirma y envía el formulario</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onTimePartSelected"></a>
+                    <span class="name">
+                        <span ><b>onTimePartSelected</b></span>
+                        <a href="#onTimePartSelected"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onTimePartSelected(event: CustomEvent, type: "departure" | "arrival")</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="96"
+                                    class="link-to-prism">src/app/shared/components/flight-modal/flight-modal.component.ts:96</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Maneja la selección de hora en el selector.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>event</td>
+                                            <td>
+                                                        <code>CustomEvent</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>Evento del componente</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>type</td>
+                                            <td>
+                                                        <code>&quot;departure&quot; | &quot;arrival&quot;</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>Tipo de campo: &#39;departure&#39; o &#39;arrival&#39;</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="arrivalDate"></a>
+                    <span class="name">
+                        <span ><b>arrivalDate</b></span>
+                        <a href="#arrivalDate"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>string | null</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/app/shared/components/flight-modal/flight-modal.component.ts:36</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="arrivalTime"></a>
+                    <span class="name">
+                        <span ><b>arrivalTime</b></span>
+                        <a href="#arrivalTime"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>string | null</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/app/shared/components/flight-modal/flight-modal.component.ts:37</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="arrivalWrapper"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>arrivalWrapper</b></span>
+                        <a href="#arrivalWrapper"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>ElementRef</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ViewChild(&#x27;arrivalWrapper&#x27;)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/app/shared/components/flight-modal/flight-modal.component.ts:23</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="departureDate"></a>
+                    <span class="name">
+                        <span ><b>departureDate</b></span>
+                        <a href="#departureDate"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>string | null</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/app/shared/components/flight-modal/flight-modal.component.ts:34</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Campos separados de fecha y hora</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="departureTime"></a>
+                    <span class="name">
+                        <span ><b>departureTime</b></span>
+                        <a href="#departureTime"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>string | null</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/app/shared/components/flight-modal/flight-modal.component.ts:35</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="departureWrapper"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>departureWrapper</b></span>
+                        <a href="#departureWrapper"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>ElementRef</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ViewChild(&#x27;departureWrapper&#x27;)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/app/shared/components/flight-modal/flight-modal.component.ts:22</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="formGroup"></a>
+                    <span class="name">
+                        <span ><b>formGroup</b></span>
+                        <a href="#formGroup"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>FormGroup</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/app/shared/components/flight-modal/flight-modal.component.ts:26</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Formulario reactivo del vuelo</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isMobile"></a>
+                    <span class="name">
+                        <span ><b>isMobile</b></span>
+                        <a href="#isMobile"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/app/shared/components/flight-modal/flight-modal.component.ts:44</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Indica si el dispositivo es móvil</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="minArrivalDate"></a>
+                    <span class="name">
+                        <span ><b>minArrivalDate</b></span>
+                        <a href="#minArrivalDate"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new Date(Date.now() + 40 * 60000).toISOString()</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/app/shared/components/flight-modal/flight-modal.component.ts:41</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="minDepartureDate"></a>
+                    <span class="name">
+                        <span ><b>minDepartureDate</b></span>
+                        <a href="#minDepartureDate"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new Date().toISOString()</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/app/shared/components/flight-modal/flight-modal.component.ts:40</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Fechas mínimas válidas</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="toggleArrivalDateSelector"></a>
+                    <span class="name">
+                        <span ><b>toggleArrivalDateSelector</b></span>
+                        <a href="#toggleArrivalDateSelector"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/app/shared/components/flight-modal/flight-modal.component.ts:30</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="toggleDepartureDateSelector"></a>
+                    <span class="name">
+                        <span ><b>toggleDepartureDateSelector</b></span>
+                        <a href="#toggleDepartureDateSelector"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/shared/components/flight-modal/flight-modal.component.ts:29</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Estado de visibilidad de selectores</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="toggleTimeSelector"></a>
+                    <span class="name">
+                        <span ><b>toggleTimeSelector</b></span>
+                        <a href="#toggleTimeSelector"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>&quot;departure&quot; | &quot;arrival&quot; | null</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/app/shared/components/flight-modal/flight-modal.component.ts:31</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, ElementRef, HostListener, Input, OnInit, ViewChild, AfterViewInit } from &quot;@angular/core&quot;;
+import { FormBuilder, FormGroup, Validators } from &quot;@angular/forms&quot;;
+import { ModalController } from &quot;@ionic/angular&quot;;
+import { Flight } from &quot;src/app/core/models/flight.model&quot;;
+import { arrivalDateValidator } from &quot;../../validators/date.validators&quot;;
+import { BreakpointsService } from &quot;src/app/core/services/breakpoints.service&quot;;
+
+/**
+ * Modal para crear o editar un vuelo.
+ * Permite seleccionar origen, destino, fechas y horas con validaciones personalizadas.
+ */
+@Component({
+  selector: &#x27;app-flight-modal&#x27;,
+  templateUrl: &#x27;./flight-modal.component.html&#x27;,
+  styleUrls: [&#x27;./flight-modal.component.scss&#x27;],
+})
+export class FlightModalComponent implements OnInit {
+
+  /** Vuelo a editar (opcional) */
+  @Input() flight?: Flight;
+
+  @ViewChild(&#x27;departureWrapper&#x27;) departureWrapper!: ElementRef;
+  @ViewChild(&#x27;arrivalWrapper&#x27;) arrivalWrapper!: ElementRef;
+
+  /** Formulario reactivo del vuelo */
+  formGroup: FormGroup;
+
+  /** Estado de visibilidad de selectores */
+  toggleDepartureDateSelector &#x3D; false;
+  toggleArrivalDateSelector &#x3D; false;
+  toggleTimeSelector: &#x27;departure&#x27; | &#x27;arrival&#x27; | null &#x3D; null;
+
+  /** Campos separados de fecha y hora */
+  departureDate: string | null &#x3D; null;
+  departureTime: string | null &#x3D; null;
+  arrivalDate: string | null &#x3D; null;
+  arrivalTime: string | null &#x3D; null;
+
+  /** Fechas mínimas válidas */
+  minDepartureDate &#x3D; new Date().toISOString();
+  minArrivalDate &#x3D; new Date(Date.now() + 40 * 60000).toISOString();
+
+  /** Indica si el dispositivo es móvil */
+  isMobile &#x3D; false;
+
+  constructor(
+    private modalCtrl: ModalController,
+    private fb: FormBuilder,
+    private breakpointsService: BreakpointsService
+  ) {
+    this.breakpointsService.isHandset$.subscribe(value &#x3D;&gt; {
+      this.isMobile &#x3D; value;
+    });
+
+    this.formGroup &#x3D; this.fb.group({
+      origin: [&#x27;&#x27;, [Validators.required, Validators.minLength(3)]],
+      destination: [&#x27;&#x27;, [Validators.required, Validators.minLength(3)]],
+      departureDate: [&#x27;&#x27;, [Validators.required]],
+      arrivalDate: [&#x27;&#x27;, [Validators.required]],
+      seatPrice: [0, [Validators.required, Validators.min(15)]],
+    }, { validators: arrivalDateValidator });
+  }
+
+  /**
+   * Inicializa el componente y carga datos si se está editando un vuelo.
+   */
+  ngOnInit(): void {
+    this.minDepartureDate &#x3D; new Date(new Date().setDate(new Date().getDate() + 1)).toISOString().split(&#x27;T&#x27;)[0] + &#x27;T00:00:00.000Z&#x27;;
+
+    if (this.flight) {
+      this.formGroup.patchValue(this.flight);
+      const [depDate, depTime] &#x3D; this.flight.departureDate.split(&#x27;T&#x27;);
+      const [arrDate, arrTime] &#x3D; this.flight.arrivalDate.split(&#x27;T&#x27;);
+      this.departureDate &#x3D; depDate;
+      this.departureTime &#x3D; depTime?.slice(0, 5) ?? null;
+      this.arrivalDate &#x3D; arrDate;
+      this.arrivalTime &#x3D; arrTime?.slice(0, 5) ?? null;
+    }
+  }
+
+  /** Cierra el modal sin guardar cambios */
+  dismiss(): void {
+    this.modalCtrl.dismiss();
+  }
+
+  /** Confirma y envía el formulario */
+  onSubmit(): void {
+    this.modalCtrl.dismiss(this.formGroup.value);
+  }
+
+  /**
+   * Maneja la selección de hora en el selector.
+   * @param event Evento del componente
+   * @param type Tipo de campo: &#x27;departure&#x27; o &#x27;arrival&#x27;
+   */
+  onTimePartSelected(event: CustomEvent, type: &#x27;departure&#x27; | &#x27;arrival&#x27;): void {
+    const time &#x3D; event.detail.value;
+    if (type &#x3D;&#x3D;&#x3D; &#x27;departure&#x27;) {
+      this.departureTime &#x3D; time;
+      this.formGroup.get(&#x27;departureDate&#x27;)?.setValue(
+        this.combineDateTime(this.departureDate!, time)
+      );
+    } else {
+      this.arrivalTime &#x3D; time;
+      this.formGroup.get(&#x27;arrivalDate&#x27;)?.setValue(
+        this.combineDateTime(this.arrivalDate!, time)
+      );
+    }
+    this.toggleTimeSelector &#x3D; null;
+  }
+
+  /**
+   * Une una fecha y una hora en formato ISO.
+   * @param dateStr Fecha en string
+   * @param timeStr Hora en string
+   * @returns Fecha completa en formato ISO
+   */
+  combineDateTime(dateStr: string, timeStr: string): string {
+    return new Date(&#x60;${dateStr}T${timeStr}&#x60;).toISOString();
+  }
+}
+
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;ion-header&gt;
+  &lt;ion-toolbar color&#x3D;&quot;primary&quot;&gt;
+    &lt;ion-title class&#x3D;&quot;ion-text-center&quot;&gt;
+      {{ flight ? (&#x27;FLIGHT.EDIT&#x27; | translate) : (&#x27;FLIGHT.NEW&#x27; | translate) }}
+    &lt;/ion-title&gt;
+    &lt;ion-buttons slot&#x3D;&quot;end&quot;&gt;
+      &lt;ion-button (click)&#x3D;&quot;dismiss()&quot; color&#x3D;&quot;light&quot;&gt;
+        &lt;ion-icon slot&#x3D;&quot;icon-only&quot; name&#x3D;&quot;close&quot;&gt;&lt;/ion-icon&gt;
+      &lt;/ion-button&gt;
+    &lt;/ion-buttons&gt;
+  &lt;/ion-toolbar&gt;
+&lt;/ion-header&gt;
+
+&lt;ion-content class&#x3D;&quot;bg-white font-inter dark:bg-[#23242b]&quot;&gt;
+  &lt;div class&#x3D;&quot;w-full max-w-xl mx-auto px-6 py-4&quot;&gt;
+    &lt;form [formGroup]&#x3D;&quot;formGroup&quot; (ngSubmit)&#x3D;&quot;onSubmit()&quot; class&#x3D;&quot;space-y-4&quot;&gt;
+
+      
+      &lt;div&gt;
+        &lt;label class&#x3D;&quot;text-sm font-semibold text-gray-700 dark:text-gray-400&quot;&gt;{{ &#x27;FLIGHT.ORIGIN&#x27; | translate }}&lt;/label&gt;
+        &lt;div class&#x3D;&quot;relative mt-1&quot;&gt;
+          &lt;ion-icon name&#x3D;&quot;airplane-outline&quot;
+          class&#x3D;&quot;absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 text-lg z-10 rotate-[-45deg]&quot;&gt;&lt;/ion-icon&gt;
+          
+          &lt;ion-input
+          style&#x3D;&quot;--padding-start: 40px;&quot;
+          formControlName&#x3D;&quot;origin&quot;
+          placeholder&#x3D;&quot;{{ &#x27;FLIGHT.ORIGIN_INSERT&#x27; | translate }}&quot;
+          class&#x3D;&quot;h-[40px] w-full px-3 py-2 border border-gray-300 rounded-md text-sm text-black bg-white focus:border-blue-500 focus:outline-none shadow-sm&quot;&gt;
+        &lt;/ion-input&gt;
+      &lt;/div&gt;
+      &lt;/div&gt;
+      
+      &lt;div&gt;
+        &lt;label class&#x3D;&quot;text-sm font-semibold text-gray-700 dark:text-gray-400&quot;&gt;{{ &#x27;FLIGHT.DESTINATION&#x27; | translate }}&lt;/label&gt;
+        &lt;div class&#x3D;&quot;relative mt-1&quot;&gt;
+          &lt;ion-icon name&#x3D;&quot;airplane-outline&quot;
+          class&#x3D;&quot;absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 text-lg z-10  rotate-[45deg]&quot;&gt;&lt;/ion-icon&gt;
+          
+          &lt;ion-input
+            style&#x3D;&quot;--padding-start: 40px;&quot;
+            formControlName&#x3D;&quot;destination&quot;
+            placeholder&#x3D;&quot;{{ &#x27;FLIGHT.DESTINATION_INSERT&#x27; | translate }}&quot;
+            class&#x3D;&quot;h-[40px] w-full px-3 py-2 border border-gray-300 rounded-md text-sm text-black bg-white focus:border-blue-500 focus:outline-none shadow-sm&quot;&gt;
+          &lt;/ion-input&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+      
+      &lt;!--Departure--&gt;
+      &lt;div class&#x3D;&quot;w-full&quot;&gt;
+        &lt;label class&#x3D;&quot;text-sm font-semibold text-gray-700 dark:text-gray-400&quot;&gt;{{ &#x27;FLIGHT.DEPARTURE&#x27; | translate }}&lt;/label&gt;
+
+        &lt;div
+          class&#x3D;&quot;h-[45px] border border-gray-300 rounded-md mt-1 px-3 bg-white text-sm text-black cursor-pointer hover:shadow-sm flex justify-between items-center&quot;
+          (click)&#x3D;&quot;toggleDepartureDateSelector &#x3D; !toggleDepartureDateSelector; toggleArrivalDateSelector &#x3D; false&quot;&gt;
+
+          &lt;div class&#x3D;&quot;flex items-center gap-2&quot;&gt;
+            &lt;ion-icon name&#x3D;&quot;calendar-outline&quot; class&#x3D;&quot;text-gray-400&quot;&gt;&lt;/ion-icon&gt;
+            &lt;span *ngIf&#x3D;&quot;formGroup.get(&#x27;departureDate&#x27;)?.value as dt&quot;&gt;
+              {{ dt | date: &#x27;fullDate&#x27; }}, {{ dt | date: &#x27;shortTime&#x27; }}
+            &lt;/span&gt;
+            &lt;ng-container *ngIf&#x3D;&quot;!formGroup.get(&#x27;departureDate&#x27;)?.value&quot;&gt;
+              Seleccionar fecha y hora
+            &lt;/ng-container&gt;
+          &lt;/div&gt;
+
+        &lt;/div&gt;
+
+        &lt;!-- Popover con ion-datetime --&gt;
+        &lt;div *ngIf&#x3D;&quot;toggleDepartureDateSelector&quot; class&#x3D;&quot;absolute md:w-[90%] z-99 w-full mt-2&quot;&gt;
+          &lt;ion-datetime
+            [size]&#x3D;&quot;isMobile ? &#x27;fixed&#x27; : &#x27;cover&#x27;&quot;
+            presentation&#x3D;&quot;date-time&quot;
+            [showDefaultButtons]&#x3D;&quot;true&quot;
+            [min]&#x3D;&quot;minDepartureDate&quot;
+            minuteValues&#x3D;&quot;0,5,10,15,20,25,30,35,40,45,50,55&quot;
+            (ionCancel)&#x3D;&quot;toggleDepartureDateSelector &#x3D; false&quot;
+            [value]&#x3D;&quot;formGroup.get(&#x27;departureDate&#x27;)?.value&quot;
+            (ionChange)&#x3D;&quot;formGroup.get(&#x27;departureDate&#x27;)?.setValue($event.detail.value); toggleDepartureDateSelector &#x3D; false&quot;
+            class&#x3D;&quot;w-full bg-white dark:bg-[#3b3b3b] rounded-md shadow-md p-2&quot;
+          &gt;&lt;/ion-datetime&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+
+      &lt;!-- Arrival--&gt;
+      &lt;div class&#x3D;&quot;w-full&quot;&gt;
+        &lt;label class&#x3D;&quot;text-sm font-semibold text-gray-700 dark:text-gray-400&quot;&gt;{{ &#x27;FLIGHT.ARRIVAL&#x27; | translate }}&lt;/label&gt;
+        &lt;div
+          class&#x3D;&quot;h-[45px] border border-gray-300 rounded-md mt-1 px-3 bg-white text-sm text-black cursor-pointer hover:shadow-sm flex justify-between items-center&quot;
+          (click)&#x3D;&quot;toggleArrivalDateSelector &#x3D; !toggleArrivalDateSelector; toggleDepartureDateSelector &#x3D; false&quot;&gt;
+
+          &lt;div class&#x3D;&quot;flex items-center gap-2&quot;&gt;
+            &lt;ion-icon name&#x3D;&quot;calendar-outline&quot; class&#x3D;&quot;text-gray-400&quot;&gt;&lt;/ion-icon&gt;
+            &lt;span *ngIf&#x3D;&quot;formGroup.get(&#x27;arrivalDate&#x27;)?.value as dt&quot;&gt;
+              {{ dt | date: &#x27;fullDate&#x27; }}, {{ dt | date: &#x27;shortTime&#x27; }}
+            &lt;/span&gt;
+            &lt;ng-container *ngIf&#x3D;&quot;!formGroup.get(&#x27;arrivalDate&#x27;)?.value&quot;&gt;
+              Seleccionar fecha y hora
+            &lt;/ng-container&gt;
+          &lt;/div&gt;
+
+        &lt;/div&gt;
+
+        &lt;div *ngIf&#x3D;&quot;formGroup.errors?.[&#x27;arrivalTooSoon&#x27;]&quot; class&#x3D;&quot;text-red-500 text-sm mt-1&quot;&gt;
+          La llegada debe ser al menos 30 minutos después de la salida.
+        &lt;/div&gt;
+
+        &lt;!-- Popover con ion-datetime --&gt;
+        &lt;div *ngIf&#x3D;&quot;toggleArrivalDateSelector&quot; class&#x3D;&quot;absolute z-99 md:w-[90%] mt-2&quot;&gt;
+          &lt;ion-datetime
+            [size]&#x3D;&quot;isMobile ? &#x27;fixed&#x27; : &#x27;cover&#x27;&quot;
+            presentation&#x3D;&quot;date-time&quot;
+            [showDefaultButtons]&#x3D;&quot;true&quot;
+            [min]&#x3D;&quot;minArrivalDate&quot;
+            minuteValues&#x3D;&quot;0,5,10,15,20,25,30,35,40,45,50,55&quot;
+            (ionCancel)&#x3D;&quot;toggleArrivalDateSelector &#x3D; false&quot;
+            [value]&#x3D;&quot;formGroup.get(&#x27;arrivalDate&#x27;)?.value&quot;
+            (ionChange)&#x3D;&quot;formGroup.get(&#x27;arrivalDate&#x27;)?.setValue($event.detail.value); toggleArrivalDateSelector &#x3D; false&quot;
+            class&#x3D;&quot;w-full bg-white dark:bg-[#3b3b3b] rounded-md shadow-md p-2&quot;
+          &gt;&lt;/ion-datetime&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+
+      &lt;div&gt;
+        &lt;label class&#x3D;&quot;text-sm font-semibold text-gray-700 dark:text-gray-400&quot;&gt;{{ &#x27;FLIGHT.PRICE&#x27; | translate }}&lt;/label&gt;
+        &lt;div class&#x3D;&quot;relative mt-1&quot;&gt;
+          &lt;ion-icon name&#x3D;&quot;cash-outline&quot;
+            class&#x3D;&quot;absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 text-lg z-10&quot;&gt;&lt;/ion-icon&gt;
+          &lt;ion-input
+            style&#x3D;&quot;--padding-start: 40px;&quot;
+            type&#x3D;&quot;number&quot;
+            formControlName&#x3D;&quot;seatPrice&quot;
+            placeholder&#x3D;&quot;{{ &#x27;FLIGHT.SEATPRICE_INSERT&#x27; | translate}}&quot;
+            class&#x3D;&quot;h-[40px] w-full px-3 py-2 border border-gray-300 rounded-md text-sm text-black bg-white focus:border-blue-500 focus:outline-none shadow-sm&quot;&gt;
+          &lt;/ion-input&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+
+      
+
+
+      &lt;!-- SUBMIT --&gt;
+      &lt;div&gt;
+        &lt;ion-button
+          type&#x3D;&quot;submit&quot;
+          expand&#x3D;&quot;block&quot;
+          color&#x3D;&quot;success&quot;
+          [disabled]&#x3D;&quot;!formGroup.valid&quot;
+          class&#x3D;&quot;h-[40px] text-white font-medium rounded-md&quot;&gt;
+          {{ flight ? (&#x27;FLIGHT.SAVE&#x27; | translate) : (&#x27;FLIGHT.CREATE&#x27; | translate) }}
+        &lt;/ion-button&gt;
+      &lt;/div&gt;
+
+    &lt;/form&gt;
+  &lt;/div&gt;
+&lt;/ion-content&gt;
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="styleData">
+                <p class="comment">
+                    <code>./flight-modal.component.scss</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">ion-datetime {
+  z-index: 9999 !important;
+  position: relative !important;
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><ion-header>  <ion-toolbar color="primary">    <ion-title class="ion-text-center">      {{ flight ? (\'FLIGHT.EDIT\' | translate) : (\'FLIGHT.NEW\' | translate) }}    </ion-title>    <ion-buttons slot="end">      <ion-button (click)="dismiss()" color="light">        <ion-icon slot="icon-only" name="close"></ion-icon>      </ion-button>    </ion-buttons>  </ion-toolbar></ion-header><ion-content class="bg-white font-inter dark:bg-[#23242b]">  <div class="w-full max-w-xl mx-auto px-6 py-4">    <form [formGroup]="formGroup" (ngSubmit)="onSubmit()" class="space-y-4">            <div>        <label class="text-sm font-semibold text-gray-700 dark:text-gray-400">{{ \'FLIGHT.ORIGIN\' | translate }}</label>        <div class="relative mt-1">          <ion-icon name="airplane-outline"          class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 text-lg z-10 rotate-[-45deg]"></ion-icon>                    <ion-input          style="--padding-start: 40px;"          formControlName="origin"          placeholder="{{ \'FLIGHT.ORIGIN_INSERT\' | translate }}"          class="h-[40px] w-full px-3 py-2 border border-gray-300 rounded-md text-sm text-black bg-white focus:border-blue-500 focus:outline-none shadow-sm">        </ion-input>      </div>      </div>            <div>        <label class="text-sm font-semibold text-gray-700 dark:text-gray-400">{{ \'FLIGHT.DESTINATION\' | translate }}</label>        <div class="relative mt-1">          <ion-icon name="airplane-outline"          class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 text-lg z-10  rotate-[45deg]"></ion-icon>                    <ion-input            style="--padding-start: 40px;"            formControlName="destination"            placeholder="{{ \'FLIGHT.DESTINATION_INSERT\' | translate }}"            class="h-[40px] w-full px-3 py-2 border border-gray-300 rounded-md text-sm text-black bg-white focus:border-blue-500 focus:outline-none shadow-sm">          </ion-input>        </div>      </div>            <!--Departure-->      <div class="w-full">        <label class="text-sm font-semibold text-gray-700 dark:text-gray-400">{{ \'FLIGHT.DEPARTURE\' | translate }}</label>        <div          class="h-[45px] border border-gray-300 rounded-md mt-1 px-3 bg-white text-sm text-black cursor-pointer hover:shadow-sm flex justify-between items-center"          (click)="toggleDepartureDateSelector = !toggleDepartureDateSelector; toggleArrivalDateSelector = false">          <div class="flex items-center gap-2">            <ion-icon name="calendar-outline" class="text-gray-400"></ion-icon>            <span *ngIf="formGroup.get(\'departureDate\')?.value as dt">              {{ dt | date: \'fullDate\' }}, {{ dt | date: \'shortTime\' }}            </span>            <ng-container *ngIf="!formGroup.get(\'departureDate\')?.value">              Seleccionar fecha y hora            </ng-container>          </div>        </div>        <!-- Popover con ion-datetime -->        <div *ngIf="toggleDepartureDateSelector" class="absolute md:w-[90%] z-99 w-full mt-2">          <ion-datetime            [size]="isMobile ? \'fixed\' : \'cover\'"            presentation="date-time"            [showDefaultButtons]="true"            [min]="minDepartureDate"            minuteValues="0,5,10,15,20,25,30,35,40,45,50,55"            (ionCancel)="toggleDepartureDateSelector = false"            [value]="formGroup.get(\'departureDate\')?.value"            (ionChange)="formGroup.get(\'departureDate\')?.setValue($event.detail.value); toggleDepartureDateSelector = false"            class="w-full bg-white dark:bg-[#3b3b3b] rounded-md shadow-md p-2"          ></ion-datetime>        </div>      </div>      <!-- Arrival-->      <div class="w-full">        <label class="text-sm font-semibold text-gray-700 dark:text-gray-400">{{ \'FLIGHT.ARRIVAL\' | translate }}</label>        <div          class="h-[45px] border border-gray-300 rounded-md mt-1 px-3 bg-white text-sm text-black cursor-pointer hover:shadow-sm flex justify-between items-center"          (click)="toggleArrivalDateSelector = !toggleArrivalDateSelector; toggleDepartureDateSelector = false">          <div class="flex items-center gap-2">            <ion-icon name="calendar-outline" class="text-gray-400"></ion-icon>            <span *ngIf="formGroup.get(\'arrivalDate\')?.value as dt">              {{ dt | date: \'fullDate\' }}, {{ dt | date: \'shortTime\' }}            </span>            <ng-container *ngIf="!formGroup.get(\'arrivalDate\')?.value">              Seleccionar fecha y hora            </ng-container>          </div>        </div>        <div *ngIf="formGroup.errors?.[\'arrivalTooSoon\']" class="text-red-500 text-sm mt-1">          La llegada debe ser al menos 30 minutos después de la salida.        </div>        <!-- Popover con ion-datetime -->        <div *ngIf="toggleArrivalDateSelector" class="absolute z-99 md:w-[90%] mt-2">          <ion-datetime            [size]="isMobile ? \'fixed\' : \'cover\'"            presentation="date-time"            [showDefaultButtons]="true"            [min]="minArrivalDate"            minuteValues="0,5,10,15,20,25,30,35,40,45,50,55"            (ionCancel)="toggleArrivalDateSelector = false"            [value]="formGroup.get(\'arrivalDate\')?.value"            (ionChange)="formGroup.get(\'arrivalDate\')?.setValue($event.detail.value); toggleArrivalDateSelector = false"            class="w-full bg-white dark:bg-[#3b3b3b] rounded-md shadow-md p-2"          ></ion-datetime>        </div>      </div>      <div>        <label class="text-sm font-semibold text-gray-700 dark:text-gray-400">{{ \'FLIGHT.PRICE\' | translate }}</label>        <div class="relative mt-1">          <ion-icon name="cash-outline"            class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 text-lg z-10"></ion-icon>          <ion-input            style="--padding-start: 40px;"            type="number"            formControlName="seatPrice"            placeholder="{{ \'FLIGHT.SEATPRICE_INSERT\' | translate}}"            class="h-[40px] w-full px-3 py-2 border border-gray-300 rounded-md text-sm text-black bg-white focus:border-blue-500 focus:outline-none shadow-sm">          </ion-input>        </div>      </div>            <!-- SUBMIT -->      <div>        <ion-button          type="submit"          expand="block"          color="success"          [disabled]="!formGroup.valid"          class="h-[40px] text-white font-medium rounded-md">          {{ flight ? (\'FLIGHT.SAVE\' | translate) : (\'FLIGHT.CREATE\' | translate) }}        </ion-button>      </div>    </form>  </div></ion-content></div>'
+    var COMPONENTS = [{'name': 'AboutPage', 'selector': 'app-about'},{'name': 'AccessDeniedPage', 'selector': 'app-access-denied'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'BookingModalComponent', 'selector': 'app-booking-modal'},{'name': 'BookingsPage', 'selector': 'app-bookings'},{'name': 'BookPage', 'selector': 'app-book'},{'name': 'ConfirmBookModalComponent', 'selector': 'app-confirm-book-modal'},{'name': 'ConfirmCancelModalComponent', 'selector': 'app-confirm-cancel-modal'},{'name': 'ConfirmRoleModalComponent', 'selector': 'app-confirm-role-modal'},{'name': 'FlightModalComponent', 'selector': 'app-flight-modal'},{'name': 'FlightSelectableComponent', 'selector': 'app-flight-selectable'},{'name': 'FlightsPage', 'selector': 'app-flights'},{'name': 'FooterComponent', 'selector': 'app-footer'},{'name': 'HomePage', 'selector': 'app-home'},{'name': 'LanguageSelectorComponent', 'selector': 'app-language-selector'},{'name': 'LoginPage', 'selector': 'app-login'},{'name': 'NotFoundPage', 'selector': 'app-not-found'},{'name': 'PictureOptionsComponent', 'selector': ''},{'name': 'PictureSelectableComponent', 'selector': 'app-picture-selectable'},{'name': 'ProfilePage', 'selector': 'app-profile'},{'name': 'RegisterPage', 'selector': 'app-register'},{'name': 'SplashPage', 'selector': 'app-splash'},{'name': 'UsersPage', 'selector': 'app-users'}];
+    var DIRECTIVES = [{'name': 'BookingStatusDirective', 'selector': '[appBookingState]'}];
+    var ACTUAL_COMPONENT = {'name': 'FlightModalComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'FlightModalComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

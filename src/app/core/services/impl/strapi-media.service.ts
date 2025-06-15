@@ -1,3 +1,8 @@
+/**
+ * Servicio para subir archivos multimedia a un backend Strapi.
+ * Utiliza JWT para autenticar la subida mediante encabezado Authorization.
+ */
+
 import { HttpClient } from "@angular/common/http";
 import { BaseMediaService } from "./base-media.service";
 import { STRAPI_AUTH_TOKEN, UPLOAD_API_URL_TOKEN } from "../../repositories/repository.token";
@@ -98,6 +103,12 @@ export interface ProviderMetadata {
 
 export class StrapiMediaService extends BaseMediaService<number> {
 
+   /**
+   * Constructor del servicio de subida.
+   * @param uploadUrl URL de la API de subida de Strapi (por ejemplo `/api/upload`)
+   * @param auth Servicio de autenticación para obtener el token JWT
+   * @param httpClient Cliente HTTP de Angular
+   */
     constructor(
         @Inject(UPLOAD_API_URL_TOKEN) private uploadUrl: string,
         @Inject(STRAPI_AUTH_TOKEN) private auth: IStrapiAuthentication,
@@ -106,6 +117,10 @@ export class StrapiMediaService extends BaseMediaService<number> {
       super();
     }
   
+    /**
+   * Obtiene los encabezados necesarios para la autenticación JWT.
+   * @returns Objeto con `Authorization` si el token está disponible
+   */
     private getHeaders() {
         const token = this.auth.getToken();
         return {
@@ -113,6 +128,11 @@ export class StrapiMediaService extends BaseMediaService<number> {
         };
     }
 
+    /**
+   * Sube un archivo a Strapi usando `FormData`.
+   * @param blob Archivo en formato `Blob` (ej. imagen)
+   * @returns Observable con la lista de IDs de archivos subidos
+   */
     public upload(blob:Blob):Observable<number[]>{
       const formData = new FormData();
       formData.append('files', blob);

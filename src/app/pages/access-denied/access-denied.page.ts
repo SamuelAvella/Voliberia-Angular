@@ -1,3 +1,7 @@
+/**
+ * Página de acceso denegado.
+ * Se muestra cuando el usuario intenta acceder a una ruta sin permisos.
+ */
 import { Component } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
 import { CommonModule } from '@angular/common';
@@ -15,21 +19,25 @@ export class AccessDeniedPage {
     private router: Router
   ) {}
 
+  /**
+   * Vuelve atrás en el historial o redirige al home si la ruta anterior era restringida.
+   */
   goBack() {
-    // Get the previous URL from history
     const previousUrl = document.referrer;
 
-    // Check if the previous URL contains any of the restricted paths
     const restrictedPaths = ['/flights', '/bookings', '/book'];
     const isRestrictedPath = restrictedPaths.some(path => previousUrl.includes(path));
 
     if (isRestrictedPath) {
-      this.goHome(); // If coming from a restricted path, go home instead
+      this.goHome(); 
     } else {
-      this.location.back(); // Otherwise, go back
+      this.location.back(); 
     }
   }
 
+  /**
+   * Redirige a la página de inicio.
+   */
   goHome() {
     this.router.navigate(['/home']);
   }
