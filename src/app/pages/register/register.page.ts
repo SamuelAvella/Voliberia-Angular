@@ -1,3 +1,7 @@
+/**
+ * Página de registro de nuevos usuarios.
+ * Incluye validaciones personalizadas para contraseñas y confirmación.
+ */
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -6,11 +10,6 @@ import { User } from 'src/app/core/models/auth.model';
 import { BaseAuthenticationService } from 'src/app/core/services/impl/base-authentication.service';
 import { UsersAppService } from 'src/app/core/services/impl/usersApp.service';
 import { matchPasswordsValidator, passwordValidator } from 'src/app/core/utils/validators';
-
-/**
- * Página de registro de nuevos usuarios.
- * Incluye validaciones personalizadas para contraseñas y confirmación.
- */
 @Component({
   selector: 'app-register',
   templateUrl: './register.page.html',
